@@ -399,7 +399,7 @@ export const portfolioCategories = [
     accent: "#9effc4",
     backdrop: "linear-gradient(145deg, #07120e 0%, #12372c 52%, #9effc4 120%)",
     motif: "UX",
-    previewImages: []
+    previewImages: ["/work/ui-ux/fitness/fitness-ui-app.jpg"]
   },
   {
     id: "ai-generated",
@@ -898,6 +898,24 @@ export const socialProjects = [
         src: "/work/social-media/kyro/kyro-04.png",
         width: 1024,
         height: 1536
+      }
+    ]
+  }
+];
+
+export const uiUxProjects = [
+  {
+    title: "Fitness Mobile App UI",
+    category: "UI / UX",
+    format: "Mobile App Case Study",
+    brief:
+      "A complete health-tech app concept covering onboarding, dashboard, workout tracking, meal planning, and progress analytics with a soft blue interface system.",
+    images: [
+      {
+        title: "Fitness App Case Study",
+        src: "/work/ui-ux/fitness/fitness-ui-app.jpg",
+        width: 1440,
+        height: 10308
       }
     ]
   }
