@@ -20,8 +20,35 @@ export default function Home() {
   const [creativePaused, setCreativePaused] = useState(false);
   const [loaded, setLoaded] = useState(false);
   const heroRef = useRef<HTMLDivElement>(null);
+  const shouldOpenWorkRef = useRef(false);
   const { scrollYProgress } = useScroll();
   const backgroundY = useTransform(scrollYProgress, [0, 1], ["0%", "22%"]);
+
+  useEffect(() => {
+    shouldOpenWorkRef.current = !window.location.hash;
+  }, []);
+
+  useEffect(() => {
+    if (!loaded || !shouldOpenWorkRef.current) return;
+
+    const openWorkSection = () => {
+      const workSection = document.getElementById("work");
+      if (!workSection) return;
+
+      window.history.replaceState(null, "", "#work");
+      window.scrollTo({
+        top: workSection.getBoundingClientRect().top + window.scrollY,
+        behavior: "auto"
+      });
+    };
+
+    const frame = window.requestAnimationFrame(() => {
+      openWorkSection();
+      window.setTimeout(openWorkSection, 350);
+    });
+
+    return () => window.cancelAnimationFrame(frame);
+  }, [loaded]);
 
   useEffect(() => {
     if (!loaded) return;
