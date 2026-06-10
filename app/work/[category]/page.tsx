@@ -4,6 +4,7 @@ import { notFound } from "next/navigation";
 import { type CSSProperties } from "react";
 import { ArrowLeft, ArrowUpRight, GalleryHorizontalEnd, LayoutGrid, Sparkles } from "lucide-react";
 import { logoProjects, portfolioCategories, portfolioWorks, socialProjects } from "@/lib/portfolio-data";
+import { assetPath } from "@/lib/site-paths";
 
 type CategoryPageProps = {
   params: {
@@ -140,7 +141,7 @@ export default function CategoryPage({ params }: CategoryPageProps) {
                       }`}
                     >
                       <Image
-                        src={image}
+                        src={assetPath(image)}
                         alt={`${category.title} preview ${index + 1}`}
                         width={size.width}
                         height={size.height}
@@ -212,7 +213,7 @@ export default function CategoryPage({ params }: CategoryPageProps) {
                     <div className="relative p-3">
                       <figure className="relative overflow-hidden rounded-[1.25rem] bg-black/60">
                         <Image
-                          src={work.image}
+                          src={assetPath(work.image)}
                           alt={work.title}
                           width={size.width}
                           height={size.height}
@@ -251,7 +252,7 @@ export default function CategoryPage({ params }: CategoryPageProps) {
                       }`}
                     >
                       <Image
-                        src={image.src}
+                        src={assetPath(image.src)}
                         alt={image.title}
                         width={image.width}
                         height={image.height}
@@ -296,7 +297,7 @@ export default function CategoryPage({ params }: CategoryPageProps) {
                     >
                       <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_70%_15%,rgba(190,255,0,0.2),transparent_30%),linear-gradient(145deg,rgba(255,255,255,0.08),transparent_38%)] opacity-0 transition duration-500 group-hover:opacity-100" />
                       <Image
-                        src={image.src}
+                        src={assetPath(image.src)}
                         alt={image.title}
                         width={image.width}
                         height={image.height}

@@ -7,6 +7,9 @@ const nextConfig = {
   images: {
     unoptimized: true
   },
+  env: {
+    NEXT_PUBLIC_BASE_PATH: isGithubPages ? "/portfolio" : ""
+  },
   trailingSlash: true,
   basePath: isGithubPages ? "/portfolio" : "",
   assetPrefix: isGithubPages ? "/portfolio/" : undefined,

@@ -12,6 +12,7 @@ import { Reveal } from "@/components/reveal";
 import { SectionShell } from "@/components/section-shell";
 import { Spotlight } from "@/components/spotlight";
 import { education, metrics, portfolioCategories, profile, projects, services, skills, timeline } from "@/lib/portfolio-data";
+import { assetPath } from "@/lib/site-paths";
 
 export default function Home() {
   const [activeProject, setActiveProject] = useState(0);
@@ -90,7 +91,7 @@ export default function Home() {
           <div className="reference-model" aria-hidden>
             <div className="reference-rim" />
             <Image
-              src="/images/mayank-portrait.png"
+              src={assetPath("/images/mayank-portrait.png")}
               alt="Mayank Chauhan portrait"
               fill
               priority
@@ -215,7 +216,7 @@ export default function Home() {
                         {category.previewImages.slice(0, 3).map((image, imageIndex) => (
                           <div key={image} className={`niche-image-sample niche-image-sample-${imageIndex + 1}`}>
                             <Image
-                              src={image}
+                              src={assetPath(image)}
                               alt={`${category.title} preview ${imageIndex + 1}`}
                               fill
                               sizes="180px"

@@ -4,6 +4,7 @@ import { type CSSProperties } from "react";
 import { ArrowLeft, ArrowUpRight, GalleryHorizontalEnd, Sparkles } from "lucide-react";
 import { LegacyWorkHashRouter } from "@/components/legacy-work-hash-router";
 import { portfolioCategories, portfolioWorks } from "@/lib/portfolio-data";
+import { assetPath } from "@/lib/site-paths";
 
 const featuredWorks = portfolioWorks.slice(0, 3);
 
@@ -81,7 +82,7 @@ export default function WorkPage() {
                     }`}
                   >
                     <Image
-                      src={work.image}
+                      src={assetPath(work.image)}
                       alt={work.title}
                       width={size.width}
                       height={size.height}
@@ -141,7 +142,7 @@ export default function WorkPage() {
                     category.previewImages.slice(0, 3).map((image, imageIndex) => (
                       <div key={image} className={`niche-image-sample niche-image-sample-${imageIndex + 1}`}>
                         <Image
-                          src={image}
+                          src={assetPath(image)}
                           alt={`${category.title} preview ${imageIndex + 1}`}
                           fill
                           sizes="220px"
