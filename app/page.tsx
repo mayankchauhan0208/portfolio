@@ -423,7 +423,7 @@ export default function Home() {
             {timeline.map((item, index) => (
               <Reveal key={`${item.org}-${item.date}`} delay={index * 0.04}>
                 <div className="relative ml-14 rounded-3xl border border-white/10 bg-black/25 p-6 backdrop-blur-xl">
-                  <span className="absolute -left-[3.25rem] top-7 h-4 w-4 rounded-full border border-signal bg-obsidian shadow-[0_0_24px_rgba(142,232,255,0.7)]" />
+                  <span className="absolute left-[-2.75rem] top-7 h-4 w-4 rounded-full border border-signal bg-obsidian shadow-[0_0_24px_rgba(142,232,255,0.7)]" />
                   <p className="text-xs uppercase tracking-[0.24em] text-signal">{item.date}</p>
                   <h3 className="mt-3 font-display text-2xl text-white">{item.title}</h3>
                   <p className="mt-1 text-champagne">{item.org}</p>

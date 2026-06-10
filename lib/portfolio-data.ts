@@ -31,26 +31,26 @@ export const metrics = [
 
 export const projects = [
   {
-    title: "Group Bayport Creative Systems",
-    eyebrow: "Senior Design",
-    period: "February 2025 - Present",
-    summary:
-      "Premium brand and marketing assets created with consistency, speed, and strong visual control.",
-    details:
-      "Creating polished visual assets for a global-facing brand environment, with a focus on layout discipline, clean typography, image treatment, and campaign-ready execution.",
-    tags: ["Brand Systems", "Marketing Design", "Production Design", "Visual QA"],
-    glow: "from-signal/35 via-white/10 to-transparent"
-  },
-  {
     title: "Property Master Visual Experience",
-    eyebrow: "Real Estate Visuals",
-    period: "3 Years",
+    eyebrow: "Current Role",
+    period: "2025 - Present",
     summary:
       "Real-estate visuals shaped with premium spacing, hierarchy, and sales-ready clarity.",
     details:
-      "Transformed property communication into premium layouts, campaign graphics, and presentation-ready assets designed to feel trustworthy, refined, and high-value.",
+      "Creating premium real-estate graphics, presentations, and campaign visuals built for credibility, clarity, and high-value selling environments.",
     tags: ["Luxury Real Estate", "Campaigns", "Presentation Design", "Digital Collateral"],
     glow: "from-champagne/35 via-white/10 to-transparent"
+  },
+  {
+    title: "Group Bayport Creative Systems",
+    eyebrow: "Senior Design",
+    period: "3 Years",
+    summary:
+      "Premium brand and marketing assets created with consistency, speed, and strong visual control.",
+    details:
+      "Created polished visual assets for a global-facing brand environment, with a focus on layout discipline, clean typography, image treatment, and campaign-ready execution.",
+    tags: ["Brand Systems", "Marketing Design", "Production Design", "Visual QA"],
+    glow: "from-signal/35 via-white/10 to-transparent"
   },
   {
     title: "7P Digital Motion Studio",
@@ -958,14 +958,14 @@ export const timeline = [
   {
     date: "2025 - Present",
     title: "Senior Graphic Designer",
-    org: "Group Bayport",
-    body: "Leading polished design execution for brand and marketing assets with a focus on quality, consistency, and production velocity."
+    org: "Property Master Pvt. Ltd.",
+    body: "Creating premium real-estate graphics, presentations, and campaign visuals built for credibility and high-value selling environments."
   },
   {
     date: "3 Years",
     title: "Graphic Designer",
-    org: "Property Master Pvt. Ltd.",
-    body: "Created premium real-estate graphics, presentations, and campaign visuals built for credibility and high-value selling environments."
+    org: "Group Bayport",
+    body: "Created polished brand and marketing assets with a focus on quality, consistency, and production velocity."
   },
   {
     date: "7 Months",
