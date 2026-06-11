@@ -3,7 +3,7 @@ import Link from "next/link";
 import { notFound } from "next/navigation";
 import { type CSSProperties } from "react";
 import { ArrowLeft, ArrowUpRight, GalleryHorizontalEnd, LayoutGrid, Sparkles } from "lucide-react";
-import { logoProjects, portfolioCategories, portfolioWorks, socialProjects, uiUxProjects } from "@/lib/portfolio-data";
+import { aiGeneratedProjects, logoProjects, portfolioCategories, portfolioWorks, socialProjects, uiUxProjects } from "@/lib/portfolio-data";
 import { assetPath } from "@/lib/site-paths";
 
 type CategoryPageProps = {
@@ -39,14 +39,6 @@ function imageSizeFor(src: string) {
 
 function getCategory(slug: string) {
   return portfolioCategories.find((category) => category.id === slug);
-}
-
-function titleLines(title: string) {
-  if (title === "UI / UX") {
-    return ["UI", "UX"];
-  }
-
-  return title.replace(" / ", " ").split(" ");
 }
 
 export function generateStaticParams() {
@@ -115,12 +107,8 @@ export default function CategoryPage({ params }: CategoryPageProps) {
             <p className="mb-5 inline-flex items-center gap-3 rounded-full border border-white/10 bg-white/[0.045] px-4 py-2 text-xs uppercase tracking-[0.3em] text-[var(--niche-accent)]">
               <Sparkles size={14} /> {category.label}
             </p>
-            <h1 className="font-display text-[clamp(3.2rem,9vw,8.5rem)] font-semibold uppercase leading-[0.78] text-white">
-              {titleLines(category.title).map((word) => (
-                <span key={word} className="block">
-                  {word}
-                </span>
-              ))}
+            <h1 className="font-display text-6xl font-semibold uppercase leading-none text-white md:text-8xl lg:text-9xl">
+              {category.title}
             </h1>
             <p className="mt-7 max-w-2xl text-base leading-8 text-mercury md:text-lg">{category.subtitle}</p>
           </div>
@@ -319,7 +307,50 @@ export default function CategoryPage({ params }: CategoryPageProps) {
         </section>
       )}
 
-      {category.id !== "branding" && category.id !== "real-estate" && category.id !== "social-media" && category.id !== "ui-ux" && (
+      {category.id === "ai-generated" && (
+        <section className="relative z-10 px-4 pb-28 md:px-8">
+          <div className="mx-auto max-w-7xl space-y-8">
+            {aiGeneratedProjects.map((project) => (
+              <div
+                key={project.title}
+                className="overflow-hidden rounded-[2rem] border border-violet-200/20 bg-[#080817] p-5 shadow-luxury backdrop-blur-xl md:p-8"
+              >
+                <div className="mb-8 grid gap-6 lg:grid-cols-[0.95fr_1.05fr] lg:items-end">
+                  <div>
+                    <p className="mb-4 text-xs uppercase tracking-[0.32em] text-violet-200">{project.format}</p>
+                    <h2 className="font-display text-4xl leading-none text-white md:text-6xl">{project.title}</h2>
+                  </div>
+                  <p className="max-w-2xl text-sm leading-7 text-mercury md:text-base">{project.brief}</p>
+                </div>
+
+                <div className="mx-auto grid max-w-5xl gap-5">
+                  {project.images.map((image, index) => (
+                    <article
+                      key={image.src}
+                      className="group relative overflow-hidden rounded-[1.5rem] border border-white/10 bg-black/55 p-3 shadow-luxury"
+                    >
+                      <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_75%_12%,rgba(183,164,255,0.2),transparent_30%),linear-gradient(145deg,rgba(255,255,255,0.08),transparent_38%)] opacity-0 transition duration-500 group-hover:opacity-100" />
+                      <Image
+                        src={assetPath(image.src)}
+                        alt={image.title}
+                        width={image.width}
+                        height={image.height}
+                        sizes="(min-width: 1024px) 72vw, 92vw"
+                        className="relative h-auto w-full rounded-[1.15rem] object-cover transition duration-700 group-hover:scale-[1.015]"
+                      />
+                      <div className="pointer-events-none absolute left-6 top-6 rounded-full border border-violet-200/25 bg-black/55 px-4 py-2 text-[0.62rem] uppercase tracking-[0.22em] text-violet-100 backdrop-blur-xl">
+                        {String(index + 1).padStart(2, "0")} / {image.title}
+                      </div>
+                    </article>
+                  ))}
+                </div>
+              </div>
+            ))}
+          </div>
+        </section>
+      )}
+
+      {category.id !== "branding" && category.id !== "real-estate" && category.id !== "social-media" && category.id !== "ui-ux" && category.id !== "ai-generated" && (
         <section className="relative z-10 px-4 pb-28 md:px-8">
           <div className="mx-auto max-w-7xl">
             <div className="mb-8 flex items-end justify-between gap-6">

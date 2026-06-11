@@ -400,9 +400,9 @@ export const portfolioCategories = [
     backdrop: "linear-gradient(145deg, #07120e 0%, #12372c 52%, #9effc4 120%)",
     motif: "UX",
     previewImages: [
-      "/work/ui-ux/aurea-dental/aurea-dental-01.png",
-      "/work/ui-ux/aurea-dental/aurea-dental-08.png",
-      "/work/ui-ux/fitness/fitness-ui-app.jpg"
+      "/optimized/work/ui-ux/greenaura/greenaura-01.webp",
+      "/optimized/work/ui-ux/aurea-dental/aurea-dental-01.webp",
+      "/optimized/work/ui-ux/fitness/fitness-ui-app.webp"
     ]
   },
   {
@@ -414,7 +414,11 @@ export const portfolioCategories = [
     accent: "#b7a4ff",
     backdrop: "linear-gradient(145deg, #0a0a18 0%, #211d54 52%, #b7a4ff 120%)",
     motif: "AI",
-    previewImages: []
+    previewImages: [
+      "/optimized/work/ai-generated/emaar-india-business-centre/emaar-IBC-01.webp",
+      "/optimized/work/ai-generated/emaar-india-business-centre/emaar-IBC-02.webp",
+      "/optimized/work/ai-generated/emaar-india-business-centre/emaar-IBC-03.webp"
+    ]
   }
 ];
 
@@ -909,6 +913,111 @@ export const socialProjects = [
 
 export const uiUxProjects = [
   {
+    title: "GreenAura Fresh Produce Website",
+    category: "UI / UX",
+    format: "Organic Grocery Website Presentation",
+    brief:
+      "A premium farm-fresh grocery website experience covering brand philosophy, logo, color, typography, homepage anatomy, product flow, farm storytelling, testimonials, order journey, responsive layouts, and design system components.",
+    images: [
+      {
+        title: "Cover Presentation",
+        src: "/optimized/work/ui-ux/greenaura/greenaura-01.webp",
+        width: 1536,
+        height: 1024
+      },
+      {
+        title: "Philosophy and Values",
+        src: "/optimized/work/ui-ux/greenaura/greenaura-02.webp",
+        width: 1536,
+        height: 1024
+      },
+      {
+        title: "Brand Philosophy System",
+        src: "/optimized/work/ui-ux/greenaura/greenaura-03.webp",
+        width: 1536,
+        height: 1024
+      },
+      {
+        title: "Logo System",
+        src: "/optimized/work/ui-ux/greenaura/greenaura-04.webp",
+        width: 1536,
+        height: 1024
+      },
+      {
+        title: "Color Strategy",
+        src: "/optimized/work/ui-ux/greenaura/greenaura-05.webp",
+        width: 1536,
+        height: 1024
+      },
+      {
+        title: "Typography System",
+        src: "/optimized/work/ui-ux/greenaura/greenaura-06.webp",
+        width: 1536,
+        height: 1024
+      },
+      {
+        title: "Visual Language",
+        src: "/optimized/work/ui-ux/greenaura/greenaura-07.webp",
+        width: 1536,
+        height: 1024
+      },
+      {
+        title: "Homepage Hero Experience",
+        src: "/optimized/work/ui-ux/greenaura/greenaura-08.webp",
+        width: 1536,
+        height: 1024
+      },
+      {
+        title: "Homepage Anatomy",
+        src: "/optimized/work/ui-ux/greenaura/greenaura-09.webp",
+        width: 1536,
+        height: 1024
+      },
+      {
+        title: "Product Experience",
+        src: "/optimized/work/ui-ux/greenaura/greenaura-10.webp",
+        width: 1402,
+        height: 1122
+      },
+      {
+        title: "Farm Stories Experience",
+        src: "/optimized/work/ui-ux/greenaura/greenaura-11.webp",
+        width: 1402,
+        height: 1122
+      },
+      {
+        title: "Testimonial Experience",
+        src: "/optimized/work/ui-ux/greenaura/greenaura-12.webp",
+        width: 1402,
+        height: 1122
+      },
+      {
+        title: "Order and Contact Experience",
+        src: "/optimized/work/ui-ux/greenaura/greenaura-13.webp",
+        width: 1402,
+        height: 1122
+      },
+      {
+        title: "Responsive Experience",
+        src: "/optimized/work/ui-ux/greenaura/greenaura-14.webp",
+        width: 1536,
+        height: 1024
+      },
+      {
+        title: "Design System",
+        src: "/optimized/work/ui-ux/greenaura/greenaura-15.webp",
+        width: 1402,
+        height: 1122
+      },
+      {
+        title: "Final Showcase",
+        src: "/optimized/work/ui-ux/greenaura/greenaura-16.webp",
+        width: 1536,
+        height: 1024
+      }
+    ]
+  },
+  {
     title: "Aurea Dental Website Design",
     category: "UI / UX",
     format: "Luxury Dental Website Presentation",
@@ -917,79 +1026,79 @@ export const uiUxProjects = [
     images: [
       {
         title: "Cover Presentation",
-        src: "/work/ui-ux/aurea-dental/aurea-dental-01.png",
+        src: "/optimized/work/ui-ux/aurea-dental/aurea-dental-01.webp",
         width: 1536,
         height: 1024
       },
       {
         title: "Brand Philosophy",
-        src: "/work/ui-ux/aurea-dental/aurea-dental-02.png",
+        src: "/optimized/work/ui-ux/aurea-dental/aurea-dental-02.webp",
         width: 1536,
         height: 1024
       },
       {
         title: "Logo System",
-        src: "/work/ui-ux/aurea-dental/aurea-dental-03.png",
+        src: "/optimized/work/ui-ux/aurea-dental/aurea-dental-03.webp",
         width: 1536,
         height: 1024
       },
       {
         title: "Color Strategy",
-        src: "/work/ui-ux/aurea-dental/aurea-dental-04.png",
+        src: "/optimized/work/ui-ux/aurea-dental/aurea-dental-04.webp",
         width: 1536,
         height: 1024
       },
       {
         title: "Typography System",
-        src: "/work/ui-ux/aurea-dental/aurea-dental-05.png",
+        src: "/optimized/work/ui-ux/aurea-dental/aurea-dental-05.webp",
         width: 1536,
         height: 1024
       },
       {
         title: "Design Language",
-        src: "/work/ui-ux/aurea-dental/aurea-dental-06.png",
+        src: "/optimized/work/ui-ux/aurea-dental/aurea-dental-06.webp",
         width: 1536,
         height: 1024
       },
       {
         title: "Homepage Hero Experience",
-        src: "/work/ui-ux/aurea-dental/aurea-dental-07.png",
+        src: "/optimized/work/ui-ux/aurea-dental/aurea-dental-07.webp",
         width: 1536,
         height: 1024
       },
       {
         title: "Homepage Experience",
-        src: "/work/ui-ux/aurea-dental/aurea-dental-08.png",
-        width: 1432,
-        height: 1536
+        src: "/optimized/work/ui-ux/aurea-dental/aurea-dental-08.webp",
+        width: 1197,
+        height: 1315
       },
       {
         title: "Services Experience",
-        src: "/work/ui-ux/aurea-dental/aurea-dental-09.png",
-        width: 1046,
+        src: "/optimized/work/ui-ux/aurea-dental/aurea-dental-09.webp",
+        width: 1024,
         height: 1536
       },
       {
         title: "Doctor Showcase Experience",
-        src: "/work/ui-ux/aurea-dental/aurea-dental-010.png",
-        width: 1266,
-        height: 1536
+        src: "/optimized/work/ui-ux/aurea-dental/aurea-dental-010.webp",
+        width: 1198,
+        height: 1313
       },
       {
         title: "Patient Stories Experience",
-        src: "/work/ui-ux/aurea-dental/aurea-dental-011.png",
-        width: 1266,
-        height: 1536
+        src: "/optimized/work/ui-ux/aurea-dental/aurea-dental-011.webp",
+        width: 1199,
+        height: 1312
       },
       {
         title: "Contact and Appointment Experience",
-        src: "/work/ui-ux/aurea-dental/aurea-dental-012.png",
-        width: 1266,
-        height: 1536
+        src: "/optimized/work/ui-ux/aurea-dental/aurea-dental-012.webp",
+        width: 1199,
+        height: 1312
       },
       {
         title: "Responsive Experience",
-        src: "/work/ui-ux/aurea-dental/aurea-dental-013.png",
+        src: "/optimized/work/ui-ux/aurea-dental/aurea-dental-013.webp",
         width: 1536,
         height: 1024
       }
@@ -1004,9 +1113,96 @@ export const uiUxProjects = [
     images: [
       {
         title: "Fitness App Case Study",
-        src: "/work/ui-ux/fitness/fitness-ui-app.jpg",
+        src: "/optimized/work/ui-ux/fitness/fitness-ui-app.webp",
         width: 1440,
         height: 10308
+      }
+    ]
+  }
+];
+
+export const aiGeneratedProjects = [
+  {
+    title: "Emaar India Business Centre AI Visuals",
+    category: "AI Generated",
+    format: "Commercial Architecture Concept Visuals",
+    brief:
+      "AI-generated architectural visuals for Emaar India Business Centre, a commercial project by Emaar Developer. The set explores premium office-tower perspectives across day, dusk, and night moods for campaign storytelling, presentation decks, and real-estate launch communication.",
+    images: [
+      {
+        title: "Night Facade Concept",
+        src: "/optimized/work/ai-generated/emaar-india-business-centre/emaar-IBC-01.webp",
+        width: 1344,
+        height: 768
+      },
+      {
+        title: "Daytime Commercial Tower",
+        src: "/optimized/work/ai-generated/emaar-india-business-centre/emaar-IBC-02.webp",
+        width: 1344,
+        height: 768
+      },
+      {
+        title: "Dusk Launch Perspective",
+        src: "/optimized/work/ai-generated/emaar-india-business-centre/emaar-IBC-03.webp",
+        width: 1344,
+        height: 768
+      },
+      {
+        title: "Elevated City View",
+        src: "/optimized/work/ai-generated/emaar-india-business-centre/emaar-IBC-04.webp",
+        width: 1344,
+        height: 768
+      },
+      {
+        title: "Sunset Glass Facade",
+        src: "/optimized/work/ai-generated/emaar-india-business-centre/emaar-IBC-05.webp",
+        width: 1344,
+        height: 768
+      },
+      {
+        title: "Blue Hour Skyline",
+        src: "/optimized/work/ai-generated/emaar-india-business-centre/emaar-IBC-06.webp",
+        width: 1344,
+        height: 768
+      },
+      {
+        title: "Aerial Site Context",
+        src: "/optimized/work/ai-generated/emaar-india-business-centre/emaar-IBC-07.webp",
+        width: 2048,
+        height: 2048
+      }
+    ]
+  },
+  {
+    title: "Interior Image Creation: Matching Consistency",
+    category: "AI Generated",
+    format: "Interior Concept Angles",
+    brief:
+      "AI-generated interior image creation focused on matching consistency across multiple angles. The set keeps the same dark conference room language, black geometric pendant lights, warm wooden table, matte wall panels, and moody premium lighting while exploring alternate camera views.",
+    images: [
+      {
+        title: "Wide Dining Conference View",
+        src: "/optimized/work/ai-generated/interior-consistency/interior-consistency-01.webp",
+        width: 1675,
+        height: 939
+      },
+      {
+        title: "Left Angle Table View",
+        src: "/optimized/work/ai-generated/interior-consistency/interior-consistency-02.webp",
+        width: 1676,
+        height: 938
+      },
+      {
+        title: "Straight Front Composition",
+        src: "/optimized/work/ai-generated/interior-consistency/interior-consistency-03.webp",
+        width: 2048,
+        height: 1147
+      },
+      {
+        title: "Window Side Angle",
+        src: "/optimized/work/ai-generated/interior-consistency/interior-consistency-04.webp",
+        width: 1674,
+        height: 939
       }
     ]
   }
