@@ -1,6 +1,7 @@
 import type { Metadata, Viewport } from "next";
 import "./globals.css";
 import { CustomCursor } from "@/components/custom-cursor";
+import { RouteStartReset } from "@/components/route-start-reset";
 
 export const metadata: Metadata = {
   title: "Mayank Chauhan | Graphic Designer, UI Designer & Video Editor",
@@ -25,6 +26,7 @@ export default function RootLayout({ children }: Readonly<{ children: React.Reac
   return (
     <html lang="en" className="scroll-smooth">
       <body className="bg-obsidian font-sans text-platinum antialiased">
+        <RouteStartReset />
         <CustomCursor />
         {children}
       </body>

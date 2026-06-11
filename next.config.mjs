@@ -5,7 +5,13 @@ const nextConfig = {
   reactStrictMode: true,
   output: "export",
   images: {
-    unoptimized: true
+    unoptimized: true,
+    remotePatterns: [
+      {
+        protocol: "https",
+        hostname: "cdn.simpleicons.org"
+      }
+    ]
   },
   env: {
     NEXT_PUBLIC_BASE_PATH: isGithubPages ? "/portfolio" : ""

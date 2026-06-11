@@ -1,14 +1,3 @@
-import {
-  Aperture,
-  BadgeCheck,
-  Boxes,
-  Clapperboard,
-  Layers3,
-  PenTool,
-  Sparkles,
-  Wand2
-} from "lucide-react";
-
 export const profile = {
   name: "Mayank Chauhan",
   roles: ["Graphic Designer", "UI Designer", "Video Editor"],
@@ -17,9 +6,9 @@ export const profile = {
   email: "mayankchauhan0208@gmail.com",
   behance: "https://www.behance.net/mayankchauhan0208",
   intro:
-    "I design sharp brand visuals, intuitive UI concepts, and motion-ready digital assets that help brands look polished, confident, and memorable.",
+    "I create premium brand visuals, UI concepts, campaign creatives, and motion-ready assets for brands that need clarity, polish, and strong recall.",
   positioning:
-    "Mayank brings graphic design, UI thinking, and video editing together into one refined creative practice. His work is clean, expressive, and built for brands that need premium visual communication across social, digital, print, and presentation formats."
+    "Mayank Chauhan is a graphic designer with hands-on experience across real-estate marketing, brand campaigns, UI/UX concepts, social media creatives, and video editing. His work focuses on clean hierarchy, premium spacing, strong image treatment, and practical execution for digital, print, presentation, and campaign formats."
 };
 
 export const metrics = [
@@ -31,88 +20,131 @@ export const metrics = [
 
 export const projects = [
   {
-    title: "Property Master Visual Experience",
+    title: "Property Master Pvt. Ltd",
     eyebrow: "Current Role",
-    period: "2025 - Present",
+    period: "February, 2025 - Present",
     summary:
-      "Real-estate visuals shaped with premium spacing, hierarchy, and sales-ready clarity.",
+      "Sr.Graphic Designer role focused on real-estate visuals and premium campaign communication.",
     details:
-      "Creating premium real-estate graphics, presentations, and campaign visuals built for credibility, clarity, and high-value selling environments.",
-    tags: ["Luxury Real Estate", "Campaigns", "Presentation Design", "Digital Collateral"],
+      "Working as Sr.Graphic Designer, creating premium real-estate graphics, presentations, and campaign visuals built for credibility, clarity, and high-value selling environments.",
+    tags: ["Sr.Graphic Designer", "Real Estate", "Campaigns", "Presentation Design"],
     glow: "from-champagne/35 via-white/10 to-transparent"
   },
   {
-    title: "Group Bayport Creative Systems",
-    eyebrow: "Senior Design",
+    title: "Group Bayport",
+    eyebrow: "Graphic Design",
     period: "3 Years",
     summary:
-      "Premium brand and marketing assets created with consistency, speed, and strong visual control.",
+      "3 years as Excapation Graphic Designer creating polished brand and marketing assets.",
     details:
-      "Created polished visual assets for a global-facing brand environment, with a focus on layout discipline, clean typography, image treatment, and campaign-ready execution.",
-    tags: ["Brand Systems", "Marketing Design", "Production Design", "Visual QA"],
+      "Created polished visual assets with a focus on layout discipline, clean typography, image treatment, consistency, and campaign-ready execution.",
+    tags: ["Excapation Graphic Designer", "Marketing Design", "Production Design", "Visual QA"],
     glow: "from-signal/35 via-white/10 to-transparent"
   },
   {
-    title: "7P Digital Motion Studio",
-    eyebrow: "Design + Motion",
+    title: "7P Digital Services",
+    eyebrow: "Design + Video",
     period: "7 Months",
     summary:
-      "Digital content, social creatives, and edited video assets for fast-moving campaigns.",
+      "7 months as Graphic Designer & Video editor for digital content and campaign assets.",
     details:
       "Combined Photoshop, Illustrator, Premiere Pro, After Effects, and Canva workflows to create clear, energetic assets with strong pacing and visual structure.",
-    tags: ["Video Editing", "Social Content", "Motion Graphics", "Campaign Assets"],
+    tags: ["Graphic Designer", "Video Editor", "Social Content", "Campaign Assets"],
     glow: "from-purple-300/30 via-white/10 to-transparent"
   },
   {
-    title: "Citymall Product Communication",
-    eyebrow: "Retail Design",
+    title: "Citymall, Gurugram",
+    eyebrow: "Internship",
     period: "3 Months",
     summary:
-      "Commercial graphics created for a consumer-facing brand environment where clarity, speed, and adaptability mattered.",
+      "3 months as a Graphic designer intern in a consumer-facing brand environment.",
     details:
       "Supported design production with marketplace-ready visuals, clean composition, and brand-sensitive execution for digital touchpoints.",
-    tags: ["Consumer Design", "Digital Graphics", "Brand Adaptation"],
+    tags: ["Graphic Designer Intern", "Consumer Design", "Digital Graphics"],
     glow: "from-emerald-200/25 via-white/10 to-transparent"
   },
   {
-    title: "Foundation Studio Roles",
-    eyebrow: "Studio Foundations",
-    period: "Krash IT Services + YPR Eng. & Sol.",
+    title: "YPR Eng. and Sol. Private Limited",
+    eyebrow: "Internship",
+    period: "6 Months",
     summary:
-      "Early studio experience that built Mayank's hands-on production discipline across graphic design workflows.",
+      "6 months as a Graphic designer intern, building practical design production discipline.",
     details:
-      "Developed foundational skills in layout, tool fluency, client-facing asset preparation, and iterative creative delivery.",
-    tags: ["Graphic Design", "Tool Fluency", "Layout", "Creative Operations"],
+      "Developed foundational skills in layout, tool fluency, asset preparation, and iterative creative delivery.",
+    tags: ["Graphic Designer Intern", "Layout", "Tool Fluency", "Production"],
     glow: "from-sky-200/25 via-white/10 to-transparent"
+  },
+  {
+    title: "Krash IT Services",
+    eyebrow: "Internship",
+    period: "5 Months",
+    summary:
+      "5 months as a Graphic designer intern, strengthening layout and creative execution skills.",
+    details:
+      "Built early hands-on experience across graphic design workflows, visual cleanup, layout support, and production-ready assets.",
+    tags: ["Graphic Designer Intern", "Graphic Design", "Layout", "Creative Support"],
+    glow: "from-fuchsia-200/25 via-white/10 to-transparent"
   }
 ];
 
-export const skills = [
-  { name: "Adobe Photoshop", level: 94, icon: Wand2 },
-  { name: "Adobe Illustrator", level: 91, icon: PenTool },
-  { name: "Adobe Premiere Pro", level: 88, icon: Clapperboard },
-  { name: "Adobe After Effects", level: 82, icon: Sparkles },
-  { name: "Figma", level: 86, icon: Layers3 },
-  { name: "Adobe XD", level: 80, icon: Boxes },
-  { name: "Canva", level: 84, icon: Aperture },
-  { name: "Visual Design Systems", level: 90, icon: BadgeCheck }
+export const softwareSkills = [
+  { name: "Adobe Photoshop", logo: "https://cdn.simpleicons.org/adobephotoshop/31A8FF", fallback: "Ps" },
+  { name: "Adobe Illustrator", logo: "https://cdn.simpleicons.org/adobeillustrator/FF9A00", fallback: "Ai" },
+  { name: "Adobe InDesign", logo: "https://cdn.simpleicons.org/adobeindesign/FF3366", fallback: "Id" },
+  { name: "Adobe After Effects", logo: "https://cdn.simpleicons.org/adobeaftereffects/9999FF", fallback: "Ae" },
+  { name: "Adobe Premiere Pro", logo: "https://cdn.simpleicons.org/adobepremierepro/9999FF", fallback: "Pr" },
+  { name: "Figma", logo: "https://cdn.simpleicons.org/figma/F24E1E", fallback: "Fg" },
+  { name: "Microsoft PowerPoint", logo: "https://cdn.simpleicons.org/microsoftpowerpoint/B7472A", fallback: "Pp" },
+  { name: "Canva", logo: "https://cdn.simpleicons.org/canva/00C4CC", fallback: "Ca" }
+];
+
+export const coreExpertise = [
+  "Creative Direction",
+  "Branding & Identity",
+  "UI/UX Design",
+  "Presentation Design",
+  "Art Direction",
+  "Digital & Social Media Design",
+  "Marketing Campaigns",
+  "Print & Packaging Design",
+  "Motion Graphics",
+  "Typography & Layout",
+  "Photo Retouching",
+  "Visual Storytelling"
+];
+
+export const aiTools = [
+  { name: "ChatGPT", use: "Prompt Engineering & Strategy", logo: "https://cdn.simpleicons.org/openai/FFFFFF", fallback: "GPT" },
+  { name: "Gemini", use: "Research & Analysis", logo: "https://cdn.simpleicons.org/googlegemini/8E75B2", fallback: "G" },
+  { name: "Claude", use: "Long-Form Content", logo: "https://cdn.simpleicons.org/claude/D97757", fallback: "Cl" },
+  { name: "Midjourney", use: "Concept Visuals", logo: "https://cdn.simpleicons.org/midjourney/FFFFFF", fallback: "Mj" },
+  { name: "Adobe Firefly", use: "Commercial AI Design", logo: "https://cdn.simpleicons.org/adobefirefly/FF61F6", fallback: "Ff" },
+  { name: "FLUX", use: "Photorealistic Images", fallback: "Fx" },
+  { name: "Ideogram", use: "Typography Visuals", fallback: "Id" },
+  { name: "Leonardo AI", use: "Marketing Creatives", fallback: "Le" },
+  { name: "Runway", use: "AI Video Editing", logo: "https://cdn.simpleicons.org/runway/FFFFFF", fallback: "Rw" },
+  { name: "Kling AI", use: "Cinematic Video Generation", fallback: "Kl" },
+  { name: "Google Flow", use: "AI Filmmaking", logo: "https://cdn.simpleicons.org/google/4285F4", fallback: "Fl" },
+  { name: "Gamma", use: "Presentation Design", logo: "https://cdn.simpleicons.org/gamma/FFFFFF", fallback: "Ga" },
+  { name: "Canva AI", use: "Creative Automation", logo: "https://cdn.simpleicons.org/canva/00C4CC", fallback: "Ca" },
+  { name: "Figma AI", use: "UI/UX Design Automation", logo: "https://cdn.simpleicons.org/figma/F24E1E", fallback: "Fi" }
 ];
 
 export const services = [
   {
     title: "Brand Presence",
     kicker: "Identity / Campaigns",
-    body: "Polished visual systems, marketing creatives, and brand assets designed to feel consistent across every touchpoint."
+    body: "Brand assets, marketing creatives, and presentation visuals designed with consistent hierarchy, clear messaging, and premium recall."
   },
   {
     title: "Interface Concepts",
     kicker: "UI / Figma / XD",
-    body: "Clean, structured interface directions with strong hierarchy, premium spacing, and presentation-ready thinking."
+    body: "Landing pages, app screens, and product concepts with clean structure, polished spacing, and user-friendly visual flow."
   },
   {
     title: "Motion Content",
     kicker: "Premiere / After Effects",
-    body: "Edited videos, social motion pieces, and energetic campaign assets built with rhythm, clarity, and brand recall."
+    body: "Edited videos, reels, and campaign motion assets shaped with clear pacing, strong composition, and brand-focused energy."
   }
 ];
 
@@ -355,7 +387,7 @@ export const portfolioCategories = [
     backdrop: "linear-gradient(145deg, #050608 0%, #1b1d20 50%, #d8dde2 130%)",
     motif: "BR",
     previewImages: [
-      "/work/branding/valtora/veltora-01.png",
+      "/optimized/work/branding/kent/kent-01.webp",
       "/work/branding/cavaro/cavaro-01.png",
       "/work/branding/aurix/aurix-01.png",
     ]
@@ -423,6 +455,75 @@ export const portfolioCategories = [
 ];
 
 export const logoProjects = [
+  {
+    title: "KENT Water Purifier Digital Brand Experience",
+    category: "Branding",
+    format: "Website Experience + Brand System",
+    brief:
+      "A premium KENT water purifier digital experience deck built around purity, trust, technology, product clarity, conversion, responsive UI, and campaign-led promotional storytelling.",
+    images: [
+      {
+        title: "Premium Website Experience Cover",
+        src: "/optimized/work/branding/kent/kent-01.webp",
+        width: 1672,
+        height: 941
+      },
+      {
+        title: "Brand Vision",
+        src: "/optimized/work/branding/kent/kent-02.webp",
+        width: 1536,
+        height: 1024
+      },
+      {
+        title: "Creative Direction",
+        src: "/optimized/work/branding/kent/kent-03.webp",
+        width: 1672,
+        height: 941
+      },
+      {
+        title: "Experience Overview",
+        src: "/optimized/work/branding/kent/kent-04.webp",
+        width: 1672,
+        height: 941
+      },
+      {
+        title: "Homepage Hero Experience",
+        src: "/optimized/work/branding/kent/kent-05.webp",
+        width: 1672,
+        height: 941
+      },
+      {
+        title: "Homepage Journey",
+        src: "/optimized/work/branding/kent/kent-06.webp",
+        width: 1024,
+        height: 1536
+      },
+      {
+        title: "Product Experience",
+        src: "/optimized/work/branding/kent/kent-07.webp",
+        width: 1536,
+        height: 1024
+      },
+      {
+        title: "Trust and Conversion Experience",
+        src: "/optimized/work/branding/kent/kent-08.webp",
+        width: 1672,
+        height: 941
+      },
+      {
+        title: "Design System and UI Experience",
+        src: "/optimized/work/branding/kent/kent-09.webp",
+        width: 1672,
+        height: 941
+      },
+      {
+        title: "Offers and Promotions",
+        src: "/optimized/work/branding/kent/kent-010.webp",
+        width: 1672,
+        height: 941
+      }
+    ]
+  },
   {
     title: "Valtora Gaming Chair Brand System",
     category: "Branding",
@@ -1243,14 +1344,14 @@ export const portfolioLibraries = [
 
 export const timeline = [
   {
-    date: "2025 - Present",
-    title: "Senior Graphic Designer",
+    date: "February, 2025 - Present",
+    title: "Sr.Graphic Designer",
     org: "Property Master Pvt. Ltd.",
     body: "Creating premium real-estate graphics, presentations, and campaign visuals built for credibility and high-value selling environments."
   },
   {
     date: "3 Years",
-    title: "Graphic Designer",
+    title: "Excapation Graphic Designer",
     org: "Group Bayport",
     body: "Created polished brand and marketing assets with a focus on quality, consistency, and production velocity."
   },
@@ -1261,15 +1362,46 @@ export const timeline = [
     body: "Delivered digital creatives and edited content across social and campaign formats."
   },
   {
-    date: "Internship Track",
+    date: "3 Months",
     title: "Graphic Designer Intern",
-    org: "Citymall, YPR Eng. & Sol., Krash IT Services",
-    body: "Built a practical creative foundation through production work, brand adaptation, and tool-led design execution."
+    org: "Citymall, Gurugram",
+    body: "Supported brand and digital graphic design production in a consumer-facing environment."
+  },
+  {
+    date: "6 Months",
+    title: "Graphic Designer Intern",
+    org: "YPR Eng. and Sol. Private Limited",
+    body: "Built a practical creative foundation through production work, layout support, and tool-led design execution."
+  },
+  {
+    date: "5 Months",
+    title: "Graphic Designer Intern",
+    org: "Krash IT Services",
+    body: "Strengthened hands-on graphic design workflows through layout, visual cleanup, and asset preparation."
   }
 ];
 
 export const education = [
-  "B.Sc. Animation & Multimedia, JC Bose University of Science and Technology (YMCA), Faridabad",
-  "Senior Secondary, CBSE Board, Science",
-  "Secondary, HBSE Board, B.S.M High School"
+  {
+    level: "Graduation",
+    institution: "JC BOSE University of Science and Technology (YMCA), Faridabad, Haryana",
+    course: "Bsc. (Animation & Multimedia)"
+  },
+  {
+    level: "Senior Secondary",
+    institution: "CBSE Board",
+    course: "Science (Non-med)"
+  },
+  {
+    level: "Secondary",
+    institution: "HBSE Board",
+    course: "B.S.M High School (HAZIPUR)"
+  }
+];
+
+export const hobbies = [
+  "Exploring AI visual workflows",
+  "Editing videos and motion ideas",
+  "Following design trends and references",
+  "Sketching layouts and creative concepts"
 ];

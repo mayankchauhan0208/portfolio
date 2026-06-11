@@ -11,7 +11,7 @@ import { Nav } from "@/components/nav";
 import { Reveal } from "@/components/reveal";
 import { SectionShell } from "@/components/section-shell";
 import { Spotlight } from "@/components/spotlight";
-import { education, metrics, portfolioCategories, profile, projects, services, skills, timeline } from "@/lib/portfolio-data";
+import { aiTools, coreExpertise, education, hobbies, metrics, portfolioCategories, profile, projects, services, softwareSkills, timeline } from "@/lib/portfolio-data";
 import { assetPath } from "@/lib/site-paths";
 
 export default function Home() {
@@ -131,12 +131,15 @@ export default function Home() {
         </div>
       </section>
 
-      <SectionShell id="about" eyebrow="Profile" title="Premium visuals with clarity, motion, and purpose.">
+      <SectionShell id="about" eyebrow="About Me" title="A graphic designer focused on clean, premium visual communication.">
         <div className="grid gap-6 lg:grid-cols-[0.75fr_1.25fr]">
           <Reveal>
             <div className="h-full rounded-[2rem] border border-white/10 bg-white/[0.055] p-7 shadow-luxury backdrop-blur-2xl">
               <Sparkles className="mb-12 text-signal" size={28} />
-              <p className="font-display text-3xl leading-tight text-white">Design that feels clean at first glance and considered when you look closer.</p>
+              <p className="font-display text-3xl leading-tight text-white">Design that looks sharp quickly, then feels carefully built when you look closer.</p>
+              <p className="mt-6 leading-7 text-mercury">
+                I enjoy building visuals that are easy to understand, polished enough to trust, and flexible enough to work across social, print, UI, and presentation formats.
+              </p>
             </div>
           </Reveal>
           <Reveal delay={0.08}>
@@ -145,7 +148,14 @@ export default function Home() {
               <div className="mt-8 grid gap-4 md:grid-cols-3">
                 {profile.roles.map((role) => (
                   <div key={role} className="rounded-2xl border border-white/10 bg-white/[0.045] p-5">
-                    <p className="text-sm uppercase tracking-[0.24em] text-champagne">{role}</p>
+                    <p className="whitespace-nowrap text-sm uppercase tracking-[0.12em] text-champagne">{role}</p>
+                  </div>
+                ))}
+              </div>
+              <div className="mt-5 grid gap-4 md:grid-cols-3">
+                {["Premium layouts", "Campaign-ready assets", "Fast creative execution"].map((point) => (
+                  <div key={point} className="rounded-2xl border border-signal/15 bg-signal/[0.06] p-4">
+                    <p className="text-sm font-medium text-white">{point}</p>
                   </div>
                 ))}
               </div>
@@ -169,25 +179,27 @@ export default function Home() {
         </div>
       </section>
 
-      <section id="work" className="relative scroll-mt-28 overflow-hidden px-4 py-20 md:px-8 md:py-28">
+      <section id="work" className="relative scroll-mt-24 overflow-hidden px-4 py-12 md:px-8 md:py-16">
         <div className="absolute inset-x-0 top-10 mx-auto h-[34rem] max-w-6xl rounded-full bg-[radial-gradient(circle,rgba(142,232,255,0.2),transparent_62%)] blur-2xl" />
         <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_35%,rgba(18,54,92,0.7),transparent_38%)]" />
         <Reveal>
-          <div className="relative mx-auto max-w-7xl overflow-hidden rounded-[2.4rem] border border-white/10 bg-[#05070c]/82 px-5 pb-8 pt-14 shadow-luxury backdrop-blur-2xl md:px-10 md:pb-12 md:pt-20">
+          <div className="relative mx-auto max-w-7xl overflow-hidden rounded-[2.4rem] border border-white/10 bg-[#05070c]/82 px-5 pb-6 pt-10 shadow-luxury backdrop-blur-2xl md:px-10 md:pb-8 md:pt-12">
             <div className="absolute inset-0 portfolio-card-grid opacity-[0.08]" />
             <div className="absolute left-1/2 top-[-9rem] h-[26rem] w-[26rem] -translate-x-1/2 rounded-full bg-signal/15 blur-3xl" />
             <div className="relative mx-auto max-w-3xl text-center">
-              <p className="mb-5 text-xs uppercase tracking-[0.34em] text-signal">Creative Work</p>
-              <h2 className="font-display text-[clamp(3rem,7vw,6.8rem)] font-semibold leading-[0.86] text-white">
+              <p className="mb-4 text-xs uppercase tracking-[0.34em] text-signal">Creative Work</p>
+              <h2 className="font-display text-[clamp(2.6rem,5.6vw,5.4rem)] font-semibold leading-[0.88] text-white">
                 Choose the niche. Enter the right creative world.
               </h2>
-              <p className="mx-auto mt-6 max-w-2xl text-sm leading-7 text-mercury md:text-base">
-                A rotating portfolio system for branding, real estate creatives, social media, UI/UX, and AI generated visual concepts.
+              <p className="mx-auto mt-4 max-w-xl text-balance text-sm leading-6 text-mercury md:text-base">
+                Explore focused creative worlds for branding, real estate campaigns, social media, and UI/UX.
+                <br className="hidden md:block" />
+                Built with selected AI-generated visual concepts and presentation-ready case studies.
               </p>
             </div>
 
             <div
-              className="creative-stage relative mx-auto mt-14 min-h-[30rem] max-w-6xl md:min-h-[36rem]"
+              className="creative-stage relative mx-auto mt-8 min-h-[24rem] max-w-6xl md:min-h-[28rem]"
               onMouseEnter={() => setCreativePaused(true)}
               onMouseLeave={() => setCreativePaused(false)}
               onFocus={() => setCreativePaused(true)}
@@ -213,7 +225,7 @@ export default function Home() {
                 >
                   <div className="absolute inset-0 niche-card-bg" />
                   <div className="absolute inset-0 portfolio-card-grid opacity-20" />
-                  <div className="niche-inner-window absolute inset-x-4 top-16 h-52 overflow-hidden rounded-[1.3rem] border border-white/15 bg-black/28 backdrop-blur-xl">
+                  <div className="niche-inner-window absolute inset-x-4 top-14 h-44 overflow-hidden rounded-[1.3rem] border border-white/15 bg-black/28 backdrop-blur-xl">
                     {category.previewImages.length > 0 ? (
                       <>
                         {category.previewImages.slice(0, 3).map((image, imageIndex) => (
@@ -243,8 +255,8 @@ export default function Home() {
                       </>
                     )}
                   </div>
-                  <div className="niche-ring absolute -right-12 bottom-24 h-40 w-40 rounded-full border" />
-                  <div className="niche-haze absolute -left-16 top-44 h-44 w-44 rounded-full blur-2xl" />
+                  <div className="niche-ring absolute -right-12 bottom-20 h-36 w-36 rounded-full border" />
+                  <div className="niche-haze absolute -left-16 top-40 h-40 w-40 rounded-full blur-2xl" />
                   <div className="absolute left-4 top-4 rounded-full border border-white/20 bg-black/45 px-3 py-1.5 text-[0.58rem] uppercase tracking-[0.18em] text-white/85 backdrop-blur-xl">
                     {category.label}
                   </div>
@@ -362,33 +374,101 @@ export default function Home() {
         </div>
       </SectionShell>
 
-      <SectionShell id="skills" eyebrow="Creative Stack" title="Tools for brand visuals, interfaces, and motion-led content.">
-        <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-4">
-          {skills.map((skill, index) => {
-            const Icon = skill.icon;
-            return (
-              <Reveal key={skill.name} delay={index * 0.03}>
-                <div className="group rounded-3xl border border-white/10 bg-white/[0.05] p-5 backdrop-blur-xl transition hover:-translate-y-1 hover:border-signal/35 hover:bg-white/[0.08]">
-                  <div className="mb-10 flex items-center justify-between">
-                    <div className="grid h-12 w-12 place-items-center rounded-2xl bg-white text-black transition group-hover:bg-signal">
-                      <Icon size={20} />
-                    </div>
-                    <span className="font-display text-2xl text-white">{skill.level}</span>
-                  </div>
-                  <h3 className="text-lg text-white">{skill.name}</h3>
-                  <div className="mt-5 h-1 overflow-hidden rounded-full bg-white/10">
-                    <motion.div
-                      initial={{ width: 0 }}
-                      whileInView={{ width: `${skill.level}%` }}
-                      viewport={{ once: true }}
-                      transition={{ duration: 1.2, delay: 0.15, ease: "easeOut" }}
-                      className="h-full rounded-full bg-gradient-to-r from-signal to-champagne"
-                    />
-                  </div>
+      <SectionShell id="skills" eyebrow="Creative Stack" title="Software skills, AI tools, and creative expertise.">
+        <div className="space-y-6">
+          <Reveal>
+            <div className="rounded-[2rem] border border-white/10 bg-white/[0.045] p-5 backdrop-blur-xl md:p-7">
+              <div className="mb-6 flex flex-wrap items-end justify-between gap-4">
+                <div>
+                  <p className="text-xs uppercase tracking-[0.28em] text-signal">Software Skills</p>
+                  <h3 className="mt-3 font-display text-3xl text-white">Design and production tools</h3>
                 </div>
-              </Reveal>
-            );
-          })}
+                <p className="max-w-md text-sm leading-6 text-mercury">
+                  Core applications used for graphics, UI concepts, presentations, editing, and campaign production.
+                </p>
+              </div>
+              <div className="grid gap-3 sm:grid-cols-2 lg:grid-cols-4">
+                {softwareSkills.map((tool, index) => (
+                  <Reveal key={tool.name} delay={index * 0.02}>
+                    <div className="group flex min-h-24 items-center gap-4 rounded-2xl border border-white/10 bg-black/25 p-4 transition hover:-translate-y-1 hover:border-signal/35 hover:bg-white/[0.07]">
+                      <div className="relative grid h-12 w-12 shrink-0 place-items-center rounded-2xl bg-white text-sm font-bold text-black shadow-glow">
+                        <span>{tool.fallback}</span>
+                        {tool.logo ? (
+                          <Image
+                            src={tool.logo}
+                            alt={`${tool.name} logo`}
+                            width={28}
+                            height={28}
+                            className="absolute h-7 w-7 object-contain"
+                            loading="lazy"
+                            onError={(event) => {
+                              event.currentTarget.style.display = "none";
+                            }}
+                          />
+                        ) : null}
+                      </div>
+                      <p className="text-base font-medium leading-6 text-white">{tool.name}</p>
+                    </div>
+                  </Reveal>
+                ))}
+              </div>
+            </div>
+          </Reveal>
+
+          <Reveal delay={0.04}>
+            <div className="rounded-[2rem] border border-white/10 bg-black/25 p-5 backdrop-blur-xl md:p-7">
+              <p className="text-xs uppercase tracking-[0.28em] text-champagne">Core Expertise</p>
+              <div className="mt-5 flex flex-wrap gap-3">
+                {coreExpertise.map((item) => (
+                  <span key={item} className="rounded-full border border-white/10 bg-white/[0.05] px-4 py-2 text-sm leading-6 text-mercury">
+                    {item}
+                  </span>
+                ))}
+              </div>
+            </div>
+          </Reveal>
+
+          <Reveal delay={0.08}>
+            <div className="rounded-[2rem] border border-white/10 bg-white/[0.045] p-5 backdrop-blur-xl md:p-7">
+              <div className="mb-6 flex flex-wrap items-end justify-between gap-4">
+                <div>
+                  <p className="text-xs uppercase tracking-[0.28em] text-signal">AI Tools</p>
+                  <h3 className="mt-3 font-display text-3xl text-white">AI-assisted creative workflow</h3>
+                </div>
+                <p className="max-w-md text-sm leading-6 text-mercury">
+                  Tools used for prompt strategy, concept visuals, research, content, presentation systems, and video experimentation.
+                </p>
+              </div>
+              <div className="grid gap-3 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
+                {aiTools.map((tool, index) => (
+                  <Reveal key={tool.name} delay={index * 0.015}>
+                    <div className="group flex min-h-24 items-center gap-4 rounded-2xl border border-white/10 bg-black/25 p-4 transition hover:-translate-y-1 hover:border-champagne/35 hover:bg-white/[0.07]">
+                      <div className="relative grid h-12 w-12 shrink-0 place-items-center rounded-2xl bg-white text-xs font-bold text-black shadow-glow">
+                        <span>{tool.fallback}</span>
+                        {tool.logo ? (
+                          <Image
+                            src={tool.logo}
+                            alt={`${tool.name} logo`}
+                            width={28}
+                            height={28}
+                            className="absolute h-7 w-7 object-contain"
+                            loading="lazy"
+                            onError={(event) => {
+                              event.currentTarget.style.display = "none";
+                            }}
+                          />
+                        ) : null}
+                      </div>
+                      <div>
+                        <p className="text-base font-medium leading-6 text-white">{tool.name}</p>
+                        <p className="mt-1 text-xs leading-5 text-mercury">{tool.use}</p>
+                      </div>
+                    </div>
+                  </Reveal>
+                ))}
+              </div>
+            </div>
+          </Reveal>
         </div>
       </SectionShell>
 
@@ -409,15 +489,31 @@ export default function Home() {
             ))}
           </div>
           <Reveal delay={0.08}>
-            <div className="rounded-[2rem] border border-white/10 bg-white/[0.055] p-7 backdrop-blur-2xl">
-              <GraduationCap className="mb-10 text-signal" size={30} />
-              <h3 className="font-display text-3xl text-white">Education</h3>
-              <div className="mt-7 space-y-4">
-                {education.map((item) => (
-                  <p key={item} className="rounded-2xl border border-white/10 bg-black/20 p-4 leading-7 text-mercury">
-                    {item}
-                  </p>
-                ))}
+            <div className="space-y-6">
+              <div className="rounded-[2rem] border border-white/10 bg-white/[0.055] p-7 backdrop-blur-2xl">
+                <GraduationCap className="mb-10 text-signal" size={30} />
+                <h3 className="font-display text-3xl text-white">Education</h3>
+                <div className="mt-7 space-y-4">
+                  {education.map((item) => (
+                    <div key={item.level} className="rounded-2xl border border-white/10 bg-black/20 p-4">
+                      <p className="text-sm font-semibold uppercase tracking-[0.18em] text-champagne">{item.level}</p>
+                      <p className="mt-2 leading-6 text-white">{item.institution}</p>
+                      <p className="mt-1 leading-6 text-mercury">{item.course}</p>
+                    </div>
+                  ))}
+                </div>
+              </div>
+
+              <div className="rounded-[2rem] border border-white/10 bg-white/[0.055] p-7 backdrop-blur-2xl">
+                <Sparkles className="mb-10 text-signal" size={30} />
+                <h3 className="font-display text-3xl text-white">Hobbies</h3>
+                <div className="mt-7 grid gap-3">
+                  {hobbies.map((hobby) => (
+                    <p key={hobby} className="rounded-2xl border border-white/10 bg-black/20 p-4 leading-6 text-mercury">
+                      {hobby}
+                    </p>
+                  ))}
+                </div>
               </div>
             </div>
           </Reveal>

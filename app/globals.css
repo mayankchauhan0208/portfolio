@@ -236,8 +236,8 @@ body {
 
 .creative-showcase-card,
 .niche-showcase-card {
-  width: clamp(11rem, 17vw, 16.5rem);
-  height: clamp(19.5rem, 29vw, 28rem);
+  width: clamp(10.25rem, 15.5vw, 14.75rem);
+  height: clamp(17rem, 24vw, 23.5rem);
 }
 
 .niche-showcase-card {
@@ -270,32 +270,32 @@ body {
 .niche-position-0 {
   z-index: 20;
   opacity: 1;
-  transform: translateX(-50%) translateY(-0.4rem) rotate(0deg) scale(1.1);
+  transform: translateX(-50%) translateY(-0.25rem) rotate(0deg) scale(1.06);
   box-shadow: 0 40px 120px rgba(0, 0, 0, 0.75), 0 0 48px var(--niche-accent-soft);
 }
 
 .niche-position-1 {
   z-index: 14;
   opacity: 0.94;
-  transform: translateX(calc(-50% + clamp(8.5rem, 16vw, 13rem))) translateY(2.9rem) rotate(9deg) scale(0.9);
+  transform: translateX(calc(-50% + clamp(7.5rem, 14vw, 11.5rem))) translateY(2.1rem) rotate(8deg) scale(0.88);
 }
 
 .niche-position-2 {
   z-index: 10;
   opacity: 0.64;
-  transform: translateX(calc(-50% + clamp(15rem, 29vw, 24rem))) translateY(6.6rem) rotate(16deg) scale(0.72);
+  transform: translateX(calc(-50% + clamp(13rem, 25vw, 20rem))) translateY(4.8rem) rotate(14deg) scale(0.7);
 }
 
 .niche-position-3 {
   z-index: 10;
   opacity: 0.64;
-  transform: translateX(calc(-50% - clamp(15rem, 29vw, 24rem))) translateY(6.6rem) rotate(-16deg) scale(0.72);
+  transform: translateX(calc(-50% - clamp(13rem, 25vw, 20rem))) translateY(4.8rem) rotate(-14deg) scale(0.7);
 }
 
 .niche-position-4 {
   z-index: 14;
   opacity: 0.94;
-  transform: translateX(calc(-50% - clamp(8.5rem, 16vw, 13rem))) translateY(2.9rem) rotate(-9deg) scale(0.9);
+  transform: translateX(calc(-50% - clamp(7.5rem, 14vw, 11.5rem))) translateY(2.1rem) rotate(-8deg) scale(0.88);
 }
 
 .niche-inner-window {
