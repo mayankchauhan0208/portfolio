@@ -5,17 +5,16 @@ import Link from "next/link";
 import { type CSSProperties, useEffect, useRef, useState } from "react";
 import { motion, useScroll, useTransform } from "framer-motion";
 import gsap from "gsap";
-import { ArrowUpRight, BriefcaseBusiness, GraduationCap, Mail, Phone, Sparkles } from "lucide-react";
+import { ArrowUpRight, GraduationCap, Mail, Phone, Sparkles } from "lucide-react";
 import { LoadingOverlay } from "@/components/loading-overlay";
 import { Nav } from "@/components/nav";
 import { Reveal } from "@/components/reveal";
 import { SectionShell } from "@/components/section-shell";
 import { Spotlight } from "@/components/spotlight";
-import { aiTools, coreExpertise, education, hobbies, metrics, portfolioCategories, profile, projects, services, softwareSkills, timeline } from "@/lib/portfolio-data";
+import { aiTools, coreExpertise, education, hobbies, metrics, portfolioCategories, profile, services, softwareSkills, timeline } from "@/lib/portfolio-data";
 import { assetPath } from "@/lib/site-paths";
 
 export default function Home() {
-  const [activeProject, setActiveProject] = useState(0);
   const [activeCreative, setActiveCreative] = useState(1);
   const [creativePaused, setCreativePaused] = useState(false);
   const [loaded, setLoaded] = useState(false);
@@ -59,8 +58,6 @@ export default function Home() {
 
     return () => window.clearInterval(timer);
   }, [creativePaused]);
-
-  const selected = projects[activeProject];
 
   return (
     <main id="top" className="relative min-h-screen overflow-hidden bg-obsidian">
@@ -303,77 +300,6 @@ export default function Home() {
         </Reveal>
       </section>
 
-      <SectionShell id="experience" eyebrow="Experience Case Studies" title="Professional roles shaped into focused design stories.">
-        <div className="grid gap-6 lg:grid-cols-[0.82fr_1.18fr]">
-          <div className="space-y-3">
-            {projects.map((project, index) => (
-              <Reveal key={project.title} delay={index * 0.03}>
-                <button
-                  type="button"
-                  onMouseEnter={() => setActiveProject(index)}
-                  onFocus={() => setActiveProject(index)}
-                  className={`group w-full rounded-3xl border p-5 text-left transition duration-500 ${
-                    activeProject === index
-                      ? "border-signal/35 bg-white/[0.095] shadow-glow"
-                      : "border-white/10 bg-white/[0.04] hover:border-white/20 hover:bg-white/[0.07]"
-                  }`}
-                >
-                  <div className="flex items-start justify-between gap-5">
-                    <div className="flex gap-4">
-                      <span className={`mt-1 font-display text-xl ${activeProject === index ? "text-signal" : "text-white/30"}`}>
-                        {String(index + 1).padStart(2, "0")}
-                      </span>
-                      <div>
-                      <p className="mb-2 text-xs uppercase tracking-[0.24em] text-signal">{project.eyebrow}</p>
-                      <h3 className="font-display text-2xl leading-tight text-white">{project.title}</h3>
-                      </div>
-                    </div>
-                    <ArrowUpRight className="mt-1 shrink-0 text-white/50 transition group-hover:text-signal" size={22} />
-                  </div>
-                  <p className="mt-4 max-w-2xl text-sm leading-6 text-mercury">{project.summary}</p>
-                </button>
-              </Reveal>
-            ))}
-          </div>
-
-          <Reveal delay={0.12}>
-            <motion.article
-              key={selected.title}
-              initial={{ opacity: 0, y: 24, scale: 0.98 }}
-              animate={{ opacity: 1, y: 0, scale: 1 }}
-              transition={{ duration: 0.55, ease: "easeOut" }}
-              className="sticky top-28 min-h-[34rem] overflow-hidden rounded-[2rem] border border-white/15 bg-graphite/95 p-6 shadow-luxury backdrop-blur-2xl md:p-8"
-            >
-              <div className={`absolute inset-0 bg-gradient-to-br ${selected.glow} opacity-45`} />
-              <div className="absolute inset-0 bg-black/25" />
-              <div className="absolute inset-6 rounded-[1.5rem] border border-white/10" />
-              <div className="absolute -right-24 -top-24 h-80 w-80 rounded-full border border-signal/20" />
-              <div className="absolute -bottom-20 left-10 h-56 w-56 rounded-full border border-champagne/20" />
-              <div className="relative">
-                <div className="mb-24 flex items-center justify-between">
-                  <span className="rounded-full border border-white/10 bg-black/30 px-4 py-2 text-xs uppercase tracking-[0.22em] text-white/75">
-                    {selected.period}
-                  </span>
-                  <div className="grid h-12 w-12 place-items-center rounded-full bg-white text-black">
-                    <BriefcaseBusiness size={18} />
-                  </div>
-                </div>
-                <p className="text-xs uppercase tracking-[0.32em] text-champagne">Case Study Focus</p>
-                <h3 className="mt-4 font-display text-4xl leading-none text-white md:text-6xl">{selected.title}</h3>
-                <p className="mt-7 text-lg leading-8 text-white/82">{selected.details}</p>
-                <div className="mt-8 flex flex-wrap gap-2">
-                  {selected.tags.map((tag) => (
-                    <span key={tag} className="rounded-full border border-white/10 bg-black/25 px-4 py-2 text-xs uppercase tracking-[0.16em] text-mercury">
-                      {tag}
-                    </span>
-                  ))}
-                </div>
-              </div>
-            </motion.article>
-          </Reveal>
-        </div>
-      </SectionShell>
-
       <SectionShell id="skills" eyebrow="Creative Stack" title="Software skills, AI tools, and creative expertise.">
         <div className="space-y-6">
           <Reveal>
@@ -472,7 +398,7 @@ export default function Home() {
         </div>
       </SectionShell>
 
-      <SectionShell id="timeline" eyebrow="Experience" title="A steady path from studio practice to senior design work.">
+      <SectionShell id="experience" eyebrow="Experience" title="Resume-aligned experience, education, and creative interests.">
         <div className="grid gap-6 lg:grid-cols-[1.2fr_0.8fr]">
           <div className="relative space-y-4">
             <div className="absolute left-5 top-4 h-[calc(100%-2rem)] w-px bg-gradient-to-b from-signal via-white/20 to-transparent" />
