@@ -109,13 +109,13 @@ export default function CategoryPage({ params }: CategoryPageProps) {
         </nav>
       </header>
 
-      <section className="relative z-10 px-4 pb-12 pt-12 md:px-8 md:pb-20 md:pt-20">
-        <div className="mx-auto grid max-w-7xl gap-10 lg:grid-cols-[0.9fr_1.1fr] lg:items-end">
-          <div>
+      <section className="relative z-10 px-4 pb-10 pt-12 md:px-8 md:pb-14 md:pt-16">
+        <div className="mx-auto max-w-7xl">
+          <div className="max-w-3xl">
             <p className="mb-5 inline-flex items-center gap-3 rounded-full border border-white/10 bg-white/[0.045] px-4 py-2 text-xs uppercase tracking-[0.3em] text-[var(--niche-accent)]">
               <Sparkles size={14} /> {category.label}
             </p>
-            <h1 className="font-display text-[clamp(3.4rem,10vw,10.5rem)] font-semibold uppercase leading-[0.78] text-white">
+            <h1 className="font-display text-[clamp(3.2rem,9vw,8.5rem)] font-semibold uppercase leading-[0.78] text-white">
               {titleLines(category.title).map((word) => (
                 <span key={word} className="block">
                   {word}
@@ -123,48 +123,6 @@ export default function CategoryPage({ params }: CategoryPageProps) {
               ))}
             </h1>
             <p className="mt-7 max-w-2xl text-base leading-8 text-mercury md:text-lg">{category.subtitle}</p>
-          </div>
-
-          <div className="relative min-h-[30rem] overflow-hidden rounded-[2rem] border border-white/10 bg-white/[0.045] p-5 shadow-luxury backdrop-blur-xl">
-            <div className="absolute inset-0 niche-card-bg" />
-            <div className="absolute inset-0 portfolio-card-grid opacity-20" />
-            {category.previewImages.length > 0 ? (
-              <div className="relative grid h-full min-h-[28rem] grid-cols-2 gap-4">
-                {category.previewImages.slice(0, 3).map((image, index) => {
-                  const size = imageSizeFor(image);
-
-                  return (
-                    <figure
-                      key={image}
-                      className={`relative overflow-hidden rounded-[1.35rem] border border-white/10 bg-black/50 ${
-                        index === 0 ? "col-span-2" : ""
-                      }`}
-                    >
-                      <Image
-                        src={assetPath(image)}
-                        alt={`${category.title} preview ${index + 1}`}
-                        width={size.width}
-                        height={size.height}
-                        priority={index === 0}
-                        sizes={index === 0 ? "(min-width: 1024px) 48vw, 92vw" : "(min-width: 1024px) 24vw, 46vw"}
-                        className="h-full w-full object-cover p-2"
-                      />
-                    </figure>
-                  );
-                })}
-              </div>
-            ) : (
-              <div className="relative flex min-h-[28rem] items-center justify-center">
-                <div className="grid h-40 w-40 place-items-center rounded-full border border-white/20 bg-black/35 font-display text-6xl text-white shadow-glow">
-                  {category.motif}
-                </div>
-                <div className="absolute left-8 top-8 rounded-full border border-white/20 bg-black/45 px-4 py-2 text-[0.62rem] uppercase tracking-[0.22em] text-white/85 backdrop-blur-xl">
-                  Visual System
-                </div>
-                <div className="niche-ring absolute bottom-8 right-8 h-44 w-44 rounded-full border" />
-                <div className="niche-haze absolute left-8 top-32 h-52 w-52 rounded-full blur-2xl" />
-              </div>
-            )}
           </div>
         </div>
 
