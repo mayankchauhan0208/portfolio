@@ -3,7 +3,7 @@ import Link from "next/link";
 import { notFound } from "next/navigation";
 import { type CSSProperties } from "react";
 import { ArrowLeft, ArrowUpRight, GalleryHorizontalEnd, LayoutGrid, Sparkles } from "lucide-react";
-import { logoProjects, portfolioCategories, portfolioWorks, socialProjects } from "@/lib/portfolio-data";
+import { logoProjects, portfolioCategories, portfolioWorks, socialProjects, uiUxProjects } from "@/lib/portfolio-data";
 import { assetPath } from "@/lib/site-paths";
 
 type CategoryPageProps = {
@@ -316,7 +316,52 @@ export default function CategoryPage({ params }: CategoryPageProps) {
         </section>
       )}
 
-      {category.id !== "branding" && category.id !== "real-estate" && category.id !== "social-media" && (
+      {category.id === "ui-ux" && (
+        <section className="relative z-10 px-4 pb-28 md:px-8">
+          <div className="mx-auto max-w-7xl space-y-8">
+            {uiUxProjects.map((project) => (
+              <div
+                key={project.title}
+                className="overflow-hidden rounded-[2rem] border border-emerald-200/20 bg-[#06100d] p-5 shadow-luxury backdrop-blur-xl md:p-8"
+              >
+                <div className="mb-8 grid gap-6 lg:grid-cols-[0.95fr_1.05fr] lg:items-end">
+                  <div>
+                    <p className="mb-4 text-xs uppercase tracking-[0.32em] text-emerald-200">{project.format}</p>
+                    <h2 className="font-display text-4xl leading-none text-white md:text-6xl">{project.title}</h2>
+                  </div>
+                  <p className="max-w-2xl text-sm leading-7 text-mercury md:text-base">{project.brief}</p>
+                </div>
+
+                <div className="grid gap-5 lg:grid-cols-2">
+                  {project.images.map((image, index) => (
+                    <article
+                      key={image.src}
+                      className={`group relative overflow-hidden rounded-[1.5rem] border border-white/10 bg-black/55 p-3 shadow-luxury ${
+                        index === 0 || index === project.images.length - 1 ? "lg:col-span-2" : ""
+                      }`}
+                    >
+                      <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_70%_15%,rgba(158,255,196,0.16),transparent_30%),linear-gradient(145deg,rgba(255,255,255,0.08),transparent_38%)] opacity-0 transition duration-500 group-hover:opacity-100" />
+                      <Image
+                        src={assetPath(image.src)}
+                        alt={image.title}
+                        width={image.width}
+                        height={image.height}
+                        sizes={index === 0 || index === project.images.length - 1 ? "(min-width: 1024px) 72vw, 92vw" : "(min-width: 1024px) 36vw, 92vw"}
+                        className="relative h-auto w-full rounded-[1.15rem] object-cover transition duration-700 group-hover:scale-[1.015]"
+                      />
+                      <div className="pointer-events-none absolute left-6 top-6 rounded-full border border-emerald-200/25 bg-black/55 px-4 py-2 text-[0.62rem] uppercase tracking-[0.22em] text-emerald-100 backdrop-blur-xl">
+                        {String(index + 1).padStart(2, "0")} / {image.title}
+                      </div>
+                    </article>
+                  ))}
+                </div>
+              </div>
+            ))}
+          </div>
+        </section>
+      )}
+
+      {category.id !== "branding" && category.id !== "real-estate" && category.id !== "social-media" && category.id !== "ui-ux" && (
         <section className="relative z-10 px-4 pb-28 md:px-8">
           <div className="mx-auto max-w-7xl">
             <div className="mb-8 flex items-end justify-between gap-6">

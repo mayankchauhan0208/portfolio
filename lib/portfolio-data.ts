@@ -399,7 +399,11 @@ export const portfolioCategories = [
     accent: "#9effc4",
     backdrop: "linear-gradient(145deg, #07120e 0%, #12372c 52%, #9effc4 120%)",
     motif: "UX",
-    previewImages: ["/work/ui-ux/fitness/fitness-ui-app.jpg"]
+    previewImages: [
+      "/work/ui-ux/aurea-dental/aurea-dental-01.png",
+      "/work/ui-ux/aurea-dental/aurea-dental-08.png",
+      "/work/ui-ux/fitness/fitness-ui-app.jpg"
+    ]
   },
   {
     id: "ai-generated",
@@ -904,6 +908,93 @@ export const socialProjects = [
 ];
 
 export const uiUxProjects = [
+  {
+    title: "Aurea Dental Website Design",
+    category: "UI / UX",
+    format: "Luxury Dental Website Presentation",
+    brief:
+      "A premium dental website design system covering brand philosophy, logo, color, typography, homepage, services, doctors, patient stories, contact flow, and responsive experience.",
+    images: [
+      {
+        title: "Cover Presentation",
+        src: "/work/ui-ux/aurea-dental/aurea-dental-01.png",
+        width: 1536,
+        height: 1024
+      },
+      {
+        title: "Brand Philosophy",
+        src: "/work/ui-ux/aurea-dental/aurea-dental-02.png",
+        width: 1536,
+        height: 1024
+      },
+      {
+        title: "Logo System",
+        src: "/work/ui-ux/aurea-dental/aurea-dental-03.png",
+        width: 1536,
+        height: 1024
+      },
+      {
+        title: "Color Strategy",
+        src: "/work/ui-ux/aurea-dental/aurea-dental-04.png",
+        width: 1536,
+        height: 1024
+      },
+      {
+        title: "Typography System",
+        src: "/work/ui-ux/aurea-dental/aurea-dental-05.png",
+        width: 1536,
+        height: 1024
+      },
+      {
+        title: "Design Language",
+        src: "/work/ui-ux/aurea-dental/aurea-dental-06.png",
+        width: 1536,
+        height: 1024
+      },
+      {
+        title: "Homepage Hero Experience",
+        src: "/work/ui-ux/aurea-dental/aurea-dental-07.png",
+        width: 1536,
+        height: 1024
+      },
+      {
+        title: "Homepage Experience",
+        src: "/work/ui-ux/aurea-dental/aurea-dental-08.png",
+        width: 1432,
+        height: 1536
+      },
+      {
+        title: "Services Experience",
+        src: "/work/ui-ux/aurea-dental/aurea-dental-09.png",
+        width: 1046,
+        height: 1536
+      },
+      {
+        title: "Doctor Showcase Experience",
+        src: "/work/ui-ux/aurea-dental/aurea-dental-010.png",
+        width: 1266,
+        height: 1536
+      },
+      {
+        title: "Patient Stories Experience",
+        src: "/work/ui-ux/aurea-dental/aurea-dental-011.png",
+        width: 1266,
+        height: 1536
+      },
+      {
+        title: "Contact and Appointment Experience",
+        src: "/work/ui-ux/aurea-dental/aurea-dental-012.png",
+        width: 1266,
+        height: 1536
+      },
+      {
+        title: "Responsive Experience",
+        src: "/work/ui-ux/aurea-dental/aurea-dental-013.png",
+        width: 1536,
+        height: 1024
+      }
+    ]
+  },
   {
     title: "Fitness Mobile App UI",
     category: "UI / UX",
