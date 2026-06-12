@@ -398,7 +398,7 @@ export default function Home() {
         </div>
       </SectionShell>
 
-      <SectionShell id="experience" eyebrow="Experience" title="Resume-aligned experience, education, and creative interests.">
+      <SectionShell id="experience" eyebrow="Experience" title="Professional journey, education, and creative practice.">
         <div className="grid gap-6 lg:grid-cols-[1.2fr_0.8fr]">
           <div className="relative space-y-4">
             <div className="absolute left-5 top-4 h-[calc(100%-2rem)] w-px bg-gradient-to-b from-signal via-white/20 to-transparent" />

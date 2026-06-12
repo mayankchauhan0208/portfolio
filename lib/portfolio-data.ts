@@ -24,10 +24,10 @@ export const projects = [
     eyebrow: "Current Role",
     period: "February, 2025 - Present",
     summary:
-      "Sr.Graphic Designer role focused on real-estate visuals and premium campaign communication.",
+      "Senior Graphic Designer role focused on premium real-estate visuals and campaign communication.",
     details:
-      "Working as Sr.Graphic Designer, creating premium real-estate graphics, presentations, and campaign visuals built for credibility, clarity, and high-value selling environments.",
-    tags: ["Sr.Graphic Designer", "Real Estate", "Campaigns", "Presentation Design"],
+      "Currently working as a Senior Graphic Designer, creating premium real-estate graphics, presentations, and campaign visuals built for credibility, clarity, and high-value selling environments.",
+    tags: ["Senior Graphic Designer", "Real Estate", "Campaigns", "Presentation Design"],
     glow: "from-champagne/35 via-white/10 to-transparent"
   },
   {
@@ -35,10 +35,10 @@ export const projects = [
     eyebrow: "Graphic Design",
     period: "3 Years",
     summary:
-      "3 years as Excapation Graphic Designer creating polished brand and marketing assets.",
+      "Three years of graphic design experience creating polished brand and marketing assets.",
     details:
       "Created polished visual assets with a focus on layout discipline, clean typography, image treatment, consistency, and campaign-ready execution.",
-    tags: ["Excapation Graphic Designer", "Marketing Design", "Production Design", "Visual QA"],
+    tags: ["Graphic Designer", "Marketing Design", "Production Design", "Visual QA"],
     glow: "from-signal/35 via-white/10 to-transparent"
   },
   {
@@ -46,7 +46,7 @@ export const projects = [
     eyebrow: "Design + Video",
     period: "7 Months",
     summary:
-      "7 months as Graphic Designer & Video editor for digital content and campaign assets.",
+      "Seven months as a Graphic Designer and Video Editor for digital content and campaign assets.",
     details:
       "Combined Photoshop, Illustrator, Premiere Pro, After Effects, and Canva workflows to create clear, energetic assets with strong pacing and visual structure.",
     tags: ["Graphic Designer", "Video Editor", "Social Content", "Campaign Assets"],
@@ -57,7 +57,7 @@ export const projects = [
     eyebrow: "Internship",
     period: "3 Months",
     summary:
-      "3 months as a Graphic designer intern in a consumer-facing brand environment.",
+      "Three months as a Graphic Designer Intern in a consumer-facing brand environment.",
     details:
       "Supported design production with marketplace-ready visuals, clean composition, and brand-sensitive execution for digital touchpoints.",
     tags: ["Graphic Designer Intern", "Consumer Design", "Digital Graphics"],
@@ -68,7 +68,7 @@ export const projects = [
     eyebrow: "Internship",
     period: "6 Months",
     summary:
-      "6 months as a Graphic designer intern, building practical design production discipline.",
+      "Six months as a Graphic Designer Intern, building practical design production discipline.",
     details:
       "Developed foundational skills in layout, tool fluency, asset preparation, and iterative creative delivery.",
     tags: ["Graphic Designer Intern", "Layout", "Tool Fluency", "Production"],
@@ -79,7 +79,7 @@ export const projects = [
     eyebrow: "Internship",
     period: "5 Months",
     summary:
-      "5 months as a Graphic designer intern, strengthening layout and creative execution skills.",
+      "Five months as a Graphic Designer Intern, strengthening layout and creative execution skills.",
     details:
       "Built early hands-on experience across graphic design workflows, visual cleanup, layout support, and production-ready assets.",
     tags: ["Graphic Designer Intern", "Graphic Design", "Layout", "Creative Support"],
@@ -1345,15 +1345,15 @@ export const portfolioLibraries = [
 export const timeline = [
   {
     date: "February, 2025 - Present",
-    title: "Sr.Graphic Designer",
+    title: "Senior Graphic Designer",
     org: "Property Master Pvt. Ltd.",
     body: "Creating premium real-estate graphics, presentations, and campaign visuals built for credibility and high-value selling environments."
   },
   {
     date: "3 Years",
-    title: "Excapation Graphic Designer",
+    title: "Graphic Designer",
     org: "Group Bayport",
-    body: "Created polished brand and marketing assets with a focus on quality, consistency, and production velocity."
+    body: "Created polished brand and marketing assets with a focus on quality, consistency, and efficient production."
   },
   {
     date: "7 Months",
@@ -1384,24 +1384,24 @@ export const timeline = [
 export const education = [
   {
     level: "Graduation",
-    institution: "JC BOSE University of Science and Technology (YMCA), Faridabad, Haryana",
-    course: "Bsc. (Animation & Multimedia)"
+    institution: "J.C. Bose University of Science and Technology, YMCA, Faridabad, Haryana",
+    course: "B.Sc. in Animation & Multimedia"
   },
   {
     level: "Senior Secondary",
     institution: "CBSE Board",
-    course: "Science (Non-med)"
+    course: "Science (Non-Medical)"
   },
   {
     level: "Secondary",
     institution: "HBSE Board",
-    course: "B.S.M High School (HAZIPUR)"
+    course: "B.S.M. High School, Hazipur"
   }
 ];
 
 export const hobbies = [
-  "Exploring AI visual workflows",
-  "Editing videos and motion ideas",
-  "Following design trends and references",
-  "Sketching layouts and creative concepts"
+  "Exploring AI-assisted visual workflows",
+  "Editing videos and motion concepts",
+  "Studying design trends and references",
+  "Sketching layouts and creative ideas"
 ];
