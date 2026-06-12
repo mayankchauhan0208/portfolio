@@ -88,14 +88,14 @@ export const projects = [
 ];
 
 export const softwareSkills = [
-  { name: "Adobe Photoshop", logo: "https://cdn.simpleicons.org/adobephotoshop/31A8FF", fallback: "Ps" },
-  { name: "Adobe Illustrator", logo: "https://cdn.simpleicons.org/adobeillustrator/FF9A00", fallback: "Ai" },
-  { name: "Adobe InDesign", logo: "https://cdn.simpleicons.org/adobeindesign/FF3366", fallback: "Id" },
-  { name: "Adobe After Effects", logo: "https://cdn.simpleicons.org/adobeaftereffects/9999FF", fallback: "Ae" },
-  { name: "Adobe Premiere Pro", logo: "https://cdn.simpleicons.org/adobepremierepro/9999FF", fallback: "Pr" },
-  { name: "Figma", logo: "https://cdn.simpleicons.org/figma/F24E1E", fallback: "Fg" },
-  { name: "Microsoft PowerPoint", logo: "https://cdn.simpleicons.org/microsoftpowerpoint/B7472A", fallback: "Pp" },
-  { name: "Canva", logo: "https://cdn.simpleicons.org/canva/00C4CC", fallback: "Ca" }
+  { name: "Adobe Photoshop", logo: "/optimized/tool-icons/adobe-photoshop.webp", fallback: "Ps" },
+  { name: "Adobe Illustrator", logo: "/optimized/tool-icons/adobe-illustrator.webp", fallback: "Ai" },
+  { name: "Adobe InDesign", logo: "/optimized/tool-icons/adobe-indesign.webp", fallback: "Id" },
+  { name: "Adobe After Effects", logo: "/optimized/tool-icons/adobe-after-effects.webp", fallback: "Ae" },
+  { name: "Adobe Premiere Pro", logo: "/optimized/tool-icons/adobe-premiere-pro.webp", fallback: "Pr" },
+  { name: "Figma", logo: "/optimized/tool-icons/figma.webp", fallback: "Fg" },
+  { name: "Microsoft PowerPoint", logo: "/optimized/tool-icons/microsoft-powerpoint.webp", fallback: "Pp" },
+  { name: "Canva", logo: "/optimized/tool-icons/canva.webp", fallback: "Ca" }
 ];
 
 export const coreExpertise = [
@@ -114,20 +114,20 @@ export const coreExpertise = [
 ];
 
 export const aiTools = [
-  { name: "ChatGPT", use: "Prompt Engineering & Strategy", logo: "https://cdn.simpleicons.org/openai/FFFFFF", fallback: "GPT" },
-  { name: "Gemini", use: "Research & Analysis", logo: "https://cdn.simpleicons.org/googlegemini/8E75B2", fallback: "G" },
-  { name: "Claude", use: "Long-Form Content", logo: "https://cdn.simpleicons.org/claude/D97757", fallback: "Cl" },
-  { name: "Midjourney", use: "Concept Visuals", logo: "https://cdn.simpleicons.org/midjourney/FFFFFF", fallback: "Mj" },
-  { name: "Adobe Firefly", use: "Commercial AI Design", logo: "https://cdn.simpleicons.org/adobefirefly/FF61F6", fallback: "Ff" },
-  { name: "FLUX", use: "Photorealistic Images", fallback: "Fx" },
-  { name: "Ideogram", use: "Typography Visuals", fallback: "Id" },
-  { name: "Leonardo AI", use: "Marketing Creatives", fallback: "Le" },
-  { name: "Runway", use: "AI Video Editing", logo: "https://cdn.simpleicons.org/runway/FFFFFF", fallback: "Rw" },
-  { name: "Kling AI", use: "Cinematic Video Generation", fallback: "Kl" },
-  { name: "Google Flow", use: "AI Filmmaking", logo: "https://cdn.simpleicons.org/google/4285F4", fallback: "Fl" },
-  { name: "Gamma", use: "Presentation Design", logo: "https://cdn.simpleicons.org/gamma/FFFFFF", fallback: "Ga" },
-  { name: "Canva AI", use: "Creative Automation", logo: "https://cdn.simpleicons.org/canva/00C4CC", fallback: "Ca" },
-  { name: "Figma AI", use: "UI/UX Design Automation", logo: "https://cdn.simpleicons.org/figma/F24E1E", fallback: "Fi" }
+  { name: "ChatGPT", use: "Prompt Engineering & Strategy", logo: "/optimized/tool-icons/chatgpt.webp", fallback: "GPT" },
+  { name: "Gemini", use: "Research & Analysis", logo: "/optimized/tool-icons/gemini.webp", fallback: "G" },
+  { name: "Claude", use: "Long-Form Content", logo: "/optimized/tool-icons/claude.webp", fallback: "Cl" },
+  { name: "Midjourney", use: "Concept Visuals", logo: "/optimized/tool-icons/midjourney.webp", fallback: "Mj" },
+  { name: "Adobe Firefly", use: "Commercial AI Design", logo: "/optimized/tool-icons/adobe-firefly.webp", fallback: "Ff" },
+  { name: "FLUX", use: "Photorealistic Images", logo: "/optimized/tool-icons/flux.webp", fallback: "Fx" },
+  { name: "Ideogram", use: "Typography Visuals", logo: "/optimized/tool-icons/ideogram.webp", fallback: "Id" },
+  { name: "Leonardo AI", use: "Marketing Creatives", logo: "/optimized/tool-icons/leonardo-ai.webp", fallback: "Le" },
+  { name: "Runway", use: "AI Video Editing", logo: "/optimized/tool-icons/runway.webp", fallback: "Rw" },
+  { name: "Kling AI", use: "Cinematic Video Generation", logo: "/optimized/tool-icons/kling-ai.webp", fallback: "Kl" },
+  { name: "Google Flow", use: "AI Filmmaking", logo: "/optimized/tool-icons/google-flow.webp", fallback: "Fl" },
+  { name: "Gamma", use: "Presentation Design", logo: "/optimized/tool-icons/gamma.webp", fallback: "Ga" },
+  { name: "Canva AI", use: "Creative Automation", logo: "/optimized/tool-icons/canva.webp", fallback: "Ca" },
+  { name: "Figma AI", use: "UI/UX Design Automation", logo: "/optimized/tool-icons/figma.webp", fallback: "Fi" }
 ];
 
 export const services = [

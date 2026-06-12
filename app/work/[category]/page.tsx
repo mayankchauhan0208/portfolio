@@ -1,8 +1,8 @@
-import Image from "next/image";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import { type CSSProperties } from "react";
 import { ArrowLeft, ArrowUpRight, GalleryHorizontalEnd, LayoutGrid, Sparkles } from "lucide-react";
+import { PreviewImage } from "@/components/preview-image";
 import { aiGeneratedProjects, logoProjects, portfolioCategories, portfolioWorks, socialProjects, uiUxProjects } from "@/lib/portfolio-data";
 import { assetPath } from "@/lib/site-paths";
 
@@ -35,6 +35,20 @@ function imageSizeFor(src: string) {
   }
 
   return { width: 1080, height: 1920 };
+}
+
+function fullQualitySrcFor(src: string) {
+  if (!src.startsWith("/optimized/work/")) {
+    return src;
+  }
+
+  const originalSrc = src.replace("/optimized", "");
+
+  if (src.endsWith("/fitness-ui-app.webp") || src.endsWith("/interior-consistency-03.webp")) {
+    return originalSrc.replace(/\.webp$/, ".jpg");
+  }
+
+  return originalSrc.replace(/\.webp$/, ".png");
 }
 
 function getCategory(slug: string) {
@@ -158,8 +172,9 @@ export default function CategoryPage({ params }: CategoryPageProps) {
                     <div className="absolute inset-0 bg-[radial-gradient(circle_at_15%_15%,rgba(142,232,255,0.13),transparent_28%),linear-gradient(145deg,rgba(255,255,255,0.08),transparent_38%)] opacity-0 transition duration-500 group-hover:opacity-100" />
                     <div className="relative p-3">
                       <figure className="relative overflow-hidden rounded-[1.25rem] bg-black/60">
-                        <Image
+                        <PreviewImage
                           src={assetPath(work.image)}
+                          previewSrc={assetPath(fullQualitySrcFor(work.image))}
                           alt={work.title}
                           width={size.width}
                           height={size.height}
@@ -197,8 +212,9 @@ export default function CategoryPage({ params }: CategoryPageProps) {
                         index === 1 || index === 5 ? "lg:col-span-2" : ""
                       }`}
                     >
-                      <Image
+                      <PreviewImage
                         src={assetPath(image.src)}
+                        previewSrc={assetPath(fullQualitySrcFor(image.src))}
                         alt={image.title}
                         width={image.width}
                         height={image.height}
@@ -242,8 +258,9 @@ export default function CategoryPage({ params }: CategoryPageProps) {
                       }`}
                     >
                       <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_70%_15%,rgba(190,255,0,0.2),transparent_30%),linear-gradient(145deg,rgba(255,255,255,0.08),transparent_38%)] opacity-0 transition duration-500 group-hover:opacity-100" />
-                      <Image
+                      <PreviewImage
                         src={assetPath(image.src)}
+                        previewSrc={assetPath(fullQualitySrcFor(image.src))}
                         alt={image.title}
                         width={image.width}
                         height={image.height}
@@ -287,8 +304,9 @@ export default function CategoryPage({ params }: CategoryPageProps) {
                       }`}
                     >
                       <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_70%_15%,rgba(158,255,196,0.16),transparent_30%),linear-gradient(145deg,rgba(255,255,255,0.08),transparent_38%)] opacity-0 transition duration-500 group-hover:opacity-100" />
-                      <Image
+                      <PreviewImage
                         src={assetPath(image.src)}
+                        previewSrc={assetPath(fullQualitySrcFor(image.src))}
                         alt={image.title}
                         width={image.width}
                         height={image.height}
@@ -330,8 +348,9 @@ export default function CategoryPage({ params }: CategoryPageProps) {
                       className="group relative overflow-hidden rounded-[1.5rem] border border-white/10 bg-black/55 p-3 shadow-luxury"
                     >
                       <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_75%_12%,rgba(183,164,255,0.2),transparent_30%),linear-gradient(145deg,rgba(255,255,255,0.08),transparent_38%)] opacity-0 transition duration-500 group-hover:opacity-100" />
-                      <Image
+                      <PreviewImage
                         src={assetPath(image.src)}
+                        previewSrc={assetPath(fullQualitySrcFor(image.src))}
                         alt={image.title}
                         width={image.width}
                         height={image.height}

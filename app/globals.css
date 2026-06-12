@@ -21,6 +21,85 @@ body {
   overflow-x: hidden;
 }
 
+.theme-light {
+  color-scheme: light;
+}
+
+html.theme-light,
+.theme-light body {
+  background: #f4f1ea;
+}
+
+.theme-light body {
+  color: #17191d;
+}
+
+.theme-light .bg-obsidian,
+.theme-light .bg-\[\#05070c\]\/82,
+.theme-light .bg-\[\#090b0f\],
+.theme-light .bg-\[\#0d0906\],
+.theme-light .bg-\[\#060806\],
+.theme-light .bg-\[\#06100d\],
+.theme-light .bg-\[\#080817\] {
+  background-color: #f4f1ea;
+}
+
+.theme-light .text-white,
+.theme-light .text-platinum {
+  color: #111317;
+}
+
+.theme-light .text-mercury,
+.theme-light .text-white\/70,
+.theme-light .text-white\/68,
+.theme-light .text-white\/65,
+.theme-light .text-white\/62 {
+  color: rgba(23, 25, 29, 0.68);
+}
+
+.theme-light .border-white\/10,
+.theme-light .border-white\/12,
+.theme-light .border-white\/15,
+.theme-light .border-white\/20 {
+  border-color: rgba(17, 19, 23, 0.14);
+}
+
+.theme-light .bg-white\/\[0\.045\],
+.theme-light .bg-white\/\[0\.055\],
+.theme-light .bg-white\/\[0\.06\],
+.theme-light .bg-white\/\[0\.07\],
+.theme-light .bg-white\/\[0\.075\],
+.theme-light .bg-black\/20,
+.theme-light .bg-black\/25,
+.theme-light .bg-black\/30,
+.theme-light .bg-black\/35,
+.theme-light .bg-black\/40,
+.theme-light .bg-black\/45,
+.theme-light .bg-black\/55,
+.theme-light .bg-black\/60,
+.theme-light .bg-black\/65,
+.theme-light .bg-black\/70 {
+  background-color: rgba(255, 255, 255, 0.68);
+}
+
+.theme-light .ambient-grid {
+  background-image:
+    linear-gradient(rgba(17, 19, 23, 0.06) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(17, 19, 23, 0.06) 1px, transparent 1px);
+}
+
+.theme-light .reference-hero {
+  background: #f4f1ea;
+}
+
+.theme-light .reference-model::after {
+  background-image: linear-gradient(to bottom, transparent, #f4f1ea 70%);
+}
+
+.theme-light .reference-info p {
+  color: rgba(23, 25, 29, 0.7);
+}
+
 ::selection {
   background: rgba(142, 232, 255, 0.35);
   color: #ffffff;
@@ -236,13 +315,13 @@ body {
 
 .creative-showcase-card,
 .niche-showcase-card {
-  width: clamp(10.25rem, 15.5vw, 14.75rem);
-  height: clamp(17rem, 24vw, 23.5rem);
+  width: clamp(10.25rem, 14vw, 13.5rem);
+  height: clamp(16.5rem, 21vw, 21.25rem);
 }
 
 .niche-showcase-card {
   left: 50%;
-  top: 5%;
+  top: 2%;
   transform-style: preserve-3d;
   will-change: transform, opacity;
   perspective: 900px;
@@ -250,6 +329,12 @@ body {
 
 .niche-showcase-card:hover {
   opacity: 1;
+}
+
+@media (min-width: 768px) {
+  .home-niche-card {
+    pointer-events: none;
+  }
 }
 
 .niche-card-bg {
@@ -270,32 +355,32 @@ body {
 .niche-position-0 {
   z-index: 20;
   opacity: 1;
-  transform: translateX(-50%) translateY(-0.25rem) rotate(0deg) scale(1.06);
+  transform: translateX(-50%) translateY(-0.25rem) rotate(0deg) scale(1.03);
   box-shadow: 0 40px 120px rgba(0, 0, 0, 0.75), 0 0 48px var(--niche-accent-soft);
 }
 
 .niche-position-1 {
   z-index: 14;
   opacity: 0.94;
-  transform: translateX(calc(-50% + clamp(7.5rem, 14vw, 11.5rem))) translateY(2.1rem) rotate(8deg) scale(0.88);
+  transform: translateX(calc(-50% + clamp(7rem, 13vw, 10.75rem))) translateY(1.6rem) rotate(8deg) scale(0.86);
 }
 
 .niche-position-2 {
   z-index: 10;
   opacity: 0.64;
-  transform: translateX(calc(-50% + clamp(13rem, 25vw, 20rem))) translateY(4.8rem) rotate(14deg) scale(0.7);
+  transform: translateX(calc(-50% + clamp(12rem, 23vw, 18.5rem))) translateY(3.5rem) rotate(14deg) scale(0.68);
 }
 
 .niche-position-3 {
   z-index: 10;
   opacity: 0.64;
-  transform: translateX(calc(-50% - clamp(13rem, 25vw, 20rem))) translateY(4.8rem) rotate(-14deg) scale(0.7);
+  transform: translateX(calc(-50% - clamp(12rem, 23vw, 18.5rem))) translateY(3.5rem) rotate(-14deg) scale(0.68);
 }
 
 .niche-position-4 {
   z-index: 14;
   opacity: 0.94;
-  transform: translateX(calc(-50% - clamp(7.5rem, 14vw, 11.5rem))) translateY(2.1rem) rotate(-8deg) scale(0.88);
+  transform: translateX(calc(-50% - clamp(7rem, 13vw, 10.75rem))) translateY(1.6rem) rotate(-8deg) scale(0.86);
 }
 
 .niche-inner-window {

@@ -2,6 +2,7 @@ import type { Metadata, Viewport } from "next";
 import "./globals.css";
 import { CustomCursor } from "@/components/custom-cursor";
 import { RouteStartReset } from "@/components/route-start-reset";
+import { ThemeToggle } from "@/components/theme-toggle";
 
 export const metadata: Metadata = {
   title: "Mayank Chauhan | Graphic Designer, UI Designer & Video Editor",
@@ -28,6 +29,7 @@ export default function RootLayout({ children }: Readonly<{ children: React.Reac
       <body className="bg-obsidian font-sans text-platinum antialiased">
         <RouteStartReset />
         <CustomCursor />
+        <ThemeToggle />
         {children}
       </body>
     </html>

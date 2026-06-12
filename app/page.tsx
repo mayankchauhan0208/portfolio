@@ -16,7 +16,6 @@ import { assetPath } from "@/lib/site-paths";
 
 export default function Home() {
   const [activeCreative, setActiveCreative] = useState(1);
-  const [creativePaused, setCreativePaused] = useState(false);
   const [loaded, setLoaded] = useState(false);
   const heroRef = useRef<HTMLDivElement>(null);
 
@@ -50,14 +49,12 @@ export default function Home() {
   }, [loaded]);
 
   useEffect(() => {
-    if (creativePaused) return;
-
     const timer = window.setInterval(() => {
       setActiveCreative((current) => (current + 1) % portfolioCategories.length);
     }, 2600);
 
     return () => window.clearInterval(timer);
-  }, [creativePaused]);
+  }, []);
 
   return (
     <main id="top" className="relative min-h-screen overflow-hidden bg-obsidian">
@@ -180,27 +177,24 @@ export default function Home() {
         <div className="absolute inset-x-0 top-10 mx-auto h-[34rem] max-w-6xl rounded-full bg-[radial-gradient(circle,rgba(142,232,255,0.2),transparent_62%)] blur-2xl" />
         <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_35%,rgba(18,54,92,0.7),transparent_38%)]" />
         <Reveal>
-          <div className="relative mx-auto max-w-7xl overflow-hidden rounded-[2.4rem] border border-white/10 bg-[#05070c]/82 px-5 pb-6 pt-10 shadow-luxury backdrop-blur-2xl md:px-10 md:pb-8 md:pt-12">
+          <div className="relative mx-auto max-w-7xl overflow-hidden rounded-[2.4rem] border border-white/10 bg-[#05070c]/82 px-5 pb-6 pt-10 shadow-luxury backdrop-blur-2xl md:px-10 md:pt-12">
             <div className="absolute inset-0 portfolio-card-grid opacity-[0.08]" />
             <div className="absolute left-1/2 top-[-9rem] h-[26rem] w-[26rem] -translate-x-1/2 rounded-full bg-signal/15 blur-3xl" />
-            <div className="relative mx-auto max-w-3xl text-center">
+            <div className="relative mx-auto max-w-6xl text-center">
               <p className="mb-4 text-xs uppercase tracking-[0.34em] text-signal">Creative Work</p>
-              <h2 className="font-display text-[clamp(2.6rem,5.6vw,5.4rem)] font-semibold leading-[0.88] text-white">
-                Choose the niche. Enter the right creative world.
+              <h2 className="font-display text-[clamp(2.35rem,4.85vw,4.75rem)] font-semibold leading-[0.92] text-white">
+                <span className="block whitespace-nowrap">Choose the niche.</span>
+                <span className="block whitespace-nowrap">Enter the right creative world.</span>
               </h2>
-              <p className="mx-auto mt-4 max-w-xl text-balance text-sm leading-6 text-mercury md:text-base">
-                Explore focused creative worlds for branding, real estate campaigns, social media, and UI/UX.
-                <br className="hidden md:block" />
-                Built with selected AI-generated visual concepts and presentation-ready case studies.
+              <p className="mx-auto mt-4 max-w-3xl text-sm leading-6 text-mercury md:text-base">
+                <span className="block">Explore focused creative worlds for branding,</span>
+                <span className="block">real estate campaigns, social media, and UI/UX.</span>
+                <span className="block">Built with AI-generated concepts and presentation-ready case studies.</span>
               </p>
             </div>
 
             <div
-              className="creative-stage relative mx-auto mt-8 min-h-[24rem] max-w-6xl md:min-h-[28rem]"
-              onMouseEnter={() => setCreativePaused(true)}
-              onMouseLeave={() => setCreativePaused(false)}
-              onFocus={() => setCreativePaused(true)}
-              onBlur={() => setCreativePaused(false)}
+              className="creative-stage relative mx-auto mt-6 min-h-[24rem] max-w-6xl md:min-h-[27rem]"
             >
               {portfolioCategories.map((category, index) => {
                 const offset = (index - activeCreative + portfolioCategories.length) % portfolioCategories.length;
@@ -208,12 +202,7 @@ export default function Home() {
                 <Link
                   key={category.id}
                   href={category.href}
-                  onMouseEnter={() => {
-                    setActiveCreative(index);
-                    setCreativePaused(true);
-                  }}
-                  onFocus={() => setActiveCreative(index)}
-                  className={`niche-showcase-card niche-position-${offset} group absolute overflow-hidden rounded-[1.6rem] border border-white/15 bg-black shadow-luxury transition duration-700 hover:z-30 hover:border-white/45`}
+                  className={`home-niche-card niche-showcase-card niche-position-${offset} group absolute overflow-hidden rounded-[1.6rem] border border-white/15 bg-black shadow-luxury transition duration-700`}
                   style={{
                     "--niche-accent": category.accent,
                     "--niche-accent-soft": `${category.accent}33`,
@@ -258,9 +247,6 @@ export default function Home() {
                     {category.label}
                   </div>
                   <div className="absolute bottom-4 left-4 right-4">
-                    <p className="mb-2 text-[0.58rem] uppercase tracking-[0.18em] text-[var(--niche-accent)]">
-                      Open Niche
-                    </p>
                     <h3 className="font-display text-2xl leading-none text-white">{category.title}</h3>
                     <p className="mt-3 line-clamp-2 text-xs leading-5 text-white/62">{category.subtitle}</p>
                   </div>
@@ -269,15 +255,12 @@ export default function Home() {
               })}
             </div>
 
-            <div className="relative mx-auto -mt-2 grid max-w-4xl gap-2 rounded-[1.5rem] border border-white/10 bg-black/30 p-2 backdrop-blur-xl md:-mt-8 md:grid-cols-5">
+            <div className="relative mx-auto mt-4 grid max-w-4xl gap-2 rounded-[1.5rem] border border-white/10 bg-black/30 p-2 backdrop-blur-xl md:mt-0 md:grid-cols-5">
               {portfolioCategories.map((category, index) => (
                 <button
                   key={category.id}
                   type="button"
-                  onClick={() => {
-                    setActiveCreative(index);
-                    setCreativePaused(true);
-                  }}
+                  onClick={() => setActiveCreative(index)}
                   className={`rounded-[1rem] px-3 py-3 text-left transition duration-300 ${
                     activeCreative === index ? "bg-white text-black" : "bg-white/[0.04] text-white/68 hover:bg-white/[0.08] hover:text-white"
                   }`}
@@ -317,15 +300,15 @@ export default function Home() {
                 {softwareSkills.map((tool, index) => (
                   <Reveal key={tool.name} delay={index * 0.02}>
                     <div className="group flex min-h-24 items-center gap-4 rounded-2xl border border-white/10 bg-black/25 p-4 transition hover:-translate-y-1 hover:border-signal/35 hover:bg-white/[0.07]">
-                      <div className="relative grid h-12 w-12 shrink-0 place-items-center rounded-2xl bg-white text-sm font-bold text-black shadow-glow">
-                        <span>{tool.fallback}</span>
+                      <div className="relative h-14 w-14 shrink-0 overflow-hidden rounded-[1.15rem] bg-white text-sm font-bold text-black shadow-[0_18px_36px_rgba(0,0,0,0.36)] ring-1 ring-white/20">
+                        <span className="absolute inset-0 grid place-items-center">{tool.fallback}</span>
                         {tool.logo ? (
                           <Image
-                            src={tool.logo}
+                            src={assetPath(tool.logo)}
                             alt={`${tool.name} logo`}
-                            width={28}
-                            height={28}
-                            className="absolute h-7 w-7 object-contain"
+                            fill
+                            sizes="56px"
+                            className="relative z-10 object-cover"
                             loading="lazy"
                             onError={(event) => {
                               event.currentTarget.style.display = "none";
@@ -369,15 +352,15 @@ export default function Home() {
                 {aiTools.map((tool, index) => (
                   <Reveal key={tool.name} delay={index * 0.015}>
                     <div className="group flex min-h-24 items-center gap-4 rounded-2xl border border-white/10 bg-black/25 p-4 transition hover:-translate-y-1 hover:border-champagne/35 hover:bg-white/[0.07]">
-                      <div className="relative grid h-12 w-12 shrink-0 place-items-center rounded-2xl bg-white text-xs font-bold text-black shadow-glow">
-                        <span>{tool.fallback}</span>
+                      <div className="relative h-14 w-14 shrink-0 overflow-hidden rounded-[1.15rem] bg-white text-xs font-bold text-black shadow-[0_18px_36px_rgba(0,0,0,0.36)] ring-1 ring-white/20">
+                        <span className="absolute inset-0 grid place-items-center">{tool.fallback}</span>
                         {tool.logo ? (
                           <Image
-                            src={tool.logo}
+                            src={assetPath(tool.logo)}
                             alt={`${tool.name} logo`}
-                            width={28}
-                            height={28}
-                            className="absolute h-7 w-7 object-contain"
+                            fill
+                            sizes="56px"
+                            className="relative z-10 object-cover"
                             loading="lazy"
                             onError={(event) => {
                               event.currentTarget.style.display = "none";
