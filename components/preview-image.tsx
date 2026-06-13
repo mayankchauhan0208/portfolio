@@ -3,6 +3,7 @@
 import Image from "next/image";
 import { X } from "lucide-react";
 import { useEffect, useState } from "react";
+import { createPortal } from "react-dom";
 
 type PreviewImageProps = {
   src: string;
@@ -17,7 +18,12 @@ type PreviewImageProps = {
 
 export function PreviewImage({ src, previewSrc, alt, width, height, sizes, className, priority }: PreviewImageProps) {
   const [open, setOpen] = useState(false);
+  const [mounted, setMounted] = useState(false);
   const fullQualitySrc = previewSrc ?? src;
+
+  useEffect(() => {
+    setMounted(true);
+  }, []);
 
   useEffect(() => {
     if (!open) return;
@@ -56,9 +62,10 @@ export function PreviewImage({ src, previewSrc, alt, width, height, sizes, class
         />
       </button>
 
-      {open ? (
+      {open && mounted
+        ? createPortal(
         <div
-          className="fixed inset-0 z-[140] flex items-center justify-center bg-black/88 p-3 backdrop-blur-2xl md:p-8"
+          className="fixed inset-0 z-[9999] flex items-center justify-center bg-black p-4 md:p-8"
           role="dialog"
           aria-modal="true"
           aria-label={alt}
@@ -67,25 +74,29 @@ export function PreviewImage({ src, previewSrc, alt, width, height, sizes, class
           <button
             type="button"
             onClick={() => setOpen(false)}
-            className="absolute right-4 top-4 z-10 grid h-11 w-11 place-items-center rounded-full border border-white/15 bg-white text-black shadow-luxury transition hover:bg-signal"
+            className="fixed right-4 top-4 z-[10000] inline-flex h-12 items-center gap-2 rounded-full border border-white/20 bg-white px-4 text-xs font-bold uppercase tracking-[0.14em] text-black shadow-luxury transition hover:bg-signal md:right-7 md:top-7"
             aria-label="Close preview"
           >
-            <X size={20} />
+            <X size={18} />
+            <span>Close</span>
           </button>
-          <div className="relative max-h-[92vh] max-w-[96vw] overflow-auto rounded-[1.35rem] border border-white/12 bg-black/70 p-2 shadow-luxury">
-            <Image
+          <div className="relative grid max-h-[90vh] max-w-[94vw] place-items-center overflow-hidden rounded-[1.25rem] border border-white/12 bg-[#050505] p-2 shadow-luxury">
+            {/* eslint-disable-next-line @next/next/no-img-element */}
+            <img
               src={fullQualitySrc}
               alt={alt}
               width={width}
               height={height}
-              sizes="96vw"
-              unoptimized
-              className="h-auto max-h-[88vh] w-auto max-w-[92vw] rounded-[1rem] object-contain"
+              loading="eager"
+              decoding="sync"
+              className="block h-auto max-h-[86vh] w-auto max-w-[91vw] rounded-[0.9rem] object-contain"
               onClick={(event) => event.stopPropagation()}
             />
           </div>
-        </div>
-      ) : null}
+        </div>,
+        document.body
+          )
+        : null}
     </>
   );
 }
