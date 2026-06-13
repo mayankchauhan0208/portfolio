@@ -8,7 +8,7 @@ export const profile = {
   intro:
     "I create premium brand visuals, UI concepts, campaign creatives, and motion-ready assets for brands that need clarity, polish, and strong recall.",
   positioning:
-    "Mayank Chauhan is a graphic designer with hands-on experience across real-estate marketing, brand campaigns, UI/UX concepts, social media creatives, and video editing. His work focuses on clean hierarchy, premium spacing, strong image treatment, and practical execution for digital, print, presentation, and campaign formats."
+    "I work across real-estate marketing, brand campaigns, UI/UX concepts, social media creatives, and video editing. My focus is simple: clear hierarchy, premium spacing, strong image treatment, and practical execution that works across digital, print, presentations, and campaign formats."
 };
 
 export const metrics = [

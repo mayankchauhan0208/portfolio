@@ -125,14 +125,14 @@ export default function Home() {
         </div>
       </section>
 
-      <SectionShell id="about" eyebrow="About Me" title="A graphic designer focused on clean, premium visual communication.">
+      <SectionShell id="about" eyebrow="About Me" title="Designing clear, premium visuals for brands, campaigns, and digital experiences.">
         <div className="grid gap-6 lg:grid-cols-[0.75fr_1.25fr]">
           <Reveal>
             <div className="h-full rounded-[2rem] border border-white/10 bg-white/[0.055] p-7 shadow-luxury backdrop-blur-2xl">
               <Sparkles className="mb-12 text-signal" size={28} />
-              <p className="font-display text-3xl leading-tight text-white">Design that looks sharp quickly, then feels carefully built when you look closer.</p>
+              <p className="font-display text-3xl leading-tight text-white">I build visuals that feel sharp at first glance and carefully crafted up close.</p>
               <p className="mt-6 leading-7 text-mercury">
-                I enjoy building visuals that are easy to understand, polished enough to trust, and flexible enough to work across social, print, UI, and presentation formats.
+                My work is made to be clear, polished, and adaptable across social, print, UI, presentations, and campaign communication.
               </p>
             </div>
           </Reveal>

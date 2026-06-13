@@ -28,14 +28,14 @@ body {
 html.theme-light,
 .theme-light body {
   background:
-    radial-gradient(circle at 84% 18%, rgba(0, 173, 181, 0.28), transparent 30%),
-    radial-gradient(circle at 16% 12%, rgba(255, 120, 86, 0.16), transparent 28%),
-    radial-gradient(circle at 78% 82%, rgba(82, 168, 119, 0.2), transparent 34%),
-    linear-gradient(135deg, #f8fbf8 0%, #eef7f4 46%, #fff5e8 100%);
+    radial-gradient(circle at 82% 14%, rgba(0, 123, 148, 0.24), transparent 30%),
+    radial-gradient(circle at 18% 10%, rgba(218, 109, 73, 0.18), transparent 28%),
+    radial-gradient(circle at 76% 82%, rgba(48, 132, 94, 0.2), transparent 34%),
+    linear-gradient(135deg, #f7fbf6 0%, #eaf5f0 45%, #fff2df 100%);
 }
 
 .theme-light body {
-  color: #0b1524;
+  color: #0b1420;
 }
 
 .theme-light .bg-obsidian,
@@ -50,7 +50,7 @@ html.theme-light,
 
 .theme-light .text-white,
 .theme-light .text-platinum {
-  color: #0b1524;
+  color: #0b1420;
 }
 
 .theme-light .text-mercury,
@@ -58,15 +58,15 @@ html.theme-light,
 .theme-light .text-white\/68,
 .theme-light .text-white\/65,
 .theme-light .text-white\/62 {
-  color: rgba(28, 45, 61, 0.72);
+  color: rgba(27, 40, 55, 0.78);
 }
 
 .theme-light .text-signal {
-  color: #008da1;
+  color: #007180;
 }
 
 .theme-light .text-champagne {
-  color: #a76518;
+  color: #8f5314;
 }
 
 .theme-light .border-white\/10,
@@ -92,16 +92,16 @@ html.theme-light,
 .theme-light .bg-black\/65,
 .theme-light .bg-black\/70 {
   background:
-    linear-gradient(145deg, rgba(255, 255, 255, 0.9), rgba(229, 247, 244, 0.68));
+    linear-gradient(145deg, rgba(255, 255, 255, 0.94), rgba(226, 243, 238, 0.78));
   box-shadow:
-    0 24px 70px rgba(11, 21, 36, 0.12),
+    0 24px 70px rgba(11, 21, 36, 0.14),
     inset 0 1px 0 rgba(255, 255, 255, 0.86);
 }
 
 .theme-light .ambient-grid {
   background-image:
-    linear-gradient(rgba(18, 50, 68, 0.08) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(18, 50, 68, 0.08) 1px, transparent 1px);
+    linear-gradient(rgba(18, 50, 68, 0.095) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(18, 50, 68, 0.095) 1px, transparent 1px);
 }
 
 .theme-light header nav {
@@ -137,9 +137,9 @@ html.theme-light button[aria-label*="theme"],
 
 .theme-light .reference-hero {
   background:
-    radial-gradient(circle at 52% 42%, rgba(0, 173, 181, 0.2), transparent 30%),
-    radial-gradient(circle at 22% 72%, rgba(117, 92, 211, 0.14), transparent 28%),
-    linear-gradient(135deg, #f8fbf8 0%, #eef7f4 52%, #fff5e8 100%);
+    radial-gradient(circle at 52% 42%, rgba(0, 123, 148, 0.2), transparent 30%),
+    radial-gradient(circle at 22% 72%, rgba(218, 109, 73, 0.14), transparent 28%),
+    linear-gradient(135deg, #f7fbf6 0%, #eaf5f0 52%, #fff2df 100%);
 }
 
 .theme-light .reference-model::after {
@@ -392,6 +392,48 @@ html.theme-light button[aria-label*="theme"],
     radial-gradient(circle at 50% 30%, var(--niche-accent-soft), transparent 32%),
     radial-gradient(circle at 20% 85%, rgba(255, 255, 255, 0.16), transparent 26%),
     var(--niche-backdrop);
+}
+
+.theme-light .home-niche-card,
+.theme-light .niche-showcase-card {
+  border-color: rgba(255, 255, 255, 0.28);
+  background: #07111f !important;
+  color: #f8fbff !important;
+  box-shadow:
+    0 28px 80px rgba(7, 17, 31, 0.26),
+    0 0 42px var(--niche-accent-soft);
+}
+
+.theme-light .home-niche-card .text-white,
+.theme-light .home-niche-card .text-white\/62,
+.theme-light .home-niche-card .text-white\/85,
+.theme-light .niche-showcase-card .text-white,
+.theme-light .niche-showcase-card .text-white\/62,
+.theme-light .niche-showcase-card .text-white\/85 {
+  color: #f8fbff !important;
+}
+
+.theme-light .home-niche-card .bg-black\/45,
+.theme-light .niche-showcase-card .bg-black\/45 {
+  background: rgba(7, 17, 31, 0.68) !important;
+  border-color: rgba(255, 255, 255, 0.28) !important;
+}
+
+.theme-light .home-niche-card .niche-card-bg,
+.theme-light .niche-showcase-card .niche-card-bg {
+  background:
+    radial-gradient(circle at 50% 28%, rgba(255, 255, 255, 0.2), transparent 28%),
+    radial-gradient(circle at 50% 30%, var(--niche-accent-soft), transparent 38%),
+    linear-gradient(145deg, rgba(7, 17, 31, 0.22), rgba(7, 17, 31, 0.68)),
+    var(--niche-backdrop);
+  filter: saturate(1.16) contrast(1.05);
+}
+
+.theme-light .home-niche-card .niche-inner-window,
+.theme-light .niche-showcase-card .niche-inner-window {
+  background: rgba(7, 17, 31, 0.38) !important;
+  border-color: rgba(255, 255, 255, 0.24) !important;
+  box-shadow: inset 0 0 42px rgba(255, 255, 255, 0.1);
 }
 
 .niche-ring {
