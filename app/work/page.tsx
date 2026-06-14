@@ -19,7 +19,7 @@ function imageSizeFor(src: string) {
 export const metadata = {
   title: "Creative Portfolio Library | Mayank Chauhan",
   description:
-    "A premium category index for Mayank Chauhan's branding, real estate creatives, social media systems, UI/UX concepts, and AI-assisted visual direction."
+    "A premium category index for Mayank Chauhan's branding, real estate creatives, Meta ads, social media systems, UI/UX concepts, videos, and AI-assisted visual direction."
 };
 
 export default function WorkPage() {
@@ -64,7 +64,7 @@ export default function WorkPage() {
               Library
             </h1>
             <p className="mt-7 max-w-2xl text-base leading-8 text-mercury md:text-lg">
-              Five focused rooms for Mayank&apos;s portfolio: branding, real estate campaigns, social media, UI/UX, and AI-assisted visual direction. Each page has its own tone and presentation flow.
+              Seven focused rooms for Mayank&apos;s portfolio: branding, real estate campaigns, Meta ads, social media, UI/UX, videos, and AI-assisted visual direction. Each page has its own tone and presentation flow.
             </p>
           </div>
 
@@ -117,7 +117,7 @@ export default function WorkPage() {
             </p>
           </div>
 
-          <div className="grid gap-5 md:grid-cols-2 xl:grid-cols-5">
+          <div className="grid gap-5 md:grid-cols-2 xl:grid-cols-3">
             {portfolioCategories.map((category, index) => (
               <Link
                 key={category.id}

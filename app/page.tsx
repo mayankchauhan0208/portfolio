@@ -188,7 +188,7 @@ export default function Home() {
               </h2>
               <p className="mx-auto mt-4 max-w-3xl text-sm leading-6 text-mercury md:text-base">
                 <span className="block">Explore focused creative worlds for branding,</span>
-                <span className="block">real estate campaigns, social media, and UI/UX.</span>
+                <span className="block">real estate campaigns, Meta ads, social media, videos, and UI/UX.</span>
                 <span className="block">Built with AI-generated concepts and presentation-ready case studies.</span>
               </p>
             </div>
@@ -255,7 +255,7 @@ export default function Home() {
               })}
             </div>
 
-            <div className="relative mx-auto mt-4 grid max-w-4xl gap-2 rounded-[1.5rem] border border-white/10 bg-black/30 p-2 backdrop-blur-xl md:mt-0 md:grid-cols-5">
+            <div className="relative mx-auto mt-4 grid max-w-6xl gap-2 rounded-[1.5rem] border border-white/10 bg-black/30 p-2 backdrop-blur-xl md:mt-0 md:grid-cols-4 lg:grid-cols-7">
               {portfolioCategories.map((category, index) => (
                 <button
                   key={category.id}

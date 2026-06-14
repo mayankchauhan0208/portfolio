@@ -3,7 +3,8 @@ import { notFound } from "next/navigation";
 import { type CSSProperties } from "react";
 import { ArrowLeft, ArrowUpRight, GalleryHorizontalEnd, LayoutGrid, Sparkles } from "lucide-react";
 import { PreviewImage } from "@/components/preview-image";
-import { aiGeneratedProjects, logoProjects, portfolioCategories, portfolioWorks, socialProjects, uiUxProjects } from "@/lib/portfolio-data";
+import { PreviewVideo } from "@/components/preview-video";
+import { aiGeneratedProjects, logoProjects, portfolioCategories, portfolioWorks, socialProjects, uiUxProjects, videoProjects } from "@/lib/portfolio-data";
 import { assetPath } from "@/lib/site-paths";
 
 type CategoryPageProps = {
@@ -369,7 +370,56 @@ export default function CategoryPage({ params }: CategoryPageProps) {
         </section>
       )}
 
-      {category.id !== "branding" && category.id !== "real-estate" && category.id !== "social-media" && category.id !== "ui-ux" && category.id !== "ai-generated" && (
+      {category.id === "videos" && (
+        <section className="relative z-10 px-4 pb-28 md:px-8">
+          <div className="mx-auto max-w-7xl">
+            <div className="mb-8 flex items-end justify-between gap-6">
+              <div>
+                <p className="mb-3 flex items-center gap-2 text-xs uppercase tracking-[0.28em] text-[var(--niche-accent)]">
+                  <GalleryHorizontalEnd size={15} /> Playback Gallery
+                </p>
+                <h2 className="font-display text-3xl uppercase tracking-[-0.02em] text-white md:text-5xl">Video Work Preview</h2>
+              </div>
+              <p className="hidden max-w-md text-right text-sm leading-6 text-mercury md:block">
+                Lightweight poster cards open into a full-screen video viewer with play, stop, mute, and close controls.
+              </p>
+            </div>
+
+            <div className="grid gap-5 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
+              {videoProjects.map((project) => (
+                <article
+                  key={project.title}
+                  className="group overflow-hidden rounded-[2rem] border border-amber-200/20 bg-[#100b06] p-4 shadow-luxury backdrop-blur-xl md:p-5"
+                >
+                  <div className="relative overflow-hidden rounded-[1.5rem] border border-white/10 bg-black/50">
+                    <PreviewVideo
+                      src={project.src ? assetPath(project.src) : undefined}
+                      poster={assetPath(project.poster)}
+                      title={project.title}
+                      width={project.width}
+                      height={project.height}
+                      sizes="(min-width: 1280px) 22vw, (min-width: 1024px) 30vw, (min-width: 640px) 44vw, 92vw"
+                      className="h-[31rem] w-full object-cover transition duration-700 group-hover:scale-[1.02]"
+                    />
+                  </div>
+                  <div className="p-3 pt-5 md:p-5">
+                    <div className="flex items-center justify-between gap-3">
+                      <p className="text-xs uppercase tracking-[0.28em] text-amber-200">{project.format}</p>
+                      <span className="rounded-full border border-white/10 bg-white/[0.06] px-3 py-1 text-[0.62rem] font-bold uppercase tracking-[0.16em] text-white/70">
+                        {project.duration}
+                      </span>
+                    </div>
+                    <h3 className="mt-3 font-display text-3xl leading-none text-white">{project.title}</h3>
+                    <p className="mt-4 text-sm leading-7 text-mercury">{project.brief}</p>
+                  </div>
+                </article>
+              ))}
+            </div>
+          </div>
+        </section>
+      )}
+
+      {category.id !== "branding" && category.id !== "real-estate" && category.id !== "social-media" && category.id !== "ui-ux" && category.id !== "ai-generated" && category.id !== "videos" && (
         <section className="relative z-10 px-4 pb-28 md:px-8">
           <div className="mx-auto max-w-7xl">
             <div className="mb-8 flex items-end justify-between gap-6">

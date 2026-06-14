@@ -438,6 +438,32 @@ export const portfolioCategories = [
     ]
   },
   {
+    id: "videos",
+    title: "Videos",
+    label: "Motion / Reels",
+    subtitle: "Edited videos, reels, launch films, walkthroughs, and motion-led campaign previews.",
+    href: "/work/videos",
+    accent: "#ffcf6b",
+    backdrop: "linear-gradient(145deg, #120905 0%, #3a1f12 52%, #ffcf6b 120%)",
+    motif: "VD",
+    previewImages: [
+      "/work/videos/video-01.webp",
+      "/work/videos/video-05.webp",
+      "/work/videos/video-09.webp"
+    ]
+  },
+  {
+    id: "meta-ads",
+    title: "Meta Ads",
+    label: "Paid Social",
+    subtitle: "Performance creatives, ad variations, launch offers, carousel concepts, and campaign-ready Meta layouts.",
+    href: "/work/meta-ads",
+    accent: "#7dd3ff",
+    backdrop: "linear-gradient(145deg, #06111f 0%, #102f5f 50%, #7dd3ff 120%)",
+    motif: "MA",
+    previewImages: []
+  },
+  {
     id: "ai-generated",
     title: "AI Generated",
     label: "Concept Visuals",
@@ -451,6 +477,165 @@ export const portfolioCategories = [
       "/optimized/work/ai-generated/emaar-india-business-centre/emaar-IBC-02.webp",
       "/optimized/work/ai-generated/emaar-india-business-centre/emaar-IBC-03.webp"
     ]
+  }
+];
+
+export const videoProjects = [
+  {
+    title: "Property Campaign Reel",
+    category: "Real Estate Video",
+    format: "Edited Reel",
+    brief:
+      "A vertical real-estate campaign edit shaped for fast viewing, clear project recall, and social-first engagement.",
+    poster: "/work/videos/video-01.webp",
+    src: "/work/videos/video-01.mp4",
+    width: 720,
+    height: 1280,
+    duration: "0:48"
+  },
+  {
+    title: "Launch Communication Reel",
+    category: "Real Estate Video",
+    format: "Short Video",
+    brief:
+      "A compact campaign video built around clean pacing, project highlights, and a polished sales-ready rhythm.",
+    poster: "/work/videos/video-02.webp",
+    src: "/work/videos/video-02.mp4",
+    width: 720,
+    height: 1280,
+    duration: "0:33"
+  },
+  {
+    title: "172 Sq. Yds Builder Floor",
+    category: "Builder Floor",
+    format: "Property Reel",
+    brief:
+      "A focused builder-floor showcase using vertical framing, benefit-led sequencing, and quick property detail delivery.",
+    poster: "/work/videos/video-03.webp",
+    src: "/work/videos/video-03.mp4",
+    width: 720,
+    height: 1280,
+    duration: "0:57"
+  },
+  {
+    title: "Builder Floor Buying Tips",
+    category: "Real Estate Education",
+    format: "Expert Tips Reel",
+    brief:
+      "An informational short designed to make advice easy to follow while keeping the edit energetic and social-friendly.",
+    poster: "/work/videos/video-04.webp",
+    src: "/work/videos/video-04.mp4",
+    width: 720,
+    height: 1280,
+    duration: "0:41"
+  },
+  {
+    title: "Malibu Town 4 BHK Walkthrough",
+    category: "Luxury Builder Floor",
+    format: "Walkthrough Reel",
+    brief:
+      "A vertical walkthrough edit for a premium builder floor, balancing location appeal, interiors, and buying intent.",
+    poster: "/work/videos/video-05.webp",
+    src: "/work/videos/video-05.mp4",
+    width: 720,
+    height: 1280,
+    duration: "0:58"
+  },
+  {
+    title: "Sector 85 4 BHK Builder Floor",
+    category: "Builder Floor",
+    format: "Short Property Video",
+    brief:
+      "A property-led reel with clean transitions, compact feature highlights, and a strong sales communication structure.",
+    poster: "/work/videos/video-06.webp",
+    src: "/work/videos/video-06.mp4",
+    width: 720,
+    height: 1280,
+    duration: "0:54"
+  },
+  {
+    title: "Sector 85 Builder Floor Highlight",
+    category: "Builder Floor",
+    format: "Short Video",
+    brief:
+      "A quick social edit presenting a builder-floor offer with direct visuals, readable pacing, and conversion clarity.",
+    poster: "/work/videos/video-07.webp",
+    src: "/work/videos/video-07.mp4",
+    width: 720,
+    height: 1280,
+    duration: "0:52"
+  },
+  {
+    title: "Client Presentation Video",
+    category: "Campaign Video",
+    format: "Long Reel",
+    brief:
+      "A longer vertical campaign edit structured for presentation viewing, project storytelling, and sustained attention.",
+    poster: "/work/videos/video-08.webp",
+    src: "/work/videos/video-08.mp4",
+    width: 720,
+    height: 1280,
+    duration: "1:38"
+  },
+  {
+    title: "Faridabad Real Estate Bridge",
+    category: "Market Update",
+    format: "Explainer Reel",
+    brief:
+      "A real-estate update video edited for clear context, local relevance, and fast social-platform consumption.",
+    poster: "/work/videos/video-09.webp",
+    src: "/work/videos/video-09.mp4",
+    width: 720,
+    height: 1280,
+    duration: "0:53"
+  },
+  {
+    title: "Gurgaon Reel Ad",
+    category: "Real Estate Ad",
+    format: "Ad Video",
+    brief:
+      "A promotional reel with campaign pacing, real-estate offer clarity, and a short-form ad structure.",
+    poster: "/work/videos/video-10.webp",
+    src: "/work/videos/video-10.mp4",
+    width: 720,
+    height: 1280,
+    duration: "0:42"
+  },
+  {
+    title: "Puri Kohinoor Sector 89",
+    category: "Project Reel",
+    format: "Short Video",
+    brief:
+      "A project-focused short video presenting key property appeal through clean sequencing and vertical-first framing.",
+    poster: "/work/videos/video-11.webp",
+    src: "/work/videos/video-11.mp4",
+    width: 720,
+    height: 1280,
+    duration: "0:48"
+  },
+  {
+    title: "Project Walkthrough Edit",
+    category: "Real Estate Video",
+    format: "Walkthrough Reel",
+    brief:
+      "A vertical property walkthrough edit built for smooth viewing, fast project understanding, and sales support.",
+    poster: "/work/videos/video-12.webp",
+    src: "/work/videos/video-12.mp4",
+    width: 720,
+    height: 1280,
+    duration: "0:55"
+  },
+  {
+    title: "Sector 63A Investment Reel",
+    category: "Investment Campaign",
+    format: "Explainer Reel",
+    brief:
+      "A short investment-led reel that combines project positioning, locality cues, and smart-buy messaging.",
+    poster: "/work/videos/video-13.webp",
+    src: "/work/videos/video-13.mp4",
+    width: 720,
+    height: 1280,
+    duration: "0:57"
   }
 ];
 
