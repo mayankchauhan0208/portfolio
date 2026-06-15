@@ -120,6 +120,11 @@ html.theme-light,
   background-color: rgba(255, 255, 255, 0.11) !important;
 }
 
+.theme-light header nav a[data-active="true"] {
+  color: #07111f !important;
+  background: #ffffff !important;
+}
+
 .theme-light header nav a[aria-label] {
   color: #07111f !important;
   background: rgba(255, 255, 255, 0.94) !important;
@@ -161,6 +166,14 @@ html.theme-light button[aria-label*="theme"],
     linear-gradient(90deg, rgba(255, 255, 255, 0.045) 1px, transparent 1px);
   background-size: 64px 64px;
   mask-image: radial-gradient(circle at 50% 20%, black, transparent 72%);
+}
+
+.no-scrollbar {
+  scrollbar-width: none;
+}
+
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
 }
 
 .intro-line {
