@@ -197,12 +197,14 @@ export default function Home() {
               className="creative-stage relative mx-auto mt-6 min-h-[22rem] max-w-6xl sm:min-h-[24rem] md:min-h-[27rem]"
             >
               {portfolioCategories.map((category, index) => {
-                const offset = (index - activeCreative + portfolioCategories.length) % portfolioCategories.length;
+                const rawOffset = (index - activeCreative + portfolioCategories.length) % portfolioCategories.length;
+                const signedOffset = rawOffset > Math.floor(portfolioCategories.length / 2) ? rawOffset - portfolioCategories.length : rawOffset;
+                const positionClass = signedOffset === 0 ? "niche-position-center" : `niche-position-${signedOffset > 0 ? "right" : "left"}-${Math.abs(signedOffset)}`;
                 return (
                 <Link
                   key={category.id}
                   href={category.href}
-                  className={`home-niche-card niche-showcase-card niche-position-${offset} group absolute overflow-hidden rounded-[1.6rem] border border-white/15 bg-black shadow-luxury transition duration-700`}
+                  className={`home-niche-card niche-showcase-card ${positionClass} group absolute overflow-hidden rounded-[1.6rem] border border-white/15 bg-black shadow-luxury transition duration-1000 ease-out`}
                   style={{
                     "--niche-accent": category.accent,
                     "--niche-accent-soft": `${category.accent}33`,

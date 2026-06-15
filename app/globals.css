@@ -452,72 +452,72 @@ html.theme-light button[aria-label*="theme"],
   background: var(--niche-accent-soft);
 }
 
-.niche-position-0 {
+.niche-position-center {
   z-index: 20;
   opacity: 1;
   transform: translateX(-50%) translateY(-0.25rem) rotate(0deg) scale(1.03);
   box-shadow: 0 40px 120px rgba(0, 0, 0, 0.75), 0 0 48px var(--niche-accent-soft);
 }
 
-.niche-position-1 {
+.niche-position-right-1 {
   z-index: 14;
-  opacity: 0.94;
-  transform: translateX(calc(-50% + clamp(7rem, 13vw, 10.75rem))) translateY(1.6rem) rotate(8deg) scale(0.86);
+  opacity: 0.9;
+  transform: translateX(calc(-50% + clamp(7.25rem, 12vw, 10.25rem))) translateY(1.55rem) rotate(8deg) scale(0.84);
 }
 
-.niche-position-2 {
+.niche-position-right-2 {
   z-index: 10;
-  opacity: 0.64;
-  transform: translateX(calc(-50% + clamp(12rem, 23vw, 18.5rem))) translateY(3.5rem) rotate(14deg) scale(0.68);
+  opacity: 0.58;
+  transform: translateX(calc(-50% + clamp(12rem, 21vw, 17rem))) translateY(3.25rem) rotate(14deg) scale(0.66);
 }
 
-.niche-position-3 {
+.niche-position-right-3 {
   z-index: 7;
-  opacity: 0.28;
-  transform: translateX(calc(-50% + clamp(16rem, 30vw, 24rem))) translateY(5.2rem) rotate(18deg) scale(0.54);
+  opacity: 0.26;
+  transform: translateX(calc(-50% + clamp(16rem, 29vw, 23rem))) translateY(4.85rem) rotate(18deg) scale(0.52);
 }
 
-.niche-position-4 {
-  z-index: 8;
-  opacity: 0.38;
-  transform: translateX(-50%) translateY(5rem) rotate(0deg) scale(0.56);
+.niche-position-left-3 {
+  z-index: 7;
+  opacity: 0.26;
+  transform: translateX(calc(-50% - clamp(16rem, 29vw, 23rem))) translateY(4.85rem) rotate(-18deg) scale(0.52);
 }
 
-.niche-position-5 {
+.niche-position-left-2 {
   z-index: 10;
-  opacity: 0.64;
-  transform: translateX(calc(-50% - clamp(12rem, 23vw, 18.5rem))) translateY(3.5rem) rotate(-14deg) scale(0.68);
+  opacity: 0.58;
+  transform: translateX(calc(-50% - clamp(12rem, 21vw, 17rem))) translateY(3.25rem) rotate(-14deg) scale(0.66);
 }
 
-.niche-position-6 {
+.niche-position-left-1 {
   z-index: 14;
-  opacity: 0.94;
-  transform: translateX(calc(-50% - clamp(7rem, 13vw, 10.75rem))) translateY(1.6rem) rotate(-8deg) scale(0.86);
+  opacity: 0.9;
+  transform: translateX(calc(-50% - clamp(7.25rem, 12vw, 10.25rem))) translateY(1.55rem) rotate(-8deg) scale(0.84);
 }
 
 @media (max-width: 640px) {
-  .niche-position-1 {
-    transform: translateX(calc(-50% + clamp(5.5rem, 22vw, 7rem))) translateY(1.35rem) rotate(8deg) scale(0.82);
+  .niche-position-right-1 {
+    transform: translateX(calc(-50% + clamp(5.2rem, 21vw, 6.9rem))) translateY(1.25rem) rotate(8deg) scale(0.78);
   }
 
-  .niche-position-2 {
-    transform: translateX(calc(-50% + clamp(8.5rem, 34vw, 11rem))) translateY(3rem) rotate(14deg) scale(0.62);
+  .niche-position-right-2 {
+    transform: translateX(calc(-50% + clamp(8.2rem, 33vw, 10.4rem))) translateY(2.7rem) rotate(14deg) scale(0.58);
   }
 
-  .niche-position-3 {
-    transform: translateX(calc(-50% + clamp(10.5rem, 44vw, 13.5rem))) translateY(4.2rem) rotate(18deg) scale(0.48);
+  .niche-position-right-3 {
+    transform: translateX(calc(-50% + clamp(10.5rem, 43vw, 13rem))) translateY(3.9rem) rotate(18deg) scale(0.44);
   }
 
-  .niche-position-4 {
-    transform: translateX(-50%) translateY(4.25rem) rotate(0deg) scale(0.5);
+  .niche-position-left-3 {
+    transform: translateX(calc(-50% - clamp(10.5rem, 43vw, 13rem))) translateY(3.9rem) rotate(-18deg) scale(0.44);
   }
 
-  .niche-position-5 {
-    transform: translateX(calc(-50% - clamp(8.5rem, 34vw, 11rem))) translateY(3rem) rotate(-14deg) scale(0.62);
+  .niche-position-left-2 {
+    transform: translateX(calc(-50% - clamp(8.2rem, 33vw, 10.4rem))) translateY(2.7rem) rotate(-14deg) scale(0.58);
   }
 
-  .niche-position-6 {
-    transform: translateX(calc(-50% - clamp(5.5rem, 22vw, 7rem))) translateY(1.35rem) rotate(-8deg) scale(0.82);
+  .niche-position-left-1 {
+    transform: translateX(calc(-50% - clamp(5.2rem, 21vw, 6.9rem))) translateY(1.25rem) rotate(-8deg) scale(0.78);
   }
 }
 
