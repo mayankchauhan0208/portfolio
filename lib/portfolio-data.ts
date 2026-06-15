@@ -461,7 +461,11 @@ export const portfolioCategories = [
     accent: "#7dd3ff",
     backdrop: "linear-gradient(145deg, #06111f 0%, #102f5f 50%, #7dd3ff 120%)",
     motif: "MA",
-    previewImages: []
+    previewImages: [
+      "/work/meta-ads/elan-106/meta-ad-01.jpg",
+      "/work/meta-ads/emaar-commerce-park/meta-ad-02.jpg",
+      "/work/meta-ads/godrej-retreat/meta-ad-03.jpg"
+    ]
   },
   {
     id: "ai-generated",
@@ -636,6 +640,106 @@ export const videoProjects = [
     width: 720,
     height: 1280,
     duration: "0:57"
+  }
+];
+
+export const metaAdsProjects = [
+  {
+    title: "Elan 106 Meta Ads",
+    category: "Luxury Real Estate",
+    format: "Meta Ad Set",
+    brief:
+      "A premium campaign group for Elan 106, adapted across square, landscape, and feed-friendly formats for consistent paid-social delivery.",
+    images: [
+      { title: "Square Feed Creative", src: "/work/meta-ads/elan-106/meta-ad-01.jpg", width: 1080, height: 1080 },
+      { title: "Landscape Placement", src: "/work/meta-ads/elan-106/meta-ad-02.jpg", width: 1920, height: 1080 },
+      { title: "Compact Ad Placement", src: "/work/meta-ads/elan-106/meta-ad-03.jpg", width: 610, height: 324 }
+    ]
+  },
+  {
+    title: "Elan The Presidential Meta Ads",
+    category: "Luxury Real Estate",
+    format: "Meta Ad Set",
+    brief:
+      "A high-end residential campaign system created for premium positioning, clear offer visibility, and refined social-media presence.",
+    images: [
+      { title: "Square Feed Creative", src: "/work/meta-ads/elan-presidential/meta-ad-01.jpg", width: 1080, height: 1080 },
+      { title: "Landscape Placement", src: "/work/meta-ads/elan-presidential/meta-ad-02.jpg", width: 1920, height: 1080 },
+      { title: "Compact Ad Placement", src: "/work/meta-ads/elan-presidential/meta-ad-03.jpg", width: 610, height: 324 }
+    ]
+  },
+  {
+    title: "Emaar Commerce Park Meta Ads",
+    category: "Commercial Real Estate",
+    format: "Meta Ad Set",
+    brief:
+      "A commercial project campaign with formats designed for business audiences, project recall, and high-intent lead generation.",
+    images: [
+      { title: "Square Feed Creative", src: "/work/meta-ads/emaar-commerce-park/meta-ad-01.jpg", width: 1080, height: 1080 },
+      { title: "Vertical Story Creative", src: "/work/meta-ads/emaar-commerce-park/meta-ad-02.jpg", width: 1080, height: 1920 },
+      { title: "Compact Ad Placement", src: "/work/meta-ads/emaar-commerce-park/meta-ad-03.jpg", width: 610, height: 324 }
+    ]
+  },
+  {
+    title: "Godrej Retreat Meta Ads",
+    category: "Residential Campaign",
+    format: "Meta Ad Set",
+    brief:
+      "A residential paid-social set adapted for feed, story, and landscape placements with a consistent project message.",
+    images: [
+      { title: "Square Feed Creative", src: "/work/meta-ads/godrej-retreat/meta-ad-01.jpg", width: 1080, height: 1080 },
+      { title: "Portrait Feed Creative", src: "/work/meta-ads/godrej-retreat/meta-ad-02.jpg", width: 1080, height: 1350 },
+      { title: "Landscape Placement", src: "/work/meta-ads/godrej-retreat/meta-ad-03.jpg", width: 1920, height: 1080 },
+      { title: "Compact Ad Placement", src: "/work/meta-ads/godrej-retreat/meta-ad-04.jpg", width: 610, height: 324 }
+    ]
+  },
+  {
+    title: "Paragon Meta Ads",
+    category: "Real Estate Campaign",
+    format: "Meta Ad Set",
+    brief:
+      "A clean paid-social campaign group shaped for lead capture, fast readability, and consistent brand recall across placements.",
+    images: [
+      { title: "Square Feed Creative", src: "/work/meta-ads/paragon/meta-ad-01.jpg", width: 1080, height: 1080 },
+      { title: "Landscape Placement", src: "/work/meta-ads/paragon/meta-ad-02.jpg", width: 1920, height: 1080 },
+      { title: "Compact Ad Placement", src: "/work/meta-ads/paragon/meta-ad-03.jpg", width: 610, height: 324 }
+    ]
+  },
+  {
+    title: "Reach Airia Corporate Tower Meta Ads 01",
+    category: "Commercial Real Estate",
+    format: "Meta Ad Set",
+    brief:
+      "A commercial tower campaign set with a sharp paid-social structure for visibility, enquiry intent, and project clarity.",
+    images: [
+      { title: "Square Feed Creative", src: "/work/meta-ads/reach-airia-01/meta-ad-01.jpg", width: 1080, height: 1080 },
+      { title: "Landscape Placement", src: "/work/meta-ads/reach-airia-01/meta-ad-02.jpg", width: 1920, height: 1080 },
+      { title: "Compact Ad Placement", src: "/work/meta-ads/reach-airia-01/meta-ad-03.jpg", width: 610, height: 324 }
+    ]
+  },
+  {
+    title: "Reach Airia Corporate Tower Meta Ads 02",
+    category: "Commercial Real Estate",
+    format: "Meta Ad Set",
+    brief:
+      "A second paid-social variation for the same project, exploring a different visual hierarchy and lead-focused message.",
+    images: [
+      { title: "Square Feed Creative", src: "/work/meta-ads/reach-airia-02/meta-ad-01.jpg", width: 1080, height: 1080 },
+      { title: "Landscape Placement", src: "/work/meta-ads/reach-airia-02/meta-ad-02.jpg", width: 1920, height: 1080 },
+      { title: "Compact Ad Placement", src: "/work/meta-ads/reach-airia-02/meta-ad-03.jpg", width: 610, height: 324 }
+    ]
+  },
+  {
+    title: "Reach Airia Corporate Tower Meta Ads 03",
+    category: "Commercial Real Estate",
+    format: "Meta Ad Set",
+    brief:
+      "A third campaign direction for Reach Airia, keeping brand consistency while testing a fresh composition for Meta placements.",
+    images: [
+      { title: "Square Feed Creative", src: "/work/meta-ads/reach-airia-03/meta-ad-01.jpg", width: 1080, height: 1080 },
+      { title: "Landscape Placement", src: "/work/meta-ads/reach-airia-03/meta-ad-02.jpg", width: 1920, height: 1080 },
+      { title: "Compact Ad Placement", src: "/work/meta-ads/reach-airia-03/meta-ad-03.jpg", width: 610, height: 324 }
+    ]
   }
 ];
 

@@ -1,7 +1,8 @@
 "use client";
 
 import Image from "next/image";
-import { Pause, Play, Square, Volume2, VolumeX, X } from "lucide-react";
+import { Pause, Play, Volume2, VolumeX, X } from "lucide-react";
+import type { CSSProperties } from "react";
 import { useEffect, useRef, useState } from "react";
 import { createPortal } from "react-dom";
 
@@ -21,6 +22,8 @@ export function PreviewVideo({ src, poster, title, width, height, sizes, classNa
   const [mounted, setMounted] = useState(false);
   const [playing, setPlaying] = useState(false);
   const [muted, setMuted] = useState(false);
+  const [currentTime, setCurrentTime] = useState(0);
+  const [duration, setDuration] = useState(0);
 
   useEffect(() => {
     setMounted(true);
@@ -49,6 +52,7 @@ export function PreviewVideo({ src, poster, title, width, height, sizes, classNa
       video.currentTime = 0;
     }
     setPlaying(false);
+    setCurrentTime(0);
     setOpen(false);
   }
 
@@ -66,21 +70,29 @@ export function PreviewVideo({ src, poster, title, width, height, sizes, classNa
     setPlaying(false);
   };
 
-  const stopPlayback = () => {
-    const video = videoRef.current;
-    if (!video) return;
-
-    video.pause();
-    video.currentTime = 0;
-    setPlaying(false);
-  };
-
   const toggleMute = () => {
     const video = videoRef.current;
     if (!video) return;
 
     video.muted = !video.muted;
     setMuted(video.muted);
+  };
+
+  const handleSeek = (value: string) => {
+    const video = videoRef.current;
+    if (!video) return;
+
+    const nextTime = Number(value);
+    video.currentTime = nextTime;
+    setCurrentTime(nextTime);
+  };
+
+  const formatTime = (seconds: number) => {
+    if (!Number.isFinite(seconds)) return "0:00";
+
+    const minutes = Math.floor(seconds / 60);
+    const remainingSeconds = Math.floor(seconds % 60);
+    return `${minutes}:${String(remainingSeconds).padStart(2, "0")}`;
   };
 
   return (
@@ -132,6 +144,9 @@ export function PreviewVideo({ src, poster, title, width, height, sizes, classNa
                     className="block max-h-[78vh] w-full rounded-[0.9rem] object-contain"
                     onPlay={() => setPlaying(true)}
                     onPause={() => setPlaying(false)}
+                    onLoadedMetadata={(event) => setDuration(event.currentTarget.duration || 0)}
+                    onTimeUpdate={(event) => setCurrentTime(event.currentTarget.currentTime)}
+                    onEnded={() => setPlaying(false)}
                   />
                 ) : (
                   <div className="grid min-h-[48vh] w-full place-items-center rounded-[0.9rem] border border-white/10 bg-white/[0.04] p-8 text-center">
@@ -139,39 +154,51 @@ export function PreviewVideo({ src, poster, title, width, height, sizes, classNa
                       <p className="text-xs uppercase tracking-[0.28em] text-signal">Video Slot Ready</p>
                       <h2 className="mt-4 font-display text-3xl text-white">Add a video file to enable playback.</h2>
                       <p className="mx-auto mt-4 max-w-md text-sm leading-6 text-mercury">
-                        This preview supports MP4 and WebM files with play, stop, and mute controls.
+                        This preview supports MP4 and WebM files with play, pause, mute, and timeline controls.
                       </p>
                     </div>
                   </div>
                 )}
 
-                <div className="mt-3 flex flex-wrap items-center justify-center gap-2">
+                {src && (
+                  <button
+                    type="button"
+                    onClick={toggleMute}
+                    className="absolute right-5 top-5 inline-flex h-11 w-11 items-center justify-center rounded-full border border-white/15 bg-black/55 text-white shadow-luxury backdrop-blur-xl transition hover:bg-white hover:text-black"
+                    aria-label={muted ? "Unmute video" : "Mute video"}
+                  >
+                    {muted ? <VolumeX size={18} /> : <Volume2 size={18} />}
+                  </button>
+                )}
+
+                <div className="mt-4 w-full max-w-3xl">
+                  <div className="mb-3 flex items-center gap-3 text-[0.68rem] font-semibold uppercase tracking-[0.14em] text-white/65">
+                    <span>{formatTime(currentTime)}</span>
+                    <input
+                      type="range"
+                      min="0"
+                      max={duration || 0}
+                      step="0.1"
+                      value={Math.min(currentTime, duration || currentTime)}
+                      onChange={(event) => handleSeek(event.target.value)}
+                      disabled={!src || !duration}
+                      className="video-timeline h-2 flex-1 cursor-pointer appearance-none rounded-full disabled:cursor-not-allowed disabled:opacity-45"
+                      aria-label="Video timeline"
+                      style={{
+                        "--timeline-progress": duration ? `${(currentTime / duration) * 100}%` : "0%"
+                      } as CSSProperties}
+                    />
+                    <span>{formatTime(duration)}</span>
+                  </div>
+
                   <button
                     type="button"
                     onClick={togglePlayback}
                     disabled={!src}
-                    className="inline-flex items-center gap-2 rounded-full bg-white px-5 py-3 text-xs font-bold uppercase tracking-[0.14em] text-black transition hover:bg-signal disabled:cursor-not-allowed disabled:opacity-45"
+                    className="mx-auto inline-flex min-w-40 items-center justify-center gap-2 rounded-full bg-white px-7 py-3 text-xs font-bold uppercase tracking-[0.14em] text-black transition hover:bg-signal disabled:cursor-not-allowed disabled:opacity-45"
                   >
                     {playing ? <Pause size={16} /> : <Play size={16} />}
                     {playing ? "Pause" : "Play"}
-                  </button>
-                  <button
-                    type="button"
-                    onClick={stopPlayback}
-                    disabled={!src}
-                    className="inline-flex items-center gap-2 rounded-full border border-white/15 bg-white/[0.08] px-5 py-3 text-xs font-bold uppercase tracking-[0.14em] text-white transition hover:bg-white/15 disabled:cursor-not-allowed disabled:opacity-45"
-                  >
-                    <Square size={15} />
-                    Stop
-                  </button>
-                  <button
-                    type="button"
-                    onClick={toggleMute}
-                    disabled={!src}
-                    className="inline-flex items-center gap-2 rounded-full border border-white/15 bg-white/[0.08] px-5 py-3 text-xs font-bold uppercase tracking-[0.14em] text-white transition hover:bg-white/15 disabled:cursor-not-allowed disabled:opacity-45"
-                  >
-                    {muted ? <VolumeX size={16} /> : <Volume2 size={16} />}
-                    {muted ? "Unmute" : "Mute"}
                   </button>
                 </div>
               </div>

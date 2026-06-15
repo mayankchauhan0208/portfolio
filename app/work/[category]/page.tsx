@@ -4,7 +4,7 @@ import { type CSSProperties } from "react";
 import { ArrowLeft, ArrowUpRight, GalleryHorizontalEnd, LayoutGrid, Sparkles } from "lucide-react";
 import { PreviewImage } from "@/components/preview-image";
 import { PreviewVideo } from "@/components/preview-video";
-import { aiGeneratedProjects, logoProjects, portfolioCategories, portfolioWorks, socialProjects, uiUxProjects, videoProjects } from "@/lib/portfolio-data";
+import { aiGeneratedProjects, logoProjects, metaAdsProjects, portfolioCategories, portfolioWorks, socialProjects, uiUxProjects, videoProjects } from "@/lib/portfolio-data";
 import { assetPath } from "@/lib/site-paths";
 
 type CategoryPageProps = {
@@ -280,6 +280,53 @@ export default function CategoryPage({ params }: CategoryPageProps) {
         </section>
       )}
 
+      {category.id === "meta-ads" && (
+        <section className="relative z-10 px-4 pb-28 md:px-8">
+          <div className="mx-auto max-w-7xl space-y-8">
+            {metaAdsProjects.map((project) => (
+              <div
+                key={project.title}
+                className="overflow-hidden rounded-[2rem] border border-sky-300/20 bg-[#050913] p-5 shadow-luxury backdrop-blur-xl md:p-8"
+              >
+                <div className="mb-8 grid gap-6 lg:grid-cols-[0.9fr_1.1fr] lg:items-end">
+                  <div>
+                    <p className="mb-4 text-xs uppercase tracking-[0.32em] text-sky-200">{project.format}</p>
+                    <h2 className="font-display text-4xl leading-none text-white md:text-6xl">{project.title}</h2>
+                    <p className="mt-4 text-xs uppercase tracking-[0.22em] text-white/45">{project.category}</p>
+                  </div>
+                  <p className="max-w-2xl text-sm leading-7 text-mercury md:text-base">{project.brief}</p>
+                </div>
+
+                <div className="grid gap-5 md:grid-cols-2 xl:grid-cols-3">
+                  {project.images.map((image, index) => (
+                    <article
+                      key={image.src}
+                      className={`group relative overflow-hidden rounded-[1.5rem] border border-white/10 bg-black/55 p-3 shadow-luxury ${
+                        image.width > image.height ? "md:col-span-2" : ""
+                      }`}
+                    >
+                      <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_70%_15%,rgba(125,211,255,0.2),transparent_30%),linear-gradient(145deg,rgba(255,255,255,0.08),transparent_38%)] opacity-0 transition duration-500 group-hover:opacity-100" />
+                      <PreviewImage
+                        src={assetPath(image.src)}
+                        previewSrc={assetPath(image.src)}
+                        alt={image.title}
+                        width={image.width}
+                        height={image.height}
+                        sizes={image.width > image.height ? "(min-width: 1024px) 58vw, 92vw" : "(min-width: 1280px) 28vw, (min-width: 768px) 44vw, 92vw"}
+                        className="relative h-auto w-full rounded-[1.15rem] object-cover transition duration-700 group-hover:scale-[1.015]"
+                      />
+                      <div className="pointer-events-none absolute left-6 top-6 rounded-full border border-sky-200/25 bg-black/55 px-4 py-2 text-[0.62rem] uppercase tracking-[0.22em] text-sky-100 backdrop-blur-xl">
+                        {String(index + 1).padStart(2, "0")} / {image.title}
+                      </div>
+                    </article>
+                  ))}
+                </div>
+              </div>
+            ))}
+          </div>
+        </section>
+      )}
+
       {category.id === "ui-ux" && (
         <section className="relative z-10 px-4 pb-28 md:px-8">
           <div className="mx-auto max-w-7xl space-y-8">
@@ -419,7 +466,7 @@ export default function CategoryPage({ params }: CategoryPageProps) {
         </section>
       )}
 
-      {category.id !== "branding" && category.id !== "real-estate" && category.id !== "social-media" && category.id !== "ui-ux" && category.id !== "ai-generated" && category.id !== "videos" && (
+      {category.id !== "branding" && category.id !== "real-estate" && category.id !== "social-media" && category.id !== "meta-ads" && category.id !== "ui-ux" && category.id !== "ai-generated" && category.id !== "videos" && (
         <section className="relative z-10 px-4 pb-28 md:px-8">
           <div className="mx-auto max-w-7xl">
             <div className="mb-8 flex items-end justify-between gap-6">

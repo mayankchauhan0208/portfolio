@@ -182,9 +182,9 @@ export default function Home() {
             <div className="absolute left-1/2 top-[-9rem] h-[26rem] w-[26rem] -translate-x-1/2 rounded-full bg-signal/15 blur-3xl" />
             <div className="relative mx-auto max-w-6xl text-center">
               <p className="mb-4 text-xs uppercase tracking-[0.34em] text-signal">Creative Work</p>
-              <h2 className="font-display text-[clamp(2.35rem,4.85vw,4.75rem)] font-semibold leading-[0.92] text-white">
-                <span className="block whitespace-nowrap">Choose the niche.</span>
-                <span className="block whitespace-nowrap">Enter the right creative world.</span>
+              <h2 className="font-display text-[clamp(2.05rem,9vw,4.75rem)] font-semibold leading-[0.92] text-white md:text-[clamp(2.35rem,4.85vw,4.75rem)]">
+                <span className="block md:whitespace-nowrap">Choose the niche.</span>
+                <span className="block md:whitespace-nowrap">Enter the right creative world.</span>
               </h2>
               <p className="mx-auto mt-4 max-w-3xl text-sm leading-6 text-mercury md:text-base">
                 <span className="block">Explore focused creative worlds for branding,</span>
@@ -194,7 +194,7 @@ export default function Home() {
             </div>
 
             <div
-              className="creative-stage relative mx-auto mt-6 min-h-[24rem] max-w-6xl md:min-h-[27rem]"
+              className="creative-stage relative mx-auto mt-6 min-h-[22rem] max-w-6xl sm:min-h-[24rem] md:min-h-[27rem]"
             >
               {portfolioCategories.map((category, index) => {
                 const offset = (index - activeCreative + portfolioCategories.length) % portfolioCategories.length;
