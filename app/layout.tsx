@@ -1,6 +1,7 @@
 import type { Metadata, Viewport } from "next";
 import "./globals.css";
 import { CustomCursor } from "@/components/custom-cursor";
+import { RoleTicker } from "@/components/role-ticker";
 import { RouteStartReset } from "@/components/route-start-reset";
 import { ThemeToggle } from "@/components/theme-toggle";
 
@@ -30,6 +31,7 @@ export default function RootLayout({ children }: Readonly<{ children: React.Reac
         <RouteStartReset />
         <CustomCursor />
         <ThemeToggle />
+        <RoleTicker />
         {children}
       </body>
     </html>
