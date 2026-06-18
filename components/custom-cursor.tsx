@@ -31,7 +31,7 @@ export function CustomCursor() {
     <motion.div
       className="pointer-events-none fixed left-0 top-0 z-[100] hidden h-9 w-9 rounded-full border border-white/35 mix-blend-screen md:block"
       style={{ x: smoothX, y: smoothY }}
-      animate={{ scale: active ? 1.9 : 1, opacity: active ? 0.32 : 0.75 }}
+      animate={{ scale: active ? 1.9 : 0.85, opacity: active ? 0.32 : 0 }}
       transition={{ duration: 0.18 }}
     />
   );

@@ -20,17 +20,33 @@ export const profile = {
     "I translate marketing objectives and brand requirements into clear, consistent, execution-ready creative assets for digital and offline channels. My work focuses on visual hierarchy, typography, layout systems, image treatment, and brand consistency.",
     "I collaborate with marketing, sales, and business teams to deliver design solutions that support lead generation, brand visibility, customer engagement, and campaign execution."
   ],
-  aboutCompetencies: [
+  aboutCoreExpertise: [
     "Graphic Design",
     "Brand Communication",
+    "Branding & Identity",
     "Real Estate Marketing",
     "Digital Campaign Design",
     "Social Media Creatives",
     "UI/UX Design",
     "Presentation Design",
+    "Art Direction",
+    "Marketing Campaigns",
+    "Typography & Layout",
+    "Photo Retouching",
+    "Visual Storytelling",
+    "Print & Packaging Design",
     "Video Editing",
-    "Motion Graphics",
-    "Print Design"
+    "Motion Graphics"
+  ],
+  creativeCapabilities: [
+    "Drone Videography",
+    "Aerial Property Shoots",
+    "Video Production",
+    "Real Estate Walkthroughs",
+    "Promotional Films",
+    "Reels",
+    "Editing",
+    "Motion Graphics"
   ]
 };
 

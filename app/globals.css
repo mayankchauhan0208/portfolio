@@ -21,6 +21,31 @@ body {
   overflow-x: hidden;
 }
 
+@media (pointer: fine) {
+  html,
+  body {
+    cursor: url("/images/site-cursor.png") 8 4, auto;
+  }
+
+  a,
+  button,
+  [role="button"],
+  summary,
+  input[type="button"],
+  input[type="submit"],
+  input[type="reset"],
+  [data-cursor="magnetic"] {
+    cursor: url("/images/site-cursor.png") 8 4, pointer;
+  }
+
+  input,
+  textarea,
+  select,
+  [contenteditable="true"] {
+    cursor: text;
+  }
+}
+
 .theme-light {
   color-scheme: light;
 }
