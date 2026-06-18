@@ -297,20 +297,20 @@ export default function CategoryPage({ params }: CategoryPageProps) {
                   <p className="max-w-2xl text-sm leading-7 text-mercury md:text-base">{project.brief}</p>
                 </div>
 
-                <div className="flex flex-col gap-5 md:flex-row md:flex-wrap md:items-start">
+                <div className="flex flex-col gap-5 md:flex-row md:flex-wrap md:items-start xl:justify-between">
                   {project.images.map((image, index) => {
                     const isLandscape = image.width > image.height;
                     const isCompact = image.title.toLowerCase().includes("compact");
                     const itemWidth = isCompact
-                      ? "xl:w-[17%]"
+                      ? "xl:w-[20.5%]"
                       : isLandscape
-                        ? "xl:w-[28%]"
-                        : "xl:w-[23%]";
+                        ? "xl:w-[30%]"
+                        : "xl:w-[24%]";
                     const imageSizes = isCompact
-                      ? "(min-width: 1280px) 17vw, (min-width: 768px) 44vw, 92vw"
+                      ? "(min-width: 1280px) 21vw, (min-width: 768px) 44vw, 92vw"
                       : isLandscape
-                        ? "(min-width: 1280px) 28vw, (min-width: 768px) 44vw, 92vw"
-                        : "(min-width: 1280px) 23vw, (min-width: 768px) 44vw, 92vw";
+                        ? "(min-width: 1280px) 30vw, (min-width: 768px) 44vw, 92vw"
+                        : "(min-width: 1280px) 24vw, (min-width: 768px) 44vw, 92vw";
 
                     return (
                       <article
