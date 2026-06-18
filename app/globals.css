@@ -24,7 +24,7 @@ body {
 @media (pointer: fine) {
   html,
   body {
-    cursor: url("/images/site-cursor.png") 8 4, auto;
+    cursor: url("/images/site-cursor.png") 4 2, auto;
   }
 
   a,
@@ -35,7 +35,7 @@ body {
   input[type="submit"],
   input[type="reset"],
   [data-cursor="magnetic"] {
-    cursor: url("/images/site-cursor.png") 8 4, pointer;
+    cursor: url("/images/site-cursor.png") 4 2, pointer;
   }
 
   input,
