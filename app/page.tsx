@@ -105,12 +105,6 @@ export default function Home() {
               UI design, brand visuals, campaign creatives, and video editing.
             </p>
           </div>
-
-          <div className="reference-actions intro-line">
-            <a data-cursor="magnetic" href="#contact">
-              Connect Now <ArrowUpRight size={16} />
-            </a>
-          </div>
         </div>
       </section>
 
