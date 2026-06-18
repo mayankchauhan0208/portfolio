@@ -8,7 +8,30 @@ export const profile = {
   intro:
     "I create premium brand visuals, UI concepts, campaign creatives, and motion-ready assets for brands that need clarity, polish, and strong recall.",
   positioning:
-    "I work across real-estate marketing, brand campaigns, UI/UX concepts, social media creatives, and video editing. My focus is simple: clear hierarchy, premium spacing, strong image treatment, and practical execution that works across digital, print, presentations, and campaign formats."
+    "I work across real-estate marketing, brand campaigns, UI/UX concepts, social media creatives, and video editing. My focus is simple: clear hierarchy, premium spacing, strong image treatment, and practical execution that works across digital, print, presentations, and campaign formats.",
+  aboutHeading:
+    "Designing brand-led visuals that support campaigns, sales, and digital experiences.",
+  aboutSnapshot:
+    "Clear creative built for business communication.",
+  aboutSnapshotBody:
+    "I shape visuals that are easy to understand, polished enough to trust, and flexible across social, print, UI, presentation, and video formats.",
+  aboutParagraphs: [
+    "I am a multidisciplinary Graphic Designer, UI/UX Designer, and Video Editor creating brand-led visual communication across real estate marketing, digital campaigns, social media, presentations, print collateral, and video content.",
+    "I translate marketing objectives and brand requirements into clear, consistent, execution-ready creative assets for digital and offline channels. My work focuses on visual hierarchy, typography, layout systems, image treatment, and brand consistency.",
+    "I collaborate with marketing, sales, and business teams to deliver design solutions that support lead generation, brand visibility, customer engagement, and campaign execution."
+  ],
+  aboutCompetencies: [
+    "Graphic Design",
+    "Brand Communication",
+    "Real Estate Marketing",
+    "Digital Campaign Design",
+    "Social Media Creatives",
+    "UI/UX Design",
+    "Presentation Design",
+    "Video Editing",
+    "Motion Graphics",
+    "Print Design"
+  ]
 };
 
 export const metrics = [

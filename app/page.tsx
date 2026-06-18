@@ -119,20 +119,24 @@ export default function Home() {
         </div>
       </section>
 
-      <SectionShell id="about" eyebrow="About Me" title="Designing clear, premium visuals for brands, campaigns, and digital experiences.">
+      <SectionShell id="about" eyebrow="About Me" title={profile.aboutHeading}>
         <div className="grid gap-6 lg:grid-cols-[0.75fr_1.25fr]">
           <Reveal>
             <div className="h-full rounded-[2rem] border border-white/10 bg-white/[0.055] p-7 shadow-luxury backdrop-blur-2xl">
               <Sparkles className="mb-12 text-signal" size={28} />
-              <p className="font-display text-3xl leading-tight text-white">I build visuals that feel sharp at first glance and carefully crafted up close.</p>
+              <p className="font-display text-3xl leading-tight text-white">{profile.aboutSnapshot}</p>
               <p className="mt-6 leading-7 text-mercury">
-                My work is made to be clear, polished, and adaptable across social, print, UI, presentations, and campaign communication.
+                {profile.aboutSnapshotBody}
               </p>
             </div>
           </Reveal>
           <Reveal delay={0.08}>
             <div className="rounded-[2rem] border border-white/10 bg-black/25 p-7 backdrop-blur-2xl md:p-10">
-              <p className="text-xl leading-9 text-mercury">{profile.positioning}</p>
+              <div className="space-y-5 text-base leading-8 text-mercury md:text-lg md:leading-9">
+                {profile.aboutParagraphs.map((paragraph) => (
+                  <p key={paragraph}>{paragraph}</p>
+                ))}
+              </div>
               <div className="mt-8 grid gap-4 md:grid-cols-3">
                 {profile.roles.map((role) => (
                   <div key={role} className="rounded-2xl border border-white/10 bg-white/[0.045] p-5">
@@ -140,9 +144,19 @@ export default function Home() {
                   </div>
                 ))}
               </div>
-              <div className="mt-5 grid gap-4 md:grid-cols-3">
-                {["Premium layouts", "Campaign-ready assets", "Fast creative execution"].map((point) => (
-                  <div key={point} className="rounded-2xl border border-signal/15 bg-signal/[0.06] p-4">
+              <div className="mt-7">
+                <p className="mb-4 text-xs uppercase tracking-[0.24em] text-signal">Key Competencies</p>
+                <div className="flex flex-wrap gap-3">
+                  {profile.aboutCompetencies.map((point) => (
+                    <span key={point} className="rounded-full border border-signal/15 bg-signal/[0.06] px-4 py-2 text-sm font-medium text-white">
+                      {point}
+                    </span>
+                  ))}
+                </div>
+              </div>
+              <div className="mt-6 grid gap-4 md:grid-cols-3">
+                {["Lead-generation creatives", "Brand-consistent systems", "Execution-ready assets"].map((point) => (
+                  <div key={point} className="rounded-2xl border border-white/10 bg-white/[0.04] p-4">
                     <p className="text-sm font-medium text-white">{point}</p>
                   </div>
                 ))}
