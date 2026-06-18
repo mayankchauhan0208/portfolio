@@ -132,17 +132,7 @@ export default function Home() {
           </Reveal>
           <Reveal delay={0.08}>
             <div className="rounded-[2rem] border border-white/10 bg-black/25 p-7 backdrop-blur-2xl md:p-10">
-              <div>
-                <p className="mb-4 text-xs uppercase tracking-[0.24em] text-signal">Core Expertise</p>
-                <div className="flex flex-wrap gap-3">
-                  {profile.aboutCoreExpertise.map((point) => (
-                    <span key={point} className="rounded-full border border-signal/15 bg-signal/[0.06] px-4 py-2 text-sm font-medium text-white">
-                      {point}
-                    </span>
-                  ))}
-                </div>
-              </div>
-              <div className="mt-7 space-y-5 text-base leading-8 text-mercury md:text-lg md:leading-9">
+              <div className="space-y-5 text-base leading-8 text-mercury md:text-lg md:leading-9">
                 {profile.aboutParagraphs.map((paragraph) => (
                   <p key={paragraph}>{paragraph}</p>
                 ))}
@@ -153,16 +143,6 @@ export default function Home() {
                     <p className="whitespace-nowrap text-sm uppercase tracking-[0.12em] text-champagne">{role}</p>
                   </div>
                 ))}
-              </div>
-              <div className="mt-7 rounded-2xl border border-white/10 bg-white/[0.04] p-5">
-                <p className="mb-4 text-xs uppercase tracking-[0.24em] text-champagne">Creative Capabilities</p>
-                <div className="flex flex-wrap gap-3">
-                  {profile.creativeCapabilities.map((capability) => (
-                    <span key={capability} className="rounded-full border border-white/10 bg-black/20 px-4 py-2 text-sm font-medium text-mercury">
-                      {capability}
-                    </span>
-                  ))}
-                </div>
               </div>
               <div className="mt-6 grid gap-4 md:grid-cols-3">
                 {["Lead-generation creatives", "Brand-consistent systems", "Execution-ready assets"].map((point) => (
@@ -175,6 +155,26 @@ export default function Home() {
           </Reveal>
         </div>
       </SectionShell>
+
+      <section className="relative px-4 pb-8 md:px-8">
+        <Reveal>
+          <div className="mx-auto max-w-7xl rounded-[1.75rem] border border-signal/20 bg-black/30 p-5 shadow-luxury backdrop-blur-2xl md:p-7">
+            <div className="mb-5 inline-flex rounded-full border border-signal/20 bg-signal/[0.08] px-5 py-2">
+              <p className="text-xs font-semibold uppercase tracking-[0.24em] text-signal">Core Expertise</p>
+            </div>
+            <div className="flex flex-wrap gap-3">
+              {profile.aboutCoreExpertise.map((point) => (
+                <span
+                  key={point}
+                  className="rounded-full border border-white/10 bg-white/[0.055] px-4 py-2 text-sm font-medium text-white transition duration-300 hover:border-signal/30 hover:bg-signal/[0.1]"
+                >
+                  {point}
+                </span>
+              ))}
+            </div>
+          </div>
+        </Reveal>
+      </section>
 
       <section className="relative px-4 py-8 md:px-8">
         <div className="mx-auto grid max-w-7xl gap-4 lg:grid-cols-3">

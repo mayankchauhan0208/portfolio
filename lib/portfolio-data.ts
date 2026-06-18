@@ -36,17 +36,13 @@ export const profile = {
     "Visual Storytelling",
     "Print & Packaging Design",
     "Video Editing",
-    "Motion Graphics"
-  ],
-  creativeCapabilities: [
+    "Motion Graphics",
     "Drone Videography",
     "Aerial Property Shoots",
     "Video Production",
     "Real Estate Walkthroughs",
     "Promotional Films",
-    "Reels",
-    "Editing",
-    "Motion Graphics"
+    "Reels"
   ]
 };
 
