@@ -12,7 +12,7 @@ export const profile = {
 };
 
 export const metrics = [
-  { value: "3+", label: "Senior design years" },
+  { value: "5+", label: "Senior design years" },
   { value: "6", label: "Creative roles" },
   { value: "8", label: "Design tools" },
   { value: "2025", label: "Senior milestone" }
