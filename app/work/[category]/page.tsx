@@ -298,11 +298,14 @@ export default function CategoryPage({ params }: CategoryPageProps) {
                 </div>
 
                 <div className="grid gap-5 md:grid-cols-2 xl:grid-cols-3">
-                  {project.images.map((image, index) => (
+                  {project.images.map((image, index) => {
+                    const isLandscape = image.width > image.height;
+
+                    return (
                     <article
                       key={image.src}
                       className={`group relative overflow-hidden rounded-[1.5rem] border border-white/10 bg-black/55 p-3 shadow-luxury ${
-                        image.width > image.height ? "md:col-span-2" : ""
+                        isLandscape ? "md:col-span-2 md:w-[60%] md:justify-self-center" : ""
                       }`}
                     >
                       <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_70%_15%,rgba(125,211,255,0.2),transparent_30%),linear-gradient(145deg,rgba(255,255,255,0.08),transparent_38%)] opacity-0 transition duration-500 group-hover:opacity-100" />
@@ -312,14 +315,15 @@ export default function CategoryPage({ params }: CategoryPageProps) {
                         alt={image.title}
                         width={image.width}
                         height={image.height}
-                        sizes={image.width > image.height ? "(min-width: 1024px) 58vw, 92vw" : "(min-width: 1280px) 28vw, (min-width: 768px) 44vw, 92vw"}
+                        sizes={isLandscape ? "(min-width: 1024px) 35vw, 92vw" : "(min-width: 1280px) 28vw, (min-width: 768px) 44vw, 92vw"}
                         className="relative h-auto w-full rounded-[1.15rem] object-cover transition duration-700 group-hover:scale-[1.015]"
                       />
                       <div className="pointer-events-none absolute left-6 top-6 rounded-full border border-sky-200/25 bg-black/55 px-4 py-2 text-[0.62rem] uppercase tracking-[0.22em] text-sky-100 backdrop-blur-xl">
                         {String(index + 1).padStart(2, "0")} / {image.title}
                       </div>
                     </article>
-                  ))}
+                    );
+                  })}
                 </div>
               </div>
             ))}
