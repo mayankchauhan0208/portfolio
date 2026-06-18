@@ -297,31 +297,40 @@ export default function CategoryPage({ params }: CategoryPageProps) {
                   <p className="max-w-2xl text-sm leading-7 text-mercury md:text-base">{project.brief}</p>
                 </div>
 
-                <div className="grid gap-5 md:grid-cols-2 xl:grid-cols-3">
+                <div className="flex flex-col gap-5 md:flex-row md:flex-wrap md:items-start">
                   {project.images.map((image, index) => {
                     const isLandscape = image.width > image.height;
+                    const isCompact = image.title.toLowerCase().includes("compact");
+                    const itemWidth = isCompact
+                      ? "xl:w-[17%]"
+                      : isLandscape
+                        ? "xl:w-[28%]"
+                        : "xl:w-[23%]";
+                    const imageSizes = isCompact
+                      ? "(min-width: 1280px) 17vw, (min-width: 768px) 44vw, 92vw"
+                      : isLandscape
+                        ? "(min-width: 1280px) 28vw, (min-width: 768px) 44vw, 92vw"
+                        : "(min-width: 1280px) 23vw, (min-width: 768px) 44vw, 92vw";
 
                     return (
-                    <article
-                      key={image.src}
-                      className={`group relative overflow-hidden rounded-[1.5rem] border border-white/10 bg-black/55 p-3 shadow-luxury ${
-                        isLandscape ? "md:col-span-2 md:w-[60%] md:justify-self-center" : ""
-                      }`}
-                    >
-                      <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_70%_15%,rgba(125,211,255,0.2),transparent_30%),linear-gradient(145deg,rgba(255,255,255,0.08),transparent_38%)] opacity-0 transition duration-500 group-hover:opacity-100" />
-                      <PreviewImage
-                        src={assetPath(image.src)}
-                        previewSrc={assetPath(image.src)}
-                        alt={image.title}
-                        width={image.width}
-                        height={image.height}
-                        sizes={isLandscape ? "(min-width: 1024px) 35vw, 92vw" : "(min-width: 1280px) 28vw, (min-width: 768px) 44vw, 92vw"}
-                        className="relative h-auto w-full rounded-[1.15rem] object-cover transition duration-700 group-hover:scale-[1.015]"
-                      />
-                      <div className="pointer-events-none absolute left-6 top-6 rounded-full border border-sky-200/25 bg-black/55 px-4 py-2 text-[0.62rem] uppercase tracking-[0.22em] text-sky-100 backdrop-blur-xl">
-                        {String(index + 1).padStart(2, "0")} / {image.title}
-                      </div>
-                    </article>
+                      <article
+                        key={image.src}
+                        className={`group relative w-full overflow-hidden rounded-[1.5rem] border border-white/10 bg-black/55 p-3 shadow-luxury md:w-[calc(50%-0.625rem)] xl:shrink-0 ${itemWidth}`}
+                      >
+                        <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_70%_15%,rgba(125,211,255,0.2),transparent_30%),linear-gradient(145deg,rgba(255,255,255,0.08),transparent_38%)] opacity-0 transition duration-500 group-hover:opacity-100" />
+                        <PreviewImage
+                          src={assetPath(image.src)}
+                          previewSrc={assetPath(image.src)}
+                          alt={image.title}
+                          width={image.width}
+                          height={image.height}
+                          sizes={imageSizes}
+                          className="relative h-auto w-full rounded-[1.15rem] object-cover transition duration-700 group-hover:scale-[1.015]"
+                        />
+                        <div className="pointer-events-none absolute left-6 top-6 rounded-full border border-sky-200/25 bg-black/55 px-4 py-2 text-[0.62rem] uppercase tracking-[0.22em] text-sky-100 backdrop-blur-xl">
+                          {String(index + 1).padStart(2, "0")} / {image.title}
+                        </div>
+                      </article>
                     );
                   })}
                 </div>
