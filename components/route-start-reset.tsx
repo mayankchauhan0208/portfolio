@@ -3,21 +3,6 @@
 import { usePathname } from "next/navigation";
 import { useEffect, useRef } from "react";
 
-function cameFromSameSite() {
-  if (!document.referrer) return false;
-
-  try {
-    return new URL(document.referrer).origin === window.location.origin;
-  } catch {
-    return false;
-  }
-}
-
-function navigationType() {
-  const [entry] = performance.getEntriesByType("navigation") as PerformanceNavigationTiming[];
-  return entry?.type;
-}
-
 export function RouteStartReset() {
   const pathname = usePathname();
   const initialLoad = useRef(true);
@@ -31,14 +16,6 @@ export function RouteStartReset() {
   useEffect(() => {
     const isInitialLoad = initialLoad.current;
     initialLoad.current = false;
-
-    const isWorkRoute = pathname.startsWith("/work");
-    const isFreshOpen = navigationType() === "navigate" && !cameFromSameSite();
-
-    if (isInitialLoad && isWorkRoute && isFreshOpen) {
-      window.location.replace("/");
-      return;
-    }
 
     if (isInitialLoad && window.location.hash) {
       window.history.replaceState(null, "", `${window.location.pathname}${window.location.search}`);

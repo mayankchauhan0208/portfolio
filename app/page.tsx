@@ -222,6 +222,7 @@ export default function Home() {
                 <Link
                   key={category.id}
                   href={category.href}
+                  prefetch={false}
                   className={`home-niche-card niche-showcase-card ${positionClass} group absolute overflow-hidden rounded-[1.6rem] border border-white/15 bg-black shadow-luxury transition duration-1000 ease-out`}
                   style={{
                     "--niche-accent": category.accent,
@@ -294,6 +295,7 @@ export default function Home() {
             <div className="relative mt-6 flex justify-center">
               <Link
                 href={portfolioCategories[activeCreative].href}
+                prefetch={false}
                 className="inline-flex items-center justify-center gap-3 rounded-full bg-white px-8 py-4 text-xs font-bold uppercase tracking-[0.2em] text-black shadow-glow transition hover:bg-signal"
               >
                 Open {portfolioCategories[activeCreative].title} <ArrowUpRight size={16} />

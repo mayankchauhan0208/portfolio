@@ -36,6 +36,7 @@ export default function WorkPage() {
         <nav className="mx-auto flex max-w-7xl items-center justify-between rounded-full border border-white/10 bg-obsidian/68 px-4 py-3 shadow-luxury backdrop-blur-2xl">
           <Link
             href="/#work"
+            prefetch={false}
             className="inline-flex items-center gap-2 rounded-full px-4 py-2 text-xs uppercase tracking-[0.22em] text-mercury transition hover:bg-white/10 hover:text-white"
           >
             <ArrowLeft size={15} /> Home
@@ -43,6 +44,7 @@ export default function WorkPage() {
           <span className="font-display text-sm uppercase tracking-[0.32em] text-white">Portfolio Library</span>
           <Link
             href="/#contact"
+            prefetch={false}
             className="hidden rounded-full bg-white px-4 py-2 text-xs font-bold uppercase tracking-[0.2em] text-black transition hover:bg-signal md:inline-flex"
           >
             Connect
@@ -122,6 +124,7 @@ export default function WorkPage() {
               <Link
                 key={category.id}
                 href={category.href}
+                prefetch={false}
                 className="group relative min-h-[31rem] overflow-hidden rounded-[1.7rem] border border-white/10 bg-black shadow-luxury transition duration-500 hover:-translate-y-2 hover:border-white/35"
                 style={{
                   "--niche-accent": category.accent,

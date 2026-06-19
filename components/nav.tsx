@@ -55,7 +55,7 @@ export function Nav() {
         <a
           href="#top"
           data-active={activeSection === "#top"}
-          className="rounded-full px-3 py-2 font-display text-[0.68rem] uppercase tracking-[0.28em] text-white transition data-[active=true]:bg-white data-[active=true]:text-black md:text-sm"
+          className="flex min-h-10 items-center rounded-full px-3 py-2 font-display text-[0.68rem] uppercase tracking-[0.28em] text-white transition data-[active=true]:bg-white data-[active=true]:text-black md:text-sm"
         >
           Mayank
         </a>
@@ -65,7 +65,7 @@ export function Nav() {
               key={link.href}
               href={link.href}
               data-active={activeSection === link.href}
-              className="shrink-0 rounded-full px-3 py-2 text-[0.64rem] uppercase tracking-[0.16em] text-mercury transition hover:bg-white/10 hover:text-white data-[active=true]:bg-white data-[active=true]:font-bold data-[active=true]:text-black md:text-[0.68rem] md:tracking-[0.18em] lg:px-4"
+              className="flex min-h-10 shrink-0 items-center rounded-full px-3 py-2 text-[0.64rem] uppercase tracking-[0.16em] text-mercury transition hover:bg-white/10 hover:text-white data-[active=true]:bg-white data-[active=true]:font-bold data-[active=true]:text-black md:text-[0.68rem] md:tracking-[0.18em] lg:px-4"
             >
               {link.label}
             </a>

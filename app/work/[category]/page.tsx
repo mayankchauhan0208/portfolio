@@ -102,6 +102,7 @@ export default function CategoryPage({ params }: CategoryPageProps) {
         <nav className="mx-auto flex max-w-7xl items-center justify-between rounded-full border border-white/10 bg-obsidian/68 px-4 py-3 shadow-luxury backdrop-blur-2xl">
           <Link
             href="/work"
+            prefetch={false}
             className="inline-flex items-center gap-2 rounded-full px-4 py-2 text-xs uppercase tracking-[0.22em] text-mercury transition hover:bg-white/10 hover:text-white"
           >
             <ArrowLeft size={15} /> Library
@@ -109,6 +110,7 @@ export default function CategoryPage({ params }: CategoryPageProps) {
           <span className="font-display text-sm uppercase tracking-[0.28em] text-white">{category.title}</span>
           <Link
             href="/#contact"
+            prefetch={false}
             className="hidden rounded-full bg-white px-4 py-2 text-xs font-bold uppercase tracking-[0.2em] text-black transition hover:bg-[var(--niche-accent)] md:inline-flex"
           >
             Connect
@@ -134,6 +136,7 @@ export default function CategoryPage({ params }: CategoryPageProps) {
             <Link
               key={item.id}
               href={item.href}
+              prefetch={false}
               className={`rounded-full border px-4 py-2 text-[0.68rem] uppercase tracking-[0.18em] transition ${
                 item.id === category.id
                   ? "border-white bg-white text-black"
