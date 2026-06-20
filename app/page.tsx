@@ -5,7 +5,7 @@ import Link from "next/link";
 import { type CSSProperties, useEffect, useRef, useState } from "react";
 import { motion, useScroll, useTransform } from "framer-motion";
 import gsap from "gsap";
-import { ArrowUpRight, GraduationCap, Mail, Phone, Sparkles } from "lucide-react";
+import { ArrowUpRight, Download, GraduationCap, Mail, Phone, Sparkles } from "lucide-react";
 import { LoadingOverlay } from "@/components/loading-overlay";
 import { Nav } from "@/components/nav";
 import { Reveal } from "@/components/reveal";
@@ -104,6 +104,14 @@ export default function Home() {
             <p className="intro-line">
               UI design, brand visuals, campaign creatives, and video editing.
             </p>
+            <a
+              href={assetPath(profile.resume)}
+              download
+              className="intro-line mt-7 inline-flex w-fit items-center gap-3 rounded-full border border-white/15 bg-white px-5 py-3 text-xs font-bold uppercase tracking-[0.18em] text-black shadow-luxury transition hover:bg-signal"
+            >
+              Download Resume
+              <Download size={16} />
+            </a>
           </div>
         </div>
       </section>
@@ -477,6 +485,10 @@ export default function Home() {
                 <a href={profile.behance} target="_blank" rel="noreferrer" className="flex items-center justify-between gap-4 rounded-2xl bg-white p-4 font-semibold text-black transition hover:bg-signal sm:p-5">
                   <span>View Behance Portfolio</span>
                   <ArrowUpRight className="shrink-0" size={18} />
+                </a>
+                <a href={assetPath(profile.resume)} download className="flex items-center justify-between gap-4 rounded-2xl border border-signal/35 bg-signal/15 p-4 font-semibold text-white transition hover:border-signal hover:bg-signal hover:text-black sm:p-5">
+                  <span>Download Resume</span>
+                  <Download className="shrink-0" size={18} />
                 </a>
               </div>
             </div>
