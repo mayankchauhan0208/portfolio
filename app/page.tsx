@@ -88,7 +88,7 @@ export default function Home() {
           <div className="reference-model" aria-hidden>
             <div className="reference-rim" />
             <Image
-              src={assetPath("/images/mayank-portrait.png")}
+              src={assetPath("/images/mayank-portrait.webp")}
               alt="Mayank Chauhan portrait"
               fill
               priority
