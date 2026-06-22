@@ -882,7 +882,58 @@ html.theme-light button[aria-label*="theme"],
 
 @media (max-width: 640px) {
   .reference-hero {
-    min-height: 840px;
+    min-height: 780px;
+  }
+
+  .reference-container {
+    width: min(92%, 430px);
+  }
+
+  .reference-model {
+    left: 68%;
+    bottom: 78px;
+    width: min(78vw, 360px);
+    height: 62svh;
+    min-height: 440px;
+  }
+
+  .reference-portrait {
+    object-position: bottom center;
+    transform: scale(0.82) translateY(7%);
+  }
+
+  .reference-model::after {
+    height: 160px;
+  }
+
+  .reference-rim {
+    top: 68%;
+    width: 280px;
+    height: 280px;
+    opacity: 0.72;
+  }
+
+  .reference-intro {
+    left: 0;
+    top: 18%;
+    max-width: 58%;
+  }
+
+  .reference-info {
+    left: 0;
+    bottom: 72px;
+    width: min(58%, 230px);
+  }
+
+  .reference-intro h2,
+  .reference-info h3 {
+    font-size: clamp(20px, 7vw, 28px);
+  }
+
+  .reference-intro h1,
+  .reference-info h2 {
+    font-size: clamp(38px, 13vw, 58px);
+    letter-spacing: 1px;
   }
 
   .reference-info p {
