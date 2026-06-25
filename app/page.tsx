@@ -106,14 +106,16 @@ export default function Home() {
               real-estate marketing visuals, video edits, and AI-assisted creative workflows with a
               focus on clean hierarchy, premium layouts, and execution-ready design.
             </p>
-            <a
-              href={assetPath(profile.resume)}
-              download
-              className="intro-line mt-7 inline-flex w-fit items-center gap-3 rounded-full border border-white/15 bg-white px-5 py-3 text-xs font-bold uppercase tracking-[0.18em] text-black shadow-luxury transition hover:bg-signal"
-            >
-              Download Resume
-              <Download size={16} />
-            </a>
+            <div className="intro-line reference-cta-row">
+              <Link href="#work" className="reference-cta reference-cta-primary">
+                View Selected Work
+                <ArrowUpRight size={16} />
+              </Link>
+              <a href={assetPath(profile.resume)} download className="reference-cta reference-cta-secondary">
+                Download Resume
+                <Download size={16} />
+              </a>
+            </div>
           </div>
         </div>
       </section>
