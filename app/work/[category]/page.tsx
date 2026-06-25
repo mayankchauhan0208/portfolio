@@ -90,6 +90,13 @@ export default function CategoryPage({ params }: CategoryPageProps) {
     "--niche-accent-soft": `${category.accent}33`
   } as CSSProperties;
 
+  const caseStudyCards = [
+    { label: "Challenge", value: category.caseStudy.challenge },
+    { label: "My Role", value: category.caseStudy.role },
+    { label: "Design Direction", value: category.caseStudy.direction },
+    { label: "Outcome", value: category.caseStudy.outcome }
+  ];
+
   return (
     <main className="min-h-screen overflow-hidden bg-obsidian text-platinum" style={categoryStyle}>
       <div className="pointer-events-none fixed inset-0">
@@ -137,7 +144,7 @@ export default function CategoryPage({ params }: CategoryPageProps) {
               key={item.id}
               href={item.href}
               prefetch={false}
-              className={`rounded-full border px-4 py-2 text-[0.68rem] uppercase tracking-[0.18em] transition ${
+              className={`rounded-full border px-3 py-2 text-center text-[0.64rem] uppercase leading-tight tracking-[0.16em] transition sm:px-4 sm:text-[0.68rem] ${
                 item.id === category.id
                   ? "border-white bg-white text-black"
                   : "border-white/10 bg-white/[0.04] text-white/70 hover:border-[var(--niche-accent)] hover:text-white"
@@ -149,6 +156,51 @@ export default function CategoryPage({ params }: CategoryPageProps) {
         </div>
       </section>
 
+      <section className="relative z-10 px-4 pb-12 md:px-8 md:pb-16">
+        <div className="mx-auto max-w-7xl overflow-hidden rounded-[2rem] border border-white/10 bg-white/[0.045] p-5 shadow-luxury backdrop-blur-xl md:p-7 lg:p-8">
+          <div className="grid gap-6 lg:grid-cols-[0.85fr_1.15fr] lg:items-start">
+            <div>
+              <p className="mb-4 text-xs uppercase tracking-[0.3em] text-[var(--niche-accent)]">Case Study Context</p>
+              <h2 className="font-display text-3xl leading-tight text-white md:text-4xl">How this work was approached</h2>
+              <p className="mt-4 max-w-xl text-sm leading-7 text-mercury md:text-base">{category.caseStudy.overview}</p>
+            </div>
+
+            <div className="grid gap-3 sm:grid-cols-2">
+              {caseStudyCards.map((item) => (
+                <article key={item.label} className="rounded-[1.35rem] border border-white/10 bg-black/24 p-4">
+                  <p className="mb-2 text-[0.64rem] font-bold uppercase tracking-[0.22em] text-[var(--niche-accent)]">{item.label}</p>
+                  <p className="text-sm leading-6 text-white/72">{item.value}</p>
+                </article>
+              ))}
+            </div>
+          </div>
+
+          <div className="mt-6 grid gap-3 md:grid-cols-2">
+            <div className="rounded-[1.35rem] border border-white/10 bg-black/20 p-4">
+              <p className="mb-3 text-[0.64rem] font-bold uppercase tracking-[0.22em] text-[var(--niche-accent)]">Deliverables</p>
+              <div className="flex flex-wrap gap-2">
+                {category.caseStudy.deliverables.map((item) => (
+                  <span key={item} className="rounded-full border border-white/10 bg-white/[0.045] px-3 py-2 text-xs leading-none text-white/76">
+                    {item}
+                  </span>
+                ))}
+              </div>
+            </div>
+
+            <div className="rounded-[1.35rem] border border-white/10 bg-black/20 p-4">
+              <p className="mb-3 text-[0.64rem] font-bold uppercase tracking-[0.22em] text-[var(--niche-accent)]">Tools Used</p>
+              <div className="flex flex-wrap gap-2">
+                {category.caseStudy.tools.map((item) => (
+                  <span key={item} className="rounded-full border border-white/10 bg-white/[0.045] px-3 py-2 text-xs leading-none text-white/76">
+                    {item}
+                  </span>
+                ))}
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
       {category.id === "real-estate" && (
         <section className="relative z-10 px-4 pb-28 md:px-8">
           <div className="mx-auto max-w-7xl">
@@ -157,7 +209,7 @@ export default function CategoryPage({ params }: CategoryPageProps) {
                 <p className="mb-3 flex items-center gap-2 text-xs uppercase tracking-[0.28em] text-[var(--niche-accent)]">
                   <LayoutGrid size={15} /> Campaign Wall
                 </p>
-                <h2 className="font-display text-3xl uppercase tracking-[-0.02em] text-white md:text-5xl">Real Estate Creative Archive</h2>
+                <h2 className="font-display text-3xl uppercase tracking-[-0.02em] text-white md:text-5xl">Real Estate Marketing Archive</h2>
               </div>
               <p className="hidden max-w-sm text-right text-sm leading-6 text-mercury md:block">
                 Premium EDMs, OOH designs, social posters, thumbnails, and commercial property layouts in one focused collection.

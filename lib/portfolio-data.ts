@@ -415,13 +415,22 @@ export const portfolioWorks = [
 export const portfolioCategories = [
   {
     id: "branding",
-    title: "Branding",
+    title: "Brand Systems",
     label: "Identity Systems",
-    subtitle: "Brand identities, logo systems, guideline decks, mockups, product visuals, and premium brand worlds.",
+    subtitle: "Identity design, logo systems, brand guidelines, mockups, product visuals, and premium visual systems.",
     href: "/work/branding",
     accent: "#d8dde2",
     backdrop: "linear-gradient(145deg, #050608 0%, #1b1d20 50%, #d8dde2 130%)",
     motif: "BR",
+    caseStudy: {
+      overview: "A focused collection of identity-led visual systems, brand applications, and presentation-ready brand worlds.",
+      challenge: "Keep the brand language consistent across logos, typography, color, mockups, and marketing touchpoints without making the layouts feel repetitive.",
+      role: "Created visual layouts, organized brand assets, refined presentation flow, and prepared polished brand-facing creative applications.",
+      direction: "Clean hierarchy, controlled spacing, premium typography, restrained color systems, and realistic mockup presentation.",
+      deliverables: ["Logo systems", "Brand applications", "Guideline-style decks", "Mockups", "Presentation layouts"],
+      tools: ["Adobe Photoshop", "Adobe Illustrator", "Adobe InDesign", "Figma", "Canva"],
+      outcome: "Built a cleaner visual direction for brand and marketing use while improving consistency across presentation and campaign assets."
+    },
     previewImages: [
       "/optimized/work/branding/kent/kent-01.webp",
       "/work/branding/cavaro/cavaro-01.png",
@@ -430,13 +439,22 @@ export const portfolioCategories = [
   },
   {
     id: "real-estate",
-    title: "Real Estate Creatives",
-    label: "EDM / OOH / Social",
-    subtitle: "Luxury launches, property campaigns, outdoor layouts, and sales creatives.",
+    title: "Real Estate Marketing",
+    label: "Property Campaigns",
+    subtitle: "Property launch campaigns, sales creatives, outdoor layouts, digital assets, and premium real-estate communication.",
     href: "/work/real-estate",
     accent: "#8ee8ff",
     backdrop: "linear-gradient(145deg, #06111f 0%, #0d3158 50%, #8ee8ff 120%)",
     motif: "RE",
+    caseStudy: {
+      overview: "A real-estate marketing collection built around launch communication, premium property presentation, and sales-support visuals.",
+      challenge: "Communicate high-value property offerings clearly across formats while balancing project imagery, offer messaging, location details, and brand credibility.",
+      role: "Designed campaign creatives, sales visuals, brochures, banners, thumbnails, and social-ready assets for property marketing communication.",
+      direction: "Premium spacing, strong image treatment, readable offer hierarchy, clean typography, and polished real-estate visual framing.",
+      deliverables: ["Launch creatives", "Brochures", "Banners", "Outdoor layouts", "Social posts", "Sales communication assets"],
+      tools: ["Adobe Photoshop", "Adobe Illustrator", "Adobe InDesign", "Canva"],
+      outcome: "Improved presentation quality through stronger hierarchy, spacing, typography, and image treatment across real-estate marketing assets."
+    },
     previewImages: [
       "/work/real-estate/trevoc-luxury-launch.jpg",
       "/work/real-estate/emaar-business-centre-coming-soon.png",
@@ -445,13 +463,22 @@ export const portfolioCategories = [
   },
   {
     id: "social-media",
-    title: "Social Media",
-    label: "Campaign Posts",
-    subtitle: "Scroll-stopping posts, thumbnails, carousels, and performance-led layouts.",
+    title: "Digital Campaigns",
+    label: "Social Campaigns",
+    subtitle: "Social posts, thumbnails, carousels, campaign banners, and digital-first marketing layouts.",
     href: "/work/social-media",
     accent: "#ff8bbd",
     backdrop: "linear-gradient(145deg, #190911 0%, #3a1830 52%, #ff8bbd 120%)",
     motif: "SM",
+    caseStudy: {
+      overview: "A digital campaign collection covering social creatives, thumbnails, carousels, promotional layouts, and campaign communication.",
+      challenge: "Create quick-to-read visuals that can hold attention in busy digital feeds while keeping brand tone and message clarity intact.",
+      role: "Designed social posts, campaign banners, thumbnail concepts, carousel layouts, and promotional assets for digital communication.",
+      direction: "Bold visual hooks, short readable messaging, consistent layout systems, strong contrast, and feed-friendly composition.",
+      deliverables: ["Social posts", "Carousels", "Story formats", "Thumbnails", "Campaign banners", "Promotional layouts"],
+      tools: ["Adobe Photoshop", "Adobe Illustrator", "Canva", "Figma"],
+      outcome: "Designed execution-ready assets for social media, digital campaigns, and promotional communication."
+    },
     previewImages: [
       "/work/social-media/nike/nike-01.png",
       "/work/social-media/orient-electric/orient-electric-01.png",
@@ -460,13 +487,22 @@ export const portfolioCategories = [
   },
   {
     id: "ui-ux",
-    title: "UI / UX",
+    title: "UI Visual Design",
     label: "Product Concepts",
-    subtitle: "Landing pages, app screens, dashboards, and digital product directions.",
+    subtitle: "Landing pages, app screens, dashboards, interface concepts, and polished digital product visuals.",
     href: "/work/ui-ux",
     accent: "#9effc4",
     backdrop: "linear-gradient(145deg, #07120e 0%, #12372c 52%, #9effc4 120%)",
     motif: "UX",
+    caseStudy: {
+      overview: "A UI visual design collection focused on website, app, dashboard, and landing-page concepts with strong visual structure.",
+      challenge: "Make screens feel polished and easy to scan while maintaining hierarchy, spacing, and component consistency across multiple page types.",
+      role: "Created screen layouts, visual concepts, responsive presentation boards, interface sections, and component-led design compositions.",
+      direction: "Clear page hierarchy, consistent components, spacious layouts, refined typography, and responsive visual presentation.",
+      deliverables: ["Landing pages", "App screens", "Dashboards", "Website concepts", "Responsive boards", "UI component layouts"],
+      tools: ["Figma", "Adobe Photoshop", "Adobe Illustrator", "Canva"],
+      outcome: "Organized UI visuals into a more structured and recruiter-friendly presentation with cleaner hierarchy and spacing."
+    },
     previewImages: [
       "/optimized/work/ui-ux/greenaura/greenaura-01.webp",
       "/optimized/work/ui-ux/aurea-dental/aurea-dental-01.webp",
@@ -475,13 +511,22 @@ export const portfolioCategories = [
   },
   {
     id: "videos",
-    title: "Videos",
+    title: "Motion & Video",
     label: "Motion / Reels",
-    subtitle: "Edited videos, reels, launch films, walkthroughs, and motion-led campaign previews.",
+    subtitle: "Video edits, reels, launch films, walkthroughs, and motion-led campaign previews.",
     href: "/work/videos",
     accent: "#ffcf6b",
     backdrop: "linear-gradient(145deg, #120905 0%, #3a1f12 52%, #ffcf6b 120%)",
     motif: "VD",
+    caseStudy: {
+      overview: "A motion and video collection covering reels, edits, launch previews, thumbnails, and video-led campaign communication.",
+      challenge: "Shape video content so the message is clear quickly, with pacing, titles, framing, and thumbnail visuals supporting the campaign purpose.",
+      role: "Edited videos, created motion-led campaign previews, refined thumbnails, arranged visual pacing, and supported reel-style communication.",
+      direction: "Clean motion titles, sharp pacing, readable on-screen text, strong opening frames, and brand-aligned visual storytelling.",
+      deliverables: ["Video edits", "Reels", "Launch films", "Walkthrough previews", "Motion titles", "Thumbnails"],
+      tools: ["Adobe Premiere Pro", "Adobe After Effects", "Adobe Photoshop"],
+      outcome: "Created video-led communication assets that feel clearer, more structured, and easier to present across campaign use cases."
+    },
     previewImages: [
       "/work/videos/video-01.webp",
       "/work/videos/video-05.webp",
@@ -490,13 +535,22 @@ export const portfolioCategories = [
   },
   {
     id: "meta-ads",
-    title: "Meta Ads",
+    title: "Performance Ad Creatives",
     label: "Paid Social",
-    subtitle: "Performance creatives, ad variations, launch offers, carousel concepts, and campaign-ready Meta layouts.",
+    subtitle: "Performance ad layouts, paid-social variations, launch offers, carousel concepts, and campaign-ready creatives.",
     href: "/work/meta-ads",
     accent: "#7dd3ff",
     backdrop: "linear-gradient(145deg, #06111f 0%, #102f5f 50%, #7dd3ff 120%)",
     motif: "MA",
+    caseStudy: {
+      overview: "A performance ad creative collection focused on paid-social layouts, offer-led visuals, and campaign-ready creative variations.",
+      challenge: "Keep ad creatives readable and visually direct while fitting different placements such as square feed, story, compact, and landscape formats.",
+      role: "Designed ad variations, offer layouts, campaign hooks, placement-specific adaptations, and organized creative sets for presentation.",
+      direction: "Strong hooks, clear offer hierarchy, readable typography, placement-aware composition, and consistent visual framing.",
+      deliverables: ["Square ads", "Story creatives", "Landscape placements", "Compact ad layouts", "Offer creatives", "Carousel-style concepts"],
+      tools: ["Adobe Photoshop", "Adobe Illustrator", "Canva"],
+      outcome: "Created execution-ready ad creative sets with clearer visual hooks, offer readability, and consistent campaign presentation."
+    },
     previewImages: [
       "/work/meta-ads/elan-106/meta-ad-01.jpg",
       "/work/meta-ads/emaar-commerce-park/meta-ad-02.jpg",
@@ -505,13 +559,22 @@ export const portfolioCategories = [
   },
   {
     id: "ai-generated",
-    title: "AI Generated",
+    title: "AI Creative Workflows",
     label: "Concept Visuals",
-    subtitle: "AI-assisted art direction, luxury scenes, experiments, and campaign concepts.",
+    subtitle: "AI-assisted visual workflows, concept scenes, image experiments, and campaign-ready art direction.",
     href: "/work/ai-generated",
     accent: "#b7a4ff",
     backdrop: "linear-gradient(145deg, #0a0a18 0%, #211d54 52%, #b7a4ff 120%)",
     motif: "AI",
+    caseStudy: {
+      overview: "An AI-assisted creative workflow collection showing image creation, visual experiments, concept scenes, and production support assets.",
+      challenge: "Develop consistent visual outputs from AI-generated material while improving composition, realism, naming, and presentation quality.",
+      role: "Created and refined AI-assisted visuals, directed prompts, selected stronger outputs, organized image sets, and prepared them for portfolio presentation.",
+      direction: "Consistent composition, premium lighting, clean framing, realistic image treatment, and campaign-ready visual selection.",
+      deliverables: ["AI-assisted images", "Concept scenes", "Visual experiments", "Prompt-led explorations", "Image sets", "Presentation boards"],
+      tools: ["ChatGPT", "Gemini", "Midjourney", "Adobe Firefly", "FLUX", "Photoshop"],
+      outcome: "Built a structured visual workflow for AI-assisted concept development, image exploration, and creative production support."
+    },
     previewImages: [
       "/optimized/work/ai-generated/emaar-india-business-centre/emaar-IBC-01.webp",
       "/optimized/work/ai-generated/emaar-india-business-centre/emaar-IBC-02.webp",
@@ -782,7 +845,7 @@ export const metaAdsProjects = [
 export const logoProjects = [
   {
     title: "KENT Water Purifier Digital Brand Experience",
-    category: "Branding",
+    category: "Brand Systems",
     format: "Website Experience + Brand System",
     brief:
       "A premium KENT water purifier digital experience deck built around purity, trust, technology, product clarity, conversion, responsive UI, and campaign-led promotional storytelling.",
@@ -851,7 +914,7 @@ export const logoProjects = [
   },
   {
     title: "Valtora Gaming Chair Brand System",
-    category: "Branding",
+    category: "Brand Systems",
     format: "Gaming Brand Identity + Product System",
     brief:
       "A high-impact gaming chair identity with a sharp metallic logo, black-red performance palette, product naming, packaging, campaign applications, brand voice, and complete usage guidelines.",
@@ -926,7 +989,7 @@ export const logoProjects = [
   },
   {
     title: "Cavaro House of Objects Brand System",
-    category: "Branding",
+    category: "Brand Systems",
     format: "Furniture Brand Identity + Guidelines",
     brief:
       "A warm luxury furniture identity built around architecture, natural materials, timeless objects, packaging, showroom experience, campaign storytelling, and refined editorial brand guidelines.",
@@ -1013,7 +1076,7 @@ export const logoProjects = [
   },
   {
     title: "Aurix Audio Technology Brand System",
-    category: "Branding",
+    category: "Brand Systems",
     format: "Brand Identity + Product World",
     brief:
       "A futuristic audio brand identity with a custom wordmark, silver-black visual system, product mockups, UI presentation, retail environments, and campaign-ready brand applications.",
@@ -1130,7 +1193,7 @@ export const logoProjects = [
   },
   {
     title: "Roastory Coffee Brand Identity",
-    category: "Branding",
+    category: "Brand Systems",
     format: "Brand Guidelines",
     brief:
       "A complete coffee identity presentation with monogram construction, logo system, clear space, and premium mockup applications.",
@@ -1178,7 +1241,7 @@ export const logoProjects = [
 export const socialProjects = [
   {
     title: "Nike Morning Discipline Concept Campaign",
-    category: "Social Media",
+    category: "Digital Campaigns",
     format: "Spec Sports Campaign + Social Story System",
     brief:
       "A gritty black-and-white performance campaign built around early-morning discipline, solitude, and self-competition. The set uses massive editorial typography, rain-lit athletic scenes, restrained neon accents, and multiple vertical, square, and landscape formats for a premium social rollout.",
@@ -1271,7 +1334,7 @@ export const socialProjects = [
   },
   {
     title: "Orient Electric Aero O2 Social Campaign",
-    category: "Social Media",
+    category: "Digital Campaigns",
     format: "Smart Home Product Campaign + Social Adaptations",
     brief:
       "A clean lifestyle-led product campaign for Orient Electric's Aero O2 oxygen-enriching fan, combining bright home imagery, fresh green messaging, benefit icons, square posts, landscape banners, and story-first layouts for social media rollout.",
@@ -1304,7 +1367,7 @@ export const socialProjects = [
   },
   {
     title: "Kyro Energy Drink Social Campaign",
-    category: "Social Media",
+    category: "Digital Campaigns",
     format: "Product Launch Campaign + Performance Posts",
     brief:
       "A high-voltage energy drink campaign built for social impact: aggressive typography, neon-green product energy, benefit-led icon systems, vertical reels/post formats, landscape banners, and punchy launch messaging designed to stop the scroll.",
@@ -1340,7 +1403,7 @@ export const socialProjects = [
 export const uiUxProjects = [
   {
     title: "GreenAura Fresh Produce Website",
-    category: "UI / UX",
+    category: "UI Visual Design",
     format: "Organic Grocery Website Presentation",
     brief:
       "A premium farm-fresh grocery website experience covering brand philosophy, logo, color, typography, homepage anatomy, product flow, farm storytelling, testimonials, order journey, responsive layouts, and design system components.",
@@ -1445,7 +1508,7 @@ export const uiUxProjects = [
   },
   {
     title: "Aurea Dental Website Design",
-    category: "UI / UX",
+    category: "UI Visual Design",
     format: "Luxury Dental Website Presentation",
     brief:
       "A premium dental website design system covering brand philosophy, logo, color, typography, homepage, services, doctors, patient stories, contact flow, and responsive experience.",
@@ -1532,7 +1595,7 @@ export const uiUxProjects = [
   },
   {
     title: "Fitness Mobile App UI",
-    category: "UI / UX",
+    category: "UI Visual Design",
     format: "Mobile App Case Study",
     brief:
       "A complete health-tech app concept covering onboarding, dashboard, workout tracking, meal planning, and progress analytics with a soft blue interface system.",
@@ -1550,7 +1613,7 @@ export const uiUxProjects = [
 export const aiGeneratedProjects = [
   {
     title: "Emaar India Business Centre AI Visuals",
-    category: "AI Generated",
+    category: "AI Creative Workflows",
     format: "Commercial Architecture Concept Visuals",
     brief:
       "AI-generated architectural visuals for Emaar India Business Centre, a commercial project by Emaar Developer. The set explores premium office-tower perspectives across day, dusk, and night moods for campaign storytelling, presentation decks, and real-estate launch communication.",
@@ -1601,7 +1664,7 @@ export const aiGeneratedProjects = [
   },
   {
     title: "Interior Image Creation: Matching Consistency",
-    category: "AI Generated",
+    category: "AI Creative Workflows",
     format: "Interior Concept Angles",
     brief:
       "AI-generated interior image creation focused on matching consistency across multiple angles. The set keeps the same dark conference room language, black geometric pendant lights, warm wooden table, matte wall panels, and moody premium lighting while exploring alternate camera views.",
@@ -1636,32 +1699,32 @@ export const aiGeneratedProjects = [
 
 export const portfolioLibraries = [
   {
-    title: "Branding",
-    subtitle: "Identity systems, monograms, lockups, brand rules and mockups",
+    title: "Brand Systems",
+    subtitle: "Identity systems, monograms, lockups, brand rules, and mockups",
     href: "/work/branding",
     gradient: "from-champagne/30 via-white/5 to-transparent"
   },
   {
-    title: "Real Estate",
-    subtitle: "Luxury launches, property campaigns, EDMs, OOH and social posters",
+    title: "Real Estate Marketing",
+    subtitle: "Property launches, sales campaigns, EDMs, OOH, and digital assets",
     href: "/work/real-estate",
     gradient: "from-signal/30 via-white/5 to-transparent"
   },
   {
-    title: "Social Media",
-    subtitle: "Scroll-stopping product posts, campaign banners and launch creatives",
+    title: "Digital Campaigns",
+    subtitle: "Social posts, campaign banners, carousels, and launch creatives",
     href: "/work/social-media",
     gradient: "from-lime-300/25 via-white/5 to-transparent"
   },
   {
-    title: "UI / UX",
-    subtitle: "App screens, landing pages, dashboards and digital product visuals",
+    title: "UI Visual Design",
+    subtitle: "App screens, landing pages, dashboards, and product visuals",
     href: "/work/ui-ux",
     gradient: "from-fuchsia-300/25 via-white/5 to-transparent"
   },
   {
-    title: "AI Generated",
-    subtitle: "Concept visuals, art direction tests and campaign imagery",
+    title: "AI Creative Workflows",
+    subtitle: "AI-assisted concepts, art direction tests, and campaign imagery",
     href: "/work/ai-generated",
     gradient: "from-emerald-200/25 via-white/5 to-transparent"
   }

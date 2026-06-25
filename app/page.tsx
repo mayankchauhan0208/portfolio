@@ -216,7 +216,7 @@ export default function Home() {
               </h2>
               <p className="mx-auto mt-4 max-w-3xl text-sm leading-6 text-mercury md:text-base">
                 <span className="block">Explore focused creative worlds for branding,</span>
-                <span className="block">real estate campaigns, Meta ads, social media, videos, and UI/UX.</span>
+                <span className="block">real estate marketing, performance ads, digital campaigns, motion, and UI visuals.</span>
                 <span className="block">Built with AI-generated concepts and presentation-ready case studies.</span>
               </p>
             </div>
@@ -297,7 +297,7 @@ export default function Home() {
                   }`}
                 >
                   <span className="block text-[0.58rem] uppercase tracking-[0.18em] opacity-70">{String(index + 1).padStart(2, "0")}</span>
-                  <span className="mt-1 block text-sm font-semibold leading-tight">{category.title}</span>
+                  <span className="mt-1 block text-xs font-semibold leading-tight lg:text-[0.8rem]">{category.title}</span>
                 </button>
               ))}
             </div>

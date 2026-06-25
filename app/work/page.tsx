@@ -19,7 +19,7 @@ function imageSizeFor(src: string) {
 export const metadata = {
   title: "Creative Portfolio Library | Mayank Chauhan",
   description:
-    "A premium category index for Mayank Chauhan's branding, real estate creatives, Meta ads, social media systems, UI/UX concepts, videos, and AI-assisted visual direction."
+    "A premium category index for Mayank Chauhan's brand systems, real estate marketing, performance ad creatives, digital campaigns, UI visual design, motion and video, and AI creative workflows."
 };
 
 export default function WorkPage() {
@@ -66,7 +66,7 @@ export default function WorkPage() {
               Library
             </h1>
             <p className="mt-7 max-w-2xl text-base leading-8 text-mercury md:text-lg">
-              Seven focused rooms for Mayank&apos;s portfolio: branding, real estate campaigns, Meta ads, social media, UI/UX, videos, and AI-assisted visual direction. Each page has its own tone and presentation flow.
+              Seven focused rooms for Mayank&apos;s portfolio: brand systems, real estate marketing, digital campaigns, UI visual design, motion and video, performance ad creatives, and AI creative workflows. Each page has its own tone and presentation flow.
             </p>
           </div>
 
