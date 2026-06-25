@@ -98,11 +98,13 @@ export default function Home() {
           </div>
 
           <div className="reference-info">
-            <h3 className="intro-line">A Creative</h3>
-            <h2 className="intro-line reference-accent">Graphic</h2>
-            <h2 className="intro-line">Designer</h2>
-            <p className="intro-line">
-              UI design, brand visuals, campaign creatives, and video editing.
+            <h2 className="intro-line reference-headline">
+              Visual Designer building brand, campaign, UI, and motion creatives for digital-first businesses.
+            </h2>
+            <p className="intro-line reference-support">
+              I create brand communication, campaign creatives, UI concepts, social media assets,
+              real-estate marketing visuals, video edits, and AI-assisted creative workflows with a
+              focus on clean hierarchy, premium layouts, and execution-ready design.
             </p>
             <a
               href={assetPath(profile.resume)}

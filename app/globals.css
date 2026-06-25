@@ -394,11 +394,26 @@ html.theme-light button[aria-label*="theme"],
   font-size: clamp(52px, 4.7vw, 84px);
 }
 
+.reference-info .reference-headline {
+  max-width: 440px;
+  color: rgba(248, 253, 255, 0.96);
+  font-size: clamp(32px, 3vw, 52px);
+  line-height: 1.03;
+  letter-spacing: 0;
+  text-transform: none;
+}
+
 .reference-info p {
   margin-top: 18px;
   max-width: 330px;
   color: rgba(233, 237, 242, 0.62);
   line-height: 1.8;
+}
+
+.reference-info .reference-support {
+  max-width: 430px;
+  font-size: 15px;
+  line-height: 1.65;
 }
 
 .reference-actions {
@@ -922,7 +937,7 @@ html.theme-light button[aria-label*="theme"],
   .reference-info {
     left: 0;
     bottom: 72px;
-    width: min(58%, 230px);
+    width: min(74%, 292px);
   }
 
   .reference-intro h2,
@@ -936,8 +951,26 @@ html.theme-light button[aria-label*="theme"],
     letter-spacing: 1px;
   }
 
-  .reference-info p {
-    display: none;
+  .reference-info .reference-headline {
+    max-width: 100%;
+    font-size: clamp(24px, 7vw, 31px);
+    line-height: 1.06;
+    letter-spacing: 0;
+  }
+
+  .reference-info .reference-support {
+    display: block;
+    margin-top: 10px;
+    max-width: 100%;
+    font-size: 12px;
+    line-height: 1.45;
+  }
+
+  .reference-info a {
+    margin-top: 14px !important;
+    padding: 11px 14px;
+    font-size: 10px;
+    letter-spacing: 0.13em;
   }
 
   .reference-actions {

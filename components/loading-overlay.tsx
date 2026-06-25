@@ -3,6 +3,14 @@
 import { motion } from "framer-motion";
 import { useEffect, useState } from "react";
 
+const heroRoles = [
+  "Visual Designer",
+  "Creative Brand Designer",
+  "Campaign Designer",
+  "UI Visual Designer",
+  "Motion & Video Creative",
+];
+
 export function LoadingOverlay({ onComplete }: { onComplete?: () => void }) {
   const [done, setDone] = useState(false);
   const [progress, setProgress] = useState(8);
@@ -44,7 +52,7 @@ export function LoadingOverlay({ onComplete }: { onComplete?: () => void }) {
           transition={{ duration: 13, repeat: Infinity, ease: "linear" }}
         >
           {Array.from({ length: 8 }).map((_, index) => (
-            <span key={index}>Graphic Designer / UI Designer / Video Editor</span>
+            <span key={index}>{heroRoles.join(" / ")}</span>
           ))}
         </motion.div>
       </div>

@@ -1,7 +1,12 @@
-import { profile } from "@/lib/portfolio-data";
-
 export function RoleTicker() {
-  const text = profile.roles.join(" / ");
+  const heroRoles = [
+    "Visual Designer",
+    "Creative Brand Designer",
+    "Campaign Designer",
+    "UI Visual Designer",
+    "Motion & Video Creative",
+  ];
+  const text = heroRoles.join(" / ");
   const items = Array.from({ length: 8 }, (_, index) => `${text}${index === 7 ? "" : " /"}`);
 
   return (
