@@ -6,15 +6,51 @@ import { RouteStartReset } from "@/components/route-start-reset";
 import { ThemeToggle } from "@/components/theme-toggle";
 
 export const metadata: Metadata = {
-  title: "Mayank Chauhan | Graphic Designer, UI Designer & Video Editor",
+  metadataBase: new URL("https://mayankchauhan.co.in"),
+  title: {
+    default: "Mayank Chauhan | Visual Designer & Creative Brand Designer",
+    template: "%s | Mayank Chauhan"
+  },
   description:
-    "Premium portfolio of Mayank Chauhan, a graphic designer, UI designer, and video editor creating brand systems, campaign visuals, and motion-led digital experiences.",
-  keywords: ["Mayank Chauhan", "Graphic Designer", "UI Designer", "Video Editor", "Portfolio", "Brand Design"],
+    "Portfolio of Mayank Chauhan, a visual designer creating brand communication, campaign creatives, UI concepts, real-estate marketing visuals, motion/video assets, and AI-assisted creative workflows.",
+  keywords: [
+    "Mayank Chauhan",
+    "Visual Designer",
+    "Creative Brand Designer",
+    "Brand Design",
+    "Campaign Creatives",
+    "UI Visual Design",
+    "Real Estate Marketing",
+    "Motion & Video",
+    "AI-assisted Creative Workflows",
+    "Portfolio India"
+  ],
   authors: [{ name: "Mayank Chauhan" }],
+  creator: "Mayank Chauhan",
+  alternates: {
+    canonical: "/"
+  },
   openGraph: {
-    title: "Mayank Chauhan | Premium Creative Portfolio",
-    description: "Graphic design, UI design, and video editing portfolio with brand and motion-led creative work.",
+    title: "Mayank Chauhan | Visual Designer Portfolio",
+    description: "Brand, campaign, UI visual, real-estate marketing, motion/video, and AI-assisted creative work by Mayank Chauhan.",
+    url: "/",
+    siteName: "Mayank Chauhan Portfolio",
+    images: [
+      {
+        url: "/optimized/images/mayank-portrait.webp",
+        width: 1200,
+        height: 1600,
+        alt: "Mayank Chauhan visual designer portfolio preview"
+      }
+    ],
+    locale: "en_IN",
     type: "website"
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Mayank Chauhan | Visual Designer Portfolio",
+    description: "Visual design portfolio covering brand communication, campaign creatives, UI concepts, motion/video, and AI-assisted creative workflows.",
+    images: ["/optimized/images/mayank-portrait.webp"]
   }
 };
 

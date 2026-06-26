@@ -17,9 +17,9 @@ function imageSizeFor(src: string) {
 }
 
 export const metadata = {
-  title: "Creative Portfolio Library | Mayank Chauhan",
+  title: "Creative Portfolio Library",
   description:
-    "A premium category index for Mayank Chauhan's brand systems, real estate marketing, performance ad creatives, digital campaigns, UI visual design, motion and video, and AI creative workflows."
+    "Explore Mayank Chauhan's visual design portfolio across brand design, campaign creatives, UI visual design, real-estate marketing, motion and video, and AI-assisted creative workflows."
 };
 
 export default function WorkPage() {

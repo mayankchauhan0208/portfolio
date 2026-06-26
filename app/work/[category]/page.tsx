@@ -89,13 +89,21 @@ export function generateMetadata({ params }: CategoryPageProps) {
 
   if (!category) {
     return {
-      title: "Portfolio Category | Mayank Chauhan"
+      title: "Portfolio Category"
     };
   }
 
   return {
-    title: `${category.title} | Mayank Chauhan Portfolio`,
-    description: `${category.title} portfolio category by Mayank Chauhan. ${category.subtitle}`
+    title: `${category.title} Portfolio`,
+    description: `${category.title} work by Mayank Chauhan, covering visual design, brand communication, campaign creatives, UI visual design, real-estate marketing, motion/video, and AI-assisted creative workflows. ${category.subtitle}`,
+    openGraph: {
+      title: `${category.title} Portfolio | Mayank Chauhan`,
+      description: `${category.title} work by Mayank Chauhan. ${category.subtitle}`
+    },
+    twitter: {
+      title: `${category.title} Portfolio | Mayank Chauhan`,
+      description: `${category.title} work by Mayank Chauhan. ${category.subtitle}`
+    }
   };
 }
 
