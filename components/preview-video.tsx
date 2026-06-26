@@ -114,7 +114,7 @@ export function PreviewVideo({ src, poster, title, width, height, sizes, classNa
       {open && mounted
         ? createPortal(
             <div
-              className="fixed inset-0 z-[9999] flex items-center justify-center bg-black p-4 md:p-8"
+              className="fixed inset-0 z-[9999] flex items-center justify-center bg-black p-3 pt-20 md:p-8"
               role="dialog"
               aria-modal="true"
               aria-label={title}
@@ -131,7 +131,7 @@ export function PreviewVideo({ src, poster, title, width, height, sizes, classNa
               </button>
 
               <div
-                className="relative grid max-h-[90vh] w-full max-w-6xl place-items-center overflow-hidden rounded-[1.25rem] border border-white/12 bg-[#050505] p-2 shadow-luxury"
+                className="relative grid max-h-[82dvh] w-full max-w-6xl place-items-center overflow-hidden rounded-[1.25rem] border border-white/12 bg-[#050505] p-2 shadow-luxury md:max-h-[90vh]"
                 onClick={(event) => event.stopPropagation()}
               >
                 {src ? (
@@ -141,7 +141,7 @@ export function PreviewVideo({ src, poster, title, width, height, sizes, classNa
                     poster={poster}
                     playsInline
                     preload="metadata"
-                    className="block max-h-[78vh] w-full rounded-[0.9rem] object-contain"
+                    className="block max-h-[56dvh] w-full rounded-[0.9rem] object-contain md:max-h-[78vh]"
                     onPlay={() => setPlaying(true)}
                     onPause={() => setPlaying(false)}
                     onLoadedMetadata={(event) => setDuration(event.currentTarget.duration || 0)}
@@ -195,7 +195,7 @@ export function PreviewVideo({ src, poster, title, width, height, sizes, classNa
                     type="button"
                     onClick={togglePlayback}
                     disabled={!src}
-                    className="mx-auto inline-flex min-w-40 items-center justify-center gap-2 rounded-full bg-white px-7 py-3 text-xs font-bold uppercase tracking-[0.14em] text-black transition hover:bg-signal disabled:cursor-not-allowed disabled:opacity-45"
+                    className="mx-auto inline-flex min-h-11 min-w-40 items-center justify-center gap-2 rounded-full bg-white px-7 py-3 text-xs font-bold uppercase tracking-[0.14em] text-black transition hover:bg-signal disabled:cursor-not-allowed disabled:opacity-45"
                   >
                     {playing ? <Pause size={16} /> : <Play size={16} />}
                     {playing ? "Pause" : "Play"}

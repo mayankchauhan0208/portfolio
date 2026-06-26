@@ -29,8 +29,8 @@ export default function Home() {
     const ctx = gsap.context(() => {
       gsap.fromTo(
         ".intro-line",
-        { y: 96, opacity: 0, rotateX: -18, filter: "blur(10px)" },
-        { y: 0, opacity: 1, rotateX: 0, filter: "blur(0px)", duration: 1.15, stagger: 0.09, ease: "power4.out" }
+        { y: 72, opacity: 0, rotateX: -12 },
+        { y: 0, opacity: 1, rotateX: 0, duration: 0.9, stagger: 0.08, ease: "power4.out" }
       );
       gsap.fromTo(
         ".reference-model",
@@ -144,16 +144,16 @@ export default function Home() {
             </div>
           </Reveal>
           <Reveal delay={0.08}>
-            <div className="rounded-[2rem] border border-white/10 bg-black/25 p-7 backdrop-blur-2xl md:p-10">
-              <div className="space-y-5 text-base leading-8 text-mercury md:text-lg md:leading-9">
+            <div className="rounded-[2rem] border border-white/10 bg-black/25 p-6 backdrop-blur-2xl md:p-10">
+              <div className="space-y-4 text-sm leading-7 text-mercury sm:text-base md:text-lg md:leading-9">
                 {profile.aboutParagraphs.map((paragraph) => (
                   <p key={paragraph}>{paragraph}</p>
                 ))}
               </div>
-              <div className="mt-8 grid gap-4 md:grid-cols-3">
+              <div className="mt-7 grid gap-3 md:grid-cols-3 md:gap-4">
                 {profile.roles.map((role) => (
-                  <div key={role} className="rounded-2xl border border-white/10 bg-white/[0.045] p-5">
-                    <p className="whitespace-nowrap text-sm uppercase tracking-[0.12em] text-champagne">{role}</p>
+                  <div key={role} className="rounded-2xl border border-white/10 bg-white/[0.045] p-4 md:p-5">
+                    <p className="text-sm uppercase tracking-[0.12em] text-champagne">{role}</p>
                   </div>
                 ))}
               </div>
@@ -483,7 +483,7 @@ export default function Home() {
         </div>
       </SectionShell>
 
-      <section id="contact" className="relative scroll-mt-28 px-4 py-16 md:px-8 md:py-28">
+      <section id="contact" className="relative scroll-mt-28 px-4 pb-36 pt-16 md:px-8 md:py-28">
         <Reveal>
           <div className="relative mx-auto max-w-7xl overflow-hidden rounded-[1.5rem] border border-white/10 bg-white/[0.07] p-5 shadow-luxury backdrop-blur-2xl sm:p-7 md:rounded-[2rem] md:p-12">
             <div className="absolute inset-0 bg-[radial-gradient(circle_at_20%_20%,rgba(142,232,255,0.16),transparent_35%),radial-gradient(circle_at_80%_70%,rgba(216,197,155,0.14),transparent_35%)]" />

@@ -41,7 +41,7 @@ export default function WorkPage() {
           >
             <ArrowLeft size={15} /> Home
           </Link>
-          <span className="font-display text-sm uppercase tracking-[0.32em] text-white">Portfolio Library</span>
+          <span className="min-w-0 truncate px-2 text-center font-display text-xs uppercase tracking-[0.18em] text-white sm:text-sm sm:tracking-[0.32em]">Portfolio Library</span>
           <Link
             href="/#contact"
             prefetch={false}
@@ -52,13 +52,13 @@ export default function WorkPage() {
         </nav>
       </header>
 
-      <section className="relative z-10 px-4 pb-16 pt-12 md:px-8 md:pb-24 md:pt-20">
+      <section className="relative z-10 px-4 pb-14 pt-10 md:px-8 md:pb-24 md:pt-20">
         <div className="mx-auto grid max-w-7xl gap-10 lg:grid-cols-[0.9fr_1.1fr] lg:items-end">
           <div>
             <p className="mb-5 inline-flex items-center gap-3 rounded-full border border-white/10 bg-white/[0.045] px-4 py-2 text-xs uppercase tracking-[0.3em] text-signal">
               <Sparkles size={14} /> Creative Index
             </p>
-            <h1 className="font-display text-[clamp(3.2rem,10vw,10.5rem)] font-semibold uppercase leading-[0.78] text-white">
+            <h1 className="font-display text-[clamp(3rem,15vw,10.5rem)] font-semibold uppercase leading-[0.82] text-white md:leading-[0.78]">
               Choose
               <br />
               Your
@@ -70,7 +70,7 @@ export default function WorkPage() {
             </p>
           </div>
 
-          <div className="relative overflow-hidden rounded-[2rem] border border-white/10 bg-white/[0.045] p-4 shadow-luxury backdrop-blur-xl">
+          <div className="relative overflow-hidden rounded-[1.5rem] border border-white/10 bg-white/[0.045] p-3 shadow-luxury backdrop-blur-xl md:rounded-[2rem] md:p-4">
             <div className="absolute inset-0 bg-[radial-gradient(circle_at_20%_20%,rgba(142,232,255,0.16),transparent_32%),radial-gradient(circle_at_80%_10%,rgba(218,196,143,0.18),transparent_34%)]" />
             <div className="relative grid gap-4 sm:grid-cols-3">
               {featuredWorks.map((work, index) => {
@@ -105,7 +105,7 @@ export default function WorkPage() {
         </div>
       </section>
 
-      <section className="relative z-10 px-4 pb-24 md:px-8">
+      <section className="relative z-10 px-4 pb-32 md:px-8 md:pb-24">
         <div className="mx-auto max-w-7xl">
           <div className="mb-8 flex flex-col gap-5 border-y border-white/10 py-6 md:flex-row md:items-end md:justify-between">
             <div>
@@ -125,7 +125,7 @@ export default function WorkPage() {
                 key={category.id}
                 href={category.href}
                 prefetch={false}
-                className="group relative min-h-[31rem] overflow-hidden rounded-[1.7rem] border border-white/10 bg-black shadow-luxury transition duration-500 hover:-translate-y-2 hover:border-white/35"
+                className="group relative min-h-[28rem] overflow-hidden rounded-[1.45rem] border border-white/10 bg-black shadow-luxury transition duration-500 hover:-translate-y-2 hover:border-white/35 md:min-h-[31rem] md:rounded-[1.7rem]"
                 style={{
                   "--niche-accent": category.accent,
                   "--niche-accent-soft": `${category.accent}33`,
@@ -140,7 +140,7 @@ export default function WorkPage() {
                   {String(index + 1).padStart(2, "0")} / {category.label}
                 </div>
 
-                <div className="absolute inset-x-4 top-16 h-56 overflow-hidden rounded-[1.25rem] border border-white/15 bg-black/30 backdrop-blur-xl">
+                <div className="absolute inset-x-4 top-16 h-48 overflow-hidden rounded-[1.15rem] border border-white/15 bg-black/30 backdrop-blur-xl md:h-56 md:rounded-[1.25rem]">
                   {category.previewImages.length > 0 ? (
                     category.previewImages.slice(0, 3).map((image, imageIndex) => (
                       <div key={image} className={`niche-image-sample niche-image-sample-${imageIndex + 1}`}>

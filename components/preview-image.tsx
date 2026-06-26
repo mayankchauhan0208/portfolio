@@ -65,7 +65,7 @@ export function PreviewImage({ src, previewSrc, alt, width, height, sizes, class
       {open && mounted
         ? createPortal(
         <div
-          className="fixed inset-0 z-[9999] flex items-center justify-center bg-black p-4 md:p-8"
+          className="fixed inset-0 z-[9999] flex items-center justify-center bg-black p-3 pt-20 md:p-8"
           role="dialog"
           aria-modal="true"
           aria-label={alt}
@@ -80,7 +80,7 @@ export function PreviewImage({ src, previewSrc, alt, width, height, sizes, class
             <X size={18} />
             <span>Close</span>
           </button>
-          <div className="relative grid max-h-[90vh] max-w-[94vw] place-items-center overflow-hidden rounded-[1.25rem] border border-white/12 bg-[#050505] p-2 shadow-luxury">
+          <div className="relative grid max-h-[82dvh] max-w-[94vw] place-items-center overflow-hidden rounded-[1.25rem] border border-white/12 bg-[#050505] p-2 shadow-luxury md:max-h-[90vh]">
             {/* eslint-disable-next-line @next/next/no-img-element */}
             <img
               src={fullQualitySrc}
@@ -89,7 +89,7 @@ export function PreviewImage({ src, previewSrc, alt, width, height, sizes, class
               height={height}
               loading="eager"
               decoding="sync"
-              className="block h-auto max-h-[86vh] w-auto max-w-[91vw] rounded-[0.9rem] object-contain"
+              className="block h-auto max-h-[78dvh] w-auto max-w-[90vw] rounded-[0.9rem] object-contain md:max-h-[86vh] md:max-w-[91vw]"
               onClick={(event) => event.stopPropagation()}
             />
           </div>

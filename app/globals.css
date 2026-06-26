@@ -16,6 +16,11 @@ html {
   background: #07080b;
 }
 
+html,
+body {
+  max-width: 100%;
+}
+
 body {
   min-height: 100vh;
   overflow-x: hidden;
@@ -203,7 +208,7 @@ html.theme-light button[aria-label*="theme"],
 
 .intro-line {
   transform-origin: 50% 100%;
-  opacity: 0;
+  opacity: 1;
 }
 
 .role-ticker {
@@ -964,7 +969,7 @@ html.theme-light button[aria-label*="theme"],
   .reference-hero {
     height: auto;
     min-height: 100svh;
-    padding: 4.75rem 0 7rem;
+    padding: 4.5rem 0 8.25rem;
   }
 
   .reference-container {
@@ -1068,7 +1073,8 @@ html.theme-light button[aria-label*="theme"],
   }
 
   .reference-cta {
-    min-height: 42px;
+    min-height: 44px;
+    flex: 1 1 100%;
   }
 
   .reference-actions {
@@ -1097,7 +1103,7 @@ html.theme-light button[aria-label*="theme"],
   .creative-showcase-card,
   .niche-showcase-card,
   .creative-card-3 {
-    height: 32rem;
+    height: min(30rem, 78vh);
   }
 }
 

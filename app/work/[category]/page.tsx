@@ -134,7 +134,7 @@ export default function CategoryPage({ params }: CategoryPageProps) {
           display: grid;
           grid-template-columns: minmax(0, 1fr);
           grid-auto-flow: row;
-          gap: 1.25rem;
+          gap: 1rem;
         }
 
         .project-gallery-grid--project {
@@ -256,6 +256,41 @@ export default function CategoryPage({ params }: CategoryPageProps) {
             max-width: none;
           }
         }
+
+        @media (max-width: 640px) {
+          .project-gallery-card {
+            border-radius: 1.25rem;
+            padding: 0.65rem;
+          }
+
+          .project-gallery-figure {
+            border-radius: 0.95rem;
+          }
+
+          .project-gallery-image {
+            border-radius: 0.85rem;
+            padding: 0.25rem;
+          }
+
+          .project-gallery-meta {
+            gap: 0.5rem;
+            padding-top: 0.75rem;
+          }
+
+          .project-gallery-tag {
+            min-height: 1.65rem;
+            max-width: 100%;
+            white-space: normal;
+            padding: 0.4rem 0.65rem;
+            font-size: 0.58rem;
+            letter-spacing: 0.16em;
+          }
+
+          .project-gallery-title {
+            flex-basis: 100%;
+            font-size: 0.84rem;
+          }
+        }
       `}</style>
       <main className="min-h-screen overflow-hidden bg-obsidian text-platinum" style={categoryStyle}>
       <div className="pointer-events-none fixed inset-0">
@@ -273,7 +308,7 @@ export default function CategoryPage({ params }: CategoryPageProps) {
           >
             <ArrowLeft size={15} /> Library
           </Link>
-          <span className="font-display text-sm uppercase tracking-[0.28em] text-white">{category.title}</span>
+          <span className="min-w-0 truncate px-2 text-center font-display text-xs uppercase tracking-[0.18em] text-white sm:text-sm sm:tracking-[0.28em]">{category.title}</span>
           <Link
             href="/#contact"
             prefetch={false}
@@ -290,20 +325,20 @@ export default function CategoryPage({ params }: CategoryPageProps) {
             <p className="mb-5 inline-flex items-center gap-3 rounded-full border border-white/10 bg-white/[0.045] px-4 py-2 text-xs uppercase tracking-[0.3em] text-[var(--niche-accent)]">
               <Sparkles size={14} /> {category.label}
             </p>
-            <h1 className="font-display text-6xl font-semibold uppercase leading-none text-white md:text-8xl lg:text-9xl">
+            <h1 className="text-balance font-display text-[clamp(3.4rem,15vw,6rem)] font-semibold uppercase leading-none text-white md:text-8xl lg:text-9xl">
               {category.title}
             </h1>
             <p className="mt-7 max-w-2xl text-base leading-8 text-mercury md:text-lg">{category.subtitle}</p>
           </div>
         </div>
 
-        <div className="mx-auto mt-10 flex max-w-7xl flex-wrap gap-2 border-y border-white/10 py-5">
+        <div className="no-scrollbar mx-auto mt-10 flex max-w-7xl gap-2 overflow-x-auto border-y border-white/10 py-5 md:flex-wrap md:overflow-visible">
           {portfolioCategories.map((item) => (
             <Link
               key={item.id}
               href={item.href}
               prefetch={false}
-              className={`rounded-full border px-3 py-2 text-center text-[0.64rem] uppercase leading-tight tracking-[0.16em] transition sm:px-4 sm:text-[0.68rem] ${
+              className={`min-h-11 shrink-0 rounded-full border px-3 py-2 text-center text-[0.64rem] uppercase leading-tight tracking-[0.16em] transition sm:px-4 sm:text-[0.68rem] ${
                 item.id === category.id
                   ? "border-white bg-white text-black"
                   : "border-white/10 bg-white/[0.04] text-white/70 hover:border-[var(--niche-accent)] hover:text-white"
