@@ -487,33 +487,45 @@ export default function Home() {
         <Reveal>
           <div className="relative mx-auto max-w-7xl overflow-hidden rounded-[1.5rem] border border-white/10 bg-white/[0.07] p-5 shadow-luxury backdrop-blur-2xl sm:p-7 md:rounded-[2rem] md:p-12">
             <div className="absolute inset-0 bg-[radial-gradient(circle_at_20%_20%,rgba(142,232,255,0.16),transparent_35%),radial-gradient(circle_at_80%_70%,rgba(216,197,155,0.14),transparent_35%)]" />
-            <div className="relative grid gap-8 lg:grid-cols-[1.1fr_0.9fr] lg:items-end">
+            <div className="relative grid gap-8 lg:grid-cols-[1.08fr_0.92fr] lg:items-end">
               <div>
                 <p className="mb-4 text-xs uppercase tracking-[0.28em] text-signal sm:tracking-[0.32em]">Contact</p>
                 <h2 className="max-w-3xl font-display text-3xl leading-[1.04] text-white sm:text-5xl md:text-7xl">
-                  Build the next visual system with Mayank.
+                  Let&apos;s build clear, premium visual communication.
                 </h2>
                 <p className="mt-5 max-w-2xl text-base leading-7 text-mercury sm:text-lg sm:leading-8">
-                  Available for graphic design, UI concepts, campaign visuals, brand collateral, and video editing assignments.
+                  Open to full-time and contract roles across visual design, brand communication, campaign creatives, UI visual design, marketing collateral, motion/video editing, and AI-assisted creative production.
                 </p>
+                <div className="mt-7 flex flex-wrap gap-2">
+                  {["Visual Design", "Brand Design", "Campaign Creatives", "UI Visual Design", "Motion & Video", "AI-assisted Creative Workflows"].map((role) => (
+                    <span key={role} className="rounded-full border border-white/10 bg-black/25 px-3 py-2 text-[0.68rem] font-semibold uppercase leading-none tracking-[0.14em] text-white/72">
+                      {role}
+                    </span>
+                  ))}
+                </div>
               </div>
-              <div className="space-y-3">
-                <a href={`mailto:${profile.email}`} className="flex min-w-0 items-center justify-between gap-4 rounded-2xl border border-white/10 bg-black/25 p-4 text-white transition hover:border-signal/40 hover:bg-black/40 sm:p-5">
-                  <span className="flex min-w-0 items-center gap-3"><Mail className="shrink-0" size={18} /> <span className="min-w-0 break-all">{profile.email}</span></span>
+              <div className="grid gap-3">
+                <a href={`mailto:${profile.email}`} className="flex min-w-0 items-center justify-between gap-4 rounded-2xl bg-white p-4 font-semibold text-black shadow-glow transition hover:bg-signal sm:p-5">
+                  <span className="flex min-w-0 items-center gap-3"><Mail className="shrink-0" size={18} /> <span className="min-w-0 break-all">Contact Me</span></span>
+                  <ArrowUpRight className="shrink-0" size={18} />
+                </a>
+                <a href={assetPath(profile.resume)} download className="flex min-w-0 items-center justify-between gap-4 rounded-2xl border border-signal/35 bg-signal/15 p-4 font-semibold text-white transition hover:border-signal hover:bg-signal hover:text-black sm:p-5">
+                  <span className="flex min-w-0 items-center gap-3"><Download className="shrink-0" size={18} /> <span>Download Resume</span></span>
                   <ArrowUpRight className="shrink-0" size={18} />
                 </a>
                 <a href={`tel:${profile.phone.replaceAll(" ", "")}`} className="flex min-w-0 items-center justify-between gap-4 rounded-2xl border border-white/10 bg-black/25 p-4 text-white transition hover:border-signal/40 hover:bg-black/40 sm:p-5">
                   <span className="flex min-w-0 items-center gap-3"><Phone className="shrink-0" size={18} /> <span>{profile.phone}</span></span>
                   <ArrowUpRight className="shrink-0" size={18} />
                 </a>
-                <a href={profile.behance} target="_blank" rel="noreferrer" className="flex items-center justify-between gap-4 rounded-2xl bg-white p-4 font-semibold text-black transition hover:bg-signal sm:p-5">
+                <a href={profile.behance} target="_blank" rel="noreferrer" className="flex min-w-0 items-center justify-between gap-4 rounded-2xl border border-white/10 bg-black/25 p-4 text-white transition hover:border-signal/40 hover:bg-black/40 sm:p-5">
                   <span>View Behance Portfolio</span>
                   <ArrowUpRight className="shrink-0" size={18} />
                 </a>
-                <a href={assetPath(profile.resume)} download className="flex items-center justify-between gap-4 rounded-2xl border border-signal/35 bg-signal/15 p-4 font-semibold text-white transition hover:border-signal hover:bg-signal hover:text-black sm:p-5">
-                  <span>Download Resume</span>
-                  <Download className="shrink-0" size={18} />
-                </a>
+                <Link href="#work" className="flex min-w-0 items-center justify-between gap-4 rounded-2xl border border-white/10 bg-black/25 p-4 text-white transition hover:border-signal/40 hover:bg-black/40 sm:p-5">
+                  <span>View Selected Work</span>
+                  <ArrowUpRight className="shrink-0" size={18} />
+                </Link>
+                <p className="break-all px-1 text-xs leading-5 text-white/48">{profile.email}</p>
               </div>
             </div>
           </div>
