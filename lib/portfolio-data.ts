@@ -11,15 +11,15 @@ export const profile = {
   positioning:
     "I work across real-estate marketing, brand campaigns, UI/UX concepts, social media creatives, and video editing. My focus is simple: clear hierarchy, premium spacing, strong image treatment, and practical execution that works across digital, print, presentations, and campaign formats.",
   aboutHeading:
-    "Designing brand-led visuals that support campaigns, sales, and digital experiences.",
+    "Visual design for brand, campaign, UI, and motion-led marketing.",
   aboutSnapshot:
-    "Clear creative built for business communication.",
+    "Clear, polished creative built for business use.",
   aboutSnapshotBody:
-    "I shape visuals that are easy to understand, polished enough to trust, and flexible across social, print, UI, presentation, and video formats.",
+    "I focus on hierarchy, spacing, image treatment, and practical layouts that can move cleanly across digital, print, web, presentation, and video formats.",
   aboutParagraphs: [
-    "I am a multidisciplinary Graphic Designer, UI/UX Designer, and Video Editor creating brand-led visual communication across real estate marketing, digital campaigns, social media, presentations, print collateral, and video content.",
-    "I translate marketing objectives and brand requirements into clear, consistent, execution-ready creative assets for digital and offline channels. My work focuses on visual hierarchy, typography, layout systems, image treatment, and brand consistency.",
-    "I collaborate with marketing, sales, and business teams to deliver design solutions that support lead generation, brand visibility, customer engagement, and campaign execution."
+    "I am a visual designer focused on brand communication, campaign creatives, UI concepts, real-estate marketing visuals, social media assets, video-led content, and AI-assisted creative workflows.",
+    "My work is built around clear hierarchy, premium spacing, strong image treatment, and execution-ready layouts across digital, print, web, presentation, and motion formats.",
+    "I enjoy turning rough ideas, campaign requirements, and brand references into polished visual assets that feel clean, consistent, and practical for business use."
   ],
   aboutCoreExpertise: [
     "Graphic Design",
@@ -1735,37 +1735,73 @@ export const timeline = [
     date: "February, 2025 - Present",
     title: "Senior Graphic Designer",
     org: "Property Master Pvt. Ltd.",
-    body: "Creating premium real-estate graphics, presentations, and campaign visuals built for credibility and high-value selling environments."
+    body: "Creating real-estate marketing visuals, campaign creatives, and presentation assets for sales and digital communication.",
+    bullets: [
+      "Designed property campaign creatives, sales posters, EDMs, thumbnails, and presentation-led visuals.",
+      "Prepared execution-ready layouts with clear hierarchy, readable offer details, and polished image treatment.",
+      "Worked across digital, print, and presentation formats while keeping brand and project communication consistent."
+    ],
+    tags: ["Campaign Creatives", "Real Estate Marketing", "Presentation Design", "Print-ready Design", "Brand Consistency"]
   },
   {
     date: "3 Years",
     title: "Graphic Designer",
     org: "Group Bayport",
-    body: "Created polished brand and marketing assets with a focus on quality, consistency, and efficient production."
+    body: "Created brand and marketing assets with a focus on clean layout, production quality, and consistent visual communication.",
+    bullets: [
+      "Designed campaign creatives, marketing collateral, and social media assets for digital communication.",
+      "Supported brochure, presentation, and print-ready layout development.",
+      "Improved visual consistency through typography, spacing, alignment, and image treatment."
+    ],
+    tags: ["Marketing Collateral", "Social Media Assets", "Layout Systems", "Brand Consistency", "Print-ready Design"]
   },
   {
     date: "7 Months",
     title: "Graphic Designer & Video Editor",
     org: "7P Digital Services",
-    body: "Delivered digital creatives and edited content across social and campaign formats."
+    body: "Worked on digital creatives and edited video-led content for social, campaign, and promotional formats.",
+    bullets: [
+      "Created social media assets, campaign layouts, and short-form video edits for digital use.",
+      "Used Photoshop, Illustrator, Premiere Pro, After Effects, and Canva for design and editing workflows.",
+      "Balanced visual layout, pacing, and brand consistency across static and motion formats."
+    ],
+    tags: ["Campaign Creatives", "Social Media Assets", "Video Editing", "Motion Content", "Brand Consistency"]
   },
   {
     date: "3 Months",
     title: "Graphic Designer Intern",
     org: "Citymall, Gurugram",
-    body: "Supported brand and digital graphic design production in a consumer-facing environment."
+    body: "Supported day-to-day graphic design production for consumer-facing digital and brand communication.",
+    bullets: [
+      "Assisted with digital graphics, marketplace-style visuals, and social communication assets.",
+      "Prepared clean layouts with attention to alignment, spacing, and readable content hierarchy.",
+      "Supported production updates while maintaining brand-sensitive visual treatment."
+    ],
+    tags: ["Social Media Assets", "Digital Graphics", "Layout Systems", "Brand Consistency"]
   },
   {
     date: "6 Months",
     title: "Graphic Designer Intern",
     org: "YPR Eng. and Sol. Private Limited",
-    body: "Built a practical creative foundation through production work, layout support, and tool-led design execution."
+    body: "Built practical design production experience through layout support, asset preparation, and tool-led execution.",
+    bullets: [
+      "Supported brochure, presentation, and print-ready layout development.",
+      "Created execution-ready design assets for business and marketing use.",
+      "Worked across digital and print formats while improving tool fluency and layout discipline."
+    ],
+    tags: ["Marketing Collateral", "Presentation Design", "Print-ready Design", "Layout Systems"]
   },
   {
     date: "5 Months",
     title: "Graphic Designer Intern",
     org: "Krash IT Services",
-    body: "Strengthened hands-on graphic design workflows through layout, visual cleanup, and asset preparation."
+    body: "Strengthened hands-on graphic design workflows through layout cleanup, visual asset preparation, and production support.",
+    bullets: [
+      "Assisted with graphic design layouts, digital assets, and visual cleanup tasks.",
+      "Improved consistency through spacing, typography, alignment, and image treatment.",
+      "Prepared practical design files for business, sales, and marketing communication."
+    ],
+    tags: ["Layout Systems", "Digital Graphics", "Marketing Collateral", "Brand Consistency"]
   }
 ];
 

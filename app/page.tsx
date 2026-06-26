@@ -422,12 +422,31 @@ export default function Home() {
             <div className="absolute left-5 top-4 h-[calc(100%-2rem)] w-px bg-gradient-to-b from-signal via-white/20 to-transparent" />
             {timeline.map((item, index) => (
               <Reveal key={`${item.org}-${item.date}`} delay={index * 0.04}>
-                <div className="relative ml-14 rounded-3xl border border-white/10 bg-black/25 p-6 backdrop-blur-xl">
+                <div className="relative ml-10 rounded-3xl border border-white/10 bg-black/25 p-5 backdrop-blur-xl sm:ml-14 sm:p-6">
                   <span className="absolute left-[-2.75rem] top-7 h-4 w-4 rounded-full border border-signal bg-obsidian shadow-[0_0_24px_rgba(142,232,255,0.7)]" />
                   <p className="text-xs uppercase tracking-[0.24em] text-signal">{item.date}</p>
                   <h3 className="mt-3 font-display text-2xl text-white">{item.title}</h3>
                   <p className="mt-1 text-champagne">{item.org}</p>
-                  <p className="mt-4 leading-7 text-mercury">{item.body}</p>
+                  <p className="mt-4 text-sm leading-7 text-mercury md:text-base">{item.body}</p>
+                  {"bullets" in item ? (
+                    <ul className="mt-5 space-y-3 text-sm leading-6 text-white/74">
+                      {item.bullets.map((point) => (
+                        <li key={point} className="flex gap-3">
+                          <span className="mt-2 h-1.5 w-1.5 shrink-0 rounded-full bg-signal" />
+                          <span>{point}</span>
+                        </li>
+                      ))}
+                    </ul>
+                  ) : null}
+                  {"tags" in item ? (
+                    <div className="mt-5 flex flex-wrap gap-2">
+                      {item.tags.map((tag) => (
+                        <span key={tag} className="rounded-full border border-white/10 bg-white/[0.045] px-3 py-1.5 text-[0.66rem] font-semibold uppercase leading-none tracking-[0.14em] text-white/70">
+                          {tag}
+                        </span>
+                      ))}
+                    </div>
+                  ) : null}
                 </div>
               </Reveal>
             ))}
