@@ -56,6 +56,28 @@ function getCategory(slug: string) {
   return portfolioCategories.find((category) => category.id === slug);
 }
 
+type GalleryImage = {
+  width: number;
+  height: number;
+};
+
+function galleryCardClassFor(image: GalleryImage, index: number, total = 0) {
+  const isLandscape = image.width / image.height >= 1.35;
+  const isSquare = Math.abs(image.width - image.height) <= Math.max(image.width, image.height) * 0.08;
+  const isTallFeature = image.height / image.width >= 2.8;
+  const isOpeningOrClosing = index === 0 || index === total - 1;
+
+  return [
+    "project-gallery-card group",
+    isLandscape ? "project-gallery-card-wide" : "",
+    isSquare ? "project-gallery-card-square" : "",
+    isTallFeature ? "project-gallery-card-feature" : "",
+    isOpeningOrClosing && total > 5 ? "project-gallery-card-anchor" : ""
+  ]
+    .filter(Boolean)
+    .join(" ");
+}
+
 export function generateStaticParams() {
   return portfolioCategories.map((category) => ({
     category: category.id
@@ -98,7 +120,136 @@ export default function CategoryPage({ params }: CategoryPageProps) {
   ];
 
   return (
-    <main className="min-h-screen overflow-hidden bg-obsidian text-platinum" style={categoryStyle}>
+    <>
+      <style>{`
+        .project-gallery-grid {
+          display: grid;
+          grid-template-columns: minmax(0, 1fr);
+          grid-auto-flow: row;
+          gap: 1.25rem;
+        }
+
+        .project-gallery-grid--project {
+          align-items: start;
+        }
+
+        .project-gallery-card {
+          position: relative;
+          isolation: isolate;
+          overflow: hidden;
+          border-radius: 1.5rem;
+          border: 1px solid rgb(255 255 255 / 0.1);
+          background: rgb(0 0 0 / 0.48);
+          padding: 0.85rem;
+          box-shadow: 0 24px 80px rgb(0 0 0 / 0.32);
+        }
+
+        .project-gallery-figure {
+          position: relative;
+          overflow: hidden;
+          border-radius: 1.15rem;
+          border: 1px solid rgb(255 255 255 / 0.08);
+          background:
+            radial-gradient(circle at 50% 0%, rgb(126 233 255 / 0.08), transparent 42%),
+            rgb(0 0 0 / 0.62);
+        }
+
+        .project-gallery-image {
+          display: block;
+          width: 100%;
+          height: auto;
+          object-fit: contain;
+          padding: 0.4rem;
+          border-radius: 1rem;
+          transition:
+            transform 700ms ease,
+            filter 700ms ease;
+        }
+
+        .project-gallery-card:hover .project-gallery-image {
+          transform: scale(1.01);
+          filter: saturate(1.04) contrast(1.02);
+        }
+
+        .project-gallery-meta {
+          position: relative;
+          z-index: 1;
+          display: flex;
+          flex-wrap: wrap;
+          align-items: center;
+          gap: 0.65rem;
+          padding: 0.9rem 0.1rem 0.15rem;
+        }
+
+        .project-gallery-tag {
+          display: inline-flex;
+          align-items: center;
+          min-height: 1.8rem;
+          border-radius: 999px;
+          border: 1px solid rgb(255 255 255 / 0.14);
+          background: rgb(255 255 255 / 0.06);
+          padding: 0.45rem 0.75rem;
+          font-size: 0.62rem;
+          font-weight: 900;
+          letter-spacing: 0.2em;
+          text-transform: uppercase;
+          white-space: nowrap;
+          color: rgb(255 255 255 / 0.78);
+        }
+
+        .project-gallery-title {
+          min-width: 0;
+          flex: 1 1 14rem;
+          color: rgb(255 255 255 / 0.88);
+          font-size: 0.88rem;
+          font-weight: 700;
+          line-height: 1.35;
+        }
+
+        @media (min-width: 768px) {
+          .project-gallery-grid {
+            grid-template-columns: repeat(2, minmax(0, 1fr));
+            gap: 1.6rem;
+          }
+
+          .project-gallery-card-wide,
+          .project-gallery-card-feature {
+            grid-column: span 2;
+          }
+
+          .project-gallery-card-square {
+            min-height: 100%;
+          }
+
+          .project-gallery-card-wide .project-gallery-image {
+            padding: 0.25rem;
+          }
+        }
+
+        @media (min-width: 1280px) {
+          .project-gallery-grid {
+            grid-template-columns: repeat(3, minmax(0, 1fr));
+            gap: 1.9rem;
+          }
+
+          .project-gallery-grid--project {
+            grid-template-columns: repeat(2, minmax(0, 1fr));
+          }
+
+          .project-gallery-grid:not(.project-gallery-grid--project) .project-gallery-card-anchor {
+            grid-column: span 2;
+          }
+
+          .project-gallery-card-feature {
+            grid-column: span 2;
+          }
+
+          .project-gallery-card-square:not(.project-gallery-card-wide):not(.project-gallery-card-feature) {
+            max-width: none;
+          }
+        }
+      `}</style>
+      <main className="min-h-screen overflow-hidden bg-obsidian text-platinum" style={categoryStyle}>
       <div className="pointer-events-none fixed inset-0">
         <div className="absolute left-[-14rem] top-[-18rem] h-[42rem] w-[42rem] rounded-full bg-[var(--niche-accent-soft)] blur-3xl" />
         <div className="absolute right-[-12rem] top-[20rem] h-[34rem] w-[34rem] rounded-full bg-champagne/10 blur-3xl" />
@@ -216,18 +367,18 @@ export default function CategoryPage({ params }: CategoryPageProps) {
               </p>
             </div>
 
-            <div className="columns-1 gap-5 sm:columns-2 xl:columns-3 2xl:columns-4">
-              {portfolioWorks.map((work) => {
+            <div className="project-gallery-grid">
+              {portfolioWorks.map((work, index) => {
                 const size = imageSizeFor(work.image);
 
                 return (
                   <article
                     key={work.title}
-                    className="work-gallery-card group relative mb-5 break-inside-avoid overflow-hidden rounded-[1.7rem] border border-white/10 bg-[#090b0f] shadow-luxury"
+                    className={galleryCardClassFor(size, index, portfolioWorks.length)}
                   >
                     <div className="absolute inset-0 bg-[radial-gradient(circle_at_15%_15%,rgba(142,232,255,0.13),transparent_28%),linear-gradient(145deg,rgba(255,255,255,0.08),transparent_38%)] opacity-0 transition duration-500 group-hover:opacity-100" />
                     <div className="relative p-3">
-                      <figure className="relative overflow-hidden rounded-[1.25rem] bg-black/60">
+                      <figure className="project-gallery-figure">
                         <PreviewImage
                           src={assetPath(work.image)}
                           previewSrc={assetPath(fullQualitySrcFor(work.image))}
@@ -235,9 +386,13 @@ export default function CategoryPage({ params }: CategoryPageProps) {
                           width={size.width}
                           height={size.height}
                           sizes="(min-width: 1536px) 23vw, (min-width: 1280px) 30vw, (min-width: 640px) 46vw, 92vw"
-                          className="h-auto w-full p-2 transition duration-700 group-hover:scale-[1.02]"
+                          className="project-gallery-image"
                         />
                       </figure>
+                      <div className="project-gallery-meta">
+                        <span className="project-gallery-tag">Real Estate Marketing</span>
+                        <span className="project-gallery-title">{work.title}</span>
+                      </div>
                     </div>
                   </article>
                 );
@@ -260,25 +415,26 @@ export default function CategoryPage({ params }: CategoryPageProps) {
                   <p className="max-w-2xl text-sm leading-7 text-mercury md:text-base">{project.brief}</p>
                 </div>
 
-                <div className="grid gap-5 lg:grid-cols-2">
+                <div className="project-gallery-grid project-gallery-grid--project">
                   {project.images.map((image, index) => (
                     <article
                       key={image.src}
-                      className={`group relative overflow-hidden rounded-[1.5rem] border border-white/10 bg-black/45 p-3 shadow-luxury ${
-                        index === 1 || index === 5 ? "lg:col-span-2" : ""
-                      }`}
+                      className={galleryCardClassFor(image, index, project.images.length)}
                     >
-                      <PreviewImage
-                        src={assetPath(image.src)}
-                        previewSrc={assetPath(fullQualitySrcFor(image.src))}
-                        alt={image.title}
-                        width={image.width}
-                        height={image.height}
-                        sizes={index === 1 || index === 5 ? "(min-width: 1024px) 72vw, 92vw" : "(min-width: 1024px) 36vw, 92vw"}
-                        className="h-auto w-full rounded-[1.15rem] object-cover transition duration-700 group-hover:scale-[1.015]"
-                      />
-                      <div className="pointer-events-none absolute left-6 top-6 rounded-full border border-white/15 bg-black/45 px-4 py-2 text-[0.62rem] uppercase tracking-[0.22em] text-white/80 backdrop-blur-xl">
-                        {String(index + 1).padStart(2, "0")} / {image.title}
+                      <figure className="project-gallery-figure">
+                        <PreviewImage
+                          src={assetPath(image.src)}
+                          previewSrc={assetPath(fullQualitySrcFor(image.src))}
+                          alt={image.title}
+                          width={image.width}
+                          height={image.height}
+                          sizes="(min-width: 1280px) 30vw, (min-width: 768px) 46vw, 92vw"
+                          className="project-gallery-image"
+                        />
+                      </figure>
+                      <div className="project-gallery-meta">
+                        <span className="project-gallery-tag">{String(index + 1).padStart(2, "0")}</span>
+                        <span className="project-gallery-title">{image.title}</span>
                       </div>
                     </article>
                   ))}
@@ -305,26 +461,27 @@ export default function CategoryPage({ params }: CategoryPageProps) {
                   <p className="max-w-2xl text-sm leading-7 text-mercury md:text-base">{project.brief}</p>
                 </div>
 
-                <div className="grid gap-5 lg:grid-cols-2">
+                <div className="project-gallery-grid project-gallery-grid--project">
                   {project.images.map((image, index) => (
                     <article
                       key={image.src}
-                      className={`group relative overflow-hidden rounded-[1.5rem] border border-white/10 bg-black/65 p-3 shadow-luxury ${
-                        index === 1 ? "lg:col-span-2" : ""
-                      }`}
+                      className={galleryCardClassFor(image, index, project.images.length)}
                     >
                       <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_70%_15%,rgba(190,255,0,0.2),transparent_30%),linear-gradient(145deg,rgba(255,255,255,0.08),transparent_38%)] opacity-0 transition duration-500 group-hover:opacity-100" />
-                      <PreviewImage
-                        src={assetPath(image.src)}
-                        previewSrc={assetPath(fullQualitySrcFor(image.src))}
-                        alt={image.title}
-                        width={image.width}
-                        height={image.height}
-                        sizes={index === 1 ? "(min-width: 1024px) 72vw, 92vw" : "(min-width: 1024px) 36vw, 92vw"}
-                        className="relative h-auto w-full rounded-[1.15rem] object-cover transition duration-700 group-hover:scale-[1.015]"
-                      />
-                      <div className="pointer-events-none absolute left-6 top-6 rounded-full border border-lime-300/25 bg-black/55 px-4 py-2 text-[0.62rem] uppercase tracking-[0.22em] text-lime-200 backdrop-blur-xl">
-                        {String(index + 1).padStart(2, "0")} / {image.title}
+                      <figure className="project-gallery-figure">
+                        <PreviewImage
+                          src={assetPath(image.src)}
+                          previewSrc={assetPath(fullQualitySrcFor(image.src))}
+                          alt={image.title}
+                          width={image.width}
+                          height={image.height}
+                          sizes="(min-width: 1280px) 30vw, (min-width: 768px) 46vw, 92vw"
+                          className="project-gallery-image"
+                        />
+                      </figure>
+                      <div className="project-gallery-meta">
+                        <span className="project-gallery-tag">{String(index + 1).padStart(2, "0")}</span>
+                        <span className="project-gallery-title">{image.title}</span>
                       </div>
                     </article>
                   ))}
@@ -352,42 +509,27 @@ export default function CategoryPage({ params }: CategoryPageProps) {
                   <p className="max-w-2xl text-sm leading-7 text-mercury md:text-base">{project.brief}</p>
                 </div>
 
-                <div className="flex flex-col gap-5 md:flex-row md:flex-wrap md:items-start xl:justify-between">
-                  {project.images.map((image, index) => {
-                    const isLandscape = image.width > image.height;
-                    const isCompact = image.title.toLowerCase().includes("compact");
-                    const itemWidth = isCompact
-                      ? "xl:w-[20.5%]"
-                      : isLandscape
-                        ? "xl:w-[30%]"
-                        : "xl:w-[24%]";
-                    const imageSizes = isCompact
-                      ? "(min-width: 1280px) 21vw, (min-width: 768px) 44vw, 92vw"
-                      : isLandscape
-                        ? "(min-width: 1280px) 30vw, (min-width: 768px) 44vw, 92vw"
-                        : "(min-width: 1280px) 24vw, (min-width: 768px) 44vw, 92vw";
-
-                    return (
-                      <article
-                        key={image.src}
-                        className={`group relative w-full overflow-hidden rounded-[1.5rem] border border-white/10 bg-black/55 p-3 shadow-luxury md:w-[calc(50%-0.625rem)] xl:shrink-0 ${itemWidth}`}
-                      >
-                        <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_70%_15%,rgba(125,211,255,0.2),transparent_30%),linear-gradient(145deg,rgba(255,255,255,0.08),transparent_38%)] opacity-0 transition duration-500 group-hover:opacity-100" />
+                <div className="project-gallery-grid project-gallery-grid--project">
+                  {project.images.map((image, index) => (
+                    <article key={image.src} className={galleryCardClassFor(image, index, project.images.length)}>
+                      <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_70%_15%,rgba(125,211,255,0.2),transparent_30%),linear-gradient(145deg,rgba(255,255,255,0.08),transparent_38%)] opacity-0 transition duration-500 group-hover:opacity-100" />
+                      <figure className="project-gallery-figure">
                         <PreviewImage
                           src={assetPath(image.src)}
                           previewSrc={assetPath(image.src)}
                           alt={image.title}
                           width={image.width}
                           height={image.height}
-                          sizes={imageSizes}
-                          className="relative h-auto w-full rounded-[1.15rem] object-cover transition duration-700 group-hover:scale-[1.015]"
+                          sizes="(min-width: 1280px) 30vw, (min-width: 768px) 46vw, 92vw"
+                          className="project-gallery-image"
                         />
-                        <div className="pointer-events-none absolute left-6 top-6 rounded-full border border-sky-200/25 bg-black/55 px-4 py-2 text-[0.62rem] uppercase tracking-[0.22em] text-sky-100 backdrop-blur-xl">
-                          {String(index + 1).padStart(2, "0")} / {image.title}
-                        </div>
-                      </article>
-                    );
-                  })}
+                      </figure>
+                      <div className="project-gallery-meta">
+                        <span className="project-gallery-tag">{String(index + 1).padStart(2, "0")}</span>
+                        <span className="project-gallery-title">{image.title}</span>
+                      </div>
+                    </article>
+                  ))}
                 </div>
               </div>
             ))}
@@ -411,26 +553,27 @@ export default function CategoryPage({ params }: CategoryPageProps) {
                   <p className="max-w-2xl text-sm leading-7 text-mercury md:text-base">{project.brief}</p>
                 </div>
 
-                <div className="grid gap-5 lg:grid-cols-2">
+                <div className="project-gallery-grid project-gallery-grid--project">
                   {project.images.map((image, index) => (
                     <article
                       key={image.src}
-                      className={`group relative overflow-hidden rounded-[1.5rem] border border-white/10 bg-black/55 p-3 shadow-luxury ${
-                        index === 0 || index === project.images.length - 1 ? "lg:col-span-2" : ""
-                      }`}
+                      className={galleryCardClassFor(image, index, project.images.length)}
                     >
                       <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_70%_15%,rgba(158,255,196,0.16),transparent_30%),linear-gradient(145deg,rgba(255,255,255,0.08),transparent_38%)] opacity-0 transition duration-500 group-hover:opacity-100" />
-                      <PreviewImage
-                        src={assetPath(image.src)}
-                        previewSrc={assetPath(fullQualitySrcFor(image.src))}
-                        alt={image.title}
-                        width={image.width}
-                        height={image.height}
-                        sizes={index === 0 || index === project.images.length - 1 ? "(min-width: 1024px) 72vw, 92vw" : "(min-width: 1024px) 36vw, 92vw"}
-                        className="relative h-auto w-full rounded-[1.15rem] object-cover transition duration-700 group-hover:scale-[1.015]"
-                      />
-                      <div className="pointer-events-none absolute left-6 top-6 rounded-full border border-emerald-200/25 bg-black/55 px-4 py-2 text-[0.62rem] uppercase tracking-[0.22em] text-emerald-100 backdrop-blur-xl">
-                        {String(index + 1).padStart(2, "0")} / {image.title}
+                      <figure className="project-gallery-figure">
+                        <PreviewImage
+                          src={assetPath(image.src)}
+                          previewSrc={assetPath(fullQualitySrcFor(image.src))}
+                          alt={image.title}
+                          width={image.width}
+                          height={image.height}
+                          sizes="(min-width: 1280px) 30vw, (min-width: 768px) 46vw, 92vw"
+                          className="project-gallery-image"
+                        />
+                      </figure>
+                      <div className="project-gallery-meta">
+                        <span className="project-gallery-tag">{String(index + 1).padStart(2, "0")}</span>
+                        <span className="project-gallery-title">{image.title}</span>
                       </div>
                     </article>
                   ))}
@@ -457,24 +600,27 @@ export default function CategoryPage({ params }: CategoryPageProps) {
                   <p className="max-w-2xl text-sm leading-7 text-mercury md:text-base">{project.brief}</p>
                 </div>
 
-                <div className="mx-auto grid max-w-5xl gap-5">
+                <div className="project-gallery-grid project-gallery-grid--project">
                   {project.images.map((image, index) => (
                     <article
                       key={image.src}
-                      className="group relative overflow-hidden rounded-[1.5rem] border border-white/10 bg-black/55 p-3 shadow-luxury"
+                      className={galleryCardClassFor(image, index, project.images.length)}
                     >
                       <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_75%_12%,rgba(183,164,255,0.2),transparent_30%),linear-gradient(145deg,rgba(255,255,255,0.08),transparent_38%)] opacity-0 transition duration-500 group-hover:opacity-100" />
-                      <PreviewImage
-                        src={assetPath(image.src)}
-                        previewSrc={assetPath(fullQualitySrcFor(image.src))}
-                        alt={image.title}
-                        width={image.width}
-                        height={image.height}
-                        sizes="(min-width: 1024px) 72vw, 92vw"
-                        className="relative h-auto w-full rounded-[1.15rem] object-cover transition duration-700 group-hover:scale-[1.015]"
-                      />
-                      <div className="pointer-events-none absolute left-6 top-6 rounded-full border border-violet-200/25 bg-black/55 px-4 py-2 text-[0.62rem] uppercase tracking-[0.22em] text-violet-100 backdrop-blur-xl">
-                        {String(index + 1).padStart(2, "0")} / {image.title}
+                      <figure className="project-gallery-figure">
+                        <PreviewImage
+                          src={assetPath(image.src)}
+                          previewSrc={assetPath(fullQualitySrcFor(image.src))}
+                          alt={image.title}
+                          width={image.width}
+                          height={image.height}
+                          sizes="(min-width: 1280px) 30vw, (min-width: 768px) 46vw, 92vw"
+                          className="project-gallery-image"
+                        />
+                      </figure>
+                      <div className="project-gallery-meta">
+                        <span className="project-gallery-tag">{String(index + 1).padStart(2, "0")}</span>
+                        <span className="project-gallery-title">{image.title}</span>
                       </div>
                     </article>
                   ))}
@@ -500,7 +646,7 @@ export default function CategoryPage({ params }: CategoryPageProps) {
               </p>
             </div>
 
-            <div className="grid gap-5 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
+            <div className="grid gap-5 md:grid-cols-2 md:gap-6 xl:grid-cols-3 xl:gap-8">
               {videoProjects.map((project) => (
                 <article
                   key={project.title}
@@ -579,6 +725,7 @@ export default function CategoryPage({ params }: CategoryPageProps) {
           </div>
         </section>
       )}
-    </main>
+      </main>
+    </>
   );
 }

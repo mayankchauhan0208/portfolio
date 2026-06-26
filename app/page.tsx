@@ -99,12 +99,13 @@ export default function Home() {
 
           <div className="reference-info">
             <h2 className="intro-line reference-headline">
-              Visual Designer building brand, campaign, UI, and motion creatives for digital-first businesses.
+              Visual Designer for
+              <br />
+              Brands, Campaigns & UI
             </h2>
             <p className="intro-line reference-support">
               I create brand communication, campaign creatives, UI concepts, social media assets,
-              real-estate marketing visuals, video edits, and AI-assisted creative workflows with a
-              focus on clean hierarchy, premium layouts, and execution-ready design.
+              real-estate marketing visuals, video edits, and AI-assisted creative workflows.
             </p>
             <div className="intro-line reference-cta-row">
               <Link href="#work" className="reference-cta reference-cta-primary">
