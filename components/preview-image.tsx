@@ -19,11 +19,18 @@ type PreviewImageProps = {
 export function PreviewImage({ src, previewSrc, alt, width, height, sizes, className, priority }: PreviewImageProps) {
   const [open, setOpen] = useState(false);
   const [mounted, setMounted] = useState(false);
+  const [displaySrc, setDisplaySrc] = useState(src);
+  const [modalSrc, setModalSrc] = useState(previewSrc ?? src);
   const fullQualitySrc = previewSrc ?? src;
 
   useEffect(() => {
     setMounted(true);
   }, []);
+
+  useEffect(() => {
+    setDisplaySrc(src);
+    setModalSrc(fullQualitySrc);
+  }, [fullQualitySrc, src]);
 
   useEffect(() => {
     if (!open) return;
@@ -52,13 +59,19 @@ export function PreviewImage({ src, previewSrc, alt, width, height, sizes, class
         aria-label={`Open preview: ${alt}`}
       >
         <Image
-          src={src}
+          src={displaySrc}
           alt={alt}
           width={width}
           height={height}
           sizes={sizes}
           className={className}
           priority={priority}
+          loading={priority ? undefined : "lazy"}
+          onError={() => {
+            if (displaySrc !== fullQualitySrc) {
+              setDisplaySrc(fullQualitySrc);
+            }
+          }}
         />
       </button>
 
@@ -83,13 +96,18 @@ export function PreviewImage({ src, previewSrc, alt, width, height, sizes, class
           <div className="relative grid max-h-[82dvh] max-w-[94vw] place-items-center overflow-hidden rounded-[1.25rem] border border-white/12 bg-[#050505] p-2 shadow-luxury md:max-h-[90vh]">
             {/* eslint-disable-next-line @next/next/no-img-element */}
             <img
-              src={fullQualitySrc}
+              src={modalSrc}
               alt={alt}
               width={width}
               height={height}
               loading="eager"
               decoding="sync"
               className="block h-auto max-h-[78dvh] w-auto max-w-[90vw] rounded-[0.9rem] object-contain md:max-h-[86vh] md:max-w-[91vw]"
+              onError={() => {
+                if (modalSrc !== displaySrc) {
+                  setModalSrc(displaySrc);
+                }
+              }}
               onClick={(event) => event.stopPropagation()}
             />
           </div>

@@ -5,7 +5,7 @@ import { ArrowLeft, ArrowUpRight, GalleryHorizontalEnd, LayoutGrid, Sparkles } f
 import { PreviewImage } from "@/components/preview-image";
 import { PreviewVideo } from "@/components/preview-video";
 import { aiGeneratedProjects, logoProjects, metaAdsProjects, portfolioCategories, portfolioWorks, socialProjects, uiUxProjects, videoProjects } from "@/lib/portfolio-data";
-import { assetPath } from "@/lib/site-paths";
+import { assetPath, publicAssetPath } from "@/lib/site-paths";
 
 type CategoryPageProps = {
   params: {
@@ -424,7 +424,7 @@ export default function CategoryPage({ params }: CategoryPageProps) {
                       <figure className="project-gallery-figure">
                         <PreviewImage
                           src={assetPath(work.image)}
-                          previewSrc={assetPath(fullQualitySrcFor(work.image))}
+                          previewSrc={publicAssetPath(fullQualitySrcFor(work.image))}
                           alt={work.title}
                           width={size.width}
                           height={size.height}
@@ -467,7 +467,7 @@ export default function CategoryPage({ params }: CategoryPageProps) {
                       <figure className="project-gallery-figure">
                         <PreviewImage
                           src={assetPath(image.src)}
-                          previewSrc={assetPath(fullQualitySrcFor(image.src))}
+                          previewSrc={publicAssetPath(fullQualitySrcFor(image.src))}
                           alt={image.title}
                           width={image.width}
                           height={image.height}
@@ -514,7 +514,7 @@ export default function CategoryPage({ params }: CategoryPageProps) {
                       <figure className="project-gallery-figure">
                         <PreviewImage
                           src={assetPath(image.src)}
-                          previewSrc={assetPath(fullQualitySrcFor(image.src))}
+                          previewSrc={publicAssetPath(fullQualitySrcFor(image.src))}
                           alt={image.title}
                           width={image.width}
                           height={image.height}
@@ -559,7 +559,7 @@ export default function CategoryPage({ params }: CategoryPageProps) {
                       <figure className="project-gallery-figure">
                         <PreviewImage
                           src={assetPath(image.src)}
-                          previewSrc={assetPath(image.src)}
+                          previewSrc={publicAssetPath(fullQualitySrcFor(image.src))}
                           alt={image.title}
                           width={image.width}
                           height={image.height}
@@ -606,7 +606,7 @@ export default function CategoryPage({ params }: CategoryPageProps) {
                       <figure className="project-gallery-figure">
                         <PreviewImage
                           src={assetPath(image.src)}
-                          previewSrc={assetPath(fullQualitySrcFor(image.src))}
+                          previewSrc={publicAssetPath(fullQualitySrcFor(image.src))}
                           alt={image.title}
                           width={image.width}
                           height={image.height}
@@ -653,7 +653,7 @@ export default function CategoryPage({ params }: CategoryPageProps) {
                       <figure className="project-gallery-figure">
                         <PreviewImage
                           src={assetPath(image.src)}
-                          previewSrc={assetPath(fullQualitySrcFor(image.src))}
+                          previewSrc={publicAssetPath(fullQualitySrcFor(image.src))}
                           alt={image.title}
                           width={image.width}
                           height={image.height}
@@ -697,7 +697,7 @@ export default function CategoryPage({ params }: CategoryPageProps) {
                 >
                   <div className="relative overflow-hidden rounded-[1.5rem] border border-white/10 bg-black/50">
                     <PreviewVideo
-                      src={project.src ? assetPath(project.src) : undefined}
+                      src={project.src ? publicAssetPath(project.src) : undefined}
                       poster={assetPath(project.poster)}
                       title={project.title}
                       width={project.width}

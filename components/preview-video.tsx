@@ -103,7 +103,7 @@ export function PreviewVideo({ src, poster, title, width, height, sizes, classNa
         className="group relative block w-full cursor-pointer overflow-hidden text-left"
         aria-label={`Open video preview: ${title}`}
       >
-        <Image src={poster} alt={`${title} poster`} width={width} height={height} sizes={sizes} className={className} />
+        <Image src={poster} alt={`${title} poster`} width={width} height={height} sizes={sizes} className={className} loading="lazy" />
         <span className="absolute inset-0 grid place-items-center bg-black/12 opacity-95 transition group-hover:bg-black/24">
           <span className="inline-flex h-16 w-16 items-center justify-center rounded-full border border-white/20 bg-white text-black shadow-luxury transition group-hover:scale-105">
             <Play size={24} fill="currentColor" />

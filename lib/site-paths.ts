@@ -14,3 +14,11 @@ export function assetPath(path: string) {
 
   return `${basePath}${resolvedPath}`;
 }
+
+export function publicAssetPath(path: string) {
+  if (!path.startsWith("/") || path.startsWith(basePath)) {
+    return path;
+  }
+
+  return `${basePath}${path}`;
+}
