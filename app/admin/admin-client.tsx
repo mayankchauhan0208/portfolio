@@ -20,6 +20,7 @@ const defaultPassword = "admin123";
 const passwordStorageKey = "portfolio-admin-password-hash";
 const authStorageKey = "portfolio-admin-authenticated";
 const tokenStorageKey = "portfolio-admin-github-token";
+const persistentTokenStorageKey = "portfolio-admin-remembered-github-token";
 
 const editableFiles = [
   {
@@ -217,6 +218,7 @@ export function AdminClient() {
   const [password, setPassword] = useState("");
   const [newPassword, setNewPassword] = useState("");
   const [token, setToken] = useState("");
+  const [rememberToken, setRememberToken] = useState(false);
   const [selectedPath, setSelectedPath] = useState(editableFiles[0].path);
   const [loadedFile, setLoadedFile] = useState<GitHubFile | null>(null);
   const [draft, setDraft] = useState("");
@@ -228,8 +230,17 @@ export function AdminClient() {
   const activeFile = useMemo(() => editableFiles.find((file) => file.path === selectedPath), [selectedPath]);
 
   useEffect(() => {
+    const rememberedToken = localStorage.getItem(persistentTokenStorageKey) ?? "";
+    const sessionToken = sessionStorage.getItem(tokenStorageKey) ?? "";
+
     setAuthenticated(sessionStorage.getItem(authStorageKey) === "true");
-    setToken(sessionStorage.getItem(tokenStorageKey) ?? "");
+    setToken(sessionToken || rememberedToken);
+    setRememberToken(Boolean(rememberedToken));
+
+    if (!sessionToken && rememberedToken) {
+      sessionStorage.setItem(tokenStorageKey, rememberedToken);
+    }
+
     setReady(true);
   }, []);
 
@@ -262,16 +273,45 @@ export function AdminClient() {
     setStatus({ type: "success", message: "Local admin password changed on this browser." });
   }
 
-  function handleSaveToken(value: string) {
+  function handleSaveToken(value: string, shouldRemember = rememberToken) {
     setToken(value.trim());
 
     if (value.trim()) {
       sessionStorage.setItem(tokenStorageKey, value.trim());
-      setStatus({ type: "success", message: "GitHub token saved in session storage for this tab." });
+      if (shouldRemember) {
+        localStorage.setItem(persistentTokenStorageKey, value.trim());
+      }
+      setStatus({
+        type: "success",
+        message: shouldRemember ? "GitHub token remembered on this browser." : "GitHub token saved for this tab."
+      });
     } else {
       sessionStorage.removeItem(tokenStorageKey);
+      localStorage.removeItem(persistentTokenStorageKey);
+      setRememberToken(false);
       setStatus({ type: "info", message: "GitHub token cleared." });
     }
+  }
+
+  function handleRememberToken(checked: boolean) {
+    setRememberToken(checked);
+
+    if (checked && token) {
+      localStorage.setItem(persistentTokenStorageKey, token);
+      setStatus({ type: "success", message: "Token will be remembered on this browser. Do this only on your own device." });
+      return;
+    }
+
+    localStorage.removeItem(persistentTokenStorageKey);
+    setStatus({ type: "info", message: "Token will only stay for this browser tab session." });
+  }
+
+  function clearToken() {
+    setToken("");
+    setRememberToken(false);
+    sessionStorage.removeItem(tokenStorageKey);
+    localStorage.removeItem(persistentTokenStorageKey);
+    setStatus({ type: "info", message: "GitHub token removed from this browser." });
   }
 
   async function handleLoadFile() {
@@ -438,9 +478,21 @@ export function AdminClient() {
 
         <div className="mt-6 grid gap-5 lg:grid-cols-[0.76fr_1.24fr]">
           <aside className="space-y-5">
+            <Panel title="Quick Start">
+              <ol className="space-y-3 text-sm leading-6 text-mercury">
+                <li><strong className="text-white">1.</strong> Paste your GitHub token once.</li>
+                <li><strong className="text-white">2.</strong> Choose what you want to edit.</li>
+                <li><strong className="text-white">3.</strong> Click Load From GitHub.</li>
+                <li><strong className="text-white">4.</strong> Edit, then Save & Publish.</li>
+              </ol>
+              <p className="mt-4 rounded-2xl border border-white/10 bg-black/25 p-3 text-xs leading-5 text-white/55">
+                You only need to paste the token every time if you do not enable remember on this device.
+              </p>
+            </Panel>
+
             <Panel title="GitHub Access">
               <p className="text-sm leading-6 text-mercury">
-                Paste a fine-grained GitHub token scoped only to this repo with Contents read/write access. It is stored in `sessionStorage` for this tab.
+                Paste a fine-grained GitHub token scoped only to this repo with Contents read/write access.
               </p>
               <label className="mt-4 grid gap-2 text-sm text-white/80">
                 GitHub token
@@ -452,6 +504,25 @@ export function AdminClient() {
                   placeholder="github_pat_..."
                 />
               </label>
+              <label className="mt-4 flex items-start gap-3 rounded-2xl border border-white/10 bg-black/25 p-3 text-sm leading-6 text-mercury">
+                <input
+                  type="checkbox"
+                  checked={rememberToken}
+                  onChange={(event) => handleRememberToken(event.target.checked)}
+                  className="mt-1 h-4 w-4 accent-signal"
+                />
+                <span>
+                  Remember token on this device. Use this only on your own phone/laptop.
+                </span>
+              </label>
+              <div className="mt-4 flex flex-wrap gap-2">
+                <button type="button" onClick={clearToken} className="min-h-10 rounded-full border border-white/10 px-4 text-xs font-bold uppercase tracking-[0.16em] text-white/72 transition hover:border-signal hover:text-signal">
+                  Clear Token
+                </button>
+                <span className="inline-flex min-h-10 items-center rounded-full border border-white/10 bg-white/[0.04] px-4 text-xs text-white/55">
+                  {token ? (rememberToken ? "Saved on this device" : "Saved for this tab") : "No token saved"}
+                </span>
+              </div>
             </Panel>
 
             <Panel title="Password">
@@ -472,7 +543,7 @@ export function AdminClient() {
               </form>
             </Panel>
 
-            <Panel title="Approved Files">
+            <Panel title="Easy Edit Sections">
               <div className="grid gap-2">
                 {editableFiles.map((file) => (
                   <button
@@ -525,7 +596,7 @@ export function AdminClient() {
                   placeholder="Commit message"
                 />
                 <button type="button" onClick={handleCommitFile} className="min-h-12 rounded-full bg-signal px-6 text-xs font-bold uppercase tracking-[0.18em] text-black transition hover:bg-white">
-                  Publish Commit
+                  Save & Publish
                 </button>
               </div>
             </Panel>
