@@ -116,7 +116,7 @@ export default function Home() {
                 Contact Me
                 <Mail size={16} />
               </a>
-              <a href={assetPath(profile.resume)} download className="reference-cta reference-cta-secondary">
+              <a href={assetPath(profile.resume)} download aria-label="Download Resume" className="reference-cta reference-cta-secondary">
                 Download Resume
                 <Download size={16} />
               </a>
@@ -513,7 +513,7 @@ export default function Home() {
                   <span className="flex min-w-0 items-center gap-3"><Mail className="shrink-0" size={18} /> <span className="min-w-0 break-all">Contact Me</span></span>
                   <ArrowUpRight className="shrink-0" size={18} />
                 </a>
-                <a href={assetPath(profile.resume)} download className="flex min-w-0 items-center justify-between gap-4 rounded-2xl border border-signal/35 bg-signal/15 p-4 font-semibold text-white transition hover:border-signal hover:bg-signal hover:text-black sm:p-5">
+                <a href={assetPath(profile.resume)} download aria-label="Download Resume" className="flex min-w-0 items-center justify-between gap-4 rounded-2xl border border-signal/35 bg-signal/15 p-4 font-semibold text-white transition hover:border-signal hover:bg-signal hover:text-black sm:p-5">
                   <span className="flex min-w-0 items-center gap-3"><Download className="shrink-0" size={18} /> <span>Download Resume</span></span>
                   <ArrowUpRight className="shrink-0" size={18} />
                 </a>
@@ -521,15 +521,17 @@ export default function Home() {
                   <span className="flex min-w-0 items-center gap-3"><Phone className="shrink-0" size={18} /> <span>{profile.phone}</span></span>
                   <ArrowUpRight className="shrink-0" size={18} />
                 </a>
-                <a href={profile.behance} target="_blank" rel="noreferrer" className="flex min-w-0 items-center justify-between gap-4 rounded-2xl border border-white/10 bg-black/25 p-4 text-white transition hover:border-signal/40 hover:bg-black/40 sm:p-5">
-                  <span>View Behance Portfolio</span>
+                <a href={profile.behance} target="_blank" rel="noopener noreferrer" aria-label="Behance" className="flex min-w-0 items-center justify-between gap-4 rounded-2xl border border-white/10 bg-black/25 p-4 text-white transition hover:border-signal/40 hover:bg-black/40 sm:p-5">
+                  <span>Behance</span>
                   <ArrowUpRight className="shrink-0" size={18} />
                 </a>
                 <Link href="#work" className="flex min-w-0 items-center justify-between gap-4 rounded-2xl border border-white/10 bg-black/25 p-4 text-white transition hover:border-signal/40 hover:bg-black/40 sm:p-5">
                   <span>View Selected Work</span>
                   <ArrowUpRight className="shrink-0" size={18} />
                 </Link>
-                <p className="break-all px-1 text-xs leading-5 text-white/48">{profile.email}</p>
+                <a href={`mailto:${profile.email}`} className="break-all px-1 text-xs leading-5 text-white/48 transition hover:text-signal">
+                  {profile.email}
+                </a>
               </div>
             </div>
           </div>

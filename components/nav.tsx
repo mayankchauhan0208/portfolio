@@ -75,8 +75,8 @@ export function Nav() {
           <a
             href={profile.behance}
             target="_blank"
-            rel="noreferrer"
-            aria-label="Open Behance portfolio"
+            rel="noopener noreferrer"
+            aria-label="Behance"
             className="grid h-11 w-11 shrink-0 place-items-center rounded-full border border-white/10 bg-white/[0.06] text-white transition hover:border-signal/50 hover:text-signal"
           >
             <ExternalLink size={16} />
