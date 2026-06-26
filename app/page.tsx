@@ -112,6 +112,10 @@ export default function Home() {
                 View Selected Work
                 <ArrowUpRight size={16} />
               </Link>
+              <a href={`mailto:${profile.email}`} className="reference-cta reference-cta-secondary">
+                Contact Me
+                <Mail size={16} />
+              </a>
               <a href={assetPath(profile.resume)} download className="reference-cta reference-cta-secondary">
                 Download Resume
                 <Download size={16} />
@@ -214,13 +218,13 @@ export default function Home() {
             <div className="relative mx-auto max-w-6xl text-center">
               <p className="mb-4 text-xs uppercase tracking-[0.34em] text-signal">Creative Work</p>
               <h2 className="font-display text-[clamp(2.05rem,9vw,4.75rem)] font-semibold leading-[0.92] text-white md:text-[clamp(2.35rem,4.85vw,4.75rem)]">
-                <span className="block md:whitespace-nowrap">Choose the niche.</span>
-                <span className="block md:whitespace-nowrap">Enter the right creative world.</span>
+                <span className="block md:whitespace-nowrap">Explore selected work.</span>
+                <span className="block md:whitespace-nowrap">Open the right portfolio category.</span>
               </h2>
               <p className="mx-auto mt-4 max-w-3xl text-sm leading-6 text-mercury md:text-base">
-                <span className="block">Explore focused creative worlds for branding,</span>
+                <span className="block">Review focused work across branding,</span>
                 <span className="block">real estate marketing, performance ads, digital campaigns, motion, and UI visuals.</span>
-                <span className="block">Built with AI-generated concepts and presentation-ready case studies.</span>
+                <span className="block">Each category is organized with case-study context and presentation-ready creative sets.</span>
               </p>
             </div>
 

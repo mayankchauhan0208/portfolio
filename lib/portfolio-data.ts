@@ -1,6 +1,6 @@
 export const profile = {
   name: "Mayank Chauhan",
-  roles: ["Graphic Designer", "UI Designer", "Video Editor"],
+  roles: ["Visual Designer", "Creative Brand Designer", "Motion & Video Creative"],
   location: "India",
   phone: "+91 9992713289",
   email: "mayankchauhan0208@gmail.com",
@@ -9,7 +9,7 @@ export const profile = {
   intro:
     "I create premium brand visuals, UI concepts, campaign creatives, and motion-ready assets for brands that need clarity, polish, and strong recall.",
   positioning:
-    "I work across real-estate marketing, brand campaigns, UI/UX concepts, social media creatives, and video editing. My focus is simple: clear hierarchy, premium spacing, strong image treatment, and practical execution that works across digital, print, presentations, and campaign formats.",
+    "I work across real-estate marketing, brand campaigns, UI visual concepts, social media creatives, and video editing. My focus is simple: clear hierarchy, premium spacing, strong image treatment, and practical execution that works across digital, print, presentations, and campaign formats.",
   aboutHeading:
     "Visual design for brand, campaign, UI, and motion-led marketing.",
   aboutSnapshot:
@@ -22,15 +22,15 @@ export const profile = {
     "I enjoy turning rough ideas, campaign requirements, and brand references into polished visual assets that feel clean, consistent, and practical for business use."
   ],
   aboutCoreExpertise: [
-    "Graphic Design",
+    "Visual Design",
     "Brand Communication",
     "Branding & Identity",
     "Real Estate Marketing",
     "Digital Campaign Design",
     "Social Media Creatives",
-    "UI/UX Design",
+    "UI Visual Design",
     "Presentation Design",
-    "Art Direction",
+    "Visual Direction",
     "Marketing Campaigns",
     "Typography & Layout",
     "Photo Retouching",
@@ -48,10 +48,10 @@ export const profile = {
 };
 
 export const metrics = [
-  { value: "5+", label: "Senior design years" },
-  { value: "6", label: "Creative roles" },
+  { value: "5+", label: "Design experience" },
+  { value: "6", label: "Role formats handled" },
   { value: "8", label: "Design tools" },
-  { value: "2025", label: "Senior milestone" }
+  { value: "2025", label: "Current role year" }
 ];
 
 export const projects = [
@@ -135,11 +135,11 @@ export const softwareSkills = [
 ];
 
 export const coreExpertise = [
-  "Creative Direction",
+  "Visual Direction",
   "Branding & Identity",
-  "UI/UX Design",
+  "UI Visual Design",
   "Presentation Design",
-  "Art Direction",
+  "Campaign Creatives",
   "Digital & Social Media Design",
   "Marketing Campaigns",
   "Print & Packaging Design",
@@ -163,7 +163,7 @@ export const aiTools = [
   { name: "Google Flow", use: "AI Filmmaking", logo: "/optimized/tool-icons/google-flow.webp", fallback: "Fl" },
   { name: "Gamma", use: "Presentation Design", logo: "/optimized/tool-icons/gamma.webp", fallback: "Ga" },
   { name: "Canva AI", use: "Creative Automation", logo: "/optimized/tool-icons/canva.webp", fallback: "Ca" },
-  { name: "Figma AI", use: "UI/UX Design Automation", logo: "/optimized/tool-icons/figma.webp", fallback: "Fi" }
+  { name: "Figma AI", use: "UI Visual Design Support", logo: "/optimized/tool-icons/figma.webp", fallback: "Fi" }
 ];
 
 export const services = [
@@ -863,7 +863,7 @@ export const logoProjects = [
         height: 1024
       },
       {
-        title: "Creative Direction",
+        title: "Visual Direction",
         src: "/optimized/work/branding/kent/kent-03.webp",
         width: 1672,
         height: 941

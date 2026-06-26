@@ -325,7 +325,7 @@ export default function CategoryPage({ params }: CategoryPageProps) {
             <p className="mb-5 inline-flex items-center gap-3 rounded-full border border-white/10 bg-white/[0.045] px-4 py-2 text-xs uppercase tracking-[0.3em] text-[var(--niche-accent)]">
               <Sparkles size={14} /> {category.label}
             </p>
-            <h1 className="text-balance font-display text-[clamp(3.4rem,15vw,6rem)] font-semibold uppercase leading-none text-white md:text-8xl lg:text-9xl">
+            <h1 className="text-balance font-display text-[clamp(2.7rem,13vw,5.75rem)] font-semibold uppercase leading-none text-white md:text-8xl lg:text-9xl">
               {category.title}
             </h1>
             <p className="mt-7 max-w-2xl text-base leading-8 text-mercury md:text-lg">{category.subtitle}</p>
@@ -403,7 +403,7 @@ export default function CategoryPage({ params }: CategoryPageProps) {
                 <p className="mb-3 flex items-center gap-2 text-xs uppercase tracking-[0.28em] text-[var(--niche-accent)]">
                   <LayoutGrid size={15} /> Campaign Wall
                 </p>
-                <h2 className="font-display text-3xl uppercase tracking-[-0.02em] text-white md:text-5xl">Real Estate Marketing Archive</h2>
+                <h2 className="font-display text-3xl uppercase tracking-[-0.02em] text-white md:text-5xl">Real Estate Marketing Work</h2>
               </div>
               <p className="hidden max-w-sm text-right text-sm leading-6 text-mercury md:block">
                 Premium EDMs, OOH designs, social posters, thumbnails, and commercial property layouts in one focused collection.
@@ -685,7 +685,7 @@ export default function CategoryPage({ params }: CategoryPageProps) {
                 <h2 className="font-display text-3xl uppercase tracking-[-0.02em] text-white md:text-5xl">Video Work Preview</h2>
               </div>
               <p className="hidden max-w-md text-right text-sm leading-6 text-mercury md:block">
-                Lightweight poster cards open into a full-screen video viewer with play, stop, mute, and close controls.
+                Lightweight poster cards open into a full-screen video viewer so the grid does not load every full video upfront.
               </p>
             </div>
 
@@ -731,10 +731,10 @@ export default function CategoryPage({ params }: CategoryPageProps) {
                 <p className="mb-3 flex items-center gap-2 text-xs uppercase tracking-[0.28em] text-[var(--niche-accent)]">
                   <GalleryHorizontalEnd size={15} /> Category Presentation
                 </p>
-                <h2 className="font-display text-3xl uppercase tracking-[-0.02em] text-white md:text-5xl">Creative Direction System</h2>
+                <h2 className="font-display text-3xl uppercase tracking-[-0.02em] text-white md:text-5xl">Visual Direction System</h2>
               </div>
               <p className="hidden max-w-md text-right text-sm leading-6 text-mercury md:block">
-                A polished category page built for future case studies, thumbnails, campaign boards, and presentation-ready creative sets.
+                A polished category page structure for case-study context, thumbnails, campaign boards, and presentation-ready creative sets.
               </p>
             </div>
 

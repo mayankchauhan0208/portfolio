@@ -59,14 +59,14 @@ export default function WorkPage() {
               <Sparkles size={14} /> Creative Index
             </p>
             <h1 className="font-display text-[clamp(3rem,15vw,10.5rem)] font-semibold uppercase leading-[0.82] text-white md:leading-[0.78]">
-              Choose
+              Selected
               <br />
-              Your
+              Work
               <br />
               Library
             </h1>
             <p className="mt-7 max-w-2xl text-base leading-8 text-mercury md:text-lg">
-              Seven focused rooms for Mayank&apos;s portfolio: brand systems, real estate marketing, digital campaigns, UI visual design, motion and video, performance ad creatives, and AI creative workflows. Each page has its own tone and presentation flow.
+              A focused portfolio library covering brand systems, real estate marketing, digital campaigns, UI visual design, motion and video, performance ad creatives, and AI-assisted creative workflows. Each page includes project context, deliverables, and gallery work.
             </p>
           </div>
 
@@ -112,10 +112,10 @@ export default function WorkPage() {
               <p className="mb-3 flex items-center gap-2 text-xs uppercase tracking-[0.28em] text-signal">
                 <GalleryHorizontalEnd size={15} /> Category Rooms
               </p>
-              <h2 className="font-display text-3xl uppercase tracking-[-0.02em] text-white md:text-5xl">Open A Dedicated Page</h2>
+              <h2 className="font-display text-3xl uppercase tracking-[-0.02em] text-white md:text-5xl">Open A Work Category</h2>
             </div>
             <p className="max-w-lg text-sm leading-7 text-mercury md:text-right">
-              The library is now page-based, so each category can grow into a proper case-study gallery instead of sitting in one long scroll.
+              Each category is structured to show the brief, design role, deliverables, tools, and final creative assets without making claims beyond the work shown.
             </p>
           </div>
 
@@ -170,7 +170,7 @@ export default function WorkPage() {
                 </div>
 
                 <div className="absolute bottom-5 left-5 right-5">
-                  <p className="mb-3 text-[0.62rem] uppercase tracking-[0.22em] text-[var(--niche-accent)]">Dedicated Page</p>
+                  <p className="mb-3 text-[0.62rem] uppercase tracking-[0.22em] text-[var(--niche-accent)]">Work Category</p>
                   <h3 className="font-display text-3xl leading-none text-white">{category.title}</h3>
                   <p className="mt-4 line-clamp-3 text-sm leading-6 text-white/64">{category.subtitle}</p>
                   <span className="mt-6 inline-flex items-center gap-2 rounded-full bg-white px-4 py-2 text-[0.66rem] font-bold uppercase tracking-[0.18em] text-black transition group-hover:bg-[var(--niche-accent)]">
