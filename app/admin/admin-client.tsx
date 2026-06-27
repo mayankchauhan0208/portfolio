@@ -443,12 +443,28 @@ function contentUrl(path: string) {
   return `https://api.github.com/repos/${repoOwner}/${repoName}/contents/${encodeURIComponent(path).replace(/%2F/g, "/")}`;
 }
 
+async function githubFailureMessage(response: Response, fallback: string) {
+  const payload = await response.json().catch(() => null);
+  const message = typeof payload?.message === "string" ? payload.message : "";
+
+  if (response.status === 401) {
+    return "GitHub rejected this token. Check that it is complete and not expired.";
+  }
+  if (response.status === 403 || message.includes("Resource not accessible by personal access token")) {
+    return "This token cannot publish to the portfolio repo. In GitHub, select the portfolio repository and set Repository permissions > Contents to Read and write.";
+  }
+  if (response.status === 404) {
+    return "The token cannot see this repository. Set Resource owner to mayankchauhan0208 and include the portfolio repository.";
+  }
+  return message || fallback;
+}
+
 async function verifyGithubAccess(token: string) {
   const response = await fetch(`https://api.github.com/repos/${repoOwner}/${repoName}`, {
     headers: githubHeaders(token)
   });
   if (!response.ok) {
-    throw new Error(response.status === 401 ? "GitHub rejected this token. Check that it is complete and not expired." : `Could not access the portfolio repo. GitHub returned ${response.status}.`);
+    throw new Error(await githubFailureMessage(response, `Could not access the portfolio repo. GitHub returned ${response.status}.`));
   }
   const repository = await response.json();
   if (repository.permissions && repository.permissions.push === false) {
@@ -462,7 +478,7 @@ async function fetchGithubFile(path: string, token: string): Promise<GitHubFile>
   });
 
   if (!response.ok) {
-    throw new Error(`Could not load ${path}. GitHub returned ${response.status}.`);
+    throw new Error(await githubFailureMessage(response, `Could not load ${path}. GitHub returned ${response.status}.`));
   }
 
   const payload = await response.json();
@@ -484,7 +500,7 @@ async function fetchGithubSha(path: string, token: string) {
   }
 
   if (!response.ok) {
-    throw new Error(`Could not check ${path}. GitHub returned ${response.status}.`);
+    throw new Error(await githubFailureMessage(response, `Could not check ${path}. GitHub returned ${response.status}.`));
   }
 
   const payload = await response.json();
@@ -507,8 +523,7 @@ async function commitGithubFile(path: string, token: string, content: string, sh
   });
 
   if (!response.ok) {
-    const payload = await response.json().catch(() => null);
-    throw new Error(payload?.message ?? `GitHub returned ${response.status}.`);
+    throw new Error(await githubFailureMessage(response, `GitHub returned ${response.status}.`));
   }
 
   return response.json();
@@ -530,8 +545,7 @@ async function commitGithubBase64(path: string, token: string, content: string, 
   });
 
   if (!response.ok) {
-    const payload = await response.json().catch(() => null);
-    throw new Error(payload?.message ?? `GitHub returned ${response.status}.`);
+    throw new Error(await githubFailureMessage(response, `GitHub returned ${response.status}.`));
   }
 
   return response.json();
