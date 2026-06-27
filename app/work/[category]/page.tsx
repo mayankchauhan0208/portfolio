@@ -59,6 +59,19 @@ function originalImageSrc(image: { src: string; originalSrc?: string }) {
   return fullQualitySrcFor(image.src, image.originalSrc);
 }
 
+function originalWorkImageSrc(work: { image: string }) {
+  const originalImage = (work as { originalImage?: unknown }).originalImage;
+  return fullQualitySrcFor(work.image, typeof originalImage === "string" ? originalImage : undefined);
+}
+
+function workImageSize(work: { image: string }) {
+  const dimensions = work as { width?: unknown; height?: unknown };
+  if (typeof dimensions.width === "number" && typeof dimensions.height === "number") {
+    return { width: dimensions.width, height: dimensions.height };
+  }
+  return imageSizeFor(work.image);
+}
+
 function getCategory(slug: string) {
   return portfolioCategories.find((category) => category.id === slug);
 }
@@ -423,7 +436,7 @@ export default function CategoryPage({ params }: CategoryPageProps) {
 
             <div className="project-gallery-grid">
               {portfolioWorks.map((work, index) => {
-                const size = imageSizeFor(work.image);
+                const size = workImageSize(work);
 
                 return (
                   <article
@@ -435,7 +448,7 @@ export default function CategoryPage({ params }: CategoryPageProps) {
                       <figure className="project-gallery-figure">
                         <PreviewImage
                           src={assetPath(work.image)}
-                          previewSrc={publicAssetPath(fullQualitySrcFor(work.image))}
+                          previewSrc={publicAssetPath(originalWorkImageSrc(work))}
                           alt={work.title}
                           width={size.width}
                           height={size.height}

@@ -45,6 +45,16 @@ type CollectionConfig = {
   itemName: string;
 };
 
+type ProjectUploadCategory = {
+  id: string;
+  label: string;
+  exportName: string;
+  folder: string;
+  category: string;
+  defaultFormat: string;
+  mode: "gallery" | "real-estate" | "video";
+};
+
 type PendingProjectImage = {
   id: string;
   file: File;
@@ -118,6 +128,16 @@ const collectionConfigs: CollectionConfig[] = [
   { exportName: "timeline", label: "Experience Timeline", description: "Detailed work timeline, outputs, and skill tags.", itemName: "role" },
   { exportName: "education", label: "Education", description: "Education entries shown on the homepage.", itemName: "entry" },
   { exportName: "hobbies", label: "Interests", description: "Personal interests displayed on the site.", itemName: "interest" }
+];
+
+const projectUploadCategories: ProjectUploadCategory[] = [
+  { id: "branding", label: "Brand Systems", exportName: "logoProjects", folder: "branding", category: "Brand Systems", defaultFormat: "Brand Identity Presentation", mode: "gallery" },
+  { id: "real-estate", label: "Real Estate Marketing", exportName: "portfolioWorks", folder: "real-estate", category: "Real Estate Marketing", defaultFormat: "Campaign Creative", mode: "real-estate" },
+  { id: "social-media", label: "Digital Campaigns", exportName: "socialProjects", folder: "social-media", category: "Digital Campaigns", defaultFormat: "Digital Campaign", mode: "gallery" },
+  { id: "ui-ux", label: "UI Visual Design", exportName: "uiUxProjects", folder: "ui-ux", category: "UI Visual Design", defaultFormat: "UI Visual Presentation", mode: "gallery" },
+  { id: "videos", label: "Motion & Video", exportName: "videoProjects", folder: "videos", category: "Motion & Video", defaultFormat: "Edited Video", mode: "video" },
+  { id: "meta-ads", label: "Performance Ads", exportName: "metaAdsProjects", folder: "meta-ads", category: "Performance Ad Creatives", defaultFormat: "Performance Ad Set", mode: "gallery" },
+  { id: "ai-generated", label: "AI Creative Workflows", exportName: "aiGeneratedProjects", folder: "ai-generated", category: "AI Creative Workflows", defaultFormat: "AI-assisted Creative Visuals", mode: "gallery" }
 ];
 
 const editorSections = [
@@ -465,6 +485,11 @@ function originalImageExtension(file: File) {
   return "jpg";
 }
 
+function originalVideoExtension(file: File) {
+  const extension = file.name.toLowerCase().split(".").pop();
+  return extension && ["mp4", "webm", "mov"].includes(extension) ? extension : "mp4";
+}
+
 async function optimizeProjectImage(file: File) {
   const bitmap = await createImageBitmap(file);
   const maxDimension = 1800;
@@ -484,6 +509,47 @@ async function optimizeProjectImage(file: File) {
     canvas.toBlob((result) => result ? resolve(result) : reject(new Error("Could not create the optimized WebP image.")), "image/webp", 0.84);
   });
   return { blob, ...dimensions };
+}
+
+function formatDuration(seconds: number) {
+  const minutes = Math.floor(seconds / 60);
+  const remaining = Math.round(seconds % 60).toString().padStart(2, "0");
+  return `${minutes}:${remaining}`;
+}
+
+async function createVideoPoster(file: File) {
+  const url = URL.createObjectURL(file);
+  const video = document.createElement("video");
+  video.muted = true;
+  video.preload = "metadata";
+  video.src = url;
+
+  try {
+    await new Promise<void>((resolve, reject) => {
+      video.onloadedmetadata = () => resolve();
+      video.onerror = () => reject(new Error("This browser could not read the selected video."));
+    });
+    const captureTime = Math.min(Math.max(video.duration * 0.15, 0.1), 2);
+    await new Promise<void>((resolve, reject) => {
+      video.onseeked = () => resolve();
+      video.onerror = () => reject(new Error("Could not generate the video poster."));
+      video.currentTime = captureTime;
+    });
+    const canvas = document.createElement("canvas");
+    const maxDimension = 1600;
+    const scale = Math.min(1, maxDimension / Math.max(video.videoWidth, video.videoHeight));
+    canvas.width = Math.max(1, Math.round(video.videoWidth * scale));
+    canvas.height = Math.max(1, Math.round(video.videoHeight * scale));
+    const context = canvas.getContext("2d");
+    if (!context) throw new Error("Could not prepare the video poster.");
+    context.drawImage(video, 0, 0, canvas.width, canvas.height);
+    const blob = await new Promise<Blob>((resolve, reject) => {
+      canvas.toBlob((result) => result ? resolve(result) : reject(new Error("Could not create the video poster WebP.")), "image/webp", 0.84);
+    });
+    return { blob, width: video.videoWidth, height: video.videoHeight, duration: formatDuration(video.duration) };
+  } finally {
+    URL.revokeObjectURL(url);
+  }
 }
 
 function githubHeaders(token: string) {
@@ -1122,8 +1188,8 @@ export function AdminClient() {
               </div>
             </Panel>
 
-            <Panel title="Quick Add AI Project">
-              <AiProjectUploader token={token} onStatus={setStatus} />
+            <Panel title="Add New Work Project">
+              <WorkProjectUploader token={token} onStatus={setStatus} />
             </Panel>
 
             <Panel title="Content Editor">
@@ -1196,7 +1262,7 @@ export function AdminClient() {
 
             <Panel title="Advanced Media Upload">
               <p className="text-sm leading-6 text-mercury">
-                Use this only for individual file updates that are not part of the guided AI project uploader.
+                Use this only for individual file updates that are not part of the guided Work publisher.
               </p>
               <div className="mt-4 grid gap-3">
                 <label className="grid gap-2 text-sm text-white/80">
@@ -1237,27 +1303,49 @@ export function AdminClient() {
   );
 }
 
-function AiProjectUploader({ token, onStatus }: { token: string; onStatus: (status: Status) => void }) {
+function WorkProjectUploader({ token, onStatus }: { token: string; onStatus: (status: Status) => void }) {
+  const [categoryId, setCategoryId] = useState(projectUploadCategories[0].id);
   const [title, setTitle] = useState("");
-  const [format, setFormat] = useState("AI-assisted Creative Visuals");
+  const [format, setFormat] = useState(projectUploadCategories[0].defaultFormat);
   const [brief, setBrief] = useState("");
   const [images, setImages] = useState<PendingProjectImage[]>([]);
   const [dragActive, setDragActive] = useState(false);
   const [publishing, setPublishing] = useState(false);
+  const [fileInputVersion, setFileInputVersion] = useState(0);
+  const uploadCategory = projectUploadCategories.find((category) => category.id === categoryId) ?? projectUploadCategories[0];
+
+  function selectCategory(category: ProjectUploadCategory) {
+    if (images.length && !window.confirm("Changing category will remove the selected files. Continue?")) return;
+    images.forEach((image) => URL.revokeObjectURL(image.preview));
+    setImages([]);
+    setFileInputVersion((version) => version + 1);
+    setCategoryId(category.id);
+    setFormat(category.defaultFormat);
+    onStatus({ type: "info", message: `${category.label} selected.` });
+  }
 
   function addFiles(files: File[]) {
-    const availableSlots = Math.max(0, 20 - images.length);
+    const isVideo = uploadCategory.mode === "video";
+    const maximumFiles = isVideo ? 1 : 20;
+    const availableSlots = Math.max(0, maximumFiles - images.length);
     const accepted = files
-      .filter((file) => ["image/jpeg", "image/png", "image/webp"].includes(file.type) && file.size <= 25 * 1024 * 1024)
+      .filter((file) => isVideo
+        ? ["video/mp4", "video/webm", "video/quicktime"].includes(file.type) && file.size <= 90 * 1024 * 1024
+        : ["image/jpeg", "image/png", "image/webp"].includes(file.type) && file.size <= 25 * 1024 * 1024)
       .slice(0, availableSlots)
       .map((file) => ({ id: crypto.randomUUID(), file, title: titleFromFilename(file.name), preview: URL.createObjectURL(file) }));
 
     if (!accepted.length) {
-      onStatus({ type: "error", message: "Choose JPG, PNG, or WebP images smaller than 25 MB each." });
+      onStatus({
+        type: "error",
+        message: isVideo
+          ? "Choose one MP4, WebM, or MOV video smaller than 90 MB."
+          : "Choose JPG, PNG, or WebP images smaller than 25 MB each."
+      });
       return;
     }
     setImages((current) => [...current, ...accepted]);
-    onStatus({ type: "info", message: `${accepted.length} creative${accepted.length === 1 ? "" : "s"} added to the project.` });
+    onStatus({ type: "info", message: `${accepted.length} ${isVideo ? "video" : `creative${accepted.length === 1 ? "" : "s"}`} added to the project.` });
   }
 
   function removeImage(id: string) {
@@ -1266,6 +1354,7 @@ function AiProjectUploader({ token, onStatus }: { token: string; onStatus: (stat
       if (selected) URL.revokeObjectURL(selected.preview);
       return current.filter((image) => image.id !== id);
     });
+    setFileInputVersion((version) => version + 1);
   }
 
   function moveImage(index: number, direction: -1 | 1) {
@@ -1291,28 +1380,55 @@ function AiProjectUploader({ token, onStatus }: { token: string; onStatus: (stat
       onStatus({ type: "error", message: "Add at least one creative and give every creative a title." });
       return;
     }
-    if (!window.confirm(`Upload ${images.length} creatives and publish “${projectTitle}” under AI Creative Projects?`)) {
+    if (!window.confirm(`Upload ${images.length} file${images.length === 1 ? "" : "s"} and publish "${projectTitle}" under ${uploadCategory.label}?`)) {
       return;
     }
 
     try {
       setPublishing(true);
-      onStatus({ type: "info", message: "Checking the AI project collection..." });
+      onStatus({ type: "info", message: `Checking ${uploadCategory.label}...` });
       const portfolioFile = await fetchGithubFile("lib/portfolio-data.ts", token);
-      const projects = parseExportedCollection(portfolioFile.content, "aiGeneratedProjects");
-      if (projects.some((project) => project && typeof project === "object" && !Array.isArray(project) && project.title === projectTitle)) {
+      const projects = parseExportedCollection(portfolioFile.content, uploadCategory.exportName);
+      if (uploadCategory.mode !== "real-estate" && projects.some((project) => project && typeof project === "object" && !Array.isArray(project) && project.title === projectTitle)) {
         throw new Error("A project with this title already exists. Use a different title or edit the existing project.");
       }
 
       const projectImages: EditableValue[] = [];
+      const videoRecords: EditableValue[] = [];
       for (let index = 0; index < images.length; index += 1) {
         const image = images[index];
-        onStatus({ type: "info", message: `Preparing creative ${index + 1} of ${images.length}...` });
-        const optimized = await optimizeProjectImage(image.file);
         const baseName = `${String(index + 1).padStart(2, "0")}-${slugify(image.title) || "creative"}`;
-        const originalExtension = originalImageExtension(image.file);
-        const originalRepoPath = `public/work/ai-generated/${projectSlug}/${baseName}.${originalExtension}`;
-        const optimizedRepoPath = `public/optimized/work/ai-generated/${projectSlug}/${baseName}.webp`;
+        onStatus({ type: "info", message: `Preparing file ${index + 1} of ${images.length}...` });
+
+        if (uploadCategory.mode === "video") {
+          const poster = await createVideoPoster(image.file);
+          const originalRepoPath = `public/work/videos/${projectSlug}/${baseName}.${originalVideoExtension(image.file)}`;
+          const optimizedRepoPath = `public/optimized/work/videos/${projectSlug}/${baseName}.webp`;
+          const [originalSha, optimizedSha] = await Promise.all([
+            fetchGithubSha(originalRepoPath, token),
+            fetchGithubSha(optimizedRepoPath, token)
+          ]);
+          if (originalSha || optimizedSha) throw new Error("A video with these generated filenames already exists. Change the project title.");
+          onStatus({ type: "info", message: "Uploading the video and its automatic poster..." });
+          await commitGithubBase64(originalRepoPath, token, await fileToBase64(image.file), null, `media: add ${projectTitle} video`);
+          await commitGithubBase64(optimizedRepoPath, token, await fileToBase64(poster.blob), null, `media: add ${projectTitle} poster`);
+          videoRecords.push({
+            title: projectTitle,
+            category: uploadCategory.category,
+            format: format.trim(),
+            brief: brief.trim(),
+            poster: optimizedRepoPath.replace(/^public/, ""),
+            src: originalRepoPath.replace(/^public/, ""),
+            width: poster.width,
+            height: poster.height,
+            duration: poster.duration
+          });
+          continue;
+        }
+
+        const optimized = await optimizeProjectImage(image.file);
+        const originalRepoPath = `public/work/${uploadCategory.folder}/${projectSlug}/${baseName}.${originalImageExtension(image.file)}`;
+        const optimizedRepoPath = `public/optimized/work/${uploadCategory.folder}/${projectSlug}/${baseName}.webp`;
 
         const [originalSha, optimizedSha] = await Promise.all([
           fetchGithubSha(originalRepoPath, token),
@@ -1334,27 +1450,51 @@ function AiProjectUploader({ token, onStatus }: { token: string; onStatus: (stat
         });
       }
 
-      const nextProjects: EditableValue[] = [
-        ...projects,
-        {
+      let newRecords: EditableValue[];
+      if (uploadCategory.mode === "video") {
+        newRecords = videoRecords;
+      } else if (uploadCategory.mode === "real-estate") {
+        newRecords = projectImages.map((projectImage, index) => {
+          const media = projectImage as { [key: string]: EditableValue };
+          const ratio = Number(media.width) / Number(media.height);
+          return {
+            title: images.length === 1 ? projectTitle : images[index].title.trim(),
+            category: uploadCategory.category,
+            format: format.trim(),
+            brief: brief.trim(),
+            image: media.src,
+            originalImage: media.originalSrc,
+            width: media.width,
+            height: media.height,
+            span: ratio > 1.45 ? "md:col-span-4 md:row-span-1" : ratio < 0.8 ? "md:col-span-2 md:row-span-2" : "md:col-span-3 md:row-span-2",
+            tone: "Portfolio creative"
+          };
+        });
+      } else {
+        newRecords = [{
           title: projectTitle,
-          category: "AI Creative Workflows",
+          category: uploadCategory.category,
           format: format.trim(),
           brief: brief.trim(),
           images: projectImages
-        }
-      ];
-      validateCollection(nextProjects, collectionConfigs.find((collection) => collection.exportName === "aiGeneratedProjects")!);
-      const nextContent = replaceExportedCollection(portfolioFile.content, "aiGeneratedProjects", nextProjects);
-      await commitGithubFile(portfolioFile.path, token, nextContent, portfolioFile.sha, `content: add ${projectTitle} AI project`);
+        }];
+      }
+
+      const nextProjects: EditableValue[] = [...projects, ...newRecords];
+      const collectionConfig = collectionConfigs.find((collection) => collection.exportName === uploadCategory.exportName);
+      if (!collectionConfig) throw new Error("This work category is not configured for publishing.");
+      validateCollection(nextProjects, collectionConfig);
+      const nextContent = replaceExportedCollection(portfolioFile.content, uploadCategory.exportName, nextProjects);
+      await commitGithubFile(portfolioFile.path, token, nextContent, portfolioFile.sha, `content: add ${projectTitle} to ${uploadCategory.label}`);
 
       images.forEach((image) => URL.revokeObjectURL(image.preview));
       setImages([]);
+      setFileInputVersion((version) => version + 1);
       setTitle("");
       setBrief("");
-      onStatus({ type: "success", message: `${projectTitle} was published to GitHub with optimized gallery images and full-quality originals.` });
+      onStatus({ type: "success", message: `${projectTitle} was published under ${uploadCategory.label} with automatic filenames, optimized WebP previews, and full-quality originals.` });
     } catch (error) {
-      onStatus({ type: "error", message: error instanceof Error ? error.message : "Could not publish the AI project." });
+      onStatus({ type: "error", message: error instanceof Error ? error.message : "Could not publish the project." });
     } finally {
       setPublishing(false);
     }
@@ -1365,30 +1505,63 @@ function AiProjectUploader({ token, onStatus }: { token: string; onStatus: (stat
       <div className="flex items-start gap-3 border-b border-white/10 pb-5">
         <span className="grid h-11 w-11 shrink-0 place-items-center rounded-xl bg-signal/10 text-signal"><Sparkles size={21} /></span>
         <div>
-          <p className="font-semibold text-white">AI Creative Project</p>
-          <p className="mt-1 text-sm leading-6 text-mercury">Add details once, drop all creatives, and publish the complete project.</p>
+          <p className="font-semibold text-white">Guided Work Publisher</p>
+          <p className="mt-1 text-sm leading-6 text-mercury">Choose a Work category, add details, drop the files, and publish. Paths, filenames, thumbnails, and project data are handled automatically.</p>
+        </div>
+      </div>
+
+      <div className="mt-5">
+        <p className="text-sm font-semibold text-white">1. Choose Work category</p>
+        <div className="mt-3 grid grid-cols-2 gap-2 md:grid-cols-4 xl:grid-cols-7">
+          {projectUploadCategories.map((category) => (
+            <button
+              key={category.id}
+              type="button"
+              onClick={() => selectCategory(category)}
+              className={`min-h-20 px-3 py-3 text-center text-xs font-bold uppercase tracking-[0.1em] transition ${
+                category.id === uploadCategory.id
+                  ? "border-y border-signal bg-signal/10 text-signal"
+                  : "border-y border-white/10 bg-black/20 text-white/58 hover:border-white/25 hover:text-white"
+              }`}
+            >
+              {category.label}
+            </button>
+          ))}
         </div>
       </div>
 
       <div className="mt-5 grid gap-4">
-        <TextField label="Project title" value={title} onChange={setTitle} help="Example: Luxury Interior AI Campaign" />
-        <TextField label="Creative format" value={format} onChange={setFormat} help="Example: Interior Concept Visuals" />
+        <p className="text-sm font-semibold text-white">2. Add project details</p>
+        <TextField label="Project title" value={title} onChange={setTitle} help={`This project will appear under ${uploadCategory.label}.`} />
+        <TextField label="Creative format" value={format} onChange={setFormat} help="Example: Campaign Set, Brand Presentation, UI Case Study, or Edited Reel" />
         <TextAreaField label="Project description" value={brief} onChange={setBrief} />
       </div>
 
       <label
-        htmlFor="ai-project-images"
+        htmlFor="work-project-files"
         onDragEnter={(event) => { event.preventDefault(); setDragActive(true); }}
         onDragOver={(event) => event.preventDefault()}
         onDragLeave={() => setDragActive(false)}
         onDrop={(event) => { event.preventDefault(); setDragActive(false); addFiles(Array.from(event.dataTransfer.files)); }}
         className={`mt-5 grid min-h-48 cursor-pointer place-items-center rounded-2xl border border-dashed p-6 text-center transition ${dragActive ? "border-signal bg-signal/10" : "border-white/15 bg-black/20 hover:border-white/30"}`}
       >
-        <input id="ai-project-images" type="file" accept="image/jpeg,image/png,image/webp" multiple className="sr-only" onChange={(event) => addFiles(Array.from(event.target.files ?? []))} />
+        <input
+          key={fileInputVersion}
+          id="work-project-files"
+          type="file"
+          accept={uploadCategory.mode === "video" ? "video/mp4,video/webm,video/quicktime,.mov" : "image/jpeg,image/png,image/webp"}
+          multiple={uploadCategory.mode !== "video"}
+          className="sr-only"
+          onChange={(event) => addFiles(Array.from(event.target.files ?? []))}
+        />
         <span>
           <ImagePlus className="mx-auto text-signal" size={32} />
-          <span className="mt-3 block font-semibold text-white">Drop all project creatives here</span>
-          <span className="mt-1 block text-sm leading-6 text-mercury">JPG, PNG, or WebP. Optimized thumbnails are created automatically.</span>
+          <span className="mt-3 block font-semibold text-white">3. Drop {uploadCategory.mode === "video" ? "the project video" : "all project creatives"} here</span>
+          <span className="mt-1 block text-sm leading-6 text-mercury">
+            {uploadCategory.mode === "video"
+              ? "MP4, WebM, or MOV. A WebP poster is generated automatically."
+              : "JPG, PNG, or WebP. Gallery WebP thumbnails are generated automatically."}
+          </span>
         </span>
       </label>
 
@@ -1396,10 +1569,14 @@ function AiProjectUploader({ token, onStatus }: { token: string; onStatus: (stat
         <div className="mt-5 divide-y divide-white/10 border-y border-white/10">
           {images.map((image, index) => (
             <div key={image.id} className="grid gap-3 py-4 sm:grid-cols-[5rem_1fr_auto] sm:items-center">
-              {/* eslint-disable-next-line @next/next/no-img-element */}
-              <img src={image.preview} alt="" className="h-20 w-20 rounded-xl border border-white/10 object-contain" />
+              {uploadCategory.mode === "video" ? (
+                <video src={image.preview} className="h-20 w-20 rounded-xl border border-white/10 object-contain" muted />
+              ) : (
+                // eslint-disable-next-line @next/next/no-img-element
+                <img src={image.preview} alt="" className="h-20 w-20 rounded-xl border border-white/10 object-contain" />
+              )}
               <label className="grid min-w-0 gap-2 text-xs text-white/55">
-                Creative title
+                {uploadCategory.mode === "video" ? "Video title" : "Creative title"}
                 <input value={image.title} onChange={(event) => updateImageTitle(image.id, event.target.value)} className="min-h-11 min-w-0 rounded-xl border border-white/10 bg-black/30 px-3 text-sm text-white outline-none transition focus:border-signal" />
               </label>
               <div className="flex gap-2">
@@ -1413,7 +1590,7 @@ function AiProjectUploader({ token, onStatus }: { token: string; onStatus: (stat
       )}
 
       <button type="button" onClick={publishProject} disabled={publishing || !images.length} className="mt-5 min-h-12 w-full rounded-full bg-signal px-6 text-xs font-bold uppercase tracking-[0.18em] text-black transition hover:bg-white disabled:cursor-not-allowed disabled:opacity-40">
-        {publishing ? "Publishing project..." : `Publish AI Project${images.length ? ` (${images.length} creatives)` : ""}`}
+        {publishing ? "Publishing project..." : `Publish to ${uploadCategory.label}${images.length ? ` (${images.length} file${images.length === 1 ? "" : "s"})` : ""}`}
       </button>
     </div>
   );
