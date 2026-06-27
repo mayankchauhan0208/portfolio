@@ -1649,6 +1649,36 @@ export const aiGeneratedProjects = [
         height: 939
       }
     ]
+  },
+  {
+    title: "Warm Cafe Lifestyle AI Visuals",
+    category: "AI Creative Workflows",
+    format: "Lifestyle Concept Visuals",
+    brief:
+      "An AI-generated lifestyle image set exploring a warm modern cafe environment, neutral wardrobe styling, and consistent couple-focused visual direction across environmental, portrait, and narrative compositions.",
+    images: [
+      {
+        title: "Cafe Lifestyle Couple Scene",
+        src: "/optimized/work/ai-generated/warm-cafe-lifestyle-ai-visuals/01-cafe-lifestyle-couple-scene.webp",
+        originalSrc: "/work/ai-generated/warm-cafe-lifestyle-ai-visuals/01-cafe-lifestyle-couple-scene.png",
+        width: 1448,
+        height: 1086
+      },
+      {
+        title: "Warm Modern Cafe Interior",
+        src: "/optimized/work/ai-generated/warm-cafe-lifestyle-ai-visuals/02-warm-modern-cafe-interior.webp",
+        originalSrc: "/work/ai-generated/warm-cafe-lifestyle-ai-visuals/02-warm-modern-cafe-interior.png",
+        width: 1448,
+        height: 1086
+      },
+      {
+        title: "Neutral Studio Couple Portrait",
+        src: "/optimized/work/ai-generated/warm-cafe-lifestyle-ai-visuals/03-neutral-studio-couple-portrait.webp",
+        originalSrc: "/work/ai-generated/warm-cafe-lifestyle-ai-visuals/03-neutral-studio-couple-portrait.png",
+        width: 1122,
+        height: 1402
+      }
+    ]
   }
 ];
 
