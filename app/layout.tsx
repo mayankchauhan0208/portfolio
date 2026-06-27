@@ -1,9 +1,7 @@
 import type { Metadata, Viewport } from "next";
 import "./globals.css";
-import { CustomCursor } from "@/components/custom-cursor";
-import { RoleTicker } from "@/components/role-ticker";
 import { RouteStartReset } from "@/components/route-start-reset";
-import { ThemeToggle } from "@/components/theme-toggle";
+import { SiteChrome } from "@/components/site-chrome";
 
 export const metadata: Metadata = {
   metadataBase: new URL("https://mayankchauhan.co.in"),
@@ -65,9 +63,7 @@ export default function RootLayout({ children }: Readonly<{ children: React.Reac
     <html lang="en" className="scroll-smooth">
       <body className="bg-obsidian font-sans text-platinum antialiased">
         <RouteStartReset />
-        <CustomCursor />
-        <ThemeToggle />
-        <RoleTicker />
+        <SiteChrome />
         {children}
       </body>
     </html>
