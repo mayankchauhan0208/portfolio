@@ -119,6 +119,7 @@ export default function CategoryPage({ params }: CategoryPageProps) {
     "--niche-backdrop": category.backdrop,
     "--niche-accent-soft": `${category.accent}33`
   } as CSSProperties;
+  const titleFluidSize = `${Math.min(10, 140 / category.title.length)}vw`;
 
   const caseStudyCards = [
     { label: "Challenge", value: category.caseStudy.challenge },
@@ -321,11 +322,14 @@ export default function CategoryPage({ params }: CategoryPageProps) {
 
       <section className="relative z-10 px-4 pb-10 pt-12 md:px-8 md:pb-14 md:pt-16">
         <div className="mx-auto max-w-7xl">
-          <div className="max-w-3xl">
+          <div className="max-w-none">
             <p className="mb-5 inline-flex items-center gap-3 rounded-full border border-white/10 bg-white/[0.045] px-4 py-2 text-xs uppercase tracking-[0.3em] text-[var(--niche-accent)]">
               <Sparkles size={14} /> {category.label}
             </p>
-            <h1 className="text-balance font-display text-[clamp(2.7rem,13vw,5.75rem)] font-semibold uppercase leading-none text-white md:text-8xl lg:text-9xl">
+            <h1
+              className="max-w-none whitespace-nowrap font-display font-semibold uppercase leading-none text-white"
+              style={{ fontSize: `clamp(1.35rem, ${titleFluidSize}, 8rem)` }}
+            >
               {category.title}
             </h1>
             <p className="mt-7 max-w-2xl text-base leading-8 text-mercury md:text-lg">{category.subtitle}</p>
