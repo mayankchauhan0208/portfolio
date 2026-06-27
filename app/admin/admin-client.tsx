@@ -43,6 +43,8 @@ const passwordStorageKey = "portfolio-admin-password-hash";
 const authStorageKey = "portfolio-admin-authenticated";
 const tokenStorageKey = "portfolio-admin-github-token";
 const persistentTokenStorageKey = "portfolio-admin-remembered-github-token";
+const encryptedTokenStorageKey = "portfolio-admin-encrypted-github-token";
+const tokenSaltStorageKey = "portfolio-admin-token-salt";
 
 const editableFiles = [
   {
@@ -171,6 +173,65 @@ async function sha256(value: string) {
   return Array.from(new Uint8Array(digest))
     .map((byte) => byte.toString(16).padStart(2, "0"))
     .join("");
+}
+
+function bytesToBase64(bytes: Uint8Array) {
+  let binary = "";
+  bytes.forEach((byte) => {
+    binary += String.fromCharCode(byte);
+  });
+  return btoa(binary);
+}
+
+function base64ToBytes(value: string) {
+  return Uint8Array.from(atob(value), (character) => character.charCodeAt(0));
+}
+
+function getTokenSalt() {
+  const savedSalt = localStorage.getItem(tokenSaltStorageKey);
+  if (savedSalt) {
+    return base64ToBytes(savedSalt);
+  }
+
+  const salt = crypto.getRandomValues(new Uint8Array(16));
+  localStorage.setItem(tokenSaltStorageKey, bytesToBase64(salt));
+  return salt;
+}
+
+async function deriveTokenEncryptionKey(password: string) {
+  const keyMaterial = await crypto.subtle.importKey("raw", new TextEncoder().encode(password), "PBKDF2", false, ["deriveKey"]);
+  return crypto.subtle.deriveKey(
+    { name: "PBKDF2", salt: getTokenSalt(), iterations: 250000, hash: "SHA-256" },
+    keyMaterial,
+    { name: "AES-GCM", length: 256 },
+    false,
+    ["encrypt", "decrypt"]
+  );
+}
+
+async function encryptRememberedToken(token: string, key: CryptoKey) {
+  const iv = crypto.getRandomValues(new Uint8Array(12));
+  const encrypted = await crypto.subtle.encrypt({ name: "AES-GCM", iv }, key, new TextEncoder().encode(token));
+  localStorage.setItem(
+    encryptedTokenStorageKey,
+    JSON.stringify({ iv: bytesToBase64(iv), value: bytesToBase64(new Uint8Array(encrypted)) })
+  );
+  localStorage.removeItem(persistentTokenStorageKey);
+}
+
+async function decryptRememberedToken(key: CryptoKey) {
+  const savedValue = localStorage.getItem(encryptedTokenStorageKey);
+  if (!savedValue) {
+    return "";
+  }
+
+  const payload = JSON.parse(savedValue) as { iv: string; value: string };
+  const decrypted = await crypto.subtle.decrypt(
+    { name: "AES-GCM", iv: base64ToBytes(payload.iv) },
+    key,
+    base64ToBytes(payload.value)
+  );
+  return new TextDecoder().decode(decrypted);
 }
 
 function encodeBase64(value: string) {
@@ -307,6 +368,8 @@ export function AdminClient() {
   const [token, setToken] = useState("");
   const [rememberToken, setRememberToken] = useState(false);
   const [showToken, setShowToken] = useState(false);
+  const [tokenEncryptionKey, setTokenEncryptionKey] = useState<CryptoKey | null>(null);
+  const [hasCustomPassword, setHasCustomPassword] = useState(false);
   const [tokenStepComplete, setTokenStepComplete] = useState(false);
   const [selectedPath, setSelectedPath] = useState(editableFiles[0].path);
   const [loadedFile, setLoadedFile] = useState<GitHubFile | null>(null);
@@ -320,19 +383,14 @@ export function AdminClient() {
   const activeFile = useMemo(() => editableFiles.find((file) => file.path === selectedPath), [selectedPath]);
 
   useEffect(() => {
-    const rememberedToken = localStorage.getItem(persistentTokenStorageKey) ?? "";
-    const sessionToken = sessionStorage.getItem(tokenStorageKey) ?? "";
-
-    setAuthenticated(sessionStorage.getItem(authStorageKey) === "true");
-    const availableToken = sessionToken || rememberedToken;
-
-    setToken(availableToken);
-    setRememberToken(Boolean(rememberedToken));
-    setTokenStepComplete(Boolean(availableToken));
-
-    if (!sessionToken && rememberedToken) {
-      sessionStorage.setItem(tokenStorageKey, rememberedToken);
-    }
+    sessionStorage.removeItem(authStorageKey);
+    sessionStorage.removeItem(tokenStorageKey);
+    localStorage.removeItem(persistentTokenStorageKey);
+    setAuthenticated(false);
+    setToken("");
+    setRememberToken(Boolean(localStorage.getItem(encryptedTokenStorageKey)));
+    setTokenStepComplete(false);
+    setHasCustomPassword(Boolean(localStorage.getItem(passwordStorageKey)));
 
     setReady(true);
   }, []);
@@ -347,10 +405,32 @@ export function AdminClient() {
       return;
     }
 
+    const encryptionKey = await deriveTokenEncryptionKey(password);
+    let rememberedToken = "";
+    let tokenUnlockFailed = false;
+
+    try {
+      rememberedToken = await decryptRememberedToken(encryptionKey);
+    } catch {
+      tokenUnlockFailed = true;
+      localStorage.removeItem(encryptedTokenStorageKey);
+    }
+
     sessionStorage.setItem(authStorageKey, "true");
+    if (rememberedToken) {
+      sessionStorage.setItem(tokenStorageKey, rememberedToken);
+    }
+    setTokenEncryptionKey(encryptionKey);
+    setToken(rememberedToken);
+    setRememberToken(Boolean(rememberedToken));
+    setTokenStepComplete(Boolean(rememberedToken));
     setAuthenticated(true);
     setPassword("");
-    setStatus({ type: "success", message: "Admin unlocked for this browser session." });
+    setStatus(
+      tokenUnlockFailed
+        ? { type: "error", message: "Admin unlocked, but the saved GitHub key could not be decrypted. Connect the key again." }
+        : { type: "success", message: rememberedToken ? "Admin unlocked and the saved GitHub key was decrypted." : "Admin unlocked for this browser session." }
+    );
   }
 
   async function handleChangePassword(event: FormEvent<HTMLFormElement>) {
@@ -361,40 +441,38 @@ export function AdminClient() {
       return;
     }
 
-    localStorage.setItem(passwordStorageKey, await sha256(newPassword.trim()));
+    const nextPassword = newPassword.trim();
+    const nextKey = await deriveTokenEncryptionKey(nextPassword);
+    if (rememberToken && token) {
+      await encryptRememberedToken(token, nextKey);
+    }
+    localStorage.setItem(passwordStorageKey, await sha256(nextPassword));
+    setTokenEncryptionKey(nextKey);
+    setHasCustomPassword(true);
     setNewPassword("");
     setStatus({ type: "success", message: "Local admin password changed on this browser." });
   }
 
-  function handleSaveToken(value: string, shouldRemember = rememberToken) {
+  function handleSaveToken(value: string) {
     setToken(value.trim());
-
-    if (value.trim()) {
-      sessionStorage.setItem(tokenStorageKey, value.trim());
-      if (shouldRemember) {
-        localStorage.setItem(persistentTokenStorageKey, value.trim());
-      }
-      setStatus({
-        type: "success",
-        message: shouldRemember ? "GitHub token remembered on this browser." : "GitHub token saved for this tab."
-      });
-    } else {
-      sessionStorage.removeItem(tokenStorageKey);
-      localStorage.removeItem(persistentTokenStorageKey);
-      setRememberToken(false);
-      setStatus({ type: "info", message: "GitHub token cleared." });
-    }
   }
 
-  function handleRememberToken(checked: boolean) {
-    setRememberToken(checked);
-
-    if (checked && token) {
-      localStorage.setItem(persistentTokenStorageKey, token);
-      setStatus({ type: "success", message: "Token will be remembered on this browser. Do this only on your own device." });
+  async function handleRememberToken(checked: boolean) {
+    if (checked && !hasCustomPassword) {
+      setRememberToken(false);
+      setStatus({ type: "error", message: "Use the token for this session, then set a private admin password before enabling device memory." });
       return;
     }
 
+    setRememberToken(checked);
+
+    if (checked && token && tokenEncryptionKey) {
+      await encryptRememberedToken(token, tokenEncryptionKey);
+      setStatus({ type: "success", message: "Token encrypted with your admin password on this device." });
+      return;
+    }
+
+    localStorage.removeItem(encryptedTokenStorageKey);
     localStorage.removeItem(persistentTokenStorageKey);
     setStatus({ type: "info", message: "Token will only stay for this browser tab session." });
   }
@@ -404,19 +482,25 @@ export function AdminClient() {
     setRememberToken(false);
     setTokenStepComplete(false);
     sessionStorage.removeItem(tokenStorageKey);
+    localStorage.removeItem(encryptedTokenStorageKey);
     localStorage.removeItem(persistentTokenStorageKey);
     setStatus({ type: "info", message: "GitHub token removed from this browser." });
   }
 
-  function continueWithToken() {
+  async function continueWithToken() {
     if (!token) {
       setStatus({ type: "error", message: "Paste your GitHub token before continuing." });
       return;
     }
 
+    if (rememberToken && !hasCustomPassword) {
+      setStatus({ type: "error", message: "Set a private admin password before saving the token on this device." });
+      return;
+    }
+
     sessionStorage.setItem(tokenStorageKey, token);
-    if (rememberToken) {
-      localStorage.setItem(persistentTokenStorageKey, token);
+    if (rememberToken && tokenEncryptionKey) {
+      await encryptRememberedToken(token, tokenEncryptionKey);
     }
     setTokenStepComplete(true);
     setStatus({ type: "success", message: "GitHub key connected. Choose a section to edit." });
@@ -617,10 +701,10 @@ export function AdminClient() {
               <input
                 type="checkbox"
                 checked={rememberToken}
-                onChange={(event) => handleRememberToken(event.target.checked)}
+                onChange={(event) => void handleRememberToken(event.target.checked)}
                 className="mt-1 h-4 w-4 accent-signal"
               />
-              <span>Keep me connected on this private device. The token stays in this browser and is never added to website files.</span>
+              <span>Keep me connected on this private device. The token is encrypted with your admin password and never added to website files.</span>
             </label>
 
             <div className="mt-4 flex items-start gap-3 rounded-2xl border border-amber-200/15 bg-amber-200/[0.06] p-3 text-xs leading-5 text-amber-50/70">
@@ -659,6 +743,10 @@ export function AdminClient() {
             type="button"
             onClick={() => {
               sessionStorage.removeItem(authStorageKey);
+              sessionStorage.removeItem(tokenStorageKey);
+              setToken("");
+              setTokenEncryptionKey(null);
+              setTokenStepComplete(false);
               setAuthenticated(false);
             }}
             className="min-h-11 rounded-full border border-white/10 px-5 text-xs font-bold uppercase tracking-[0.18em] text-white transition hover:border-signal hover:text-signal"
