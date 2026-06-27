@@ -1,7 +1,8 @@
 "use client";
 
 import { type ChangeEvent, type FormEvent, type ReactNode, useEffect, useMemo, useState } from "react";
-import { CheckCircle2, Eye, EyeOff, LockKeyhole, PencilLine, ShieldCheck } from "lucide-react";
+import { ArrowDown, ArrowUp, CheckCircle2, Copy, ExternalLink, Eye, EyeOff, LockKeyhole, PencilLine, Plus, ShieldCheck, Trash2 } from "lucide-react";
+import JSON5 from "json5";
 
 type GitHubFile = {
   path: string;
@@ -33,6 +34,15 @@ type SiteProfile = {
 
 type SiteContent = {
   profile: SiteProfile;
+};
+
+type EditableValue = string | number | boolean | null | EditableValue[] | { [key: string]: EditableValue };
+
+type CollectionConfig = {
+  exportName: string;
+  label: string;
+  description: string;
+  itemName: string;
 };
 
 const repoOwner = "mayankchauhan0208";
@@ -84,41 +94,64 @@ const editableFiles = [
   }
 ];
 
+const collectionConfigs: CollectionConfig[] = [
+  { exportName: "portfolioCategories", label: "Work Categories", description: "Category names, case-study copy, labels, colors, and presentation details.", itemName: "category" },
+  { exportName: "portfolioWorks", label: "Featured Work", description: "Selected homepage projects and their image references.", itemName: "project" },
+  { exportName: "logoProjects", label: "Brand Projects", description: "Brand-system and identity projects, briefs, tags, and gallery images.", itemName: "project" },
+  { exportName: "socialProjects", label: "Campaign Projects", description: "Digital campaign and social-media projects.", itemName: "project" },
+  { exportName: "uiUxProjects", label: "UI Visual Projects", description: "UI visual design projects, screens, and supporting details.", itemName: "project" },
+  { exportName: "videoProjects", label: "Motion & Video", description: "Video projects, poster paths, original video paths, and details.", itemName: "video" },
+  { exportName: "metaAdsProjects", label: "Performance Ads", description: "Performance ad projects and creative galleries.", itemName: "project" },
+  { exportName: "aiGeneratedProjects", label: "AI Creative Projects", description: "AI-assisted creative projects and media.", itemName: "project" },
+  { exportName: "projects", label: "Experience Cards", description: "Company, period, role summary, responsibilities, and tags.", itemName: "experience" },
+  { exportName: "softwareSkills", label: "Software Skills", description: "Design tools and their icon paths.", itemName: "tool" },
+  { exportName: "coreExpertise", label: "Core Expertise", description: "The main capability list displayed in Skills.", itemName: "skill" },
+  { exportName: "aiTools", label: "AI Tools", description: "AI tools, usage labels, and icon paths.", itemName: "tool" },
+  { exportName: "services", label: "Services", description: "Homepage service headings and supporting copy.", itemName: "service" },
+  { exportName: "timeline", label: "Experience Timeline", description: "Detailed work timeline, outputs, and skill tags.", itemName: "role" },
+  { exportName: "education", label: "Education", description: "Education entries shown on the homepage.", itemName: "entry" },
+  { exportName: "hobbies", label: "Interests", description: "Personal interests displayed on the site.", itemName: "interest" }
+];
+
 const editorSections = [
   {
     title: "Homepage",
     description: "Edit hero text and role ticker with simple labeled fields.",
-    paths: ["content/site.json"]
+    path: "content/site.json"
   },
   {
     title: "About & Contact",
     description: "Edit About copy, expertise, email, phone, Behance, and resume path without code.",
-    paths: ["content/site.json"]
+    path: "content/site.json"
   },
   {
-    title: "Work & Projects",
-    description: "Work categories, project lists, descriptions, order, published/draft style fields, and media references.",
-    paths: ["lib/portfolio-data.ts", "app/work/page.tsx", "app/work/[category]/page.tsx"]
+    title: "Work Categories",
+    description: "Manage category titles, case studies, colors, and presentation details.",
+    path: "lib/portfolio-data.ts",
+    collection: "portfolioCategories"
   },
   {
-    title: "Case Studies",
-    description: "Case-study overview, challenge, role, direction, deliverables, tools, and outcomes for category pages.",
-    paths: ["lib/portfolio-data.ts", "app/work/[category]/page.tsx"]
+    title: "Projects & Galleries",
+    description: "Add, edit, duplicate, delete, and reorder portfolio projects and media.",
+    path: "lib/portfolio-data.ts",
+    collection: "portfolioWorks"
   },
   {
-    title: "Media Paths",
-    description: "Optimized thumbnails, original images, video posters, original videos, and path fallback behavior.",
-    paths: ["lib/portfolio-data.ts", "lib/site-paths.ts"]
+    title: "Experience",
+    description: "Manage experience cards, timeline entries, role descriptions, and tags.",
+    path: "lib/portfolio-data.ts",
+    collection: "projects"
   },
   {
-    title: "SEO",
-    description: "Browser title, meta description, Open Graph, Twitter card, social preview image, and portfolio keywords.",
-    paths: ["app/layout.tsx"]
+    title: "Skills & Tools",
+    description: "Manage software, core expertise, AI tools, and services.",
+    path: "lib/portfolio-data.ts",
+    collection: "softwareSkills"
   },
   {
-    title: "Advanced Layout",
-    description: "Developer-only source files. Use these only when a normal form cannot make the change.",
-    paths: ["app/page.tsx", "app/work/page.tsx", "app/work/[category]/page.tsx"]
+    title: "SEO & Advanced",
+    description: "Metadata and developer-only layout files. Use carefully.",
+    path: "app/layout.tsx"
   }
 ];
 
@@ -149,6 +182,12 @@ const mediaFolders = [
   { label: "Video poster", value: "public/video-thumbnails/" },
   { label: "Resume PDF", value: "public/resume/" }
 ];
+
+function mediaAccept(folder: string) {
+  if (folder.includes("videos")) return "video/*";
+  if (folder.includes("resume")) return "application/pdf";
+  return "image/*";
+}
 
 function isApprovedFile(path: string) {
   return approvedWritePaths.includes(path);
@@ -255,6 +294,131 @@ function validateSiteContent(value: string) {
   }
 }
 
+function findCollectionRange(source: string, exportName: string) {
+  const marker = `export const ${exportName} =`;
+  const markerIndex = source.indexOf(marker);
+  if (markerIndex < 0) {
+    throw new Error(`Could not find ${exportName} in the portfolio data file.`);
+  }
+
+  const start = source.indexOf("[", markerIndex + marker.length);
+  if (start < 0) {
+    throw new Error(`${exportName} is not an editable list.`);
+  }
+
+  let depth = 0;
+  let quote = "";
+  let escaped = false;
+
+  for (let index = start; index < source.length; index += 1) {
+    const character = source[index];
+
+    if (quote) {
+      if (escaped) {
+        escaped = false;
+      } else if (character === "\\") {
+        escaped = true;
+      } else if (character === quote) {
+        quote = "";
+      }
+      continue;
+    }
+
+    if (character === '"' || character === "'" || character === "`") {
+      quote = character;
+    } else if (character === "[") {
+      depth += 1;
+    } else if (character === "]") {
+      depth -= 1;
+      if (depth === 0) {
+        return { start, end: index + 1 };
+      }
+    }
+  }
+
+  throw new Error(`Could not read the end of ${exportName}.`);
+}
+
+function parseExportedCollection(source: string, exportName: string) {
+  const range = findCollectionRange(source, exportName);
+  const parsed = JSON5.parse(source.slice(range.start, range.end));
+  if (!Array.isArray(parsed)) {
+    throw new Error(`${exportName} must remain a list.`);
+  }
+  return parsed as EditableValue[];
+}
+
+function replaceExportedCollection(source: string, exportName: string, values: EditableValue[]) {
+  const range = findCollectionRange(source, exportName);
+  return `${source.slice(0, range.start)}${JSON.stringify(values, null, 2)}${source.slice(range.end)}`;
+}
+
+function blankValue(value: EditableValue): EditableValue {
+  if (Array.isArray(value)) {
+    return [];
+  }
+  if (value && typeof value === "object") {
+    return Object.fromEntries(Object.entries(value).map(([key, child]) => [key, blankValue(child)]));
+  }
+  if (typeof value === "boolean") {
+    return false;
+  }
+  if (typeof value === "number") {
+    return 0;
+  }
+  return "";
+}
+
+function itemLabel(value: EditableValue, index: number, itemName: string) {
+  if (typeof value === "string") {
+    return value || `New ${itemName}`;
+  }
+  if (value && typeof value === "object" && !Array.isArray(value)) {
+    const candidate = value.title ?? value.name ?? value.label ?? value.company ?? value.org ?? value.level ?? value.institution ?? value.role ?? value.id;
+    if (typeof candidate === "string" && candidate.trim()) {
+      return candidate;
+    }
+  }
+  return `${itemName} ${index + 1}`;
+}
+
+function validateCollection(values: EditableValue[], config: CollectionConfig) {
+  if (!values.length) {
+    throw new Error(`${config.label} cannot be empty.`);
+  }
+
+  const ids = new Set<string>();
+  values.forEach((value, index) => {
+    if (typeof value === "string") {
+      if (!value.trim()) throw new Error(`${config.label} item ${index + 1} cannot be empty.`);
+      return;
+    }
+    if (!value || typeof value !== "object" || Array.isArray(value)) return;
+
+    for (const requiredKey of ["title", "name", "level"]) {
+      if (requiredKey in value && typeof value[requiredKey] === "string" && !value[requiredKey].trim()) {
+        throw new Error(`${humanize(requiredKey)} is required for ${config.itemName} ${index + 1}.`);
+      }
+    }
+
+    if ("id" in value && typeof value.id === "string") {
+      if (!value.id.trim()) throw new Error(`ID is required for ${config.itemName} ${index + 1}.`);
+      if (ids.has(value.id)) throw new Error(`ID "${value.id}" is used more than once.`);
+      ids.add(value.id);
+    }
+
+    for (const mediaKey of ["images", "previewImages"]) {
+      const media = value[mediaKey];
+      if (!Array.isArray(media)) continue;
+      media.forEach((item, mediaIndex) => {
+        if (item && typeof item === "object" && !Array.isArray(item) && "src" in item && typeof item.src === "string" && !item.src.trim()) {
+          throw new Error(`${humanize(mediaKey)} item ${mediaIndex + 1} needs a source path.`);
+        }
+      });
+    }
+  });
+}
+
 async function fileToBase64(file: File) {
   const buffer = await file.arrayBuffer();
   let binary = "";
@@ -277,6 +441,19 @@ function githubHeaders(token: string) {
 
 function contentUrl(path: string) {
   return `https://api.github.com/repos/${repoOwner}/${repoName}/contents/${encodeURIComponent(path).replace(/%2F/g, "/")}`;
+}
+
+async function verifyGithubAccess(token: string) {
+  const response = await fetch(`https://api.github.com/repos/${repoOwner}/${repoName}`, {
+    headers: githubHeaders(token)
+  });
+  if (!response.ok) {
+    throw new Error(response.status === 401 ? "GitHub rejected this token. Check that it is complete and not expired." : `Could not access the portfolio repo. GitHub returned ${response.status}.`);
+  }
+  const repository = await response.json();
+  if (repository.permissions && repository.permissions.push === false) {
+    throw new Error("This token can read the repo but cannot publish. Enable Contents: Read and write for this repository.");
+  }
 }
 
 async function fetchGithubFile(path: string, token: string): Promise<GitHubFile> {
@@ -372,6 +549,7 @@ export function AdminClient() {
   const [hasCustomPassword, setHasCustomPassword] = useState(false);
   const [tokenStepComplete, setTokenStepComplete] = useState(false);
   const [selectedPath, setSelectedPath] = useState(editableFiles[0].path);
+  const [selectedCollection, setSelectedCollection] = useState("portfolioCategories");
   const [loadedFile, setLoadedFile] = useState<GitHubFile | null>(null);
   const [draft, setDraft] = useState("");
   const [commitMessage, setCommitMessage] = useState("content: update portfolio from admin");
@@ -379,8 +557,13 @@ export function AdminClient() {
   const [mediaFolder, setMediaFolder] = useState(mediaFolders[0].value);
   const [mediaPath, setMediaPath] = useState("public/images/");
   const [mediaFile, setMediaFile] = useState<File | null>(null);
-  const [mediaMessage, setMediaMessage] = useState("media: upload portfolio asset");
+  const mediaMessage = "media: upload portfolio asset";
   const activeFile = useMemo(() => editableFiles.find((file) => file.path === selectedPath), [selectedPath]);
+  const activeCollection = useMemo(
+    () => collectionConfigs.find((collection) => collection.exportName === selectedCollection) ?? collectionConfigs[0],
+    [selectedCollection]
+  );
+  const hasUnsavedChanges = Boolean(loadedFile && draft !== loadedFile.content);
 
   useEffect(() => {
     sessionStorage.removeItem(authStorageKey);
@@ -498,16 +681,28 @@ export function AdminClient() {
       return;
     }
 
-    sessionStorage.setItem(tokenStorageKey, token);
-    if (rememberToken && tokenEncryptionKey) {
-      await encryptRememberedToken(token, tokenEncryptionKey);
+    try {
+      setStatus({ type: "info", message: "Checking secure GitHub access..." });
+      await verifyGithubAccess(token);
+      sessionStorage.setItem(tokenStorageKey, token);
+      if (rememberToken && tokenEncryptionKey) {
+        await encryptRememberedToken(token, tokenEncryptionKey);
+      }
+      setTokenStepComplete(true);
+      setStatus({ type: "success", message: "GitHub connected. Choose a section to edit." });
+    } catch (error) {
+      setStatus({ type: "error", message: error instanceof Error ? error.message : "Could not verify GitHub access." });
     }
-    setTokenStepComplete(true);
-    setStatus({ type: "success", message: "GitHub key connected. Choose a section to edit." });
   }
 
-  function selectAdminFile(path: string) {
+  function selectAdminFile(path: string, collection?: string) {
+    if (hasUnsavedChanges && !window.confirm("Discard your unsaved changes and open another section?")) {
+      return;
+    }
     setSelectedPath(path);
+    if (collection) {
+      setSelectedCollection(collection);
+    }
     setLoadedFile(null);
     setDraft("");
     setCommitMessage(
@@ -527,6 +722,10 @@ export function AdminClient() {
 
     if (!isApprovedFile(selectedPath)) {
       setStatus({ type: "error", message: "This file is not approved for admin editing." });
+      return;
+    }
+
+    if (hasUnsavedChanges && !window.confirm("Reload from GitHub and discard your unsaved changes?")) {
       return;
     }
 
@@ -566,6 +765,16 @@ export function AdminClient() {
       }
     }
 
+    if (loadedFile.path === "lib/portfolio-data.ts") {
+      try {
+        const values = parseExportedCollection(draft, selectedCollection);
+        validateCollection(values, activeCollection);
+      } catch (error) {
+        setStatus({ type: "error", message: error instanceof Error ? error.message : "Check the collection fields before publishing." });
+        return;
+      }
+    }
+
     if (!window.confirm(`Commit changes to ${loadedFile.path}? This will trigger the live deployment workflow.`)) {
       return;
     }
@@ -592,6 +801,11 @@ export function AdminClient() {
 
     if (!mediaFile) {
       setStatus({ type: "error", message: "Choose a media file to upload." });
+      return;
+    }
+
+    if (mediaFile.size > 90 * 1024 * 1024) {
+      setStatus({ type: "error", message: "This file is larger than 90 MB. Compress it before uploading through GitHub." });
       return;
     }
 
@@ -736,38 +950,43 @@ export function AdminClient() {
             <p className="text-xs font-semibold uppercase tracking-[0.28em] text-signal">Static GitHub Admin</p>
             <h1 className="mt-3 font-display text-4xl leading-tight text-white md:text-6xl">Portfolio Admin</h1>
             <p className="mt-3 max-w-2xl text-sm leading-6 text-mercury">
-              Choose a section, load the related file from GitHub, edit, and save. Your current hosting stays the same.
+              Choose what you want to update, load the live content, edit simple fields, and publish. No coding is required for normal portfolio updates.
             </p>
           </div>
-          <button
-            type="button"
-            onClick={() => {
-              sessionStorage.removeItem(authStorageKey);
-              sessionStorage.removeItem(tokenStorageKey);
-              setToken("");
-              setTokenEncryptionKey(null);
-              setTokenStepComplete(false);
-              setAuthenticated(false);
-            }}
-            className="min-h-11 rounded-full border border-white/10 px-5 text-xs font-bold uppercase tracking-[0.18em] text-white transition hover:border-signal hover:text-signal"
-          >
-            Lock
-          </button>
+          <div className="flex flex-wrap gap-2">
+            <a href="/" target="_blank" rel="noopener noreferrer" className="inline-flex min-h-11 items-center gap-2 rounded-full border border-white/10 px-5 text-xs font-bold uppercase tracking-[0.16em] text-white transition hover:border-signal hover:text-signal">
+              View Site <ExternalLink size={15} />
+            </a>
+            <button
+              type="button"
+              onClick={() => {
+                sessionStorage.removeItem(authStorageKey);
+                sessionStorage.removeItem(tokenStorageKey);
+                setToken("");
+                setTokenEncryptionKey(null);
+                setTokenStepComplete(false);
+                setAuthenticated(false);
+              }}
+              className="min-h-11 rounded-full border border-white/10 px-5 text-xs font-bold uppercase tracking-[0.18em] text-white transition hover:border-signal hover:text-signal"
+            >
+              Lock
+            </button>
+          </div>
         </div>
 
         <StatusMessage status={status} />
 
         <div className="mt-6 grid gap-5 lg:grid-cols-[0.76fr_1.24fr]">
-          <aside className="space-y-5">
+          <aside className="order-2 space-y-5 lg:order-1">
             <Panel title="Quick Start">
               <ol className="space-y-3 text-sm leading-6 text-mercury">
                 <li><strong className="text-white">1.</strong> Pick a section card.</li>
-                <li><strong className="text-white">2.</strong> Choose the exact file if needed.</li>
-                <li><strong className="text-white">3.</strong> Load From GitHub.</li>
-                <li><strong className="text-white">4.</strong> Edit, then Save & Publish.</li>
+                <li><strong className="text-white">2.</strong> Load the latest live content.</li>
+                <li><strong className="text-white">3.</strong> Edit the labeled fields.</li>
+                <li><strong className="text-white">4.</strong> Save & Publish.</li>
               </ol>
               <p className="mt-4 rounded-2xl border border-white/10 bg-black/25 p-3 text-xs leading-5 text-white/55">
-                For most text, projects, categories, experience, skills, contact, resume, and media paths, use Main portfolio content.
+                Use Media Upload first when adding a new image, video, poster, or resume. Then paste its generated path into the relevant item.
               </p>
             </Panel>
 
@@ -811,33 +1030,24 @@ export function AdminClient() {
 
           </aside>
 
-          <div className="space-y-5">
+          <div className="order-1 space-y-5 lg:order-2">
             <Panel title="Edit By Section">
               <div className="grid gap-3 md:grid-cols-2 xl:grid-cols-3">
                 {editorSections.map((section) => (
-                  <article key={section.title} className="rounded-2xl border border-white/10 bg-black/24 p-4">
+                  <article key={section.title} className="border-l border-white/10 pl-4">
                     <h3 className="font-display text-xl text-white">{section.title}</h3>
                     <p className="mt-2 min-h-16 text-sm leading-6 text-mercury">{section.description}</p>
-                    <div className="mt-4 grid gap-2">
-                      {section.paths.map((path) => {
-                        const file = editableFiles.find((item) => item.path === path);
-                        return (
-                          <button
-                            key={`${section.title}-${path}`}
-                            type="button"
-                            onClick={() => selectAdminFile(path)}
-                            className={`rounded-xl border px-3 py-2 text-left text-xs transition ${
-                              selectedPath === path
-                                ? "border-signal bg-signal/10 text-white"
-                                : "border-white/10 bg-white/[0.04] text-white/64 hover:border-white/25 hover:text-white"
-                            }`}
-                          >
-                            <span className="block font-semibold">{file?.label ?? path}</span>
-                            <span className="mt-1 block break-all text-white/42">{path}</span>
-                          </button>
-                        );
-                      })}
-                    </div>
+                    <button
+                      type="button"
+                      onClick={() => selectAdminFile(section.path, "collection" in section ? section.collection : undefined)}
+                      className={`mt-4 min-h-11 w-full rounded-xl border px-3 py-2 text-left text-xs font-bold uppercase tracking-[0.14em] transition ${
+                        selectedPath === section.path && (!("collection" in section) || selectedCollection === section.collection)
+                          ? "border-signal bg-signal/10 text-signal"
+                          : "border-white/10 bg-white/[0.04] text-white/64 hover:border-white/25 hover:text-white"
+                      }`}
+                    >
+                      Open editor
+                    </button>
                   </article>
                 ))}
               </div>
@@ -846,8 +1056,17 @@ export function AdminClient() {
             <Panel title="Content Editor">
               <div className="flex flex-col gap-3 md:flex-row md:items-end md:justify-between">
                 <div>
-                  <p className="break-all text-sm font-semibold text-white">{activeFile?.path}</p>
-                  <p className="mt-1 text-sm leading-6 text-mercury">{activeFile?.help}</p>
+                  <p className="text-sm font-semibold text-white">
+                    {selectedPath === "lib/portfolio-data.ts" ? activeCollection.label : activeFile?.label}
+                  </p>
+                  <p className="mt-1 text-sm leading-6 text-mercury">
+                    {selectedPath === "lib/portfolio-data.ts" ? activeCollection.description : activeFile?.help}
+                  </p>
+                  {loadedFile && (
+                    <span className={`mt-2 inline-flex rounded-full border px-3 py-1 text-[0.62rem] font-bold uppercase tracking-[0.14em] ${hasUnsavedChanges ? "border-amber-200/25 bg-amber-200/10 text-amber-100" : "border-emerald-300/20 bg-emerald-300/[0.08] text-emerald-100"}`}>
+                      {hasUnsavedChanges ? "Unsaved changes" : "Up to date"}
+                    </span>
+                  )}
                 </div>
                 <button type="button" onClick={handleLoadFile} className="min-h-11 rounded-full bg-white px-5 text-xs font-bold uppercase tracking-[0.18em] text-black transition hover:bg-signal">
                   Load From GitHub
@@ -864,6 +1083,13 @@ export function AdminClient() {
                 </div>
               ) : selectedPath === "content/site.json" ? (
                 <SiteContentEditor draft={draft} onChange={setDraft} />
+              ) : selectedPath === "lib/portfolio-data.ts" ? (
+                <CollectionEditor
+                  draft={draft}
+                  config={activeCollection}
+                  onChange={setDraft}
+                  onConfigChange={setSelectedCollection}
+                />
               ) : (
                 <div className="mt-5">
                   <div className="mb-3 flex items-start gap-3 rounded-2xl border border-amber-200/15 bg-amber-200/[0.06] p-3 text-xs leading-5 text-amber-50/70">
@@ -879,14 +1105,17 @@ export function AdminClient() {
                 </div>
               )}
 
-              <div className="mt-4 grid gap-3 md:grid-cols-[1fr_auto]">
-                <input
-                  value={commitMessage}
-                  onChange={(event) => setCommitMessage(event.target.value)}
-                  className="min-h-12 rounded-2xl border border-white/10 bg-black/35 px-4 text-white outline-none transition focus:border-signal"
-                  placeholder="Commit message"
-                />
-                <button type="button" onClick={handleCommitFile} disabled={!loadedFile} className="min-h-12 rounded-full bg-signal px-6 text-xs font-bold uppercase tracking-[0.18em] text-black transition hover:bg-white disabled:cursor-not-allowed disabled:opacity-40">
+              <div className="mt-5 flex flex-col gap-3 border-t border-white/10 pt-5 md:flex-row md:items-end md:justify-between">
+                <details className="text-xs text-white/50">
+                  <summary className="cursor-pointer py-2 transition hover:text-white">Advanced publish note</summary>
+                  <input
+                    value={commitMessage}
+                    onChange={(event) => setCommitMessage(event.target.value)}
+                    className="mt-2 min-h-11 w-full min-w-72 rounded-xl border border-white/10 bg-black/35 px-3 text-sm text-white outline-none transition focus:border-signal"
+                    placeholder="Commit message"
+                  />
+                </details>
+                <button type="button" onClick={handleCommitFile} disabled={!loadedFile || !hasUnsavedChanges} className="min-h-12 rounded-full bg-signal px-6 text-xs font-bold uppercase tracking-[0.18em] text-black transition hover:bg-white disabled:cursor-not-allowed disabled:opacity-40">
                   Save & Publish
                 </button>
               </div>
@@ -896,7 +1125,7 @@ export function AdminClient() {
               <p className="text-sm leading-6 text-mercury">
                 Choose what you are uploading, select the file, then publish it to the correct protected media folder.
               </p>
-              <div className="mt-4 grid gap-3 md:grid-cols-2">
+              <div className="mt-4 grid gap-3">
                 <label className="grid gap-2 text-sm text-white/80">
                   Media type
                   <select
@@ -911,15 +1140,6 @@ export function AdminClient() {
                     {mediaFolders.map((folder) => <option key={folder.value} value={folder.value}>{folder.label}</option>)}
                   </select>
                 </label>
-                <label className="grid gap-2 text-sm text-white/80">
-                  Commit message
-                  <input
-                    value={mediaMessage}
-                    onChange={(event) => setMediaMessage(event.target.value)}
-                    className="min-h-12 rounded-2xl border border-white/10 bg-black/35 px-4 text-white outline-none transition focus:border-signal"
-                    placeholder="media: upload portfolio asset"
-                  />
-                </label>
               </div>
               <p className="mt-3 break-all rounded-xl bg-black/25 px-3 py-2 text-xs text-white/45">
                 Upload path: {mediaPath}
@@ -927,6 +1147,7 @@ export function AdminClient() {
               <div className="mt-4 grid gap-3 md:grid-cols-[1fr_auto]">
                 <input
                   type="file"
+                  accept={mediaAccept(mediaFolder)}
                   onChange={handleFileInput}
                   className="min-h-12 rounded-2xl border border-white/10 bg-black/35 px-4 py-3 text-sm text-white file:mr-4 file:rounded-full file:border-0 file:bg-white file:px-4 file:py-2 file:text-xs file:font-bold file:uppercase file:tracking-[0.14em] file:text-black"
                 />
@@ -940,6 +1161,307 @@ export function AdminClient() {
         </div>
       </section>
     </main>
+  );
+}
+
+function CollectionEditor({
+  draft,
+  config,
+  onChange,
+  onConfigChange
+}: {
+  draft: string;
+  config: CollectionConfig;
+  onChange: (value: string) => void;
+  onConfigChange: (value: string) => void;
+}) {
+  const [selectedIndex, setSelectedIndex] = useState(0);
+  const [searchQuery, setSearchQuery] = useState("");
+
+  useEffect(() => {
+    setSelectedIndex(0);
+    setSearchQuery("");
+  }, [config.exportName]);
+
+  let values: EditableValue[];
+  try {
+    values = parseExportedCollection(draft, config.exportName);
+  } catch (error) {
+    return (
+      <div className="mt-5 rounded-2xl border border-red-300/25 bg-red-300/10 p-4 text-sm leading-6 text-red-100">
+        {error instanceof Error ? error.message : "This collection could not be loaded."}
+      </div>
+    );
+  }
+
+  const safeIndex = values.length ? Math.min(selectedIndex, values.length - 1) : -1;
+  const selectedValue = safeIndex >= 0 ? values[safeIndex] : null;
+  const visibleItems = values
+    .map((value, index) => ({ value, index, label: itemLabel(value, index, config.itemName) }))
+    .filter((item) => item.label.toLowerCase().includes(searchQuery.toLowerCase()));
+
+  function updateValues(nextValues: EditableValue[]) {
+    onChange(replaceExportedCollection(draft, config.exportName, nextValues));
+  }
+
+  function updateSelected(value: EditableValue) {
+    if (safeIndex < 0) return;
+    const nextValues = [...values];
+    nextValues[safeIndex] = value;
+    updateValues(nextValues);
+  }
+
+  function addItem() {
+    const template = values[safeIndex] ?? values[0] ?? "";
+    const nextValues = [...values, blankValue(template)];
+    updateValues(nextValues);
+    setSelectedIndex(nextValues.length - 1);
+  }
+
+  function duplicateItem() {
+    if (safeIndex < 0) return;
+    const nextValues = [...values];
+    nextValues.splice(safeIndex + 1, 0, JSON.parse(JSON.stringify(values[safeIndex])) as EditableValue);
+    updateValues(nextValues);
+    setSelectedIndex(safeIndex + 1);
+  }
+
+  function deleteItem() {
+    if (safeIndex < 0 || !window.confirm(`Delete ${itemLabel(values[safeIndex], safeIndex, config.itemName)}?`)) return;
+    const nextValues = values.filter((_, index) => index !== safeIndex);
+    updateValues(nextValues);
+    setSelectedIndex(Math.max(0, safeIndex - 1));
+  }
+
+  function moveItem(direction: -1 | 1) {
+    const targetIndex = safeIndex + direction;
+    if (safeIndex < 0 || targetIndex < 0 || targetIndex >= values.length) return;
+    const nextValues = [...values];
+    [nextValues[safeIndex], nextValues[targetIndex]] = [nextValues[targetIndex], nextValues[safeIndex]];
+    updateValues(nextValues);
+    setSelectedIndex(targetIndex);
+  }
+
+  return (
+    <div className="mt-6">
+      <label className="grid gap-2 text-sm text-white/80">
+        What do you want to manage?
+        <select
+          value={config.exportName}
+          onChange={(event) => onConfigChange(event.target.value)}
+          className="min-h-12 rounded-2xl border border-white/10 bg-black/35 px-4 text-white outline-none transition focus:border-signal"
+        >
+          {collectionConfigs.map((option) => <option key={option.exportName} value={option.exportName}>{option.label}</option>)}
+        </select>
+      </label>
+
+      <div className="mt-6 grid gap-6 xl:grid-cols-[0.72fr_1.28fr]">
+        <div className="min-w-0 border-b border-white/10 pb-6 xl:border-b-0 xl:border-r xl:pb-0 xl:pr-6">
+          <div className="flex items-center justify-between gap-3">
+            <div>
+              <p className="font-semibold text-white">{config.label}</p>
+              <p className="mt-1 text-xs text-white/45">{values.length} items</p>
+            </div>
+            <button type="button" onClick={addItem} className="grid h-11 w-11 shrink-0 place-items-center rounded-full bg-white text-black transition hover:bg-signal" aria-label={`Add ${config.itemName}`} title={`Add ${config.itemName}`}>
+              <Plus size={18} />
+            </button>
+          </div>
+          <input
+            type="search"
+            value={searchQuery}
+            onChange={(event) => setSearchQuery(event.target.value)}
+            className="mt-4 min-h-11 w-full rounded-xl border border-white/10 bg-black/30 px-3 text-sm text-white outline-none transition placeholder:text-white/35 focus:border-signal"
+            placeholder={`Search ${config.label.toLowerCase()}`}
+          />
+          <div className="mt-4 grid max-h-[34rem] gap-2 overflow-y-auto pr-1">
+            {visibleItems.map(({ value, index, label }) => (
+              <button
+                key={`${config.exportName}-${index}`}
+                type="button"
+                onClick={() => setSelectedIndex(index)}
+                className={`min-h-11 rounded-xl border px-3 py-2 text-left text-sm transition ${
+                  index === safeIndex ? "border-signal bg-signal/10 text-white" : "border-white/10 bg-black/20 text-white/65 hover:border-white/25 hover:text-white"
+                }`}
+              >
+                <span className="mr-2 text-xs text-white/35">{String(index + 1).padStart(2, "0")}</span>
+                {label}
+              </button>
+            ))}
+            {!visibleItems.length && <p className="py-6 text-center text-sm text-white/45">No matching items.</p>}
+          </div>
+        </div>
+
+        <div className="min-w-0">
+          {selectedValue === null ? (
+            <div className="grid min-h-52 place-items-center rounded-2xl border border-dashed border-white/15 p-6 text-center text-sm text-mercury">
+              Add your first {config.itemName} to begin.
+            </div>
+          ) : (
+            <>
+              <div className="flex flex-wrap items-center justify-between gap-3 border-b border-white/10 pb-4">
+                <div>
+                  <p className="text-xs uppercase tracking-[0.18em] text-signal">Editing</p>
+                  <h3 className="mt-1 font-display text-2xl text-white">{itemLabel(selectedValue, safeIndex, config.itemName)}</h3>
+                </div>
+                <div className="flex gap-2">
+                  <IconButton label="Move up" onClick={() => moveItem(-1)} disabled={safeIndex <= 0}><ArrowUp size={17} /></IconButton>
+                  <IconButton label="Move down" onClick={() => moveItem(1)} disabled={safeIndex >= values.length - 1}><ArrowDown size={17} /></IconButton>
+                  <IconButton label="Duplicate" onClick={duplicateItem}><Copy size={17} /></IconButton>
+                  <IconButton label="Delete" onClick={deleteItem} danger><Trash2 size={17} /></IconButton>
+                </div>
+              </div>
+              <div className="mt-5">
+                <ValueEditor value={selectedValue} onChange={updateSelected} fieldName={config.itemName} />
+              </div>
+            </>
+          )}
+        </div>
+      </div>
+    </div>
+  );
+}
+
+function ValueEditor({ value, onChange, fieldName }: { value: EditableValue; onChange: (value: EditableValue) => void; fieldName: string }) {
+  if (typeof value === "string") {
+    const useTextarea = value.length > 80 || ["summary", "details", "body", "brief", "subtitle", "description", "overview", "challenge", "direction", "outcome", "role"].includes(fieldName);
+    const help = fieldHelp(fieldName);
+    return (
+      <label className="grid gap-2 text-sm text-white/80">
+        <span>{humanize(fieldName)}</span>
+        {useTextarea ? (
+          <textarea value={value} onChange={(event) => onChange(event.target.value)} className="min-h-28 w-full resize-y rounded-2xl border border-white/10 bg-black/35 p-4 leading-6 text-white outline-none transition focus:border-signal" />
+        ) : (
+          <input value={value} onChange={(event) => onChange(event.target.value)} className="min-h-12 min-w-0 rounded-2xl border border-white/10 bg-black/35 px-4 text-white outline-none transition focus:border-signal" />
+        )}
+        {help && <span className="text-xs leading-5 text-white/42">{help}</span>}
+      </label>
+    );
+  }
+
+  if (typeof value === "number") {
+    return (
+      <label className="grid gap-2 text-sm text-white/80">
+        <span>{humanize(fieldName)}</span>
+        <input type="number" value={value} onChange={(event) => onChange(Number(event.target.value))} className="min-h-12 rounded-2xl border border-white/10 bg-black/35 px-4 text-white outline-none transition focus:border-signal" />
+      </label>
+    );
+  }
+
+  if (typeof value === "boolean") {
+    return (
+      <label className="flex min-h-12 items-center gap-3 rounded-2xl border border-white/10 bg-black/25 px-4 text-sm text-white/80">
+        <input type="checkbox" checked={value} onChange={(event) => onChange(event.target.checked)} className="h-4 w-4 accent-signal" />
+        {humanize(fieldName)}
+      </label>
+    );
+  }
+
+  if (value === null) {
+    return <p className="text-sm text-white/45">{humanize(fieldName)} is empty.</p>;
+  }
+
+  if (Array.isArray(value)) {
+    const objectList = value.some((item) => item !== null && typeof item === "object") || ["images", "previewImages"].includes(fieldName);
+    if (objectList) {
+      return <NestedObjectList fieldName={fieldName} values={value} onChange={onChange} />;
+    }
+    return (
+      <label className="grid gap-2 text-sm text-white/80">
+        <span>{humanize(fieldName)}</span>
+        <textarea
+          value={value.map(String).join("\n")}
+          onChange={(event) => onChange(event.target.value.split("\n"))}
+          onBlur={(event) => onChange(event.target.value.split("\n").map((item) => item.trim()).filter(Boolean))}
+          className="min-h-32 w-full resize-y rounded-2xl border border-white/10 bg-black/35 p-4 leading-6 text-white outline-none transition focus:border-signal"
+        />
+        <span className="text-xs text-white/42">One item per line</span>
+      </label>
+    );
+  }
+
+  return (
+    <div className="grid gap-4">
+      {Object.entries(value).map(([key, child]) => (
+        <div key={key} className={child && typeof child === "object" && !Array.isArray(child) ? "border-l border-white/10 pl-4" : ""}>
+          <ValueEditor value={child} onChange={(nextChild) => onChange({ ...value, [key]: nextChild })} fieldName={key} />
+        </div>
+      ))}
+    </div>
+  );
+}
+
+function NestedObjectList({ fieldName, values, onChange }: { fieldName: string; values: EditableValue[]; onChange: (value: EditableValue) => void }) {
+  function addNestedItem() {
+    const fallback = { src: "", title: "", width: 1080, height: 1350 } as EditableValue;
+    onChange([...values, values.length ? blankValue(values[0]) : fallback]);
+  }
+
+  return (
+    <div>
+      <div className="flex items-center justify-between gap-3">
+        <div>
+          <p className="text-sm text-white/80">{humanize(fieldName)}</p>
+          <p className="mt-1 text-xs text-white/42">{values.length} media items</p>
+        </div>
+        <button type="button" onClick={addNestedItem} className="inline-flex min-h-10 items-center gap-2 rounded-full border border-white/10 px-4 text-xs font-bold uppercase tracking-[0.14em] text-white transition hover:border-signal hover:text-signal">
+          <Plus size={15} /> Add
+        </button>
+      </div>
+      <div className="mt-3 divide-y divide-white/10 border-y border-white/10">
+        {values.map((item, index) => (
+          <details key={`${fieldName}-${index}`} className="py-3" open={index === 0}>
+            <summary className="cursor-pointer text-sm font-semibold text-white">{itemLabel(item, index, "media")}</summary>
+            <div className="mt-4 grid gap-4 pl-3">
+              <ValueEditor
+                value={item}
+                onChange={(nextItem) => onChange(values.map((current, currentIndex) => currentIndex === index ? nextItem : current))}
+                fieldName="media"
+              />
+              <div className="flex flex-wrap gap-2">
+                <IconButton label="Move media up" onClick={() => onChange(moveArrayValue(values, index, -1))} disabled={index === 0}><ArrowUp size={16} /></IconButton>
+                <IconButton label="Move media down" onClick={() => onChange(moveArrayValue(values, index, 1))} disabled={index === values.length - 1}><ArrowDown size={16} /></IconButton>
+                <IconButton label="Delete media" onClick={() => window.confirm("Delete this media item?") && onChange(values.filter((_, currentIndex) => currentIndex !== index))} danger><Trash2 size={16} /></IconButton>
+              </div>
+            </div>
+          </details>
+        ))}
+      </div>
+    </div>
+  );
+}
+
+function moveArrayValue(values: EditableValue[], index: number, direction: -1 | 1) {
+  const target = index + direction;
+  if (target < 0 || target >= values.length) return values;
+  const nextValues = [...values];
+  [nextValues[index], nextValues[target]] = [nextValues[target], nextValues[index]];
+  return nextValues;
+}
+
+function humanize(value: string) {
+  return value.replace(/([a-z])([A-Z])/g, "$1 $2").replace(/[-_]/g, " ").replace(/^./, (character) => character.toUpperCase());
+}
+
+function fieldHelp(fieldName: string) {
+  if (fieldName === "id") return "Use lowercase words with hyphens. Do not change an existing ID unless its route should change.";
+  if (["src", "thumbnail", "poster", "logo"].includes(fieldName)) return "Use the path created by Media Upload, starting with /.";
+  if (fieldName === "href") return "Internal links should start with / and section links with /#.";
+  if (["width", "height"].includes(fieldName)) return "Original media dimension in pixels.";
+  return "";
+}
+
+function IconButton({ label, onClick, disabled = false, danger = false, children }: { label: string; onClick: () => void; disabled?: boolean; danger?: boolean; children: ReactNode }) {
+  return (
+    <button
+      type="button"
+      onClick={onClick}
+      disabled={disabled}
+      className={`grid h-10 w-10 place-items-center rounded-full border transition disabled:cursor-not-allowed disabled:opacity-30 ${danger ? "border-red-300/20 text-red-100/70 hover:border-red-300/50 hover:text-red-100" : "border-white/10 text-white/65 hover:border-signal hover:text-signal"}`}
+      aria-label={label}
+      title={label}
+    >
+      {children}
+    </button>
   );
 }
 
