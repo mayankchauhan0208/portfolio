@@ -38,18 +38,25 @@ function imageSizeFor(src: string) {
   return { width: 1080, height: 1920 };
 }
 
-function fullQualitySrcFor(src: string) {
+function fullQualitySrcFor(src: string, originalSrc?: string) {
+  if (originalSrc) {
+    return originalSrc;
+  }
   if (!src.startsWith("/optimized/work/")) {
     return src;
   }
 
-  const originalSrc = src.replace("/optimized", "");
+  const derivedOriginalSrc = src.replace("/optimized", "");
 
   if (src.endsWith("/fitness-ui-app.webp") || src.endsWith("/interior-consistency-03.webp")) {
-    return originalSrc.replace(/\.webp$/, ".jpg");
+    return derivedOriginalSrc.replace(/\.webp$/, ".jpg");
   }
 
-  return originalSrc.replace(/\.webp$/, ".png");
+  return derivedOriginalSrc.replace(/\.webp$/, ".png");
+}
+
+function originalImageSrc(image: { src: string; originalSrc?: string }) {
+  return fullQualitySrcFor(image.src, image.originalSrc);
 }
 
 function getCategory(slug: string) {
@@ -471,7 +478,7 @@ export default function CategoryPage({ params }: CategoryPageProps) {
                       <figure className="project-gallery-figure">
                         <PreviewImage
                           src={assetPath(image.src)}
-                          previewSrc={publicAssetPath(fullQualitySrcFor(image.src))}
+                          previewSrc={publicAssetPath(originalImageSrc(image))}
                           alt={image.title}
                           width={image.width}
                           height={image.height}
@@ -518,7 +525,7 @@ export default function CategoryPage({ params }: CategoryPageProps) {
                       <figure className="project-gallery-figure">
                         <PreviewImage
                           src={assetPath(image.src)}
-                          previewSrc={publicAssetPath(fullQualitySrcFor(image.src))}
+                          previewSrc={publicAssetPath(originalImageSrc(image))}
                           alt={image.title}
                           width={image.width}
                           height={image.height}
@@ -563,7 +570,7 @@ export default function CategoryPage({ params }: CategoryPageProps) {
                       <figure className="project-gallery-figure">
                         <PreviewImage
                           src={assetPath(image.src)}
-                          previewSrc={publicAssetPath(fullQualitySrcFor(image.src))}
+                          previewSrc={publicAssetPath(originalImageSrc(image))}
                           alt={image.title}
                           width={image.width}
                           height={image.height}
@@ -610,7 +617,7 @@ export default function CategoryPage({ params }: CategoryPageProps) {
                       <figure className="project-gallery-figure">
                         <PreviewImage
                           src={assetPath(image.src)}
-                          previewSrc={publicAssetPath(fullQualitySrcFor(image.src))}
+                          previewSrc={publicAssetPath(originalImageSrc(image))}
                           alt={image.title}
                           width={image.width}
                           height={image.height}
@@ -657,7 +664,7 @@ export default function CategoryPage({ params }: CategoryPageProps) {
                       <figure className="project-gallery-figure">
                         <PreviewImage
                           src={assetPath(image.src)}
-                          previewSrc={publicAssetPath(fullQualitySrcFor(image.src))}
+                          previewSrc={publicAssetPath(originalImageSrc(image))}
                           alt={image.title}
                           width={image.width}
                           height={image.height}

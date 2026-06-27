@@ -1,7 +1,7 @@
 "use client";
 
 import { type ChangeEvent, type DragEvent, type FormEvent, type ReactNode, useEffect, useMemo, useState } from "react";
-import { ArrowDown, ArrowUp, CheckCircle2, Copy, ExternalLink, Eye, EyeOff, FileText, LockKeyhole, PencilLine, Plus, ShieldCheck, Trash2, UploadCloud, X } from "lucide-react";
+import { ArrowDown, ArrowUp, CheckCircle2, Copy, ExternalLink, Eye, EyeOff, FileText, ImagePlus, LockKeyhole, PencilLine, Plus, ShieldCheck, Sparkles, Trash2, UploadCloud, X } from "lucide-react";
 import JSON5 from "json5";
 
 type GitHubFile = {
@@ -43,6 +43,13 @@ type CollectionConfig = {
   label: string;
   description: string;
   itemName: string;
+};
+
+type PendingProjectImage = {
+  id: string;
+  file: File;
+  title: string;
+  preview: string;
 };
 
 const repoOwner = "mayankchauhan0208";
@@ -427,7 +434,7 @@ function validateCollection(values: EditableValue[], config: CollectionConfig) {
   });
 }
 
-async function fileToBase64(file: File) {
+async function fileToBase64(file: Blob) {
   const buffer = await file.arrayBuffer();
   let binary = "";
   const bytes = new Uint8Array(buffer);
@@ -437,6 +444,46 @@ async function fileToBase64(file: File) {
   }
 
   return btoa(binary);
+}
+
+function slugify(value: string) {
+  return value
+    .toLowerCase()
+    .trim()
+    .replace(/[^a-z0-9]+/g, "-")
+    .replace(/^-+|-+$/g, "")
+    .slice(0, 70);
+}
+
+function titleFromFilename(filename: string) {
+  return filename.replace(/\.[^.]+$/, "").replace(/[-_]+/g, " ").replace(/\b\w/g, (character) => character.toUpperCase());
+}
+
+function originalImageExtension(file: File) {
+  if (file.type === "image/png") return "png";
+  if (file.type === "image/webp") return "webp";
+  return "jpg";
+}
+
+async function optimizeProjectImage(file: File) {
+  const bitmap = await createImageBitmap(file);
+  const maxDimension = 1800;
+  const scale = Math.min(1, maxDimension / Math.max(bitmap.width, bitmap.height));
+  const canvas = document.createElement("canvas");
+  canvas.width = Math.max(1, Math.round(bitmap.width * scale));
+  canvas.height = Math.max(1, Math.round(bitmap.height * scale));
+  const context = canvas.getContext("2d");
+  if (!context) {
+    bitmap.close();
+    throw new Error("This browser could not prepare the gallery image.");
+  }
+  context.drawImage(bitmap, 0, 0, canvas.width, canvas.height);
+  const dimensions = { width: bitmap.width, height: bitmap.height };
+  bitmap.close();
+  const blob = await new Promise<Blob>((resolve, reject) => {
+    canvas.toBlob((result) => result ? resolve(result) : reject(new Error("Could not create the optimized WebP image.")), "image/webp", 0.84);
+  });
+  return { blob, ...dimensions };
 }
 
 function githubHeaders(token: string) {
@@ -1075,6 +1122,10 @@ export function AdminClient() {
               </div>
             </Panel>
 
+            <Panel title="Quick Add AI Project">
+              <AiProjectUploader token={token} onStatus={setStatus} />
+            </Panel>
+
             <Panel title="Content Editor">
               <div className="flex flex-col gap-3 md:flex-row md:items-end md:justify-between">
                 <div>
@@ -1143,9 +1194,9 @@ export function AdminClient() {
               </div>
             </Panel>
 
-            <Panel title="Media Upload">
+            <Panel title="Advanced Media Upload">
               <p className="text-sm leading-6 text-mercury">
-                Choose what you are uploading, select the file, then publish it to the correct protected media folder.
+                Use this only for individual file updates that are not part of the guided AI project uploader.
               </p>
               <div className="mt-4 grid gap-3">
                 <label className="grid gap-2 text-sm text-white/80">
@@ -1183,6 +1234,188 @@ export function AdminClient() {
         </div>
       </section>
     </main>
+  );
+}
+
+function AiProjectUploader({ token, onStatus }: { token: string; onStatus: (status: Status) => void }) {
+  const [title, setTitle] = useState("");
+  const [format, setFormat] = useState("AI-assisted Creative Visuals");
+  const [brief, setBrief] = useState("");
+  const [images, setImages] = useState<PendingProjectImage[]>([]);
+  const [dragActive, setDragActive] = useState(false);
+  const [publishing, setPublishing] = useState(false);
+
+  function addFiles(files: File[]) {
+    const availableSlots = Math.max(0, 20 - images.length);
+    const accepted = files
+      .filter((file) => ["image/jpeg", "image/png", "image/webp"].includes(file.type) && file.size <= 25 * 1024 * 1024)
+      .slice(0, availableSlots)
+      .map((file) => ({ id: crypto.randomUUID(), file, title: titleFromFilename(file.name), preview: URL.createObjectURL(file) }));
+
+    if (!accepted.length) {
+      onStatus({ type: "error", message: "Choose JPG, PNG, or WebP images smaller than 25 MB each." });
+      return;
+    }
+    setImages((current) => [...current, ...accepted]);
+    onStatus({ type: "info", message: `${accepted.length} creative${accepted.length === 1 ? "" : "s"} added to the project.` });
+  }
+
+  function removeImage(id: string) {
+    setImages((current) => {
+      const selected = current.find((image) => image.id === id);
+      if (selected) URL.revokeObjectURL(selected.preview);
+      return current.filter((image) => image.id !== id);
+    });
+  }
+
+  function moveImage(index: number, direction: -1 | 1) {
+    const target = index + direction;
+    if (target < 0 || target >= images.length) return;
+    const nextImages = [...images];
+    [nextImages[index], nextImages[target]] = [nextImages[target], nextImages[index]];
+    setImages(nextImages);
+  }
+
+  function updateImageTitle(id: string, value: string) {
+    setImages((current) => current.map((image) => image.id === id ? { ...image, title: value } : image));
+  }
+
+  async function publishProject() {
+    const projectTitle = title.trim();
+    const projectSlug = slugify(projectTitle);
+    if (!projectTitle || !projectSlug || !format.trim() || !brief.trim()) {
+      onStatus({ type: "error", message: "Add the project title, format, and description before publishing." });
+      return;
+    }
+    if (!images.length || images.some((image) => !image.title.trim())) {
+      onStatus({ type: "error", message: "Add at least one creative and give every creative a title." });
+      return;
+    }
+    if (!window.confirm(`Upload ${images.length} creatives and publish “${projectTitle}” under AI Creative Projects?`)) {
+      return;
+    }
+
+    try {
+      setPublishing(true);
+      onStatus({ type: "info", message: "Checking the AI project collection..." });
+      const portfolioFile = await fetchGithubFile("lib/portfolio-data.ts", token);
+      const projects = parseExportedCollection(portfolioFile.content, "aiGeneratedProjects");
+      if (projects.some((project) => project && typeof project === "object" && !Array.isArray(project) && project.title === projectTitle)) {
+        throw new Error("A project with this title already exists. Use a different title or edit the existing project.");
+      }
+
+      const projectImages: EditableValue[] = [];
+      for (let index = 0; index < images.length; index += 1) {
+        const image = images[index];
+        onStatus({ type: "info", message: `Preparing creative ${index + 1} of ${images.length}...` });
+        const optimized = await optimizeProjectImage(image.file);
+        const baseName = `${String(index + 1).padStart(2, "0")}-${slugify(image.title) || "creative"}`;
+        const originalExtension = originalImageExtension(image.file);
+        const originalRepoPath = `public/work/ai-generated/${projectSlug}/${baseName}.${originalExtension}`;
+        const optimizedRepoPath = `public/optimized/work/ai-generated/${projectSlug}/${baseName}.webp`;
+
+        const [originalSha, optimizedSha] = await Promise.all([
+          fetchGithubSha(originalRepoPath, token),
+          fetchGithubSha(optimizedRepoPath, token)
+        ]);
+        if (originalSha || optimizedSha) {
+          throw new Error(`Media already exists for ${image.title}. Change the project or creative title.`);
+        }
+
+        onStatus({ type: "info", message: `Uploading creative ${index + 1} of ${images.length}...` });
+        await commitGithubBase64(originalRepoPath, token, await fileToBase64(image.file), null, `media: add ${projectTitle} original ${index + 1}`);
+        await commitGithubBase64(optimizedRepoPath, token, await fileToBase64(optimized.blob), null, `media: add ${projectTitle} thumbnail ${index + 1}`);
+        projectImages.push({
+          title: image.title.trim(),
+          src: optimizedRepoPath.replace(/^public/, ""),
+          originalSrc: originalRepoPath.replace(/^public/, ""),
+          width: optimized.width,
+          height: optimized.height
+        });
+      }
+
+      const nextProjects: EditableValue[] = [
+        ...projects,
+        {
+          title: projectTitle,
+          category: "AI Creative Workflows",
+          format: format.trim(),
+          brief: brief.trim(),
+          images: projectImages
+        }
+      ];
+      validateCollection(nextProjects, collectionConfigs.find((collection) => collection.exportName === "aiGeneratedProjects")!);
+      const nextContent = replaceExportedCollection(portfolioFile.content, "aiGeneratedProjects", nextProjects);
+      await commitGithubFile(portfolioFile.path, token, nextContent, portfolioFile.sha, `content: add ${projectTitle} AI project`);
+
+      images.forEach((image) => URL.revokeObjectURL(image.preview));
+      setImages([]);
+      setTitle("");
+      setBrief("");
+      onStatus({ type: "success", message: `${projectTitle} was published to GitHub with optimized gallery images and full-quality originals.` });
+    } catch (error) {
+      onStatus({ type: "error", message: error instanceof Error ? error.message : "Could not publish the AI project." });
+    } finally {
+      setPublishing(false);
+    }
+  }
+
+  return (
+    <div>
+      <div className="flex items-start gap-3 border-b border-white/10 pb-5">
+        <span className="grid h-11 w-11 shrink-0 place-items-center rounded-xl bg-signal/10 text-signal"><Sparkles size={21} /></span>
+        <div>
+          <p className="font-semibold text-white">AI Creative Project</p>
+          <p className="mt-1 text-sm leading-6 text-mercury">Add details once, drop all creatives, and publish the complete project.</p>
+        </div>
+      </div>
+
+      <div className="mt-5 grid gap-4">
+        <TextField label="Project title" value={title} onChange={setTitle} help="Example: Luxury Interior AI Campaign" />
+        <TextField label="Creative format" value={format} onChange={setFormat} help="Example: Interior Concept Visuals" />
+        <TextAreaField label="Project description" value={brief} onChange={setBrief} />
+      </div>
+
+      <label
+        htmlFor="ai-project-images"
+        onDragEnter={(event) => { event.preventDefault(); setDragActive(true); }}
+        onDragOver={(event) => event.preventDefault()}
+        onDragLeave={() => setDragActive(false)}
+        onDrop={(event) => { event.preventDefault(); setDragActive(false); addFiles(Array.from(event.dataTransfer.files)); }}
+        className={`mt-5 grid min-h-48 cursor-pointer place-items-center rounded-2xl border border-dashed p-6 text-center transition ${dragActive ? "border-signal bg-signal/10" : "border-white/15 bg-black/20 hover:border-white/30"}`}
+      >
+        <input id="ai-project-images" type="file" accept="image/jpeg,image/png,image/webp" multiple className="sr-only" onChange={(event) => addFiles(Array.from(event.target.files ?? []))} />
+        <span>
+          <ImagePlus className="mx-auto text-signal" size={32} />
+          <span className="mt-3 block font-semibold text-white">Drop all project creatives here</span>
+          <span className="mt-1 block text-sm leading-6 text-mercury">JPG, PNG, or WebP. Optimized thumbnails are created automatically.</span>
+        </span>
+      </label>
+
+      {images.length > 0 && (
+        <div className="mt-5 divide-y divide-white/10 border-y border-white/10">
+          {images.map((image, index) => (
+            <div key={image.id} className="grid gap-3 py-4 sm:grid-cols-[5rem_1fr_auto] sm:items-center">
+              {/* eslint-disable-next-line @next/next/no-img-element */}
+              <img src={image.preview} alt="" className="h-20 w-20 rounded-xl border border-white/10 object-contain" />
+              <label className="grid min-w-0 gap-2 text-xs text-white/55">
+                Creative title
+                <input value={image.title} onChange={(event) => updateImageTitle(image.id, event.target.value)} className="min-h-11 min-w-0 rounded-xl border border-white/10 bg-black/30 px-3 text-sm text-white outline-none transition focus:border-signal" />
+              </label>
+              <div className="flex gap-2">
+                <IconButton label="Move creative up" onClick={() => moveImage(index, -1)} disabled={index === 0}><ArrowUp size={16} /></IconButton>
+                <IconButton label="Move creative down" onClick={() => moveImage(index, 1)} disabled={index === images.length - 1}><ArrowDown size={16} /></IconButton>
+                <IconButton label="Remove creative" onClick={() => removeImage(image.id)} danger><X size={16} /></IconButton>
+              </div>
+            </div>
+          ))}
+        </div>
+      )}
+
+      <button type="button" onClick={publishProject} disabled={publishing || !images.length} className="mt-5 min-h-12 w-full rounded-full bg-signal px-6 text-xs font-bold uppercase tracking-[0.18em] text-black transition hover:bg-white disabled:cursor-not-allowed disabled:opacity-40">
+        {publishing ? "Publishing project..." : `Publish AI Project${images.length ? ` (${images.length} creatives)` : ""}`}
+      </button>
+    </div>
   );
 }
 
