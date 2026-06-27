@@ -1,7 +1,7 @@
 "use client";
 
-import { type ChangeEvent, type FormEvent, type ReactNode, useEffect, useMemo, useState } from "react";
-import { ArrowDown, ArrowUp, CheckCircle2, Copy, ExternalLink, Eye, EyeOff, LockKeyhole, PencilLine, Plus, ShieldCheck, Trash2 } from "lucide-react";
+import { type ChangeEvent, type DragEvent, type FormEvent, type ReactNode, useEffect, useMemo, useState } from "react";
+import { ArrowDown, ArrowUp, CheckCircle2, Copy, ExternalLink, Eye, EyeOff, FileText, LockKeyhole, PencilLine, Plus, ShieldCheck, Trash2, UploadCloud, X } from "lucide-react";
 import JSON5 from "json5";
 
 type GitHubFile = {
@@ -199,6 +199,14 @@ function isApprovedMediaPath(path: string) {
     !normalized.includes("..") &&
     approvedMediaPrefixes.some((prefix) => normalized.startsWith(prefix)) &&
     !normalized.endsWith("/")
+  );
+}
+
+function isApprovedResumePath(path: string) {
+  const normalized = normalizeRepoPath(path);
+  return (
+    normalized === "public/Mayank-Chauhan-Resume.pdf" ||
+    (normalized.startsWith("public/resume/") && normalized.toLowerCase().endsWith(".pdf") && !normalized.includes(".."))
   );
 }
 
@@ -1096,7 +1104,7 @@ export function AdminClient() {
                   </div>
                 </div>
               ) : selectedPath === "content/site.json" ? (
-                <SiteContentEditor draft={draft} onChange={setDraft} />
+                <SiteContentEditor draft={draft} onChange={setDraft} token={token} onStatus={setStatus} />
               ) : selectedPath === "lib/portfolio-data.ts" ? (
                 <CollectionEditor
                   draft={draft}
@@ -1479,7 +1487,7 @@ function IconButton({ label, onClick, disabled = false, danger = false, children
   );
 }
 
-function SiteContentEditor({ draft, onChange }: { draft: string; onChange: (value: string) => void }) {
+function SiteContentEditor({ draft, onChange, token, onStatus }: { draft: string; onChange: (value: string) => void; token: string; onStatus: (status: Status) => void }) {
   let content: SiteContent;
 
   try {
@@ -1536,8 +1544,115 @@ function SiteContentEditor({ draft, onChange }: { draft: string; onChange: (valu
           <TextField label="Location" value={content.profile.location} onChange={(value) => updateProfile("location", value)} />
           <TextField label="Behance URL" type="url" value={content.profile.behance} onChange={(value) => updateProfile("behance", value)} />
         </div>
-        <TextField label="Resume file path" value={content.profile.resume} onChange={(value) => updateProfile("resume", value)} help="Example: /Mayank-Chauhan-Resume.pdf" />
+        <ResumeManager resumePath={content.profile.resume} token={token} onStatus={onStatus} />
       </FormSection>
+    </div>
+  );
+}
+
+function ResumeManager({ resumePath, token, onStatus }: { resumePath: string; token: string; onStatus: (status: Status) => void }) {
+  const [selectedFile, setSelectedFile] = useState<File | null>(null);
+  const [dragActive, setDragActive] = useState(false);
+  const [uploading, setUploading] = useState(false);
+  const [inputVersion, setInputVersion] = useState(0);
+  const repoPath = normalizeRepoPath(`public/${resumePath.replace(/^\/+/, "")}`);
+
+  function chooseResume(file: File | null) {
+    if (!file) return;
+    if (file.type !== "application/pdf" && !file.name.toLowerCase().endsWith(".pdf")) {
+      onStatus({ type: "error", message: "Choose a PDF file for the resume." });
+      return;
+    }
+    if (file.size > 20 * 1024 * 1024) {
+      onStatus({ type: "error", message: "Resume PDF must be smaller than 20 MB." });
+      return;
+    }
+    setSelectedFile(file);
+    onStatus({ type: "info", message: `${file.name} is ready. Review it, then replace the current resume.` });
+  }
+
+  function handleResumeDrop(event: DragEvent<HTMLLabelElement>) {
+    event.preventDefault();
+    setDragActive(false);
+    chooseResume(event.dataTransfer.files?.[0] ?? null);
+  }
+
+  async function replaceResume() {
+    if (!selectedFile) {
+      onStatus({ type: "error", message: "Choose a new resume PDF first." });
+      return;
+    }
+    if (!isApprovedResumePath(repoPath)) {
+      onStatus({ type: "error", message: "The current resume path is not approved for replacement." });
+      return;
+    }
+    if (!window.confirm(`Replace the current resume with ${selectedFile.name}? The website link will continue using ${resumePath}.`)) {
+      return;
+    }
+
+    try {
+      setUploading(true);
+      onStatus({ type: "info", message: "Uploading and replacing the current resume..." });
+      const existingSha = await fetchGithubSha(repoPath, token);
+      const encoded = await fileToBase64(selectedFile);
+      await commitGithubBase64(repoPath, token, encoded, existingSha, "content: replace portfolio resume");
+      setSelectedFile(null);
+      setInputVersion((version) => version + 1);
+      onStatus({ type: "success", message: "Resume replaced on GitHub. The existing deployment will publish the new PDF shortly." });
+    } catch (error) {
+      onStatus({ type: "error", message: error instanceof Error ? error.message : "Could not replace the resume." });
+    } finally {
+      setUploading(false);
+    }
+  }
+
+  return (
+    <div>
+      <p className="text-sm text-white/80">Resume PDF</p>
+      <div className="mt-2 flex flex-col gap-3 border-y border-white/10 py-4 sm:flex-row sm:items-center sm:justify-between">
+        <div className="flex min-w-0 items-center gap-3">
+          <span className="grid h-11 w-11 shrink-0 place-items-center rounded-xl bg-white/[0.06] text-signal"><FileText size={20} /></span>
+          <div className="min-w-0">
+            <p className="truncate text-sm font-semibold text-white">{resumePath.split("/").pop() || "Current resume"}</p>
+            <p className="mt-1 text-xs text-white/42">Current live file</p>
+          </div>
+        </div>
+        <a href={resumePath} target="_blank" rel="noopener noreferrer" className="inline-flex min-h-10 items-center justify-center gap-2 rounded-full border border-white/10 px-4 text-xs font-bold uppercase tracking-[0.14em] text-white transition hover:border-signal hover:text-signal">
+          Open current <ExternalLink size={14} />
+        </a>
+      </div>
+
+      <label
+        htmlFor="resume-pdf-upload"
+        onDragEnter={(event) => { event.preventDefault(); setDragActive(true); }}
+        onDragOver={(event) => event.preventDefault()}
+        onDragLeave={() => setDragActive(false)}
+        onDrop={handleResumeDrop}
+        className={`mt-4 grid min-h-44 cursor-pointer place-items-center rounded-2xl border border-dashed p-6 text-center transition ${dragActive ? "border-signal bg-signal/10" : "border-white/15 bg-black/20 hover:border-white/30"}`}
+      >
+        <input key={inputVersion} id="resume-pdf-upload" type="file" accept="application/pdf,.pdf" className="sr-only" onChange={(event) => chooseResume(event.target.files?.[0] ?? null)} />
+        <span>
+          <UploadCloud className="mx-auto text-signal" size={30} />
+          <span className="mt-3 block font-semibold text-white">Drop a new resume PDF here</span>
+          <span className="mt-1 block text-sm leading-6 text-mercury">or tap to choose a file, up to 20 MB</span>
+        </span>
+      </label>
+
+      {selectedFile && (
+        <div className="mt-3 flex flex-col gap-3 rounded-2xl border border-signal/25 bg-signal/[0.08] p-4 sm:flex-row sm:items-center sm:justify-between">
+          <div className="min-w-0">
+            <p className="truncate text-sm font-semibold text-white">{selectedFile.name}</p>
+            <p className="mt-1 text-xs text-white/45">{(selectedFile.size / 1024 / 1024).toFixed(2)} MB selected</p>
+          </div>
+          <div className="flex gap-2">
+            <button type="button" onClick={() => { setSelectedFile(null); setInputVersion((version) => version + 1); }} className="grid h-11 w-11 place-items-center rounded-full border border-white/10 text-white/65 transition hover:border-red-300/40 hover:text-red-100" aria-label="Remove selected resume" title="Remove selected file"><X size={17} /></button>
+            <button type="button" onClick={replaceResume} disabled={uploading} className="min-h-11 rounded-full bg-white px-5 text-xs font-bold uppercase tracking-[0.14em] text-black transition hover:bg-signal disabled:cursor-wait disabled:opacity-50">
+              {uploading ? "Replacing..." : "Replace previous PDF"}
+            </button>
+          </div>
+        </div>
+      )}
+      <p className="mt-3 text-xs leading-5 text-white/42">Replacing uploads the new PDF to the same safe path, removes the previous live version, and keeps every Resume button working.</p>
     </div>
   );
 }
