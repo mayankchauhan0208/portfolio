@@ -55,6 +55,39 @@ const editableFiles = [
   }
 ];
 
+const editorSections = [
+  {
+    title: "Homepage",
+    description: "Hero text, role ticker, CTA labels, About, Experience, Skills, Contact, resume path, and main portfolio data.",
+    paths: ["lib/portfolio-data.ts", "app/page.tsx"]
+  },
+  {
+    title: "Work & Projects",
+    description: "Work categories, project lists, descriptions, order, published/draft style fields, and media references.",
+    paths: ["lib/portfolio-data.ts", "app/work/page.tsx", "app/work/[category]/page.tsx"]
+  },
+  {
+    title: "Case Studies",
+    description: "Case-study overview, challenge, role, direction, deliverables, tools, and outcomes for category pages.",
+    paths: ["lib/portfolio-data.ts", "app/work/[category]/page.tsx"]
+  },
+  {
+    title: "Media Paths",
+    description: "Optimized thumbnails, original images, video posters, original videos, and path fallback behavior.",
+    paths: ["lib/portfolio-data.ts", "lib/site-paths.ts"]
+  },
+  {
+    title: "SEO",
+    description: "Browser title, meta description, Open Graph, Twitter card, social preview image, and portfolio keywords.",
+    paths: ["app/layout.tsx"]
+  },
+  {
+    title: "Advanced Layout",
+    description: "Homepage, Work library, and Work category rendering. Edit carefully because these are code files.",
+    paths: ["app/page.tsx", "app/work/page.tsx", "app/work/[category]/page.tsx"]
+  }
+];
+
 const approvedWritePaths = [
   "lib/portfolio-data.ts",
   "app/layout.tsx",
@@ -219,6 +252,7 @@ export function AdminClient() {
   const [newPassword, setNewPassword] = useState("");
   const [token, setToken] = useState("");
   const [rememberToken, setRememberToken] = useState(false);
+  const [tokenStepComplete, setTokenStepComplete] = useState(false);
   const [selectedPath, setSelectedPath] = useState(editableFiles[0].path);
   const [loadedFile, setLoadedFile] = useState<GitHubFile | null>(null);
   const [draft, setDraft] = useState("");
@@ -234,8 +268,11 @@ export function AdminClient() {
     const sessionToken = sessionStorage.getItem(tokenStorageKey) ?? "";
 
     setAuthenticated(sessionStorage.getItem(authStorageKey) === "true");
-    setToken(sessionToken || rememberedToken);
+    const availableToken = sessionToken || rememberedToken;
+
+    setToken(availableToken);
     setRememberToken(Boolean(rememberedToken));
+    setTokenStepComplete(Boolean(availableToken));
 
     if (!sessionToken && rememberedToken) {
       sessionStorage.setItem(tokenStorageKey, rememberedToken);
@@ -309,9 +346,31 @@ export function AdminClient() {
   function clearToken() {
     setToken("");
     setRememberToken(false);
+    setTokenStepComplete(false);
     sessionStorage.removeItem(tokenStorageKey);
     localStorage.removeItem(persistentTokenStorageKey);
     setStatus({ type: "info", message: "GitHub token removed from this browser." });
+  }
+
+  function continueWithToken() {
+    if (!token) {
+      setStatus({ type: "error", message: "Paste your GitHub token before continuing." });
+      return;
+    }
+
+    sessionStorage.setItem(tokenStorageKey, token);
+    if (rememberToken) {
+      localStorage.setItem(persistentTokenStorageKey, token);
+    }
+    setTokenStepComplete(true);
+    setStatus({ type: "success", message: "GitHub key connected. Choose a section to edit." });
+  }
+
+  function selectAdminFile(path: string) {
+    setSelectedPath(path);
+    setLoadedFile(null);
+    setDraft("");
+    setCommitMessage(path === "lib/portfolio-data.ts" ? "content: update portfolio content" : "fix: update portfolio admin content");
   }
 
   async function handleLoadFile() {
@@ -419,10 +478,11 @@ export function AdminClient() {
       <main className="min-h-screen bg-obsidian px-4 py-10 text-platinum">
         <section className="mx-auto grid min-h-[80vh] max-w-xl place-items-center">
           <div className="w-full rounded-[2rem] border border-white/10 bg-white/[0.055] p-6 shadow-luxury backdrop-blur-xl sm:p-8">
-            <p className="text-xs font-semibold uppercase tracking-[0.28em] text-signal">Portfolio Admin</p>
-            <h1 className="mt-4 font-display text-4xl leading-tight text-white">Admin access</h1>
+            <StepPill current={1} />
+            <p className="mt-6 text-xs font-semibold uppercase tracking-[0.28em] text-signal">Portfolio Admin</p>
+            <h1 className="mt-4 font-display text-4xl leading-tight text-white">Enter admin password</h1>
             <p className="mt-4 text-sm leading-6 text-mercury">
-              This is a basic static-site password gate. It is useful for convenience, but GitHub token permissions are the real security.
+              First unlock the admin panel. This password is a basic browser gate; GitHub token permissions are the real security.
             </p>
             <form onSubmit={handleLogin} className="mt-6 grid gap-3">
               <label className="grid gap-2 text-sm text-white/80">
@@ -436,9 +496,52 @@ export function AdminClient() {
                 />
               </label>
               <button type="submit" className="min-h-12 rounded-full bg-white px-5 text-sm font-bold uppercase tracking-[0.18em] text-black transition hover:bg-signal">
-                Unlock Admin
+                Next
               </button>
             </form>
+            <StatusMessage status={status} />
+          </div>
+        </section>
+      </main>
+    );
+  }
+
+  if (!tokenStepComplete) {
+    return (
+      <main className="min-h-screen bg-obsidian px-4 py-10 text-platinum">
+        <section className="mx-auto grid min-h-[80vh] max-w-2xl place-items-center">
+          <div className="w-full rounded-[2rem] border border-white/10 bg-white/[0.055] p-6 shadow-luxury backdrop-blur-xl sm:p-8">
+            <StepPill current={2} />
+            <p className="mt-6 text-xs font-semibold uppercase tracking-[0.28em] text-signal">GitHub Key</p>
+            <h1 className="mt-4 font-display text-4xl leading-tight text-white">Connect GitHub token</h1>
+            <p className="mt-4 text-sm leading-6 text-mercury">
+              Paste your fine-grained token for this portfolio repo. It lets the admin save edits as GitHub commits and trigger the existing deployment.
+            </p>
+
+            <label className="mt-6 grid gap-2 text-sm text-white/80">
+              GitHub token
+              <input
+                type="password"
+                value={token}
+                onChange={(event) => handleSaveToken(event.target.value)}
+                className="min-h-12 rounded-2xl border border-white/10 bg-black/35 px-4 text-white outline-none transition focus:border-signal"
+                placeholder="github_pat_..."
+              />
+            </label>
+
+            <label className="mt-4 flex items-start gap-3 rounded-2xl border border-white/10 bg-black/25 p-3 text-sm leading-6 text-mercury">
+              <input
+                type="checkbox"
+                checked={rememberToken}
+                onChange={(event) => handleRememberToken(event.target.checked)}
+                className="mt-1 h-4 w-4 accent-signal"
+              />
+              <span>Remember token on this device. Use this only on your own phone/laptop.</span>
+            </label>
+
+            <button type="button" onClick={continueWithToken} className="mt-6 min-h-12 w-full rounded-full bg-white px-5 text-sm font-bold uppercase tracking-[0.18em] text-black transition hover:bg-signal">
+              Next
+            </button>
             <StatusMessage status={status} />
           </div>
         </section>
@@ -456,10 +559,11 @@ export function AdminClient() {
       <section className="relative mx-auto max-w-7xl">
         <div className="flex flex-col gap-5 border-b border-white/10 pb-6 md:flex-row md:items-end md:justify-between">
           <div>
+            <StepPill current={3} />
             <p className="text-xs font-semibold uppercase tracking-[0.28em] text-signal">Static GitHub Admin</p>
             <h1 className="mt-3 font-display text-4xl leading-tight text-white md:text-6xl">Portfolio Admin</h1>
             <p className="mt-3 max-w-2xl text-sm leading-6 text-mercury">
-              Edit approved repository files, upload media to approved public folders, and commit changes to GitHub. The existing deployment flow updates the live site.
+              Choose a section, load the related file from GitHub, edit, and save. Your current hosting stays the same.
             </p>
           </div>
           <button
@@ -480,13 +584,13 @@ export function AdminClient() {
           <aside className="space-y-5">
             <Panel title="Quick Start">
               <ol className="space-y-3 text-sm leading-6 text-mercury">
-                <li><strong className="text-white">1.</strong> Paste your GitHub token once.</li>
-                <li><strong className="text-white">2.</strong> Choose what you want to edit.</li>
-                <li><strong className="text-white">3.</strong> Click Load From GitHub.</li>
+                <li><strong className="text-white">1.</strong> Pick a section card.</li>
+                <li><strong className="text-white">2.</strong> Choose the exact file if needed.</li>
+                <li><strong className="text-white">3.</strong> Load From GitHub.</li>
                 <li><strong className="text-white">4.</strong> Edit, then Save & Publish.</li>
               </ol>
               <p className="mt-4 rounded-2xl border border-white/10 bg-black/25 p-3 text-xs leading-5 text-white/55">
-                You only need to paste the token every time if you do not enable remember on this device.
+                For most text, projects, categories, experience, skills, contact, resume, and media paths, use Main portfolio content.
               </p>
             </Panel>
 
@@ -519,6 +623,9 @@ export function AdminClient() {
                 <button type="button" onClick={clearToken} className="min-h-10 rounded-full border border-white/10 px-4 text-xs font-bold uppercase tracking-[0.16em] text-white/72 transition hover:border-signal hover:text-signal">
                   Clear Token
                 </button>
+                <button type="button" onClick={() => setTokenStepComplete(false)} className="min-h-10 rounded-full border border-white/10 px-4 text-xs font-bold uppercase tracking-[0.16em] text-white/72 transition hover:border-signal hover:text-signal">
+                  Change Key
+                </button>
                 <span className="inline-flex min-h-10 items-center rounded-full border border-white/10 bg-white/[0.04] px-4 text-xs text-white/55">
                   {token ? (rememberToken ? "Saved on this device" : "Saved for this tab") : "No token saved"}
                 </span>
@@ -543,32 +650,40 @@ export function AdminClient() {
               </form>
             </Panel>
 
-            <Panel title="Easy Edit Sections">
-              <div className="grid gap-2">
-                {editableFiles.map((file) => (
-                  <button
-                    key={file.path}
-                    type="button"
-                    onClick={() => {
-                      setSelectedPath(file.path);
-                      setLoadedFile(null);
-                      setDraft("");
-                    }}
-                    className={`rounded-2xl border p-4 text-left transition ${
-                      selectedPath === file.path
-                        ? "border-signal bg-signal/10 text-white"
-                        : "border-white/10 bg-black/20 text-white/72 hover:border-white/25 hover:text-white"
-                    }`}
-                  >
-                    <span className="block text-sm font-semibold">{file.label}</span>
-                    <span className="mt-1 block break-all text-xs text-white/45">{file.path}</span>
-                  </button>
-                ))}
-              </div>
-            </Panel>
           </aside>
 
           <div className="space-y-5">
+            <Panel title="Edit By Section">
+              <div className="grid gap-3 md:grid-cols-2 xl:grid-cols-3">
+                {editorSections.map((section) => (
+                  <article key={section.title} className="rounded-2xl border border-white/10 bg-black/24 p-4">
+                    <h3 className="font-display text-xl text-white">{section.title}</h3>
+                    <p className="mt-2 min-h-16 text-sm leading-6 text-mercury">{section.description}</p>
+                    <div className="mt-4 grid gap-2">
+                      {section.paths.map((path) => {
+                        const file = editableFiles.find((item) => item.path === path);
+                        return (
+                          <button
+                            key={`${section.title}-${path}`}
+                            type="button"
+                            onClick={() => selectAdminFile(path)}
+                            className={`rounded-xl border px-3 py-2 text-left text-xs transition ${
+                              selectedPath === path
+                                ? "border-signal bg-signal/10 text-white"
+                                : "border-white/10 bg-white/[0.04] text-white/64 hover:border-white/25 hover:text-white"
+                            }`}
+                          >
+                            <span className="block font-semibold">{file?.label ?? path}</span>
+                            <span className="mt-1 block break-all text-white/42">{path}</span>
+                          </button>
+                        );
+                      })}
+                    </div>
+                  </article>
+                ))}
+              </div>
+            </Panel>
+
             <Panel title="Content Editor">
               <div className="flex flex-col gap-3 md:flex-row md:items-end md:justify-between">
                 <div>
@@ -652,6 +767,35 @@ function Panel({ title, children }: { title: string; children: ReactNode }) {
       <h2 className="font-display text-2xl text-white">{title}</h2>
       <div className="mt-4">{children}</div>
     </section>
+  );
+}
+
+function StepPill({ current }: { current: 1 | 2 | 3 }) {
+  const steps = ["Password", "GitHub Key", "Edit Content"];
+
+  return (
+    <div className="flex flex-wrap gap-2">
+      {steps.map((step, index) => {
+        const stepNumber = (index + 1) as 1 | 2 | 3;
+        const active = stepNumber === current;
+        const complete = stepNumber < current;
+
+        return (
+          <span
+            key={step}
+            className={`inline-flex min-h-9 items-center rounded-full border px-3 text-[0.62rem] font-bold uppercase tracking-[0.16em] ${
+              active
+                ? "border-signal bg-signal/15 text-signal"
+                : complete
+                  ? "border-emerald-300/25 bg-emerald-300/10 text-emerald-100"
+                  : "border-white/10 bg-white/[0.04] text-white/42"
+            }`}
+          >
+            {stepNumber}. {step}
+          </span>
+        );
+      })}
+    </div>
   );
 }
 
