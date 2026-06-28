@@ -426,10 +426,18 @@ html.theme-light button[aria-label*="theme"],
   line-height: 1.65;
 }
 
-.reference-cta-row {
+.reference-cta-stack {
   margin-top: 24px;
   display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 12px;
+}
+
+.reference-cta-row {
+  display: flex;
   flex-wrap: wrap;
+  align-items: center;
   gap: 12px;
 }
 
@@ -1083,9 +1091,29 @@ html.theme-light button[aria-label*="theme"],
   }
 
   .reference-cta-row {
-    margin-top: 18px;
+    flex-direction: column;
+    align-items: stretch;
+    width: 100%;
     max-width: 100%;
     gap: 8px;
+  }
+
+  .reference-cta-stack {
+    margin-top: 18px;
+    width: 100%;
+    gap: 8px;
+  }
+
+  .reference-contact-icons {
+    width: 100%;
+  }
+
+  .reference-info .contact-icon-link {
+    width: 44px;
+    min-height: 44px;
+    flex: 0 0 44px;
+    margin-top: 0 !important;
+    padding: 0;
   }
 
   .reference-cta {
@@ -1094,6 +1122,10 @@ html.theme-light button[aria-label*="theme"],
   }
 
   .reference-cta-row .reference-cta {
+    margin-top: 0 !important;
+  }
+
+  .reference-cta-stack > .reference-cta {
     margin-top: 0 !important;
   }
 

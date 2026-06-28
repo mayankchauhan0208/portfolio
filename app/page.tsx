@@ -5,7 +5,7 @@ import Link from "next/link";
 import { type CSSProperties, useEffect, useRef, useState } from "react";
 import { motion, useScroll, useTransform } from "framer-motion";
 import gsap from "gsap";
-import { ArrowUpRight, Download, GraduationCap, Mail, Phone, Sparkles } from "lucide-react";
+import { ArrowUpRight, Download, GraduationCap, Instagram, Linkedin, Mail, Palette, Phone, Sparkles, type LucideIcon } from "lucide-react";
 import { LoadingOverlay } from "@/components/loading-overlay";
 import { Nav } from "@/components/nav";
 import { Reveal } from "@/components/reveal";
@@ -13,6 +13,81 @@ import { SectionShell } from "@/components/section-shell";
 import { Spotlight } from "@/components/spotlight";
 import { aiTools, coreExpertise, education, hobbies, metrics, portfolioCategories, profile, services, softwareSkills, timeline } from "@/lib/portfolio-data";
 import { assetPath } from "@/lib/site-paths";
+
+type ContactAction = {
+  label: string;
+  shortLabel: string;
+  href: string;
+  icon: LucideIcon;
+  external?: boolean;
+};
+
+const contactActions: ContactAction[] = [
+  {
+    label: "LinkedIn profile",
+    shortLabel: "LinkedIn",
+    href: "https://www.linkedin.com/in/mayankchauhan0208/",
+    icon: Linkedin,
+    external: true
+  },
+  {
+    label: "Call Mayank Chauhan",
+    shortLabel: "Call",
+    href: "tel:+919992713289",
+    icon: Phone
+  },
+  {
+    label: "Email Mayank Chauhan",
+    shortLabel: "Email",
+    href: "mailto:mayankchauhan0208@gmail.com",
+    icon: Mail
+  },
+  {
+    label: "Instagram profile",
+    shortLabel: "Instagram",
+    href: "https://www.instagram.com/chauhan_shab0208?utm_source=ig_web_button_share_sheet&igsh=ZDNlZDc0MzIxNw==",
+    icon: Instagram,
+    external: true
+  }
+];
+
+function ContactIconLinks({ includeBehance = false, labeled = false, className = "" }) {
+  const actions = includeBehance
+    ? [
+        ...contactActions,
+        {
+          label: "Behance profile",
+          shortLabel: "Behance",
+          href: profile.behance,
+          icon: Palette,
+          external: true
+        }
+      ]
+    : contactActions;
+
+  return (
+    <div className={`${labeled ? "grid grid-cols-2 gap-3 sm:grid-cols-5" : "flex flex-wrap gap-2"} ${className}`}>
+      {actions.map(({ label, shortLabel, href, icon: Icon, external }) => (
+        <a
+          key={label}
+          href={href}
+          target={external ? "_blank" : undefined}
+          rel={external ? "noopener noreferrer" : undefined}
+          aria-label={label}
+          title={label}
+          className={
+            labeled
+              ? "group flex min-h-20 min-w-0 flex-col items-center justify-center gap-2 rounded-2xl border border-white/10 bg-black/25 px-2 py-3 text-center text-white transition hover:border-signal/50 hover:bg-signal/10 hover:text-signal focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-signal focus-visible:ring-offset-2 focus-visible:ring-offset-obsidian"
+              : "contact-icon-link grid h-12 w-12 shrink-0 place-items-center rounded-full border border-white/15 bg-white/[0.065] text-white backdrop-blur-xl transition hover:-translate-y-0.5 hover:border-signal/60 hover:bg-signal/15 hover:text-signal focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-signal focus-visible:ring-offset-2 focus-visible:ring-offset-obsidian"
+          }
+        >
+          <Icon size={labeled ? 20 : 18} strokeWidth={1.9} aria-hidden />
+          {labeled ? <span className="max-w-full text-[0.62rem] font-semibold uppercase leading-tight tracking-[0.12em]">{shortLabel}</span> : null}
+        </a>
+      ))}
+    </div>
+  );
+}
 
 export default function Home() {
   const [activeCreative, setActiveCreative] = useState(1);
@@ -107,16 +182,15 @@ export default function Home() {
               I create brand communication, campaign creatives, UI concepts, social media assets,
               real-estate marketing visuals, video edits, and AI-assisted creative workflows.
             </p>
-            <div className="intro-line reference-cta-row">
-              <Link href="#work" className="reference-cta reference-cta-primary">
-                View Selected Work
-                <ArrowUpRight size={16} />
-              </Link>
-              <a href={`mailto:${profile.email}`} className="reference-cta reference-cta-secondary">
-                Contact Me
-                <Mail size={16} />
-              </a>
-              <a href={assetPath(profile.resume)} download aria-label="Download Resume" className="reference-cta reference-cta-secondary">
+            <div className="intro-line reference-cta-stack">
+              <div className="reference-cta-row">
+                <Link href="#work" aria-label="View selected work" className="reference-cta reference-cta-primary">
+                  View Selected Work
+                  <ArrowUpRight size={16} />
+                </Link>
+                <ContactIconLinks className="reference-contact-icons" />
+              </div>
+              <a href={assetPath(profile.resume)} download aria-label="Download resume" className="reference-cta reference-cta-secondary">
                 Download Resume
                 <Download size={16} />
               </a>
@@ -508,30 +582,16 @@ export default function Home() {
                   ))}
                 </div>
               </div>
-              <div className="grid gap-3">
-                <a href={`mailto:${profile.email}`} className="flex min-w-0 items-center justify-between gap-4 rounded-2xl bg-white p-4 font-semibold text-black shadow-glow transition hover:bg-signal sm:p-5">
-                  <span className="flex min-w-0 items-center gap-3"><Mail className="shrink-0" size={18} /> <span className="min-w-0 break-all">Contact Me</span></span>
-                  <ArrowUpRight className="shrink-0" size={18} />
-                </a>
-                <a href={assetPath(profile.resume)} download aria-label="Download Resume" className="flex min-w-0 items-center justify-between gap-4 rounded-2xl border border-signal/35 bg-signal/15 p-4 font-semibold text-white transition hover:border-signal hover:bg-signal hover:text-black sm:p-5">
+              <div className="grid gap-4">
+                <ContactIconLinks includeBehance labeled />
+                <a href={assetPath(profile.resume)} download aria-label="Download resume" className="flex min-h-12 min-w-0 items-center justify-between gap-4 rounded-2xl border border-signal/35 bg-signal/15 p-4 font-semibold text-white transition hover:border-signal hover:bg-signal hover:text-black focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-signal focus-visible:ring-offset-2 focus-visible:ring-offset-obsidian sm:p-5">
                   <span className="flex min-w-0 items-center gap-3"><Download className="shrink-0" size={18} /> <span>Download Resume</span></span>
                   <ArrowUpRight className="shrink-0" size={18} />
                 </a>
-                <a href={`tel:${profile.phone.replaceAll(" ", "")}`} className="flex min-w-0 items-center justify-between gap-4 rounded-2xl border border-white/10 bg-black/25 p-4 text-white transition hover:border-signal/40 hover:bg-black/40 sm:p-5">
-                  <span className="flex min-w-0 items-center gap-3"><Phone className="shrink-0" size={18} /> <span>{profile.phone}</span></span>
-                  <ArrowUpRight className="shrink-0" size={18} />
-                </a>
-                <a href={profile.behance} target="_blank" rel="noopener noreferrer" aria-label="Behance" className="flex min-w-0 items-center justify-between gap-4 rounded-2xl border border-white/10 bg-black/25 p-4 text-white transition hover:border-signal/40 hover:bg-black/40 sm:p-5">
-                  <span>Behance</span>
-                  <ArrowUpRight className="shrink-0" size={18} />
-                </a>
-                <Link href="#work" className="flex min-w-0 items-center justify-between gap-4 rounded-2xl border border-white/10 bg-black/25 p-4 text-white transition hover:border-signal/40 hover:bg-black/40 sm:p-5">
+                <Link href="#work" aria-label="View selected work" className="flex min-h-12 min-w-0 items-center justify-between gap-4 rounded-2xl border border-white/10 bg-black/25 p-4 text-white transition hover:border-signal/40 hover:bg-black/40 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-signal focus-visible:ring-offset-2 focus-visible:ring-offset-obsidian sm:p-5">
                   <span>View Selected Work</span>
                   <ArrowUpRight className="shrink-0" size={18} />
                 </Link>
-                <a href={`mailto:${profile.email}`} className="break-all px-1 text-xs leading-5 text-white/48 transition hover:text-signal">
-                  {profile.email}
-                </a>
               </div>
             </div>
           </div>
