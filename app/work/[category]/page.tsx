@@ -76,27 +76,7 @@ function getCategory(slug: string) {
   return portfolioCategories.find((category) => category.id === slug);
 }
 
-type GalleryImage = {
-  width: number;
-  height: number;
-};
-
-function galleryCardClassFor(image: GalleryImage, index: number, total = 0) {
-  const isLandscape = image.width / image.height >= 1.35;
-  const isSquare = Math.abs(image.width - image.height) <= Math.max(image.width, image.height) * 0.08;
-  const isTallFeature = image.height / image.width >= 2.8;
-  const isOpeningOrClosing = index === 0 || index === total - 1;
-
-  return [
-    "project-gallery-card group",
-    isLandscape ? "project-gallery-card-wide" : "",
-    isSquare ? "project-gallery-card-square" : "",
-    isTallFeature ? "project-gallery-card-feature" : "",
-    isOpeningOrClosing && total > 5 ? "project-gallery-card-anchor" : ""
-  ]
-    .filter(Boolean)
-    .join(" ");
-}
+const galleryCardClass = "project-gallery-card group";
 
 export function generateStaticParams() {
   return portfolioCategories.map((category) => ({
@@ -155,7 +135,8 @@ export default function CategoryPage({ params }: CategoryPageProps) {
           display: grid;
           grid-template-columns: minmax(0, 1fr);
           grid-auto-flow: row;
-          gap: 1rem;
+          align-items: start;
+          gap: 1.25rem;
         }
 
         .project-gallery-grid--project {
@@ -238,43 +219,14 @@ export default function CategoryPage({ params }: CategoryPageProps) {
         @media (min-width: 768px) {
           .project-gallery-grid {
             grid-template-columns: repeat(2, minmax(0, 1fr));
-            gap: 1.6rem;
-          }
-
-          .project-gallery-card-wide,
-          .project-gallery-card-feature {
-            grid-column: span 2;
-          }
-
-          .project-gallery-card-square {
-            min-height: 100%;
-          }
-
-          .project-gallery-card-wide .project-gallery-image {
-            padding: 0.25rem;
+            gap: 1.5rem;
           }
         }
 
         @media (min-width: 1280px) {
           .project-gallery-grid {
-            grid-template-columns: repeat(3, minmax(0, 1fr));
-            gap: 1.9rem;
-          }
-
-          .project-gallery-grid--project {
             grid-template-columns: repeat(2, minmax(0, 1fr));
-          }
-
-          .project-gallery-grid:not(.project-gallery-grid--project) .project-gallery-card-anchor {
-            grid-column: span 2;
-          }
-
-          .project-gallery-card-feature {
-            grid-column: span 2;
-          }
-
-          .project-gallery-card-square:not(.project-gallery-card-wide):not(.project-gallery-card-feature) {
-            max-width: none;
+            gap: 1.75rem;
           }
         }
 
@@ -435,13 +387,13 @@ export default function CategoryPage({ params }: CategoryPageProps) {
             </div>
 
             <div className="project-gallery-grid">
-              {portfolioWorks.map((work, index) => {
+              {portfolioWorks.map((work) => {
                 const size = workImageSize(work);
 
                 return (
                   <article
                     key={work.title}
-                    className={galleryCardClassFor(size, index, portfolioWorks.length)}
+                    className={galleryCardClass}
                   >
                     <div className="absolute inset-0 bg-[radial-gradient(circle_at_15%_15%,rgba(142,232,255,0.13),transparent_28%),linear-gradient(145deg,rgba(255,255,255,0.08),transparent_38%)] opacity-0 transition duration-500 group-hover:opacity-100" />
                     <div className="relative p-3">
@@ -452,7 +404,7 @@ export default function CategoryPage({ params }: CategoryPageProps) {
                           alt={work.title}
                           width={size.width}
                           height={size.height}
-                          sizes="(min-width: 1536px) 23vw, (min-width: 1280px) 30vw, (min-width: 640px) 46vw, 92vw"
+                          sizes="(min-width: 768px) 46vw, 92vw"
                           className="project-gallery-image"
                         />
                       </figure>
@@ -486,7 +438,7 @@ export default function CategoryPage({ params }: CategoryPageProps) {
                   {project.images.map((image, index) => (
                     <article
                       key={image.src}
-                      className={galleryCardClassFor(image, index, project.images.length)}
+                      className={galleryCardClass}
                     >
                       <figure className="project-gallery-figure">
                         <PreviewImage
@@ -495,7 +447,7 @@ export default function CategoryPage({ params }: CategoryPageProps) {
                           alt={image.title}
                           width={image.width}
                           height={image.height}
-                          sizes="(min-width: 1280px) 30vw, (min-width: 768px) 46vw, 92vw"
+                          sizes="(min-width: 768px) 46vw, 92vw"
                           className="project-gallery-image"
                         />
                       </figure>
@@ -532,7 +484,7 @@ export default function CategoryPage({ params }: CategoryPageProps) {
                   {project.images.map((image, index) => (
                     <article
                       key={image.src}
-                      className={galleryCardClassFor(image, index, project.images.length)}
+                      className={galleryCardClass}
                     >
                       <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_70%_15%,rgba(190,255,0,0.2),transparent_30%),linear-gradient(145deg,rgba(255,255,255,0.08),transparent_38%)] opacity-0 transition duration-500 group-hover:opacity-100" />
                       <figure className="project-gallery-figure">
@@ -542,7 +494,7 @@ export default function CategoryPage({ params }: CategoryPageProps) {
                           alt={image.title}
                           width={image.width}
                           height={image.height}
-                          sizes="(min-width: 1280px) 30vw, (min-width: 768px) 46vw, 92vw"
+                          sizes="(min-width: 768px) 46vw, 92vw"
                           className="project-gallery-image"
                         />
                       </figure>
@@ -578,7 +530,7 @@ export default function CategoryPage({ params }: CategoryPageProps) {
 
                 <div className="project-gallery-grid project-gallery-grid--project">
                   {project.images.map((image, index) => (
-                    <article key={image.src} className={galleryCardClassFor(image, index, project.images.length)}>
+                    <article key={image.src} className={galleryCardClass}>
                       <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_70%_15%,rgba(125,211,255,0.2),transparent_30%),linear-gradient(145deg,rgba(255,255,255,0.08),transparent_38%)] opacity-0 transition duration-500 group-hover:opacity-100" />
                       <figure className="project-gallery-figure">
                         <PreviewImage
@@ -587,7 +539,7 @@ export default function CategoryPage({ params }: CategoryPageProps) {
                           alt={image.title}
                           width={image.width}
                           height={image.height}
-                          sizes="(min-width: 1280px) 30vw, (min-width: 768px) 46vw, 92vw"
+                          sizes="(min-width: 768px) 46vw, 92vw"
                           className="project-gallery-image"
                         />
                       </figure>
@@ -624,7 +576,7 @@ export default function CategoryPage({ params }: CategoryPageProps) {
                   {project.images.map((image, index) => (
                     <article
                       key={image.src}
-                      className={galleryCardClassFor(image, index, project.images.length)}
+                      className={galleryCardClass}
                     >
                       <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_70%_15%,rgba(158,255,196,0.16),transparent_30%),linear-gradient(145deg,rgba(255,255,255,0.08),transparent_38%)] opacity-0 transition duration-500 group-hover:opacity-100" />
                       <figure className="project-gallery-figure">
@@ -634,7 +586,7 @@ export default function CategoryPage({ params }: CategoryPageProps) {
                           alt={image.title}
                           width={image.width}
                           height={image.height}
-                          sizes="(min-width: 1280px) 30vw, (min-width: 768px) 46vw, 92vw"
+                          sizes="(min-width: 768px) 46vw, 92vw"
                           className="project-gallery-image"
                         />
                       </figure>
@@ -671,7 +623,7 @@ export default function CategoryPage({ params }: CategoryPageProps) {
                   {project.images.map((image, index) => (
                     <article
                       key={image.src}
-                      className={galleryCardClassFor(image, index, project.images.length)}
+                      className={galleryCardClass}
                     >
                       <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_75%_12%,rgba(183,164,255,0.2),transparent_30%),linear-gradient(145deg,rgba(255,255,255,0.08),transparent_38%)] opacity-0 transition duration-500 group-hover:opacity-100" />
                       <figure className="project-gallery-figure">
@@ -681,7 +633,7 @@ export default function CategoryPage({ params }: CategoryPageProps) {
                           alt={image.title}
                           width={image.width}
                           height={image.height}
-                          sizes="(min-width: 1280px) 30vw, (min-width: 768px) 46vw, 92vw"
+                          sizes="(min-width: 768px) 46vw, 92vw"
                           className="project-gallery-image"
                         />
                       </figure>
@@ -713,7 +665,7 @@ export default function CategoryPage({ params }: CategoryPageProps) {
               </p>
             </div>
 
-            <div className="grid gap-5 md:grid-cols-2 md:gap-6 xl:grid-cols-3 xl:gap-8">
+            <div className="grid gap-5 md:grid-cols-2 md:gap-6 xl:gap-7">
               {videoProjects.map((project) => (
                 <article
                   key={project.title}
@@ -726,8 +678,8 @@ export default function CategoryPage({ params }: CategoryPageProps) {
                       title={project.title}
                       width={project.width}
                       height={project.height}
-                      sizes="(min-width: 1280px) 22vw, (min-width: 1024px) 30vw, (min-width: 640px) 44vw, 92vw"
-                      className="h-[31rem] w-full object-cover transition duration-700 group-hover:scale-[1.02]"
+                      sizes="(min-width: 768px) 46vw, 92vw"
+                      className="h-auto w-full object-contain transition duration-700 group-hover:scale-[1.01]"
                     />
                   </div>
                   <div className="p-3 pt-5 md:p-5">
