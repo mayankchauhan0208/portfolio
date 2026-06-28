@@ -19,7 +19,17 @@ function imageSizeFor(src: string) {
 export const metadata = {
   title: "Creative Portfolio Library",
   description:
-    "Explore Mayank Chauhan's visual design portfolio across brand design, campaign creatives, UI visual design, real-estate marketing, motion and video, and AI-assisted creative workflows."
+    "Explore Mayank Chauhan's visual design portfolio across brand design, campaign creatives, UI visual design, real-estate marketing, motion and video, and AI-assisted creative workflows.",
+  alternates: {
+    canonical: "/work"
+  },
+  openGraph: {
+    title: "Selected Visual Design Work | Mayank Chauhan",
+    description:
+      "Explore brand communication, campaign creatives, UI visual design, real-estate marketing, motion/video, and AI-assisted creative work by Mayank Chauhan.",
+    url: "/work",
+    images: ["/optimized/images/mayank-portrait.webp"]
+  }
 };
 
 export default function WorkPage() {
@@ -85,7 +95,7 @@ export default function WorkPage() {
                   >
                     <Image
                       src={assetPath(work.image)}
-                      alt={work.title}
+                      alt={`${work.title} ${work.format} by Mayank Chauhan`}
                       width={size.width}
                       height={size.height}
                       priority={index === 0}
@@ -146,7 +156,7 @@ export default function WorkPage() {
                       <div key={image} className={`niche-image-sample niche-image-sample-${imageIndex + 1}`}>
                         <Image
                           src={assetPath(image)}
-                          alt={`${category.title} preview ${imageIndex + 1}`}
+                          alt={`${category.title} work preview by Mayank Chauhan`}
                           fill
                           sizes="220px"
                           className="object-cover"

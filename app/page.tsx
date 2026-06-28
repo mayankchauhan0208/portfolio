@@ -89,7 +89,7 @@ export default function Home() {
             <div className="reference-rim" />
             <Image
               src={assetPath("/images/mayank-portrait.webp")}
-              alt="Mayank Chauhan portrait"
+              alt="Mayank Chauhan visual designer portfolio portrait"
               fill
               priority
               sizes="(max-width: 768px) 76vw, (max-width: 1024px) 82vw, 32vw"
@@ -256,7 +256,7 @@ export default function Home() {
                           <div key={image} className={`niche-image-sample niche-image-sample-${imageIndex + 1}`}>
                             <Image
                               src={assetPath(image)}
-                              alt={`${category.title} preview ${imageIndex + 1}`}
+                              alt={`${category.title} work preview by Mayank Chauhan`}
                               fill
                               sizes="180px"
                               className="object-cover"

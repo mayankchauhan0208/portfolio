@@ -96,13 +96,19 @@ export function generateMetadata({ params }: CategoryPageProps) {
   return {
     title: `${category.title} Portfolio`,
     description: `${category.title} work by Mayank Chauhan, covering visual design, brand communication, campaign creatives, UI visual design, real-estate marketing, motion/video, and AI-assisted creative workflows. ${category.subtitle}`,
+    alternates: {
+      canonical: category.href
+    },
     openGraph: {
       title: `${category.title} Portfolio | Mayank Chauhan`,
-      description: `${category.title} work by Mayank Chauhan. ${category.subtitle}`
+      description: `${category.title} work by Mayank Chauhan. ${category.subtitle}`,
+      url: category.href,
+      images: ["/optimized/images/mayank-portrait.webp"]
     },
     twitter: {
       title: `${category.title} Portfolio | Mayank Chauhan`,
-      description: `${category.title} work by Mayank Chauhan. ${category.subtitle}`
+      description: `${category.title} work by Mayank Chauhan. ${category.subtitle}`,
+      images: ["/optimized/images/mayank-portrait.webp"]
     }
   };
 }
@@ -401,7 +407,7 @@ export default function CategoryPage({ params }: CategoryPageProps) {
                         <PreviewImage
                           src={assetPath(work.image)}
                           previewSrc={publicAssetPath(originalWorkImageSrc(work))}
-                          alt={work.title}
+                          alt={`${work.title} ${category.title} work by Mayank Chauhan`}
                           width={size.width}
                           height={size.height}
                           sizes="(min-width: 768px) 46vw, 92vw"
@@ -444,7 +450,7 @@ export default function CategoryPage({ params }: CategoryPageProps) {
                         <PreviewImage
                           src={assetPath(image.src)}
                           previewSrc={publicAssetPath(originalImageSrc(image))}
-                          alt={image.title}
+                          alt={`${image.title} ${category.title} work by Mayank Chauhan`}
                           width={image.width}
                           height={image.height}
                           sizes="(min-width: 768px) 46vw, 92vw"
@@ -491,7 +497,7 @@ export default function CategoryPage({ params }: CategoryPageProps) {
                         <PreviewImage
                           src={assetPath(image.src)}
                           previewSrc={publicAssetPath(originalImageSrc(image))}
-                          alt={image.title}
+                          alt={`${image.title} ${category.title} work by Mayank Chauhan`}
                           width={image.width}
                           height={image.height}
                           sizes="(min-width: 768px) 46vw, 92vw"
@@ -536,7 +542,7 @@ export default function CategoryPage({ params }: CategoryPageProps) {
                         <PreviewImage
                           src={assetPath(image.src)}
                           previewSrc={publicAssetPath(originalImageSrc(image))}
-                          alt={image.title}
+                          alt={`${image.title} ${category.title} work by Mayank Chauhan`}
                           width={image.width}
                           height={image.height}
                           sizes="(min-width: 768px) 46vw, 92vw"
@@ -583,7 +589,7 @@ export default function CategoryPage({ params }: CategoryPageProps) {
                         <PreviewImage
                           src={assetPath(image.src)}
                           previewSrc={publicAssetPath(originalImageSrc(image))}
-                          alt={image.title}
+                          alt={`${image.title} ${category.title} work by Mayank Chauhan`}
                           width={image.width}
                           height={image.height}
                           sizes="(min-width: 768px) 46vw, 92vw"
@@ -630,7 +636,7 @@ export default function CategoryPage({ params }: CategoryPageProps) {
                         <PreviewImage
                           src={assetPath(image.src)}
                           previewSrc={publicAssetPath(originalImageSrc(image))}
-                          alt={image.title}
+                          alt={`${image.title} ${category.title} work by Mayank Chauhan`}
                           width={image.width}
                           height={image.height}
                           sizes="(min-width: 768px) 46vw, 92vw"

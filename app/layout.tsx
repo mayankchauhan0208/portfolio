@@ -2,26 +2,31 @@ import type { Metadata, Viewport } from "next";
 import "./globals.css";
 import { RouteStartReset } from "@/components/route-start-reset";
 import { SiteChrome } from "@/components/site-chrome";
+import { profile } from "@/lib/portfolio-data";
+
+const siteUrl = "https://mayankchauhan.co.in";
+const siteDescription =
+  "Portfolio of Mayank Chauhan, a visual designer creating brand communication, campaign creatives, UI visual design, real-estate marketing visuals, motion/video assets, and AI-assisted creative workflows in India.";
+const socialPreviewImage = "/optimized/images/mayank-portrait.webp";
 
 export const metadata: Metadata = {
-  metadataBase: new URL("https://mayankchauhan.co.in"),
+  metadataBase: new URL(siteUrl),
   title: {
     default: "Mayank Chauhan | Visual Designer & Creative Brand Designer",
     template: "%s | Mayank Chauhan"
   },
-  description:
-    "Portfolio of Mayank Chauhan, a visual designer creating brand communication, campaign creatives, UI concepts, real-estate marketing visuals, motion/video assets, and AI-assisted creative workflows.",
+  description: siteDescription,
   keywords: [
     "Mayank Chauhan",
-    "Visual Designer",
+    "Mayank Chauhan Portfolio",
+    "Visual Designer India",
     "Creative Brand Designer",
-    "Brand Design",
-    "Campaign Creatives",
+    "Campaign Designer",
     "UI Visual Design",
-    "Real Estate Marketing",
-    "Motion & Video",
-    "AI-assisted Creative Workflows",
-    "Portfolio India"
+    "Graphic Designer India",
+    "Real Estate Marketing Designer",
+    "Motion and Video Creative",
+    "AI-assisted Creative Workflows"
   ],
   authors: [{ name: "Mayank Chauhan" }],
   creator: "Mayank Chauhan",
@@ -30,12 +35,13 @@ export const metadata: Metadata = {
   },
   openGraph: {
     title: "Mayank Chauhan | Visual Designer Portfolio",
-    description: "Brand, campaign, UI visual, real-estate marketing, motion/video, and AI-assisted creative work by Mayank Chauhan.",
-    url: "/",
+    description:
+      "Explore the portfolio of Mayank Chauhan, featuring brand communication, campaign creatives, UI visual design, real-estate marketing visuals, motion/video assets, and AI-assisted creative workflows.",
+    url: siteUrl,
     siteName: "Mayank Chauhan Portfolio",
     images: [
       {
-        url: "/optimized/images/mayank-portrait.webp",
+        url: socialPreviewImage,
         width: 1200,
         height: 1600,
         alt: "Mayank Chauhan visual designer portfolio preview"
@@ -47,9 +53,42 @@ export const metadata: Metadata = {
   twitter: {
     card: "summary_large_image",
     title: "Mayank Chauhan | Visual Designer Portfolio",
-    description: "Visual design portfolio covering brand communication, campaign creatives, UI concepts, motion/video, and AI-assisted creative workflows.",
-    images: ["/optimized/images/mayank-portrait.webp"]
+    description:
+      "Visual design portfolio by Mayank Chauhan covering brand communication, campaign creatives, UI visuals, motion/video, and AI-assisted creative workflows.",
+    images: [socialPreviewImage]
+  },
+  robots: {
+    index: true,
+    follow: true
   }
+};
+
+const structuredData = {
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "Person",
+      "@id": `${siteUrl}/#person`,
+      name: "Mayank Chauhan",
+      url: siteUrl,
+      jobTitle: "Visual Designer",
+      description:
+        "Visual designer creating brand communication, campaign creatives, UI visual design, real-estate marketing visuals, motion/video assets, and AI-assisted creative workflows.",
+      image: `${siteUrl}${socialPreviewImage}`,
+      sameAs: [profile.behance]
+    },
+    {
+      "@type": "WebSite",
+      "@id": `${siteUrl}/#website`,
+      name: "Mayank Chauhan Portfolio",
+      url: siteUrl,
+      description: siteDescription,
+      inLanguage: "en-IN",
+      author: {
+        "@id": `${siteUrl}/#person`
+      }
+    }
+  ]
 };
 
 export const viewport: Viewport = {
@@ -62,6 +101,10 @@ export default function RootLayout({ children }: Readonly<{ children: React.Reac
   return (
     <html lang="en" className="scroll-smooth">
       <body className="bg-obsidian font-sans text-platinum antialiased">
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(structuredData).replace(/</g, "\\u003c") }}
+        />
         <RouteStartReset />
         <SiteChrome />
         {children}
