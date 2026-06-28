@@ -92,7 +92,7 @@ export default function Home() {
               alt="Mayank Chauhan portrait"
               fill
               priority
-              sizes="(max-width: 768px) 92vw, 46vw"
+              sizes="(max-width: 768px) 76vw, (max-width: 1024px) 82vw, 32vw"
               className="reference-portrait"
             />
           </div>

@@ -308,11 +308,11 @@ html.theme-light button[aria-label*="theme"],
 
 .reference-model {
   position: absolute;
-  left: 50%;
+  left: 47%;
   bottom: 0;
   z-index: 11;
-  width: min(39vw, 560px);
-  height: 100vh;
+  width: clamp(340px, 31.5vw, 460px);
+  height: 92vh;
   transform: translateX(-50%);
   pointer-events: none;
 }
@@ -334,8 +334,8 @@ html.theme-light button[aria-label*="theme"],
   left: 50%;
   top: 64%;
   z-index: 1;
-  width: 420px;
-  height: 420px;
+  width: 340px;
+  height: 340px;
   border-radius: 999px;
   background-color: rgba(142, 232, 255, 0.36);
   box-shadow: inset 66px 35px 85px rgba(85, 0, 255, 0.44);
@@ -349,7 +349,7 @@ html.theme-light button[aria-label*="theme"],
   object-fit: contain;
   object-position: bottom center;
   filter: drop-shadow(0 35px 65px rgba(0, 0, 0, 0.72));
-  transform: scale(0.94) translateY(2%);
+  transform: scale(0.92) translateY(3%);
 }
 
 .reference-intro,
@@ -903,10 +903,20 @@ html.theme-light button[aria-label*="theme"],
   }
 
   .reference-model {
+    left: 50%;
     width: min(82vw, 580px);
     height: 72vh;
     min-height: 560px;
     bottom: 120px;
+  }
+
+  .reference-portrait {
+    transform: scale(0.94) translateY(2%);
+  }
+
+  .reference-rim {
+    width: 420px;
+    height: 420px;
   }
 
   .reference-intro {
