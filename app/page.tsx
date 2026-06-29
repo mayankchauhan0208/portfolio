@@ -182,19 +182,18 @@ export default function Home() {
               I create brand communication, campaign creatives, UI concepts, social media assets,
               real-estate marketing visuals, video edits, and AI-assisted creative workflows.
             </p>
-            <div className="intro-line reference-cta-stack">
-              <div className="reference-cta-row">
-                <Link href="#work" aria-label="View selected work" className="reference-cta reference-cta-primary">
-                  View Selected Work
-                  <ArrowUpRight size={16} />
-                </Link>
-                <ContactIconLinks className="reference-contact-icons" />
-              </div>
-              <a href={assetPath(profile.resume)} download aria-label="Download resume" className="reference-cta reference-cta-secondary">
-                Download Resume
-                <Download size={16} />
-              </a>
-            </div>
+          </div>
+
+          <div className="intro-line reference-hero-actions">
+            <Link href="#work" aria-label="View selected work" className="reference-cta reference-cta-primary">
+              View Selected Work
+              <ArrowUpRight size={14} />
+            </Link>
+            <ContactIconLinks className="reference-contact-icons" />
+            <a href={assetPath(profile.resume)} download aria-label="Download resume" className="reference-cta reference-cta-secondary">
+              Download Resume
+              <Download size={14} />
+            </a>
           </div>
         </div>
       </section>

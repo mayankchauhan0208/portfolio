@@ -309,7 +309,7 @@ html.theme-light button[aria-label*="theme"],
 .reference-model {
   position: absolute;
   left: 50%;
-  bottom: 0;
+  bottom: 170px;
   z-index: 11;
   width: clamp(260px, 24vw, 400px);
   height: 92vh;
@@ -369,7 +369,7 @@ html.theme-light button[aria-label*="theme"],
 .reference-info {
   left: 65%;
   right: auto;
-  width: min(35%, 520px);
+  width: min(35%, 600px);
   min-width: 0;
 }
 
@@ -409,7 +409,7 @@ html.theme-light button[aria-label*="theme"],
 .reference-info .reference-headline {
   max-width: 100%;
   color: rgba(248, 253, 255, 0.96);
-  font-size: clamp(2.5rem, 3.75vw, 4rem);
+  font-size: clamp(2.35rem, 3.1vw, 3.5rem);
   line-height: 0.98;
   letter-spacing: 0;
   text-transform: none;
@@ -428,19 +428,18 @@ html.theme-light button[aria-label*="theme"],
   line-height: 1.65;
 }
 
-.reference-cta-stack {
-  margin-top: 24px;
+.reference-hero-actions {
+  position: absolute;
+  left: 50%;
+  bottom: 105px;
+  z-index: 24;
   display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-  gap: 12px;
-}
-
-.reference-cta-row {
-  display: flex;
-  flex-wrap: wrap;
   align-items: center;
-  gap: 12px;
+  justify-content: center;
+  gap: 8px;
+  width: max-content;
+  max-width: 94%;
+  transform: translateX(-50%);
 }
 
 .reference-cta {
@@ -448,10 +447,10 @@ html.theme-light button[aria-label*="theme"],
   align-items: center;
   justify-content: center;
   gap: 10px;
-  min-height: 48px;
+  min-height: 42px;
   border-radius: 999px;
-  padding: 0 18px;
-  font-size: 11px;
+  padding: 0 14px;
+  font-size: 9px;
   font-weight: 800;
   letter-spacing: 0.16em;
   text-transform: uppercase;
@@ -490,8 +489,9 @@ html.theme-light button[aria-label*="theme"],
   background: rgba(142, 232, 255, 0.12);
 }
 
-.reference-cta-row .reference-cta {
-  margin-top: 0 !important;
+.reference-hero-actions .contact-icon-link {
+  width: 42px;
+  height: 42px;
 }
 
 .reference-actions {
@@ -917,8 +917,13 @@ html.theme-light button[aria-label*="theme"],
     line-height: 1.55;
   }
 
-  .reference-cta-stack {
-    margin-top: 16px;
+  .reference-hero-actions {
+    gap: 6px;
+  }
+
+  .reference-hero-actions .reference-cta {
+    padding-inline: 12px;
+    letter-spacing: 0.12em;
   }
 }
 
@@ -964,6 +969,10 @@ html.theme-light button[aria-label*="theme"],
     transform: none;
   }
 
+  .reference-hero-actions {
+    bottom: 48px;
+  }
+
   .reference-intro h1 {
     font-size: clamp(2.25rem, 5vw, 3.25rem);
   }
@@ -977,10 +986,6 @@ html.theme-light button[aria-label*="theme"],
     margin-top: 12px;
     font-size: 13px;
     line-height: 1.55;
-  }
-
-  .reference-cta-stack {
-    margin-top: 16px;
   }
 
   .reference-actions {
@@ -1060,7 +1065,18 @@ html.theme-light button[aria-label*="theme"],
   }
 
   .reference-info {
+    order: 4;
+  }
+
+  .reference-hero-actions {
+    position: relative;
+    inset: auto;
     order: 3;
+    width: 100%;
+    max-width: 100%;
+    flex-wrap: wrap;
+    gap: 8px;
+    transform: none;
   }
 
   .reference-container {
@@ -1121,33 +1137,13 @@ html.theme-light button[aria-label*="theme"],
     line-height: 1.55;
   }
 
-  .reference-info a {
-    margin-top: 14px !important;
-    padding: 11px 14px;
-    font-size: 10px;
-    letter-spacing: 0.13em;
-  }
-
-  .reference-cta-row {
-    flex-direction: column;
-    align-items: stretch;
-    width: 100%;
-    max-width: 100%;
-    gap: 8px;
-  }
-
-  .reference-cta-stack {
-    margin-top: 18px;
-    width: 100%;
-    gap: 8px;
-  }
-
   .reference-contact-icons {
-    width: 100%;
+    justify-content: center;
   }
 
-  .reference-info .contact-icon-link {
+  .reference-hero-actions .contact-icon-link {
     width: 44px;
+    height: 44px;
     min-height: 44px;
     flex: 0 0 44px;
     margin-top: 0 !important;
@@ -1156,15 +1152,8 @@ html.theme-light button[aria-label*="theme"],
 
   .reference-cta {
     min-height: 44px;
-    flex: 1 1 100%;
-  }
-
-  .reference-cta-row .reference-cta {
-    margin-top: 0 !important;
-  }
-
-  .reference-cta-stack > .reference-cta {
-    margin-top: 0 !important;
+    padding-inline: 12px;
+    letter-spacing: 0.11em;
   }
 
   .reference-cta svg {
