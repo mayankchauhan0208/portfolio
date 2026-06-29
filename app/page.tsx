@@ -39,7 +39,7 @@ const contactActions: ContactAction[] = [
   {
     label: "Email Mayank Chauhan",
     shortLabel: "Email",
-    href: "mailto:mayankchauhan0208@gmail.com",
+    href: "mailto:connect.mayankchauhan@gmail.com",
     icon: Mail
   },
   {
