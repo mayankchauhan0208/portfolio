@@ -1759,7 +1759,7 @@ export const timeline = [
   },
   {
     date: "May 2024 - September 2025", exactPeriod: "8 May 2024 - 30 September 2025", employmentType: "Concurrent freelance",
-    title: "Freelance Graphic Designer · Concurrent", org: "Property Master Pvt. Ltd.",
+    title: "Freelance Graphic Designer - Concurrent", org: "Property Master Pvt. Ltd.",
     body: "Delivered campaign creatives and sales-support assets on a concurrent freelance basis before moving into the full-time senior role.",
     bullets: ["Produced real-estate marketing visuals and presentation assets across digital and print requirements.", "Adapted core campaign directions across social, presentation, digital and print formats."],
     tags: ["Concurrent", "Freelance", "Campaign Creatives", "Presentation Design"]

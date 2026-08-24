@@ -155,9 +155,9 @@ export default function Home() {
         <div className="reference-container">
           <div className="reference-intro">
             <p className="intro-line">Hello! I&apos;m</p>
-            <h1 className="intro-line" aria-label="Mayank Chauhan — Senior Visual Designer & Senior Graphic Designer">
+            <h1 className="intro-line" aria-label="Mayank Chauhan - Senior Visual Designer & Senior Graphic Designer">
               <span>Mayank<br />Chauhan</span>
-              <span className="sr-only"> — Senior Visual Designer &amp; Senior Graphic Designer</span>
+              <span className="sr-only"> - Senior Visual Designer &amp; Senior Graphic Designer</span>
             </h1>
           </div>
 
