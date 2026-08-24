@@ -21,16 +21,16 @@ export function Nav() {
     const sectionIds = ["#top", ...links.map((link) => link.href)];
 
     const updateActiveSection = () => {
-      const current = sectionIds.reduce((active, id) => {
-        const element = document.querySelector(id);
+      const activationLine = window.innerHeight * 0.42;
+      const sections = sectionIds
+        .map((id) => ({ id, element: document.querySelector(id) }))
+        .filter((item): item is { id: string; element: Element } => Boolean(item.element))
+        .sort((a, b) => a.element.getBoundingClientRect().top - b.element.getBoundingClientRect().top);
 
-        if (!element) {
-          return active;
-        }
-
-        const top = element.getBoundingClientRect().top;
-        return top <= window.innerHeight * 0.42 ? id : active;
-      }, "#top");
+      const current = sections.reduce(
+        (active, item) => (item.element.getBoundingClientRect().top <= activationLine ? item.id : active),
+        "#top"
+      );
 
       setActiveSection(current);
     };
