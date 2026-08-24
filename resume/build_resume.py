@@ -23,11 +23,11 @@ name = ParagraphStyle("Name", parent=styles["Normal"], fontName="Helvetica-Bold"
 headline = ParagraphStyle("Headline", parent=styles["Normal"], fontName="Helvetica-Bold", fontSize=11.5, leading=14, alignment=TA_CENTER, textColor=TEAL, spaceAfter=3)
 contact = ParagraphStyle("Contact", parent=styles["Normal"], fontName="Helvetica", fontSize=9.5, leading=12, alignment=TA_CENTER, textColor=MUTED, spaceAfter=8)
 section = ParagraphStyle("Section", parent=styles["Normal"], fontName="Helvetica-Bold", fontSize=10.5, leading=13, textColor=TEAL, spaceBefore=7, spaceAfter=3, borderWidth=0, borderPadding=0)
-body = ParagraphStyle("Body", parent=styles["Normal"], fontName="Helvetica", fontSize=10, leading=13.2, textColor=NAVY, spaceAfter=3)
-role = ParagraphStyle("Role", parent=body, fontName="Helvetica-Bold", spaceBefore=3, spaceAfter=2)
-bullet = ParagraphStyle("Bullet", parent=body, leftIndent=10, firstLineIndent=-7, bulletIndent=0, spaceAfter=2)
+body = ParagraphStyle("Body", parent=styles["Normal"], fontName="Helvetica", fontSize=10, leading=13.8, textColor=NAVY, spaceAfter=3.5)
+role = ParagraphStyle("Role", parent=body, fontName="Helvetica-Bold", spaceBefore=5, spaceAfter=2.5)
+bullet = ParagraphStyle("Bullet", parent=body, leftIndent=10, firstLineIndent=-7, bulletIndent=0, spaceAfter=2.5)
 label = ParagraphStyle("Label", parent=body, fontName="Helvetica-Bold", textColor=NAVY, spaceBefore=2, spaceAfter=1)
-small = ParagraphStyle("Small", parent=body, fontSize=9.5, leading=12.5)
+small = ParagraphStyle("Small", parent=body, fontSize=9.5, leading=13)
 
 def p(text, style=body):
     return Paragraph(text, style)
@@ -38,7 +38,7 @@ def add_section(story, title):
 
 def add_role(story, heading, bullets):
     block = [p(heading, role)]
-    block.extend(p(f"• {item}", bullet) for item in bullets)
+    block.extend(p(f"- {item}", bullet) for item in bullets)
     story.append(KeepTogether(block))
 
 def footer(canvas, doc):
@@ -93,24 +93,24 @@ for heading, text in skills:
 
 add_section(story, "Professional Experience")
 add_role(story, "Property Master Pvt. Ltd. | Senior Graphic Designer | October 2025 - Present", [
-    "Own visual execution for premium real-estate marketing across campaign systems, sales presentations, brochures, digital advertising, social media, print collateral, reels, and customer-facing communication.",
+    "Own visual execution for premium real-estate campaign systems spanning sales presentations, digital advertising, social media, print collateral, reels, and customer-facing communication.",
     "Apply typography, layout design, colour theory and visual hierarchy to produce clear, brand-consistent campaign assets across digital, print and presentation formats.",
-    "Coordinate with marketing and sales stakeholders, incorporate feedback, manage revisions, and prepare production-ready assets across digital, print, presentation, and video formats.",
-    "Maintain final visual quality and brand consistency across recurring campaigns, format adaptations, and time-sensitive sales-support deliverables.",
+    "Coordinate marketing and sales feedback, manage revisions, and deliver production-ready digital, print, presentation, and video assets.",
+    "Maintain visual quality across recurring campaigns, multi-format adaptations, and time-sensitive sales-support deliverables.",
 ])
 add_role(story, "Property Master Pvt. Ltd. | Freelance Graphic Designer (Concurrent) | May 2024 - September 2025", [
     "Delivered real-estate campaign creatives, presentation assets, and sales-support communication on a concurrent freelance basis.",
     "Adapted core campaign directions across social, presentation, digital, and print requirements before moving into the full-time senior role.",
 ])
 add_role(story, "Caterpillar Signs Pvt. Ltd. (Group Bayport) | Graphic Designer | September 2022 - September 2025", [
-    "Produced brand and marketing communication across campaign creatives, corporate presentations, social media, promotional collateral, signage-support layouts, and print-ready assets.",
+    "Produced brand communication across campaigns, corporate presentations, social media, promotional collateral, signage layouts, and print-ready assets.",
     "Maintained consistency through disciplined typography, spacing, alignment, image treatment, resizing, version control, and final visual quality checks.",
-    "Collaborated with internal stakeholders to translate briefs and feedback into execution-ready assets across multiple communication formats and deadlines.",
-    "Supported repeatable visual systems and multi-format adaptations while preserving brand presentation and production accuracy.",
+    "Translated stakeholder briefs and feedback into execution-ready assets across multiple formats and deadlines.",
+    "Maintained repeatable visual systems while preserving brand consistency and production accuracy.",
 ])
 add_role(story, "7P Digital Services LLP | Graphic Designer | March 2022 - September 2022", [
-    "Designed digital campaign assets, social media creatives, promotional graphics, and platform-specific communication.",
-    "Edited reels and promotional videos using Adobe Premiere Pro and After Effects, balancing pacing, readable titles, and visual consistency.",
+    "Designed digital campaigns, social media creatives, promotional graphics, and platform-specific communication.",
+    "Edited reels and promotional videos in Premiere Pro and After Effects, balancing pacing, readable titles, and visual consistency.",
     "Adapted static and motion assets across required formats while maintaining hierarchy and brand alignment.",
 ])
 
