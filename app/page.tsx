@@ -68,7 +68,7 @@ function ContactIconLinks({ includeBehance = false, labeled = false, className =
     : contactActions;
 
   return (
-    <div className={`${labeled ? "grid grid-cols-2 gap-3 sm:grid-cols-6" : "flex flex-wrap gap-2"} ${className}`}>
+    <div className={`${labeled ? "grid grid-cols-2 gap-3 sm:grid-cols-5" : "flex flex-wrap gap-2"} ${className}`}>
       {actions.map(({ label, shortLabel, displayLabel, href, icon: Icon, external }) => (
         <a
           key={label}
