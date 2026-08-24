@@ -1769,7 +1769,7 @@ export const education = [
   },
   {
     level: "Class 10",
-    institution: "B.S.M. High School, Hajipur, Gurugram",
+    institution: "B.S.M. High School, Hazipur, Gurugram",
     course: "HBSE | 2017"
   }
 ];
