@@ -6,7 +6,7 @@ export const metrics = [
   { value: "5+", label: "Years of design experience" },
   { value: "Digital + Print", label: "Multi-format delivery" },
   { value: "Campaign Systems", label: "Commercial creative focus" },
-  { value: "15 Days", label: "Notice period" }
+  { value: "Static + Motion", label: "Visual + Video Delivery" }
 ];
 
 export const projects = [

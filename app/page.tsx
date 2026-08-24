@@ -593,7 +593,7 @@ export default function Home() {
                   Let&apos;s build clear, premium visual communication.
                 </h2>
                 <p className="mt-5 max-w-2xl text-base leading-7 text-mercury sm:text-lg sm:leading-8">
-                  Faridabad-based with a 15-day notice period. Open to full-time Senior Visual Designer and Senior Graphic Designer roles in Gurugram, Noida, Faridabad, or remote and hybrid teams.
+                  Open to full-time Senior Visual Designer and Senior Graphic Designer opportunities.
                 </p>
                 <div className="mt-7 flex flex-wrap gap-2">
                   {["Senior Visual Design", "Senior Graphic Design", "Campaign Systems", "Presentation Design", "Commercial Execution"].map((role) => (
