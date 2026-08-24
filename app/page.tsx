@@ -18,6 +18,7 @@ import { trackPortfolioEvent } from "@/components/analytics-events";
 type ContactAction = {
   label: string;
   shortLabel: string;
+  displayLabel?: string;
   href: string;
   icon: LucideIcon;
   external?: boolean;
@@ -40,6 +41,7 @@ const contactActions: ContactAction[] = [
   {
     label: "Email Mayank Chauhan",
     shortLabel: "Email",
+    displayLabel: "connect.mayankchauhan@gmail.com",
     href: "mailto:connect.mayankchauhan@gmail.com",
     icon: Mail
   },
@@ -67,8 +69,8 @@ function ContactIconLinks({ includeBehance = false, labeled = false, className =
     : contactActions;
 
   return (
-    <div className={`${labeled ? "grid grid-cols-2 gap-3 sm:grid-cols-5" : "flex flex-wrap gap-2"} ${className}`}>
-      {actions.map(({ label, shortLabel, href, icon: Icon, external }) => (
+    <div className={`${labeled ? "grid grid-cols-2 gap-3 sm:grid-cols-6" : "flex flex-wrap gap-2"} ${className}`}>
+      {actions.map(({ label, shortLabel, displayLabel, href, icon: Icon, external }) => (
         <a
           key={label}
           href={href}
@@ -79,12 +81,12 @@ function ContactIconLinks({ includeBehance = false, labeled = false, className =
           onClick={() => trackPortfolioEvent("contact_click", { channel: shortLabel.toLowerCase(), source: labeled ? "contact_section" : "hero" })}
           className={
             labeled
-              ? "group flex min-h-20 min-w-0 flex-col items-center justify-center gap-2 rounded-2xl border border-white/10 bg-black/25 px-2 py-3 text-center text-white transition hover:border-signal/50 hover:bg-signal/10 hover:text-signal focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-signal focus-visible:ring-offset-2 focus-visible:ring-offset-obsidian"
+              ? `group flex min-h-20 min-w-0 flex-col items-center justify-center gap-2 rounded-2xl border border-white/10 bg-black/25 px-2 py-3 text-center text-white transition hover:border-signal/50 hover:bg-signal/10 hover:text-signal focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-signal focus-visible:ring-offset-2 focus-visible:ring-offset-obsidian ${displayLabel ? "col-span-2" : ""}`
               : "contact-icon-link grid h-12 w-12 shrink-0 place-items-center rounded-full border border-white/15 bg-white/[0.065] text-white backdrop-blur-xl transition hover:-translate-y-0.5 hover:border-signal/60 hover:bg-signal/15 hover:text-signal focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-signal focus-visible:ring-offset-2 focus-visible:ring-offset-obsidian"
           }
         >
           <Icon size={labeled ? 20 : 18} strokeWidth={1.9} aria-hidden />
-          {labeled ? <span className="max-w-full text-[0.62rem] font-semibold uppercase leading-tight tracking-[0.12em]">{shortLabel}</span> : null}
+          {labeled ? <span className={displayLabel ? "max-w-full break-all text-[0.68rem] font-semibold normal-case leading-tight tracking-normal" : "max-w-full text-[0.62rem] font-semibold uppercase leading-tight tracking-[0.12em]"}>{displayLabel ?? shortLabel}</span> : null}
         </a>
       ))}
     </div>
