@@ -98,9 +98,9 @@ export default function WorkPage() {
                       alt={`${work.title} ${work.format} by Mayank Chauhan`}
                       width={size.width}
                       height={size.height}
-                      priority={index === 0}
-                      sizes={index === 0 ? "(min-width: 768px) 44vw, 92vw" : "(min-width: 768px) 20vw, 92vw"}
+                      sizes={index === 0 ? "(max-width: 767px) calc(100vw - 2.5rem), calc(66vw - 3rem)" : "(max-width: 767px) calc(100vw - 2.5rem), calc(33vw - 2rem)"}
                       className="h-auto w-full p-2"
+                      loading="lazy"
                     />
                     <div className="absolute inset-0 bg-gradient-to-t from-black/82 via-black/10 to-transparent" />
                     <div className="absolute bottom-4 left-4 right-4">
@@ -160,6 +160,7 @@ export default function WorkPage() {
                           fill
                           sizes="220px"
                           className="object-cover"
+                          loading="lazy"
                         />
                       </div>
                     ))

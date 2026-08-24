@@ -60,7 +60,7 @@ export function FlagshipProjectPage({ project }: { project: FlagshipProject }) {
 
       <article className="mx-auto max-w-6xl overflow-hidden rounded-[2rem] border border-white/10 bg-white/[0.045] shadow-luxury">
         <div className="relative aspect-[16/8] bg-black/40">
-          <Image src={project.image} alt={project.imageAlt} fill priority sizes="(min-width: 1024px) 1152px, 94vw" className="object-cover" />
+          <Image src={project.image} alt={project.imageAlt} fill priority sizes="(max-width: 767px) calc(100vw - 2rem), (max-width: 1279px) calc(100vw - 4rem), 1152px" className="object-cover" />
           <div className="absolute inset-0 bg-gradient-to-t from-black via-black/20 to-transparent" />
           <span className="absolute left-5 top-5 rounded-full border border-white/20 bg-black/75 px-4 py-2 text-[0.65rem] font-bold uppercase tracking-[0.16em] text-signal backdrop-blur-xl">{project.classification}</span>
         </div>
@@ -93,7 +93,7 @@ export function FlagshipProjectPage({ project }: { project: FlagshipProject }) {
             <div className="mt-5 grid gap-4 md:grid-cols-2">
               {project.gallery.map((item, index) => (
                 <div key={item.src} className={`relative overflow-hidden rounded-[1.4rem] border border-white/10 bg-black/30 ${index === 0 ? "aspect-[16/9] md:col-span-2" : "aspect-[4/3]"}`}>
-                  <Image src={item.src} alt={item.alt} fill sizes={index === 0 ? "(min-width: 1024px) 1152px, 94vw" : "(min-width: 768px) 46vw, 94vw"} className="object-cover" loading="lazy" />
+                  <Image src={item.src} alt={item.alt} fill sizes={index === 0 ? "(max-width: 767px) calc(100vw - 2rem), (max-width: 1279px) calc(100vw - 4rem), 1152px" : "(max-width: 767px) calc(100vw - 2rem), (max-width: 1279px) calc(50vw - 2.5rem), 568px"} className="object-cover" loading="lazy" />
                 </div>
               ))}
             </div>
