@@ -14,7 +14,7 @@
 
 html {
   background: #07080b;
-  scroll-padding-bottom: 7.5rem;
+  scroll-padding-bottom: calc(7.5rem + env(safe-area-inset-bottom));
 }
 
 html,
@@ -214,7 +214,7 @@ html.theme-light button[aria-label*="theme"],
 
 .role-ticker {
   pointer-events: none;
-  position: fixed;
+  position: absolute;
   inset: 0 0 auto;
   z-index: 45;
   overflow: hidden;

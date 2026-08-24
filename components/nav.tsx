@@ -51,22 +51,28 @@ export function Nav() {
     const strip = linkStripRef.current;
     if (!strip) return;
 
-    if (activeSection === "#top") {
-      strip.scrollTo({ left: 0, behavior: "smooth" });
-      return;
-    }
+    const centerActiveLink = () => {
+      if (activeSection === "#top") {
+        strip.scrollTo({ left: 0, behavior: "smooth" });
+        return;
+      }
 
-    const activeLink = linkRefs.current[activeSection];
-    if (!activeLink) return;
+      const activeLink = linkRefs.current[activeSection];
+      if (!activeLink) return;
 
-    const stripRect = strip.getBoundingClientRect();
-    const activeLinkRect = activeLink.getBoundingClientRect();
-    const targetLeft =
-      strip.scrollLeft +
-      (activeLinkRect.left - stripRect.left) -
-      (strip.clientWidth - activeLinkRect.width) / 2;
+      const stripRect = strip.getBoundingClientRect();
+      const activeLinkRect = activeLink.getBoundingClientRect();
+      const targetLeft =
+        strip.scrollLeft +
+        (activeLinkRect.left - stripRect.left) -
+        (strip.clientWidth - activeLinkRect.width) / 2;
 
-    strip.scrollTo({ left: Math.max(0, targetLeft), behavior: "smooth" });
+      strip.scrollTo({ left: Math.max(0, targetLeft), behavior: "smooth" });
+    };
+
+    centerActiveLink();
+    window.addEventListener("resize", centerActiveLink);
+    return () => window.removeEventListener("resize", centerActiveLink);
   }, [activeSection]);
 
   return (

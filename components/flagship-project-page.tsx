@@ -74,7 +74,7 @@ export function FlagshipProjectPage({ project }: { project: FlagshipProject }) {
             {[["Role", project.role], ["Year", project.year], ["Classification", project.classification], ["Deliverables", project.deliverables], ["Tools", project.tools]].map(([label, value]) => (
               <div key={label} className="min-w-0 border-white/10 lg:border-l lg:pl-4 first:lg:border-l-0 first:lg:pl-0">
                 <dt className="text-[0.6rem] font-bold uppercase tracking-[0.16em] text-signal">{label}</dt>
-                <dd className="mt-2 line-clamp-3 text-xs leading-5 text-white/75" title={value}>{value}</dd>
+                <dd className="mt-2 text-xs leading-5 text-white/75 lg:line-clamp-3" title={value}>{value}</dd>
               </div>
             ))}
           </dl>
@@ -102,7 +102,7 @@ export function FlagshipProjectPage({ project }: { project: FlagshipProject }) {
           <div className="mt-10 flex flex-wrap gap-3">
             <Link href="/#work" className="inline-flex min-h-11 items-center gap-2 rounded-full border border-white/15 px-5 py-3 text-xs font-bold uppercase tracking-[0.14em] text-white transition hover:border-signal/50 hover:text-signal focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-signal"><ArrowLeft size={15} /> Selected Work</Link>
             <TrackedLink href="/#contact" event="contact_click" details={{ source: project.slug }} className="inline-flex min-h-11 items-center gap-2 rounded-full bg-white px-5 py-3 text-xs font-bold uppercase tracking-[0.14em] text-black transition hover:bg-signal focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-signal">Contact Me <ArrowUpRight size={15} /></TrackedLink>
-            <Link href={`/work/${nextProject.slug}`} className="inline-flex min-h-11 items-center gap-2 rounded-full border border-white/15 px-5 py-3 text-xs font-bold uppercase tracking-[0.14em] text-white transition hover:border-signal/50 hover:text-signal focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-signal">Next: {nextProject.title} <ArrowRight size={15} /></Link>
+            <Link href={`/work/${nextProject.slug}`} className="inline-flex min-h-11 max-w-full items-center gap-2 rounded-full border border-white/15 px-5 py-3 text-left text-xs font-bold uppercase leading-5 tracking-[0.14em] text-white transition hover:border-signal/50 hover:text-signal focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-signal">Next: {nextProject.title} <ArrowRight className="shrink-0" size={15} /></Link>
           </div>
         </div>
       </article>
