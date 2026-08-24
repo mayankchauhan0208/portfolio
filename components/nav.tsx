@@ -6,10 +6,11 @@ import { useEffect, useState } from "react";
 import { profile } from "@/lib/portfolio-data";
 
 const links = [
-  { label: "About", href: "#about" },
-  { label: "Work", href: "#work" },
-  { label: "Skills", href: "#skills" },
+  { label: "Selected Work", href: "#work" },
+  { label: "Capabilities", href: "#capabilities" },
+  { label: "AI Workflow", href: "#ai-workflow" },
   { label: "Experience", href: "#experience" },
+  { label: "About", href: "#about" },
   { label: "Contact", href: "#contact" }
 ];
 
@@ -57,7 +58,7 @@ export function Nav() {
           data-active={activeSection === "#top"}
           className="flex min-h-11 items-center rounded-full px-3 py-2 font-display text-[0.66rem] uppercase tracking-[0.2em] text-white transition data-[active=true]:bg-white data-[active=true]:text-black sm:tracking-[0.28em] md:text-sm"
         >
-          Mayank
+          Home
         </a>
         <div className="no-scrollbar flex min-w-0 flex-1 items-center gap-1 overflow-x-auto px-1">
           {links.map((link) => (
@@ -72,6 +73,13 @@ export function Nav() {
           ))}
         </div>
         <div className="flex items-center gap-2">
+          <a
+            href={profile.resume}
+            download
+            className="hidden min-h-11 shrink-0 items-center rounded-full border border-signal/30 px-4 text-[0.62rem] font-bold uppercase tracking-[0.12em] text-white transition hover:border-signal hover:text-signal focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-signal lg:flex"
+          >
+            Download Resume
+          </a>
           <a
             href={profile.behance}
             target="_blank"

@@ -82,11 +82,11 @@ story.append(p("Senior visual and graphic designer with 5+ years of experience l
 
 add_section(story, "Core Skills")
 skills = [
-    ("Brand &amp; Marketing", "Branding &amp; Identity | Campaign &amp; Marketing Design | Social Media &amp; Performance Creatives | Presentation Design | Print Production"),
+    ("Brand &amp; Marketing", "Brand Communication | Campaign Design | Performance Creatives | Social Media | Presentation Design | Digital &amp; Print Production"),
     ("Visual Craft", "Typography | Layout Design | Colour Theory | Visual Hierarchy | Image Treatment &amp; Retouching"),
-    ("Digital &amp; Motion", "UI/UX Visual Concepts | Motion Graphics | Video Editing | Drone Videography &amp; Aerial Production"),
-    ("Workflow &amp; Collaboration", "Stakeholder Collaboration | Campaign Systems | Multi-format Adaptation | Production-ready Delivery | Version Control | Visual Quality Control"),
-    ("AI-Enhanced Workflow", "Concept Exploration | Visual Experimentation | Image Development | Production Acceleration | Designer-led Direction &amp; Final Quality Control"),
+    ("Digital &amp; Motion", "Figma | UI Visual Concepts | Motion Graphics | Video Editing | Multi-format Adaptation"),
+    ("Workflow &amp; Collaboration", "Stakeholder Collaboration | Creative Quality Control | Version Management | Production-ready Delivery"),
+    ("AI-Enhanced Workflow", "Concept Exploration | Image Development | Creative Variations | Motion Experimentation | Production Acceleration | Designer-led Quality Control"),
 ]
 for heading, text in skills:
     story.append(p(f"<b>{heading}:</b> {text}", small))
@@ -108,13 +108,12 @@ add_role(story, "Caterpillar Signs Pvt. Ltd. (Group Bayport) | Graphic Designer 
     "Collaborated with internal stakeholders to translate briefs and feedback into execution-ready assets across multiple communication formats and deadlines.",
     "Supported repeatable visual systems and multi-format adaptations while preserving brand presentation and production accuracy.",
 ])
-add_role(story, "7P Digital Services LLP | Graphic Designer and Video Editor | March 2022 - September 2022", [
+add_role(story, "7P Digital Services LLP | Graphic Designer | March 2022 - September 2022", [
     "Designed digital campaign assets, social media creatives, promotional graphics, and platform-specific communication.",
     "Edited reels and promotional videos using Adobe Premiere Pro and After Effects, balancing pacing, readable titles, and visual consistency.",
     "Adapted static and motion assets across required formats while maintaining hierarchy and brand alignment.",
 ])
 
-add_section(story, "Earlier Experience")
 add_role(story, "CityMall, Gurugram | Marketing Intern | December 2021 - March 2022", ["Supported marketing design production through marketplace visuals, promotional graphics, digital communication, and brand-sensitive asset preparation."])
 add_role(story, "Krash IT Services | Graphic Designer Intern | May 2021 - October 2021", ["Supported layout development, visual cleanup, typography, image preparation, and practical production-ready design workflows."])
 add_role(story, "YPR Eng. and Sol. Pvt. Ltd. | Graphic Designer Intern | December 2020 - May 2021", ["Assisted with graphic-design layouts, presentation and brochure support, creative preparation, and visual asset development for business communication."])

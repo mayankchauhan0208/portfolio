@@ -71,10 +71,21 @@ export const coreExpertise = [
 ];
 
 export const aiTools = [
-  { name: "ChatGPT", use: "Brief exploration and production support", logo: "/optimized/tool-icons/chatgpt.webp", fallback: "GPT" },
-  { name: "Adobe Firefly", use: "Image exploration and controlled editing", logo: "/optimized/tool-icons/adobe-firefly.webp", fallback: "Ff" },
-  { name: "Midjourney", use: "Early visual concept exploration", logo: "/optimized/tool-icons/midjourney.webp", fallback: "Mj" },
-  { name: "Google Flow", use: "Supporting motion and video experiments", logo: "/optimized/tool-icons/google-flow.webp", fallback: "Fl" }
+  { name: "ChatGPT", group: "Strategy and research", use: "Research, brief exploration and production support", logo: "/optimized/tool-icons/chatgpt.webp", fallback: "GPT" },
+  { name: "Gemini", group: "Strategy and research", use: "Research and concept exploration", logo: "/optimized/tool-icons/gemini.webp", fallback: "Ge" },
+  { name: "Claude", group: "Strategy and research", use: "Research and structured thinking", logo: "/optimized/tool-icons/claude.webp", fallback: "Cl" },
+  { name: "Midjourney", group: "Image and concept", use: "Early visual concept exploration", logo: "/optimized/tool-icons/midjourney.webp", fallback: "Mj" },
+  { name: "Adobe Firefly", group: "Image and concept", use: "Image exploration and controlled editing", logo: "/optimized/tool-icons/adobe-firefly.webp", fallback: "Ff" },
+  { name: "FLUX", group: "Image and concept", use: "Image development and visual experimentation", logo: "/optimized/tool-icons/flux.webp", fallback: "Fx" },
+  { name: "Ideogram", group: "Image and concept", use: "Concept imagery and typographic exploration", logo: "/optimized/tool-icons/ideogram.webp", fallback: "Id" },
+  { name: "Leonardo AI", group: "Image and concept", use: "Image development and variation", logo: "/optimized/tool-icons/leonardo-ai.webp", fallback: "Le" },
+  { name: "Runway", group: "Motion and video", use: "Motion and video experimentation", logo: "/optimized/tool-icons/runway.webp", fallback: "Ru" },
+  { name: "Kling AI", group: "Motion and video", use: "AI-assisted motion exploration", logo: "/optimized/tool-icons/kling-ai.webp", fallback: "Kl" },
+  { name: "Google Flow", group: "Motion and video", use: "Supporting motion and video experiments", logo: "/optimized/tool-icons/google-flow.webp", fallback: "Fl" },
+  { name: "Higgsfield AI", group: "Motion and video", use: "Camera and motion experimentation", logo: "", fallback: "Hi" },
+  { name: "Gamma", group: "Presentation and production", use: "Presentation exploration and production support", logo: "/optimized/tool-icons/gamma.webp", fallback: "Ga" },
+  { name: "Canva AI", group: "Presentation and production", use: "Layout and production acceleration", logo: "/optimized/tool-icons/canva.webp", fallback: "Ca" },
+  { name: "Figma AI", group: "Presentation and production", use: "Interface and layout workflow support", logo: "/optimized/tool-icons/figma.webp", fallback: "Fi" }
 ];
 
 export const services = [
@@ -1740,55 +1751,53 @@ export const portfolioLibraries = [
 
 export const timeline = [
   {
-    date: "October 2025 - Present",
-    title: "Senior Graphic Designer",
-    org: "Property Master Pvt. Ltd.",
-    body: "Own visual execution for premium real-estate campaigns across sales presentations, brochures, digital advertising, social media, print collateral, reels, and customer-facing communication.",
-    bullets: [
-      "Translate marketing and sales requirements into clear visual systems with consistent hierarchy, typography, spacing, and image treatment.",
-      "Coordinate stakeholder revisions and prepare execution-ready assets across digital, print, presentation, and video formats.",
-      "Maintain visual quality and brand consistency across recurring campaign deliverables."
-    ],
+    date: "October 2025 - Present", exactPeriod: "1 October 2025 - Present", employmentType: "Full-time",
+    title: "Senior Graphic Designer", org: "Property Master Pvt. Ltd.",
+    body: "Own visual execution for premium real-estate campaigns across sales presentations, brochures, digital advertising, social media, print collateral, reels and customer-facing communication.",
+    bullets: ["Translate marketing and sales requirements into clear visual systems with consistent hierarchy, typography, spacing and image treatment.", "Coordinate stakeholder revisions and prepare execution-ready assets across digital, print, presentation and video formats.", "Maintain visual quality and brand consistency across recurring campaign deliverables."],
     tags: ["Campaign Ownership", "Stakeholder Collaboration", "Quality Control", "Multi-format Delivery"]
   },
   {
-    date: "May 2024 - September 2025",
-    title: "Freelance Graphic Designer",
-    org: "Property Master Pvt. Ltd.",
-    body: "Delivered campaign creatives and sales-support assets on a freelance basis before moving into the full-time senior role.",
-    bullets: ["Produced real-estate marketing visuals and presentation assets across digital and print requirements."],
-    tags: ["Freelance", "Campaign Creatives", "Presentation Design"]
+    date: "May 2024 - September 2025", exactPeriod: "8 May 2024 - 30 September 2025", employmentType: "Concurrent freelance",
+    title: "Freelance Graphic Designer · Concurrent", org: "Property Master Pvt. Ltd.",
+    body: "Delivered campaign creatives and sales-support assets on a concurrent freelance basis before moving into the full-time senior role.",
+    bullets: ["Produced real-estate marketing visuals and presentation assets across digital and print requirements.", "Adapted core campaign directions across social, presentation, digital and print formats."],
+    tags: ["Concurrent", "Freelance", "Campaign Creatives", "Presentation Design"]
   },
   {
-    date: "September 2022 - September 2025",
-    title: "Graphic Designer",
-    org: "Caterpillar Signs Pvt. Ltd. (Group Bayport)",
-    body: "Produced brand and marketing communication across campaign creatives, corporate presentations, social media, promotional collateral, and print-ready layouts.",
-    bullets: [
-      "Maintained consistency through typography, spacing, image treatment, resizing, version control, and final visual checks.",
-      "Collaborated with internal teams to convert briefs and feedback into execution-ready assets across formats."
-    ],
+    date: "September 2022 - September 2025", exactPeriod: "12 September 2022 - September 2025",
+    title: "Graphic Designer", org: "Caterpillar Signs Pvt. Ltd. - Group Bayport",
+    body: "Produced brand and marketing communication across campaign creatives, corporate presentations, social media, promotional collateral and print-ready layouts.",
+    bullets: ["Maintained consistency through typography, spacing, image treatment, resizing, version control and final visual checks.", "Collaborated with internal teams to convert briefs and feedback into execution-ready assets across formats."],
     tags: ["Brand Communication", "Production Quality", "Visual QA", "Print-ready Design"]
   },
   {
-    date: "March 2022 - September 2022",
-    title: "Graphic Designer & Video Editor",
-    org: "7P Digital Services LLP",
-    body: "Created digital campaign assets, social media creatives, reels, and promotional videos for platform-specific formats.",
-    bullets: ["Combined static and motion workflows while maintaining visual hierarchy and brand consistency."],
+    date: "March 2022 - September 2022", exactPeriod: "29 March 2022 - 10 September 2022",
+    title: "Graphic Designer", org: "7P Digital Services LLP",
+    body: "Created digital campaign assets and social media creatives for platform-specific formats.",
+    bullets: ["Edited reels and promotional videos while maintaining visual hierarchy, pacing and brand consistency.", "Adapted static and motion deliverables for campaign and promotional use."],
     tags: ["Campaign Creatives", "Social Media", "Video Editing", "Motion Content"]
   },
   {
-    date: "December 2020 - March 2022",
-    title: "Earlier Experience",
-    org: "CityMall, Krash IT Services, and YPR Eng. and Sol. Pvt. Ltd.",
-    body: "Early marketing and graphic-design experience spanning December 2020 to March 2022.",
-    bullets: [
-      "CityMall, Gurugram - Intern, Marketing | December 2021 - March 2022",
-      "Krash IT Services - Graphic Designer Intern | May 2021 - October 2021",
-      "YPR Eng. and Sol. Pvt. Ltd. - Graphic Designer Intern | December 2020 - May 2021"
-    ],
-    tags: ["Marketing Support", "Graphic Design", "Production Foundations"]
+    date: "December 2021 - March 2022", exactPeriod: "13 December 2021 - March 2022",
+    title: "Intern - Marketing", org: "CityMall, Gurugram",
+    body: "Supported marketplace and marketing communication through promotional graphics, digital assets and brand-sensitive production.",
+    bullets: ["Prepared marketing visuals and production-ready assets for digital communication."],
+    tags: ["Marketing Support", "Digital Assets", "Production"]
+  },
+  {
+    date: "May 2021 - October 2021", exactPeriod: "17 May 2021 - 17 October 2021",
+    title: "Graphic Designer Intern", org: "Krash IT Services",
+    body: "Supported layout development, typography, image preparation and practical graphic-design production.",
+    bullets: ["Prepared clean, production-ready visual assets while developing consistency in layout and image treatment."],
+    tags: ["Graphic Design", "Layout", "Production Foundations"]
+  },
+  {
+    date: "December 2020 - May 2021", exactPeriod: "1 December 2020 - 16 May 2021",
+    title: "Graphic Designer Intern", org: "YPR Eng. and Sol. Pvt. Ltd.",
+    body: "Assisted with business-communication layouts, presentation and brochure support, and visual asset development.",
+    bullets: ["Candidate-supplied practical dates are retained without representing them as document-verified."],
+    tags: ["Graphic Design", "Presentations", "Brochure Support"]
   }
 ];
 

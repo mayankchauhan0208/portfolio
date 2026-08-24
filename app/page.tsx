@@ -223,64 +223,7 @@ export default function Home() {
         </div>
       </section>
 
-      <SectionShell id="about" eyebrow="Profile" title="About Mayank">
-        <div className="grid gap-6 lg:grid-cols-[0.75fr_1.25fr]">
-          <Reveal>
-            <div className="h-full rounded-[2rem] border border-white/10 bg-white/[0.055] p-7 shadow-luxury backdrop-blur-2xl">
-              <Sparkles className="mb-12 text-signal" size={28} />
-              <p className="font-display text-3xl leading-tight text-white">{profile.aboutSnapshot}</p>
-              <p className="mt-6 leading-7 text-mercury">
-                {profile.aboutSnapshotBody}
-              </p>
-            </div>
-          </Reveal>
-          <Reveal delay={0.08}>
-            <div className="rounded-[2rem] border border-white/10 bg-black/25 p-6 backdrop-blur-2xl md:p-10">
-              <div className="space-y-4 text-sm leading-7 text-mercury sm:text-base md:text-lg md:leading-9">
-                {profile.aboutParagraphs.map((paragraph) => (
-                  <p key={paragraph}>{paragraph}</p>
-                ))}
-              </div>
-              <div className="mt-7 grid gap-3 md:grid-cols-3 md:gap-4">
-                {profile.roles.map((role) => (
-                  <div key={role} className="rounded-2xl border border-white/10 bg-white/[0.045] p-4 md:p-5">
-                    <p className="text-sm uppercase tracking-[0.12em] text-champagne">{role}</p>
-                  </div>
-                ))}
-              </div>
-              <div className="mt-6 grid gap-4 md:grid-cols-3">
-                {["Lead-generation creatives", "Brand-consistent systems", "Execution-ready assets"].map((point) => (
-                  <div key={point} className="rounded-2xl border border-white/10 bg-white/[0.04] p-4">
-                    <p className="text-sm font-medium text-white">{point}</p>
-                  </div>
-                ))}
-              </div>
-            </div>
-          </Reveal>
-        </div>
-      </SectionShell>
-
-      <section className="relative px-4 pb-8 md:px-8">
-        <Reveal>
-          <div className="mx-auto max-w-7xl rounded-[1.75rem] border border-signal/20 bg-black/30 p-5 shadow-luxury backdrop-blur-2xl md:p-7">
-            <div className="mb-5 inline-flex rounded-full border border-signal/20 bg-signal/[0.08] px-5 py-2">
-              <p className="text-xs font-semibold uppercase tracking-[0.24em] text-signal">Core Expertise</p>
-            </div>
-            <div className="flex flex-wrap gap-3">
-              {profile.aboutCoreExpertise.map((point) => (
-                <span
-                  key={point}
-                  className="rounded-full border border-white/10 bg-white/[0.055] px-4 py-2 text-sm font-medium text-white transition duration-300 hover:border-signal/30 hover:bg-signal/[0.1]"
-                >
-                  {point}
-                </span>
-              ))}
-            </div>
-          </div>
-        </Reveal>
-      </section>
-
-      <section className="relative px-4 py-8 md:px-8" aria-label="Senior design capabilities">
+      <section id="capabilities" className="relative scroll-mt-24 px-4 py-8 md:px-8" aria-label="Senior design capabilities">
         <div className="mx-auto grid max-w-7xl gap-4 lg:grid-cols-3">
           {services.map((service, index) => (
             <Reveal key={service.title} delay={index * 0.05}>
@@ -449,6 +392,112 @@ export default function Home() {
         </Reveal>
       </section>
 
+      <section className="relative scroll-mt-24 px-4 py-12 md:px-8" aria-label="AI-enhanced workflow">
+        <div className="mx-auto max-w-7xl">
+          <Reveal delay={0.08}>
+            <div id="ai-workflow" className="scroll-mt-24 rounded-[2rem] border border-white/10 bg-white/[0.045] p-5 backdrop-blur-xl md:p-7">
+              <div className="mb-6 flex flex-wrap items-end justify-between gap-4">
+                <div>
+                  <p className="text-xs uppercase tracking-[0.28em] text-signal">Supporting Workflow</p>
+                  <h2 className="mt-3 font-display text-3xl text-white">AI-Enhanced Workflow</h2>
+                </div>
+                <p className="max-w-md text-sm leading-6 text-mercury">
+                  Uses AI-assisted workflows for research, concept exploration, image development, motion experimentation and production acceleration while maintaining designer-led direction, brand consistency and final quality control.
+                </p>
+              </div>
+              <div className="grid gap-3 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
+                {aiTools.map((tool, index) => (
+                  <Reveal key={tool.name} delay={index * 0.015}>
+                    <div className="group flex min-h-24 items-center gap-4 rounded-2xl border border-white/10 bg-black/25 p-4 transition hover:-translate-y-1 hover:border-champagne/35 hover:bg-white/[0.07]">
+                      <div className="relative h-14 w-14 shrink-0 overflow-hidden rounded-[1.15rem] bg-white text-xs font-bold text-black shadow-[0_18px_36px_rgba(0,0,0,0.36)] ring-1 ring-white/20">
+                        <span className="absolute inset-0 grid place-items-center">{tool.fallback}</span>
+                        {tool.logo ? (
+                          <Image
+                            src={assetPath(tool.logo)}
+                            alt={`${tool.name} logo`}
+                            fill
+                            sizes="56px"
+                            className="relative z-10 object-cover"
+                            loading="lazy"
+                            onError={(event) => {
+                              event.currentTarget.style.display = "none";
+                            }}
+                          />
+                        ) : null}
+                      </div>
+                      <div>
+                        <p className="text-[0.62rem] font-semibold uppercase tracking-[0.12em] text-champagne">{tool.group}</p>
+                        <p className="mt-1 text-base font-medium leading-6 text-white">{tool.name}</p>
+                        <p className="mt-1 text-xs leading-5 text-mercury">{tool.use}</p>
+                      </div>
+                    </div>
+                  </Reveal>
+                ))}
+              </div>
+            </div>
+          </Reveal>
+
+        </div>
+      </section>
+
+      <SectionShell id="experience" eyebrow="Career" title="Professional Experience">
+        <div className="grid gap-6 lg:grid-cols-[1.2fr_0.8fr]">
+          <div className="relative space-y-4">
+            <div className="absolute left-5 top-4 h-[calc(100%-2rem)] w-px bg-gradient-to-b from-signal via-white/20 to-transparent" />
+            {timeline.map((item, index) => (
+              <Reveal key={`${item.org}-${item.date}`} delay={index * 0.04}>
+                <div className="relative ml-10 rounded-3xl border border-white/10 bg-black/25 p-5 backdrop-blur-xl sm:ml-14 sm:p-6">
+                  <span className="absolute left-[-2.75rem] top-7 h-4 w-4 rounded-full border border-signal bg-obsidian shadow-[0_0_24px_rgba(142,232,255,0.7)]" />
+                  <p className="text-xs uppercase tracking-[0.24em] text-signal">{item.date}</p>
+                  {"exactPeriod" in item ? <p className="mt-2 text-xs text-white/55">Detailed record: {item.exactPeriod}</p> : null}
+                  {"employmentType" in item ? <span className="mt-2 inline-flex rounded-full border border-signal/25 bg-signal/10 px-3 py-1 text-[0.6rem] font-bold uppercase tracking-[0.14em] text-signal">{item.employmentType}</span> : null}
+                  <h3 className="mt-3 font-display text-2xl text-white">{item.title}</h3>
+                  <p className="mt-1 text-champagne">{item.org}</p>
+                  <p className="mt-4 text-sm leading-7 text-mercury md:text-base">{item.body}</p>
+                  {"bullets" in item ? (
+                    <ul className="mt-5 space-y-3 text-sm leading-6 text-white/74">
+                      {item.bullets.map((point) => (
+                        <li key={point} className="flex gap-3">
+                          <span className="mt-2 h-1.5 w-1.5 shrink-0 rounded-full bg-signal" />
+                          <span>{point}</span>
+                        </li>
+                      ))}
+                    </ul>
+                  ) : null}
+                  {"tags" in item ? (
+                    <div className="mt-5 flex flex-wrap gap-2">
+                      {item.tags.map((tag) => (
+                        <span key={tag} className="rounded-full border border-white/10 bg-white/[0.045] px-3 py-1.5 text-[0.66rem] font-semibold uppercase leading-none tracking-[0.14em] text-white/70">
+                          {tag}
+                        </span>
+                      ))}
+                    </div>
+                  ) : null}
+                </div>
+              </Reveal>
+            ))}
+          </div>
+          <Reveal delay={0.08}>
+            <div className="space-y-6">
+              <div className="rounded-[2rem] border border-white/10 bg-white/[0.055] p-7 backdrop-blur-2xl">
+                <GraduationCap className="mb-10 text-signal" size={30} />
+                <h3 className="font-display text-3xl text-white">Education</h3>
+                <div className="mt-7 space-y-4">
+                  {education.map((item) => (
+                    <div key={item.level} className="rounded-2xl border border-white/10 bg-black/20 p-4">
+                      <p className="text-sm font-semibold uppercase tracking-[0.18em] text-champagne">{item.level}</p>
+                      <p className="mt-2 leading-6 text-white">{item.institution}</p>
+                      <p className="mt-1 leading-6 text-mercury">{item.course}</p>
+                    </div>
+                  ))}
+                </div>
+              </div>
+
+            </div>
+          </Reveal>
+        </div>
+      </SectionShell>
+
       <SectionShell id="skills" eyebrow="Creative Stack" title="Digital, Print and Motion">
         <div className="space-y-6">
           <Reveal>
@@ -503,43 +552,39 @@ export default function Home() {
             </div>
           </Reveal>
 
+        </div>
+      </SectionShell>
+
+      <SectionShell id="about" eyebrow="Profile" title="About Mayank">
+        <div className="grid gap-6 lg:grid-cols-[0.75fr_1.25fr]">
+          <Reveal>
+            <div className="h-full rounded-[2rem] border border-white/10 bg-white/[0.055] p-7 shadow-luxury backdrop-blur-2xl">
+              <Sparkles className="mb-12 text-signal" size={28} />
+              <p className="font-display text-3xl leading-tight text-white">{profile.aboutSnapshot}</p>
+              <p className="mt-6 leading-7 text-mercury">
+                {profile.aboutSnapshotBody}
+              </p>
+            </div>
+          </Reveal>
           <Reveal delay={0.08}>
-            <div className="rounded-[2rem] border border-white/10 bg-white/[0.045] p-5 backdrop-blur-xl md:p-7">
-              <div className="mb-6 flex flex-wrap items-end justify-between gap-4">
-                <div>
-                  <p className="text-xs uppercase tracking-[0.28em] text-signal">Supporting Workflow</p>
-                  <h2 className="mt-3 font-display text-3xl text-white">AI-Enhanced Workflow</h2>
-                </div>
-                <p className="max-w-md text-sm leading-6 text-mercury">
-                  Uses AI-assisted workflows for concept exploration, visual experimentation, image development and production acceleration while maintaining designer-led direction, brand consistency and final quality control.
-                </p>
+            <div className="rounded-[2rem] border border-white/10 bg-black/25 p-6 backdrop-blur-2xl md:p-10">
+              <div className="space-y-4 text-sm leading-7 text-mercury sm:text-base md:text-lg md:leading-9">
+                {profile.aboutParagraphs.map((paragraph) => (
+                  <p key={paragraph}>{paragraph}</p>
+                ))}
               </div>
-              <div className="grid gap-3 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
-                {aiTools.map((tool, index) => (
-                  <Reveal key={tool.name} delay={index * 0.015}>
-                    <div className="group flex min-h-24 items-center gap-4 rounded-2xl border border-white/10 bg-black/25 p-4 transition hover:-translate-y-1 hover:border-champagne/35 hover:bg-white/[0.07]">
-                      <div className="relative h-14 w-14 shrink-0 overflow-hidden rounded-[1.15rem] bg-white text-xs font-bold text-black shadow-[0_18px_36px_rgba(0,0,0,0.36)] ring-1 ring-white/20">
-                        <span className="absolute inset-0 grid place-items-center">{tool.fallback}</span>
-                        {tool.logo ? (
-                          <Image
-                            src={assetPath(tool.logo)}
-                            alt={`${tool.name} logo`}
-                            fill
-                            sizes="56px"
-                            className="relative z-10 object-cover"
-                            loading="lazy"
-                            onError={(event) => {
-                              event.currentTarget.style.display = "none";
-                            }}
-                          />
-                        ) : null}
-                      </div>
-                      <div>
-                        <p className="text-base font-medium leading-6 text-white">{tool.name}</p>
-                        <p className="mt-1 text-xs leading-5 text-mercury">{tool.use}</p>
-                      </div>
-                    </div>
-                  </Reveal>
+              <div className="mt-7 grid gap-3 md:grid-cols-3 md:gap-4">
+                {profile.roles.map((role) => (
+                  <div key={role} className="rounded-2xl border border-white/10 bg-white/[0.045] p-4 md:p-5">
+                    <p className="text-sm uppercase tracking-[0.12em] text-champagne">{role}</p>
+                  </div>
+                ))}
+              </div>
+              <div className="mt-6 grid gap-4 md:grid-cols-3">
+                {["Lead-generation creatives", "Brand-consistent systems", "Execution-ready assets"].map((point) => (
+                  <div key={point} className="rounded-2xl border border-white/10 bg-white/[0.04] p-4">
+                    <p className="text-sm font-medium text-white">{point}</p>
+                  </div>
                 ))}
               </div>
             </div>
@@ -547,61 +592,25 @@ export default function Home() {
         </div>
       </SectionShell>
 
-      <SectionShell id="experience" eyebrow="Career" title="Professional Experience">
-        <div className="grid gap-6 lg:grid-cols-[1.2fr_0.8fr]">
-          <div className="relative space-y-4">
-            <div className="absolute left-5 top-4 h-[calc(100%-2rem)] w-px bg-gradient-to-b from-signal via-white/20 to-transparent" />
-            {timeline.map((item, index) => (
-              <Reveal key={`${item.org}-${item.date}`} delay={index * 0.04}>
-                <div className="relative ml-10 rounded-3xl border border-white/10 bg-black/25 p-5 backdrop-blur-xl sm:ml-14 sm:p-6">
-                  <span className="absolute left-[-2.75rem] top-7 h-4 w-4 rounded-full border border-signal bg-obsidian shadow-[0_0_24px_rgba(142,232,255,0.7)]" />
-                  <p className="text-xs uppercase tracking-[0.24em] text-signal">{item.date}</p>
-                  <h3 className="mt-3 font-display text-2xl text-white">{item.title}</h3>
-                  <p className="mt-1 text-champagne">{item.org}</p>
-                  <p className="mt-4 text-sm leading-7 text-mercury md:text-base">{item.body}</p>
-                  {"bullets" in item ? (
-                    <ul className="mt-5 space-y-3 text-sm leading-6 text-white/74">
-                      {item.bullets.map((point) => (
-                        <li key={point} className="flex gap-3">
-                          <span className="mt-2 h-1.5 w-1.5 shrink-0 rounded-full bg-signal" />
-                          <span>{point}</span>
-                        </li>
-                      ))}
-                    </ul>
-                  ) : null}
-                  {"tags" in item ? (
-                    <div className="mt-5 flex flex-wrap gap-2">
-                      {item.tags.map((tag) => (
-                        <span key={tag} className="rounded-full border border-white/10 bg-white/[0.045] px-3 py-1.5 text-[0.66rem] font-semibold uppercase leading-none tracking-[0.14em] text-white/70">
-                          {tag}
-                        </span>
-                      ))}
-                    </div>
-                  ) : null}
-                </div>
-              </Reveal>
-            ))}
-          </div>
-          <Reveal delay={0.08}>
-            <div className="space-y-6">
-              <div className="rounded-[2rem] border border-white/10 bg-white/[0.055] p-7 backdrop-blur-2xl">
-                <GraduationCap className="mb-10 text-signal" size={30} />
-                <h3 className="font-display text-3xl text-white">Education</h3>
-                <div className="mt-7 space-y-4">
-                  {education.map((item) => (
-                    <div key={item.level} className="rounded-2xl border border-white/10 bg-black/20 p-4">
-                      <p className="text-sm font-semibold uppercase tracking-[0.18em] text-champagne">{item.level}</p>
-                      <p className="mt-2 leading-6 text-white">{item.institution}</p>
-                      <p className="mt-1 leading-6 text-mercury">{item.course}</p>
-                    </div>
-                  ))}
-                </div>
-              </div>
-
+      <section className="relative px-4 pb-8 md:px-8">
+        <Reveal>
+          <div className="mx-auto max-w-7xl rounded-[1.75rem] border border-signal/20 bg-black/30 p-5 shadow-luxury backdrop-blur-2xl md:p-7">
+            <div className="mb-5 inline-flex rounded-full border border-signal/20 bg-signal/[0.08] px-5 py-2">
+              <p className="text-xs font-semibold uppercase tracking-[0.24em] text-signal">Core Expertise</p>
             </div>
-          </Reveal>
-        </div>
-      </SectionShell>
+            <div className="flex flex-wrap gap-3">
+              {profile.aboutCoreExpertise.map((point) => (
+                <span
+                  key={point}
+                  className="rounded-full border border-white/10 bg-white/[0.055] px-4 py-2 text-sm font-medium text-white transition duration-300 hover:border-signal/30 hover:bg-signal/[0.1]"
+                >
+                  {point}
+                </span>
+              ))}
+            </div>
+          </div>
+        </Reveal>
+      </section>
 
       <section id="contact" className="relative scroll-mt-28 px-4 pb-36 pt-16 md:px-8 md:py-28">
         <Reveal>
@@ -638,6 +647,9 @@ export default function Home() {
           </div>
         </Reveal>
       </section>
+      <footer className="border-t border-white/10 px-4 pb-32 pt-8 text-center text-xs uppercase tracking-[0.18em] text-white/45 md:px-8">
+        Last updated: 2026
+      </footer>
     </main>
   );
 }

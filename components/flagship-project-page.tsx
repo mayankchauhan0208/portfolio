@@ -1,13 +1,15 @@
 import Image from "next/image";
 import Link from "next/link";
-import { ArrowLeft, ArrowUpRight } from "lucide-react";
-import type { FlagshipProject } from "@/lib/flagship-projects";
+import { ArrowLeft, ArrowRight, ArrowUpRight } from "lucide-react";
+import { flagshipProjects, type FlagshipProject } from "@/lib/flagship-projects";
 import { ProjectViewTracker, TrackedLink } from "@/components/analytics-events";
 
 const siteUrl = "https://mayankchauhan.co.in";
 
 export function FlagshipProjectPage({ project }: { project: FlagshipProject }) {
   const canonical = `${siteUrl}/work/${project.slug}`;
+  const currentIndex = flagshipProjects.findIndex((item) => item.slug === project.slug);
+  const nextProject = flagshipProjects[(currentIndex + 1) % flagshipProjects.length];
   const structuredData = [
     {
       "@context": "https://schema.org",
@@ -68,6 +70,15 @@ export function FlagshipProjectPage({ project }: { project: FlagshipProject }) {
           <h1 className="mt-4 max-w-4xl font-display text-[clamp(2.5rem,7vw,5.5rem)] leading-[0.95] text-white">{project.title}</h1>
           <p className="mt-6 max-w-3xl text-base leading-8 text-mercury md:text-lg">{project.description}</p>
 
+          <dl className="mt-8 grid gap-3 rounded-[1.5rem] border border-white/10 bg-black/30 p-4 sm:grid-cols-2 lg:grid-cols-5 lg:p-5" aria-label="Project summary">
+            {[["Role", project.role], ["Year", project.year], ["Classification", project.classification], ["Deliverables", project.deliverables], ["Tools", project.tools]].map(([label, value]) => (
+              <div key={label} className="min-w-0 border-white/10 lg:border-l lg:pl-4 first:lg:border-l-0 first:lg:pl-0">
+                <dt className="text-[0.6rem] font-bold uppercase tracking-[0.16em] text-signal">{label}</dt>
+                <dd className="mt-2 line-clamp-3 text-xs leading-5 text-white/75" title={value}>{value}</dd>
+              </div>
+            ))}
+          </dl>
+
           <div className="mt-10 grid gap-4 md:grid-cols-2">
             {details.map(([label, value]) => (
               <section key={label} className="rounded-[1.4rem] border border-white/10 bg-black/25 p-5">
@@ -77,9 +88,21 @@ export function FlagshipProjectPage({ project }: { project: FlagshipProject }) {
             ))}
           </div>
 
+          <section className="mt-12" aria-labelledby="project-gallery-heading">
+            <h2 id="project-gallery-heading" className="font-display text-3xl text-white">Project gallery</h2>
+            <div className="mt-5 grid gap-4 md:grid-cols-2">
+              {project.gallery.map((item, index) => (
+                <div key={item.src} className={`relative overflow-hidden rounded-[1.4rem] border border-white/10 bg-black/30 ${index === 0 ? "aspect-[16/9] md:col-span-2" : "aspect-[4/3]"}`}>
+                  <Image src={item.src} alt={item.alt} fill sizes={index === 0 ? "(min-width: 1024px) 1152px, 94vw" : "(min-width: 768px) 46vw, 94vw"} className="object-cover" loading="lazy" />
+                </div>
+              ))}
+            </div>
+          </section>
+
           <div className="mt-10 flex flex-wrap gap-3">
             <Link href="/#work" className="inline-flex min-h-11 items-center gap-2 rounded-full border border-white/15 px-5 py-3 text-xs font-bold uppercase tracking-[0.14em] text-white transition hover:border-signal/50 hover:text-signal focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-signal"><ArrowLeft size={15} /> Selected Work</Link>
             <TrackedLink href="/#contact" event="contact_click" details={{ source: project.slug }} className="inline-flex min-h-11 items-center gap-2 rounded-full bg-white px-5 py-3 text-xs font-bold uppercase tracking-[0.14em] text-black transition hover:bg-signal focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-signal">Contact Me <ArrowUpRight size={15} /></TrackedLink>
+            <Link href={`/work/${nextProject.slug}`} className="inline-flex min-h-11 items-center gap-2 rounded-full border border-white/15 px-5 py-3 text-xs font-bold uppercase tracking-[0.14em] text-white transition hover:border-signal/50 hover:text-signal focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-signal">Next: {nextProject.title} <ArrowRight size={15} /></Link>
           </div>
         </div>
       </article>

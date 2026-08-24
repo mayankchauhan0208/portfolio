@@ -4,6 +4,7 @@ export type FlagshipProject = {
   seoTitle: string;
   description: string;
   classification: string;
+  year: string;
   disclosure: string;
   image: string;
   imageAlt: string;
@@ -15,11 +16,13 @@ export type FlagshipProject = {
   tools: string;
   outcome: string;
   ai: string;
+  gallery: { src: string; alt: string }[];
 };
 
 export const flagshipProjects: FlagshipProject[] = [
   {
     slug: "property-master-campaign-system",
+    year: "To be confirmed by Mayank",
     title: "Property Master Campaign System",
     seoTitle: "Property Master Campaign System | Mayank Chauhan",
     description: "Employer-work case study showing Mayank Chauhan's senior visual design ownership across Property Master campaign systems, presentations, digital, print, motion and sales-support formats.",
@@ -34,10 +37,16 @@ export const flagshipProjects: FlagshipProject[] = [
     deliverables: "Social media, performance advertising, presentations, brochures, print collateral, thumbnails, reels and sales-support formats.",
     tools: "Adobe Photoshop, Illustrator, InDesign, Premiere Pro, After Effects, Canva and PowerPoint.",
     outcome: "Adapted the campaign system across social, performance advertising, presentations, print collateral, video and sales-support formats.",
-    ai: "AI-assisted workflows were used selectively for concept and production support; final direction and quality control remained designer-led."
+    ai: "AI-assisted workflows were used selectively for concept and production support; final direction and quality control remained designer-led.",
+    gallery: [
+      { src: "/optimized/work/real-estate/trevoc-luxury-launch.webp", alt: "Property Master luxury real-estate campaign layout with premium sales messaging." },
+      { src: "/optimized/work/real-estate/neoliv-golf-one-ooh-08.webp", alt: "Property Master outdoor campaign adaptation for a golf-facing plotted development." },
+      { src: "/optimized/work/real-estate/emaar-serenity-hills-thumbnail.webp", alt: "Property Master digital campaign thumbnail using a clear project and location hierarchy." }
+    ]
   },
   {
     slug: "group-bayport-brand-communication",
+    year: "To be confirmed by Mayank",
     title: "Group Bayport / Caterpillar Brand Communication",
     seoTitle: "Group Bayport Brand Communication | Mayank Chauhan",
     description: "Employer-work case study covering brand systems, campaign design, corporate presentations, promotional collateral and production-ready communication for Caterpillar Signs Pvt. Ltd. (Group Bayport).",
@@ -52,10 +61,14 @@ export const flagshipProjects: FlagshipProject[] = [
     deliverables: "Corporate presentations, campaign creatives, social assets, promotional collateral, signage-support layouts and print-ready production files.",
     tools: "Adobe Photoshop, Illustrator, InDesign, Premiere Pro, After Effects, Canva and PowerPoint.",
     outcome: "Supported consistent multi-format communication and production-ready delivery across recurring internal requirements.",
-    ai: "No AI involvement claimed."
+    ai: "No AI involvement claimed.",
+    gallery: [
+      { src: "/optimized/seo/group-bayport-brand-communication-design.webp", alt: "Group Bayport and Caterpillar brand communication shown across presentation and marketing formats." }
+    ]
   },
   {
     slug: "presentation-design",
+    year: "To be confirmed by Mayank",
     title: "KENT Digital Brand Presentation",
     seoTitle: "Presentation Design Case Study | Mayank Chauhan",
     description: "Personal presentation-design concept by Mayank Chauhan exploring product storytelling, interface hierarchy, trust cues and a consistent digital brand experience for KENT.",
@@ -70,15 +83,21 @@ export const flagshipProjects: FlagshipProject[] = [
     deliverables: "Digital brand presentation, homepage journey, product experience, trust and conversion sections, design-system views and promotional layouts.",
     tools: "Figma, Adobe Photoshop, Adobe Illustrator and presentation-design workflows.",
     outcome: "Produced a cohesive multi-screen presentation demonstrating visual-system thinking and structured product storytelling.",
-    ai: "No AI involvement claimed."
+    ai: "No AI involvement claimed.",
+    gallery: [
+      { src: "/optimized/work/branding/kent/kent-01.webp", alt: "KENT personal concept presentation cover introducing the digital brand experience." },
+      { src: "/optimized/work/branding/kent/kent-04.webp", alt: "KENT personal concept showing structured product storytelling and interface hierarchy." },
+      { src: "/optimized/work/branding/kent/kent-08.webp", alt: "KENT personal concept design-system and campaign-ready presentation layout." }
+    ]
   },
   {
     slug: "ai-assisted-concept",
+    year: "To be confirmed by Mayank",
     title: "Emaar India Business Centre Visual Exploration",
     seoTitle: "AI-Assisted Concept Case Study | Mayank Chauhan",
     description: "AI-assisted personal concept by Mayank Chauhan demonstrating designer-led architectural image development, scene refinement, visual consistency and campaign-style presentation.",
     classification: "AI-Assisted Personal Concept",
-    disclosure: "Personal Concept - Not commissioned by the featured brand.",
+    disclosure: "AI-Assisted Personal Concept - designer-led work not commissioned by the featured brand.",
     image: "/optimized/seo/emaar-ai-assisted-architecture-concept.webp",
     imageAlt: "AI-assisted commercial architecture concept directed and refined by Mayank Chauhan for campaign-style presentation.",
     brief: "Explore campaign-ready commercial architecture imagery across day, dusk, night and elevated viewpoints.",
@@ -88,7 +107,12 @@ export const flagshipProjects: FlagshipProject[] = [
     deliverables: "AI-assisted architecture images, mood variations, refined campaign visuals and presentation boards.",
     tools: "Google Flow and Adobe Photoshop, supported by AI-assisted image workflows.",
     outcome: "Created a controlled visual exploration demonstrating responsible AI-assisted execution and designer-led final quality control.",
-    ai: "AI supported image development while selection, refinement, brand framing and quality control remained designer-led."
+    ai: "AI supported image development while selection, refinement, brand framing and quality control remained designer-led.",
+    gallery: [
+      { src: "/optimized/work/ai-generated/emaar-india-business-centre/emaar-IBC-01.webp", alt: "Designer-led AI-assisted Emaar India Business Centre concept in a daylight architectural view." },
+      { src: "/optimized/work/ai-generated/emaar-india-business-centre/emaar-IBC-04.webp", alt: "Designer-led AI-assisted Emaar India Business Centre concept in an evening architectural view." },
+      { src: "/optimized/work/ai-generated/emaar-india-business-centre/emaar-IBC-07.webp", alt: "Designer-led AI-assisted Emaar India Business Centre concept presented as a campaign visual." }
+    ]
   }
 ];
 
