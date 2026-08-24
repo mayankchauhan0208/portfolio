@@ -77,7 +77,7 @@ export const flagshipProjects: FlagshipProject[] = [
     title: "Emaar India Business Centre Visual Exploration",
     seoTitle: "AI-Assisted Concept Case Study | Mayank Chauhan",
     description: "AI-assisted personal concept by Mayank Chauhan demonstrating designer-led architectural image development, scene refinement, visual consistency and campaign-style presentation.",
-    classification: "AI-Assisted Concept",
+    classification: "AI-Assisted Personal Concept",
     disclosure: "Personal Concept - Not commissioned by the featured brand.",
     image: "/optimized/seo/emaar-ai-assisted-architecture-concept.webp",
     imageAlt: "AI-assisted commercial architecture concept directed and refined by Mayank Chauhan for campaign-style presentation.",

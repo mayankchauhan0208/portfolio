@@ -146,7 +146,7 @@ export const featuredProjectClassifications = [
   },
   {
     title: "Emaar India Business Centre Visual Exploration",
-    classification: "AI-Assisted Concept",
+    classification: "AI-Assisted Personal Concept",
     disclosure: "Personal Concept - Not commissioned by the featured brand.",
     href: "/work/ai-assisted-concept",
     image: "/optimized/seo/emaar-ai-assisted-architecture-concept.webp",

@@ -5,6 +5,8 @@ from reportlab.lib.pagesizes import A4
 from reportlab.lib.styles import ParagraphStyle, getSampleStyleSheet
 from reportlab.lib.units import mm
 from reportlab.platypus import SimpleDocTemplate, Paragraph, Spacer, PageBreak, KeepTogether
+from reportlab.graphics.barcode.qr import QrCodeWidget
+from reportlab.graphics.shapes import Drawing
 import pdfplumber
 
 ROOT = Path(__file__).resolve().parents[1]
@@ -47,6 +49,18 @@ def footer(canvas, doc):
     canvas.setFont("Helvetica", 7)
     canvas.setFillColor(MUTED)
     canvas.drawCentredString(105 * mm, 8.5 * mm, f"Mayank Chauhan | Page {doc.page} of 2")
+    if doc.page == 1:
+        qr = QrCodeWidget("https://mayankchauhan.co.in")
+        x1, y1, x2, y2 = qr.getBounds()
+        qr_size = 13 * mm
+        drawing = Drawing(qr_size, qr_size, transform=[qr_size / (x2 - x1), 0, 0, qr_size / (y2 - y1), 0, 0])
+        drawing.add(qr)
+        qr_x, qr_y = 179 * mm, 269 * mm
+        drawing.drawOn(canvas, qr_x, qr_y)
+        canvas.linkURL("https://mayankchauhan.co.in", (qr_x, qr_y, qr_x + qr_size, qr_y + qr_size), relative=0)
+        canvas.setFont("Helvetica", 5.5)
+        canvas.setFillColor(MUTED)
+        canvas.drawCentredString(qr_x + qr_size / 2, qr_y - 2.2 * mm, "PORTFOLIO")
     canvas.restoreState()
 
 doc = SimpleDocTemplate(str(OUTPUT), pagesize=A4, leftMargin=18 * mm, rightMargin=18 * mm, topMargin=13 * mm, bottomMargin=17 * mm, title="Mayank Chauhan - Senior Visual Designer | Senior Graphic Designer", author="Mayank Chauhan")
@@ -57,7 +71,7 @@ story += [
     p(
         '<link href="tel:+919992713289" color="#4E5968">+91 9992713289</link> | '
         '<link href="mailto:connect.mayankchauhan@gmail.com" color="#0D6677">Email</link> | '
-        '<link href="https://mayankchauhan.co.in" color="#0D6677">Portfolio</link> | '
+        '<link href="https://mayankchauhan.co.in" color="#0D6677">mayankchauhan.co.in</link> | '
         '<link href="https://www.linkedin.com/in/mayankchauhan0208/" color="#0D6677">LinkedIn</link>',
         contact,
     ),

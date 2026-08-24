@@ -13,6 +13,7 @@ import { SectionShell } from "@/components/section-shell";
 import { Spotlight } from "@/components/spotlight";
 import { aiTools, coreExpertise, education, featuredProjectClassifications, metrics, portfolioCategories, profile, services, softwareSkills, timeline } from "@/lib/portfolio-data";
 import { assetPath } from "@/lib/site-paths";
+import { trackPortfolioEvent } from "@/components/analytics-events";
 
 type ContactAction = {
   label: string;
@@ -75,6 +76,7 @@ function ContactIconLinks({ includeBehance = false, labeled = false, className =
           rel={external ? "noopener noreferrer" : undefined}
           aria-label={label}
           title={label}
+          onClick={() => trackPortfolioEvent("contact_click", { channel: shortLabel.toLowerCase(), source: labeled ? "contact_section" : "hero" })}
           className={
             labeled
               ? "group flex min-h-20 min-w-0 flex-col items-center justify-center gap-2 rounded-2xl border border-white/10 bg-black/25 px-2 py-3 text-center text-white transition hover:border-signal/50 hover:bg-signal/10 hover:text-signal focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-signal focus-visible:ring-offset-2 focus-visible:ring-offset-obsidian"
@@ -188,10 +190,14 @@ export default function Home() {
               <ArrowUpRight size={14} />
             </Link>
             <ContactIconLinks className="reference-contact-icons" />
-            <a href={assetPath(profile.resume)} download aria-label="Download resume" className="reference-cta reference-cta-secondary">
+            <a href={assetPath(profile.resume)} download aria-label="Download resume" onClick={() => trackPortfolioEvent("resume_download", { source: "hero" })} className="reference-cta reference-cta-secondary">
               Download Resume
               <Download size={14} />
             </a>
+            <Link href="#contact" onClick={() => trackPortfolioEvent("contact_click", { channel: "contact_section", source: "hero" })} className="reference-cta reference-cta-secondary">
+              Contact Me
+              <ArrowUpRight size={14} />
+            </Link>
           </div>
         </div>
       </section>
@@ -344,7 +350,7 @@ export default function Home() {
               ))}
             </div>
             <div className="relative mx-auto mt-5 flex max-w-6xl flex-wrap gap-2" aria-label="Project classification key">
-              {["Employer Work", "Client Work", "Personal Concept", "AI-Assisted Concept"].map((label) => (
+              {["Employer Work", "Freelance Work", "Personal Concept", "AI-Assisted Personal Concept"].map((label) => (
                 <span key={label} className="rounded-full border border-white/10 bg-black/35 px-3 py-2 text-[0.62rem] font-bold uppercase tracking-[0.14em] text-white/65">{label}</span>
               ))}
             </div>
@@ -619,7 +625,7 @@ export default function Home() {
               </div>
               <div className="grid gap-4">
                 <ContactIconLinks includeBehance labeled />
-                <a href={assetPath(profile.resume)} download aria-label="Download resume" className="flex min-h-12 min-w-0 items-center justify-between gap-4 rounded-2xl border border-signal/35 bg-signal/15 p-4 font-semibold text-white transition hover:border-signal hover:bg-signal hover:text-black focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-signal focus-visible:ring-offset-2 focus-visible:ring-offset-obsidian sm:p-5">
+                <a href={assetPath(profile.resume)} download aria-label="Download resume" onClick={() => trackPortfolioEvent("resume_download", { source: "contact_section" })} className="flex min-h-12 min-w-0 items-center justify-between gap-4 rounded-2xl border border-signal/35 bg-signal/15 p-4 font-semibold text-white transition hover:border-signal hover:bg-signal hover:text-black focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-signal focus-visible:ring-offset-2 focus-visible:ring-offset-obsidian sm:p-5">
                   <span className="flex min-w-0 items-center gap-3"><Download className="shrink-0" size={18} /> <span>Download Resume</span></span>
                   <ArrowUpRight className="shrink-0" size={18} />
                 </a>

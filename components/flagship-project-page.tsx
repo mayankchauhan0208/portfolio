@@ -2,6 +2,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { ArrowLeft, ArrowUpRight } from "lucide-react";
 import type { FlagshipProject } from "@/lib/flagship-projects";
+import { ProjectViewTracker, TrackedLink } from "@/components/analytics-events";
 
 const siteUrl = "https://mayankchauhan.co.in";
 
@@ -45,6 +46,7 @@ export function FlagshipProjectPage({ project }: { project: FlagshipProject }) {
 
   return (
     <main className="min-h-screen bg-obsidian px-4 pb-24 text-platinum md:px-8">
+      <ProjectViewTracker slug={project.slug} title={project.title} />
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(structuredData).replace(/</g, "\\u003c") }} />
       <nav aria-label="Breadcrumb" className="mx-auto flex max-w-6xl items-center gap-2 py-7 text-xs text-white/60">
         <Link href="/" className="rounded-full px-3 py-2 transition hover:bg-white/10 hover:text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-signal">Home</Link>
@@ -77,7 +79,7 @@ export function FlagshipProjectPage({ project }: { project: FlagshipProject }) {
 
           <div className="mt-10 flex flex-wrap gap-3">
             <Link href="/#work" className="inline-flex min-h-11 items-center gap-2 rounded-full border border-white/15 px-5 py-3 text-xs font-bold uppercase tracking-[0.14em] text-white transition hover:border-signal/50 hover:text-signal focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-signal"><ArrowLeft size={15} /> Selected Work</Link>
-            <Link href="/#contact" className="inline-flex min-h-11 items-center gap-2 rounded-full bg-white px-5 py-3 text-xs font-bold uppercase tracking-[0.14em] text-black transition hover:bg-signal focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-signal">Contact <ArrowUpRight size={15} /></Link>
+            <TrackedLink href="/#contact" event="contact_click" details={{ source: project.slug }} className="inline-flex min-h-11 items-center gap-2 rounded-full bg-white px-5 py-3 text-xs font-bold uppercase tracking-[0.14em] text-black transition hover:bg-signal focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-signal">Contact Me <ArrowUpRight size={15} /></TrackedLink>
           </div>
         </div>
       </article>

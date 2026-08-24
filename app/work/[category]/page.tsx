@@ -20,7 +20,7 @@ function projectDisclosure(title: string) {
     return { label: "Personal Concept", text: "Not commissioned by KENT." };
   }
   if (title === "Emaar India Business Centre Visual Exploration") {
-    return { label: "AI-Assisted Concept", text: "AI-assisted personal concept; not commissioned by Emaar." };
+    return { label: "AI-Assisted Personal Concept", text: "AI-assisted personal concept; not commissioned by Emaar." };
   }
   return null;
 }

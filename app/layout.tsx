@@ -3,6 +3,7 @@ import "./globals.css";
 import { RouteStartReset } from "@/components/route-start-reset";
 import { SiteChrome } from "@/components/site-chrome";
 import { profile } from "@/lib/portfolio-data";
+import { GoogleAnalytics } from "@/components/google-analytics";
 
 const siteUrl = "https://mayankchauhan.co.in";
 const siteDescription =
@@ -113,6 +114,7 @@ export default function RootLayout({ children }: Readonly<{ children: React.Reac
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(structuredData).replace(/</g, "\\u003c") }}
         />
+        <GoogleAnalytics />
         <RouteStartReset />
         <SiteChrome />
         {children}
