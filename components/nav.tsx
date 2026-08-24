@@ -6,11 +6,11 @@ import { useEffect, useState } from "react";
 import { profile } from "@/lib/portfolio-data";
 
 const links = [
+  { label: "About", href: "#about" },
   { label: "Selected Work", href: "#work" },
   { label: "Capabilities", href: "#capabilities" },
   { label: "AI Workflow", href: "#ai-workflow" },
   { label: "Experience", href: "#experience" },
-  { label: "About", href: "#about" },
   { label: "Contact", href: "#contact" }
 ];
 
@@ -52,7 +52,7 @@ export function Nav() {
       transition={{ duration: 0.8, ease: "easeOut" }}
       className="fixed bottom-3 left-0 right-0 z-50 px-2 py-3 pb-[calc(0.75rem+env(safe-area-inset-bottom))] sm:px-3 md:bottom-5 md:px-8"
     >
-      <nav className="mx-auto flex max-w-5xl items-center justify-between gap-1.5 rounded-full border border-white/10 bg-obsidian/78 px-2.5 py-2 shadow-luxury backdrop-blur-2xl sm:gap-2 sm:px-3 md:px-4">
+      <nav className="mx-auto flex max-w-7xl items-center justify-between gap-1.5 rounded-full border border-white/10 bg-obsidian/78 px-2.5 py-2 shadow-luxury backdrop-blur-2xl sm:gap-2 sm:px-3 md:px-4">
         <a
           href="#top"
           data-active={activeSection === "#top"}
