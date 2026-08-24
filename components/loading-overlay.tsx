@@ -3,13 +3,7 @@
 import { motion } from "framer-motion";
 import { useEffect, useState } from "react";
 
-const heroRoles = [
-  "Visual Designer",
-  "Creative Brand Designer",
-  "Campaign Designer",
-  "UI Visual Designer",
-  "Motion & Video Creative",
-];
+const heroRoles = ["Senior Visual Designer | Senior Graphic Designer"];
 
 export function LoadingOverlay({ onComplete }: { onComplete?: () => void }) {
   const [done, setDone] = useState(false);

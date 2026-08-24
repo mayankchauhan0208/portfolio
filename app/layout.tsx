@@ -6,13 +6,13 @@ import { profile } from "@/lib/portfolio-data";
 
 const siteUrl = "https://mayankchauhan.co.in";
 const siteDescription =
-  "Portfolio of Mayank Chauhan, a visual designer creating brand communication, campaign creatives, UI visual design, real-estate marketing visuals, motion/video assets, and AI-assisted creative workflows in India.";
+  "Portfolio of Mayank Chauhan, a Senior Visual Designer and Senior Graphic Designer creating brand communication, campaign creatives, UI visual design, real-estate marketing visuals, motion/video assets, and AI-assisted creative workflows in India.";
 const socialPreviewImage = "/optimized/images/mayank-portrait.webp";
 
 export const metadata: Metadata = {
   metadataBase: new URL(siteUrl),
   title: {
-    default: "Mayank Chauhan | Visual Designer & Creative Brand Designer",
+    default: "Senior Visual Designer | Senior Graphic Designer",
     template: "%s | Mayank Chauhan"
   },
   description: siteDescription,
@@ -41,7 +41,7 @@ export const metadata: Metadata = {
     canonical: "/"
   },
   openGraph: {
-    title: "Mayank Chauhan | Visual Designer Portfolio",
+    title: "Senior Visual Designer | Senior Graphic Designer",
     description:
       "Explore the portfolio of Mayank Chauhan, featuring brand communication, campaign creatives, UI visual design, real-estate marketing visuals, motion/video assets, and AI-assisted creative workflows.",
     url: siteUrl,
@@ -59,7 +59,7 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "Mayank Chauhan | Visual Designer Portfolio",
+    title: "Senior Visual Designer | Senior Graphic Designer",
     description:
       "Visual design portfolio by Mayank Chauhan covering brand communication, campaign creatives, UI visuals, motion/video, and AI-assisted creative workflows.",
     images: [socialPreviewImage]
@@ -78,11 +78,11 @@ const structuredData = {
       "@id": `${siteUrl}/#person`,
       name: "Mayank Chauhan",
       url: siteUrl,
-      jobTitle: "Visual Designer",
+      jobTitle: "Senior Visual Designer | Senior Graphic Designer",
       description:
-        "Visual designer creating brand communication, campaign creatives, UI visual design, real-estate marketing visuals, motion/video assets, and AI-assisted creative workflows.",
+        "Senior Visual Designer and Senior Graphic Designer creating brand communication, campaign creatives, UI visual design, real-estate marketing visuals, motion/video assets, and AI-assisted creative workflows.",
       image: `${siteUrl}${socialPreviewImage}`,
-      sameAs: [profile.behance]
+      sameAs: [profile.linkedin, profile.behance]
     },
     {
       "@type": "WebSite",

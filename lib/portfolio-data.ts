@@ -3,78 +3,48 @@ import siteContent from "@/content/site.json";
 export const profile = siteContent.profile;
 
 export const metrics = [
-  { value: "5+", label: "Design experience" },
-  { value: "6", label: "Role formats handled" },
-  { value: "8", label: "Design tools" },
-  { value: "2025", label: "Current role year" }
+  { value: "5+", label: "Years of design experience" },
+  { value: "Digital + Print", label: "Multi-format delivery" },
+  { value: "Campaign Systems", label: "Commercial creative focus" },
+  { value: "15 Days", label: "Notice period" }
 ];
 
 export const projects = [
   {
-    title: "Property Master Pvt. Ltd",
+    title: "Property Master Pvt. Ltd.",
     eyebrow: "Current Role",
-    period: "February, 2025 - Present",
-    summary:
-      "Senior Graphic Designer role focused on premium real-estate visuals and campaign communication.",
-    details:
-      "Currently working as a Senior Graphic Designer, creating premium real-estate graphics, presentations, and campaign visuals built for credibility, clarity, and high-value selling environments.",
-    tags: ["Senior Graphic Designer", "Real Estate", "Campaigns", "Presentation Design"],
+    period: "October 2025 - Present",
+    summary: "Senior-level ownership of real-estate campaign, sales, presentation, digital, and print communication.",
+    details: "Translates marketing and sales requirements into consistent visual systems, coordinates revisions, performs visual quality checks, and prepares execution-ready assets across formats.",
+    tags: ["Senior Graphic Designer", "Campaign Ownership", "Stakeholder Collaboration", "Multi-format Delivery"],
     glow: "from-champagne/35 via-white/10 to-transparent"
   },
   {
-    title: "Group Bayport",
-    eyebrow: "Graphic Design",
-    period: "3 Years",
-    summary:
-      "Three years of graphic design experience creating polished brand and marketing assets.",
-    details:
-      "Created polished visual assets with a focus on layout discipline, clean typography, image treatment, consistency, and campaign-ready execution.",
-    tags: ["Graphic Designer", "Marketing Design", "Production Design", "Visual QA"],
+    title: "Property Master Pvt. Ltd.",
+    eyebrow: "Freelance",
+    period: "May 2024 - September 2025",
+    summary: "Freelance campaign and sales-support design before moving into the full-time senior role.",
+    details: "Delivered real-estate marketing creatives and presentation assets across digital and print requirements.",
+    tags: ["Freelance Graphic Designer", "Real Estate", "Campaign Creatives", "Presentation Design"],
     glow: "from-signal/35 via-white/10 to-transparent"
   },
   {
-    title: "7P Digital Services",
-    eyebrow: "Design + Video",
-    period: "7 Months",
-    summary:
-      "Seven months as a Graphic Designer and Video Editor for digital content and campaign assets.",
-    details:
-      "Combined Photoshop, Illustrator, Premiere Pro, After Effects, and Canva workflows to create clear, energetic assets with strong pacing and visual structure.",
-    tags: ["Graphic Designer", "Video Editor", "Social Content", "Campaign Assets"],
+    title: "Caterpillar Signs Pvt. Ltd. (Group Bayport)",
+    eyebrow: "Graphic Design",
+    period: "September 2022 - September 2025",
+    summary: "Brand and marketing production across campaign, corporate, social, presentation, and print-ready communication.",
+    details: "Maintained production consistency through typography, spacing, image treatment, resizing, version control, and final visual quality checks.",
+    tags: ["Graphic Designer", "Marketing Design", "Production Quality", "Visual QA"],
     glow: "from-purple-300/30 via-white/10 to-transparent"
   },
   {
-    title: "Citymall, Gurugram",
-    eyebrow: "Internship",
-    period: "3 Months",
-    summary:
-      "Three months as a Graphic Designer Intern in a consumer-facing brand environment.",
-    details:
-      "Supported design production with marketplace-ready visuals, clean composition, and brand-sensitive execution for digital touchpoints.",
-    tags: ["Graphic Designer Intern", "Consumer Design", "Digital Graphics"],
+    title: "7P Digital Services LLP",
+    eyebrow: "Design + Video",
+    period: "March 2022 - September 2022",
+    summary: "Digital campaign design and video editing for social, promotional, and platform-specific formats.",
+    details: "Created static and motion assets using Photoshop, Illustrator, Premiere Pro, After Effects, and Canva.",
+    tags: ["Graphic Designer", "Video Editor", "Campaign Assets", "Motion Content"],
     glow: "from-emerald-200/25 via-white/10 to-transparent"
-  },
-  {
-    title: "YPR Eng. and Sol. Private Limited",
-    eyebrow: "Internship",
-    period: "6 Months",
-    summary:
-      "Six months as a Graphic Designer Intern, building practical design production discipline.",
-    details:
-      "Developed foundational skills in layout, tool fluency, asset preparation, and iterative creative delivery.",
-    tags: ["Graphic Designer Intern", "Layout", "Tool Fluency", "Production"],
-    glow: "from-sky-200/25 via-white/10 to-transparent"
-  },
-  {
-    title: "Krash IT Services",
-    eyebrow: "Internship",
-    period: "5 Months",
-    summary:
-      "Five months as a Graphic Designer Intern, strengthening layout and creative execution skills.",
-    details:
-      "Built early hands-on experience across graphic design workflows, visual cleanup, layout support, and production-ready assets.",
-    tags: ["Graphic Designer Intern", "Graphic Design", "Layout", "Creative Support"],
-    glow: "from-fuchsia-200/25 via-white/10 to-transparent"
   }
 ];
 
@@ -90,35 +60,21 @@ export const softwareSkills = [
 ];
 
 export const coreExpertise = [
-  "Visual Direction",
-  "Branding & Identity",
-  "UI Visual Design",
+  "Campaign & Marketing Design",
+  "Brand Communication",
   "Presentation Design",
-  "Campaign Creatives",
-  "Digital & Social Media Design",
-  "Marketing Campaigns",
-  "Print & Packaging Design",
-  "Motion Graphics",
-  "Typography & Layout",
-  "Photo Retouching",
-  "Visual Storytelling"
+  "Real Estate Marketing",
+  "Multi-format Delivery",
+  "Visual Quality Control",
+  "Stakeholder Collaboration",
+  "Digital & Print Production"
 ];
 
 export const aiTools = [
-  { name: "ChatGPT", use: "Prompt Engineering & Strategy", logo: "/optimized/tool-icons/chatgpt.webp", fallback: "GPT" },
-  { name: "Gemini", use: "Research & Analysis", logo: "/optimized/tool-icons/gemini.webp", fallback: "G" },
-  { name: "Claude", use: "Long-Form Content", logo: "/optimized/tool-icons/claude.webp", fallback: "Cl" },
-  { name: "Midjourney", use: "Concept Visuals", logo: "/optimized/tool-icons/midjourney.webp", fallback: "Mj" },
-  { name: "Adobe Firefly", use: "Commercial AI Design", logo: "/optimized/tool-icons/adobe-firefly.webp", fallback: "Ff" },
-  { name: "FLUX", use: "Photorealistic Images", logo: "/optimized/tool-icons/flux.webp", fallback: "Fx" },
-  { name: "Ideogram", use: "Typography Visuals", logo: "/optimized/tool-icons/ideogram.webp", fallback: "Id" },
-  { name: "Leonardo AI", use: "Marketing Creatives", logo: "/optimized/tool-icons/leonardo-ai.webp", fallback: "Le" },
-  { name: "Runway", use: "AI Video Editing", logo: "/optimized/tool-icons/runway.webp", fallback: "Rw" },
-  { name: "Kling AI", use: "Cinematic Video Generation", logo: "/optimized/tool-icons/kling-ai.webp", fallback: "Kl" },
-  { name: "Google Flow", use: "AI Filmmaking", logo: "/optimized/tool-icons/google-flow.webp", fallback: "Fl" },
-  { name: "Gamma", use: "Presentation Design", logo: "/optimized/tool-icons/gamma.webp", fallback: "Ga" },
-  { name: "Canva AI", use: "Creative Automation", logo: "/optimized/tool-icons/canva.webp", fallback: "Ca" },
-  { name: "Figma AI", use: "UI Visual Design Support", logo: "/optimized/tool-icons/figma.webp", fallback: "Fi" }
+  { name: "ChatGPT", use: "Brief exploration and production support", logo: "/optimized/tool-icons/chatgpt.webp", fallback: "GPT" },
+  { name: "Adobe Firefly", use: "Image exploration and controlled editing", logo: "/optimized/tool-icons/adobe-firefly.webp", fallback: "Ff" },
+  { name: "Midjourney", use: "Early visual concept exploration", logo: "/optimized/tool-icons/midjourney.webp", fallback: "Mj" },
+  { name: "Google Flow", use: "Supporting motion and video experiments", logo: "/optimized/tool-icons/google-flow.webp", fallback: "Fl" }
 ];
 
 export const services = [
@@ -139,13 +95,44 @@ export const services = [
   }
 ];
 
+export const featuredProjectClassifications = [
+  {
+    title: "Property Master Real Estate Campaigns",
+    classification: "Employer Work",
+    disclosure: "Campaign and sales-support work created as part of the Property Master role.",
+    href: "/work/real-estate",
+    image: "/optimized/work/real-estate/trevoc-luxury-launch.webp"
+  },
+  {
+    title: "Caterpillar Signs Pvt. Ltd. (Group Bayport) Brand and Marketing Communication",
+    classification: "Employer Work",
+    disclosure: "Brand and marketing communication created as part of the Group Bayport role.",
+    href: "/work/branding",
+    image: "/optimized/work/branding/roastory/roastory-brand-mockups-grid.webp"
+  },
+  {
+    title: "KENT Water Purifier Digital Brand Experience",
+    classification: "Personal Concept",
+    disclosure: "Personal concept; not commissioned by KENT.",
+    href: "/work/branding",
+    image: "/optimized/work/branding/kent/kent-01.webp"
+  },
+  {
+    title: "Emaar India Business Centre Visual Exploration",
+    classification: "AI-Assisted Concept",
+    disclosure: "AI-assisted personal concept; not commissioned by Emaar.",
+    href: "/work/ai-generated",
+    image: "/optimized/work/ai-generated/emaar-india-business-centre/emaar-IBC-01.webp"
+  }
+];
+
 export const portfolioWorks = [
   {
     title: "Luxury Living Crown Campaign",
     category: "Property Master",
     format: "Social Poster",
     brief: "A royal black, blue, and gold launch visual positioning residential towers as a premium high-value address.",
-    image: "/work/real-estate/trevoc-luxury-launch.jpg",
+    image: "/optimized/work/real-estate/trevoc-luxury-launch.webp",
     span: "md:col-span-3 md:row-span-2",
     tone: "Gold luxury"
   },
@@ -154,7 +141,7 @@ export const portfolioWorks = [
     category: "Commercial Real Estate",
     format: "EDM Campaign",
     brief: "A clean commercial launch creative with bright architectural scale, corporate hierarchy, and booking urgency.",
-    image: "/work/real-estate/emaar-business-centre-coming-soon.png",
+    image: "/optimized/work/real-estate/emaar-business-centre-coming-soon.webp",
     span: "md:col-span-3 md:row-span-2",
     tone: "Corporate blue"
   },
@@ -163,7 +150,7 @@ export const portfolioWorks = [
     category: "Luxury Residential",
     format: "Poster Campaign",
     brief: "A nature-led visual direction built around privacy, calm, and aspirational high-rise living.",
-    image: "/work/real-estate/emaar-serenity-hills-escape.png",
+    image: "/optimized/work/real-estate/emaar-serenity-hills-escape.webp",
     span: "md:col-span-2 md:row-span-2",
     tone: "Forest luxury"
   },
@@ -172,7 +159,7 @@ export const portfolioWorks = [
     category: "Outdoor Campaign",
     format: "15x8 ft Hoarding",
     brief: "A wide-format golf-facing plot campaign using high-contrast green texture, lifestyle promise, and strong recall.",
-    image: "/work/real-estate/neoliv-golf-one-ooh-08.png",
+    image: "/optimized/work/real-estate/neoliv-golf-one-ooh-08.webp",
     span: "md:col-span-4 md:row-span-1",
     tone: "Lifestyle green"
   },
@@ -181,7 +168,7 @@ export const portfolioWorks = [
     category: "Outdoor Campaign",
     format: "Luxury Hoarding",
     brief: "An open landscape composition for golf plots, designed for instant readability and premium scale.",
-    image: "/work/real-estate/neoliv-golf-one-ooh-05.png",
+    image: "/optimized/work/real-estate/neoliv-golf-one-ooh-05.webp",
     span: "md:col-span-4 md:row-span-1",
     tone: "Open-air premium"
   },
@@ -190,7 +177,7 @@ export const portfolioWorks = [
     category: "Video Thumbnail",
     format: "YouTube Cover",
     brief: "A bolder thumbnail layout made for fast recognition, presenter focus, and property-led attention.",
-    image: "/work/real-estate/emaar-serenity-hills-meta.jpg",
+    image: "/optimized/work/real-estate/emaar-serenity-hills-meta.webp",
     span: "md:col-span-4 md:row-span-1",
     tone: "High contrast"
   },
@@ -199,7 +186,7 @@ export const portfolioWorks = [
     category: "Commercial Real Estate",
     format: "EDM Poster",
     brief: "A polished business-centre creative using a gold pin device to frame workplace aspiration and returns.",
-    image: "/work/real-estate/emaar-business-centre-pin.png",
+    image: "/optimized/work/real-estate/emaar-business-centre-pin.webp",
     span: "md:col-span-2 md:row-span-2",
     tone: "Navy gold"
   },
@@ -208,7 +195,7 @@ export const portfolioWorks = [
     category: "Residential Campaign",
     format: "Social Thumbnail",
     brief: "A direct, high-impact sales visual using project naming, location clarity, and bold color contrast.",
-    image: "/work/real-estate/emaar-serenity-hills-thumbnail.jpg",
+    image: "/optimized/work/real-estate/emaar-serenity-hills-thumbnail.webp",
     span: "md:col-span-4 md:row-span-1",
     tone: "Editorial"
   },
@@ -217,7 +204,7 @@ export const portfolioWorks = [
     category: "Ultra Luxury",
     format: "Investment EDM",
     brief: "A prestige-led brand partnership creative with disciplined hierarchy, scarcity cues, and black-gold restraint.",
-    image: "/work/real-estate/lamborghini-residences-edm.png",
+    image: "/optimized/work/real-estate/lamborghini-residences-edm.webp",
     span: "md:col-span-3 md:row-span-2",
     tone: "Prestige black"
   },
@@ -226,7 +213,7 @@ export const portfolioWorks = [
     category: "Commercial Real Estate",
     format: "Premium Poster",
     brief: "A night-time glass facade visual built around growth, stability, and corporate credibility.",
-    image: "/work/real-estate/emaar-business-centre-night.png",
+    image: "/optimized/work/real-estate/emaar-business-centre-night.webp",
     span: "md:col-span-3 md:row-span-2",
     tone: "Midnight blue"
   },
@@ -235,7 +222,7 @@ export const portfolioWorks = [
     category: "Commercial Real Estate",
     format: "EDM Creative",
     brief: "A polished office-space campaign with architectural framing, gold orbit accents, and leadership messaging.",
-    image: "/work/real-estate/emaar-business-centre-legacy.png",
+    image: "/optimized/work/real-estate/emaar-business-centre-legacy.webp",
     span: "md:col-span-3 md:row-span-2",
     tone: "Visionary"
   },
@@ -244,7 +231,7 @@ export const portfolioWorks = [
     category: "Commercial Real Estate",
     format: "Mobile EDM",
     brief: "A feature-heavy mobile creative focused on office space benefits, vertical hierarchy, and conversion clarity.",
-    image: "/work/real-estate/eibc-workspace-vision.jpeg",
+    image: "/optimized/work/real-estate/eibc-workspace-vision.webp",
     span: "md:col-span-2 md:row-span-2",
     tone: "Sales utility"
   },
@@ -253,7 +240,7 @@ export const portfolioWorks = [
     category: "Commercial Real Estate",
     format: "Mobile EDM",
     brief: "A low-angle architecture composition designed to make the property feel tall, modern, and commercially strong.",
-    image: "/work/real-estate/eibc-future-work.jpeg",
+    image: "/optimized/work/real-estate/eibc-future-work.webp",
     span: "md:col-span-2 md:row-span-2",
     tone: "Urban blue"
   },
@@ -262,7 +249,7 @@ export const portfolioWorks = [
     category: "Residential Campaign",
     format: "Mobile EDM",
     brief: "A calm blue-gold residential asset balancing lifestyle warmth with clear price, size, and location cues.",
-    image: "/work/real-estate/emaar-serenity-harmony.jpeg",
+    image: "/optimized/work/real-estate/emaar-serenity-harmony.webp",
     span: "md:col-span-2 md:row-span-2",
     tone: "Nature premium"
   },
@@ -271,7 +258,7 @@ export const portfolioWorks = [
     category: "Commercial Real Estate",
     format: "EDM Campaign",
     brief: "A premium office campaign visual using arched framing, gold details, and strong value-led messaging.",
-    image: "/work/real-estate/eibc-luxury-returns.png",
+    image: "/optimized/work/real-estate/eibc-luxury-returns.webp",
     span: "md:col-span-3 md:row-span-2",
     tone: "Blue gold"
   },
@@ -280,7 +267,7 @@ export const portfolioWorks = [
     category: "Plotted Township",
     format: "Investment Poster",
     brief: "A clean plotted township campaign combining green entry visuals, price clarity, and practical project details.",
-    image: "/work/real-estate/palwal-prime-land.png",
+    image: "/optimized/work/real-estate/palwal-prime-land.webp",
     span: "md:col-span-3 md:row-span-2",
     tone: "Fresh daylight"
   },
@@ -289,7 +276,7 @@ export const portfolioWorks = [
     category: "Residential Campaign",
     format: "Premium Poster",
     brief: "A softer biophilic campaign direction with light gold accents, lifestyle imagery, and luxury apartment positioning.",
-    image: "/work/real-estate/bptp-vertical-oasis.png",
+    image: "/optimized/work/real-estate/bptp-vertical-oasis.webp",
     span: "md:col-span-3 md:row-span-2",
     tone: "Soft luxury"
   },
@@ -298,7 +285,7 @@ export const portfolioWorks = [
     category: "Residential Campaign",
     format: "Poster Campaign",
     brief: "A serene residential concept using circular framing and airy space to communicate privacy and elevation.",
-    image: "/work/real-estate/bptp-private-haven.png",
+    image: "/optimized/work/real-estate/bptp-private-haven.webp",
     span: "md:col-span-3 md:row-span-2",
     tone: "Canopy gold"
   },
@@ -307,7 +294,7 @@ export const portfolioWorks = [
     category: "Ultra Luxury",
     format: "Premium EDM",
     brief: "A chess-inspired investment visual with polished restraint, scarcity language, and elite residential appeal.",
-    image: "/work/real-estate/oberoi-rare-assets.png",
+    image: "/optimized/work/real-estate/oberoi-rare-assets.webp",
     span: "md:col-span-3 md:row-span-2",
     tone: "Strategic luxury"
   },
@@ -316,7 +303,7 @@ export const portfolioWorks = [
     category: "Ultra Luxury",
     format: "Mobile Poster",
     brief: "A lifestyle-rich terrace campaign designed around five-star privacy, city views, and high-ticket clarity.",
-    image: "/work/real-estate/oberoi-sky-living.png",
+    image: "/optimized/work/real-estate/oberoi-sky-living.webp",
     span: "md:col-span-3 md:row-span-2",
     tone: "Skyline luxury"
   },
@@ -325,7 +312,7 @@ export const portfolioWorks = [
     category: "Ultra Luxury",
     format: "EDM Poster",
     brief: "A cinematic evening balcony concept selling exclusivity, privacy, and generational aspiration.",
-    image: "/work/real-estate/oberoi-inheritance.png",
+    image: "/optimized/work/real-estate/oberoi-inheritance.webp",
     span: "md:col-span-3 md:row-span-2",
     tone: "Evening estate"
   },
@@ -334,7 +321,7 @@ export const portfolioWorks = [
     category: "Retail Commercial",
     format: "Social Poster",
     brief: "A bold retail investment creative using mall scale, light trails, and direct ground-floor messaging.",
-    image: "/work/real-estate/aipl-commercial-future.png",
+    image: "/optimized/work/real-estate/aipl-commercial-future.webp",
     span: "md:col-span-3 md:row-span-2",
     tone: "Retail energy"
   },
@@ -343,7 +330,7 @@ export const portfolioWorks = [
     category: "Plotted Township",
     format: "Social Poster",
     brief: "A premium plotted-development creative using deep blue, gold pricing, and polished township framing.",
-    image: "/work/real-estate/vamana-greens-development.png",
+    image: "/optimized/work/real-estate/vamana-greens-development.webp",
     span: "md:col-span-3 md:row-span-2",
     tone: "Township premium"
   },
@@ -352,7 +339,7 @@ export const portfolioWorks = [
     category: "Plotted Township",
     format: "Social Poster",
     brief: "A bright residential township creative with lifestyle-focused copy and a softer, more aspirational palette.",
-    image: "/work/real-estate/vamana-greens-lifestyle.jpg",
+    image: "/optimized/work/real-estate/vamana-greens-lifestyle.webp",
     span: "md:col-span-3 md:row-span-2",
     tone: "Lifestyle daylight"
   },
@@ -361,7 +348,7 @@ export const portfolioWorks = [
     category: "Residential Campaign",
     format: "Project Poster",
     brief: "A bold launch communication for vertical garden residences, balancing amenity badges with high-rise scale.",
-    image: "/work/real-estate/bptp-landmark-height.png",
+    image: "/optimized/work/real-estate/bptp-landmark-height.webp",
     span: "md:col-span-3 md:row-span-2",
     tone: "Launch blue"
   }
@@ -388,8 +375,8 @@ export const portfolioCategories = [
     },
     previewImages: [
       "/optimized/work/branding/kent/kent-01.webp",
-      "/work/branding/cavaro/cavaro-01.png",
-      "/work/branding/aurix/aurix-01.png",
+      "/optimized/work/branding/cavaro/cavaro-01.webp",
+      "/optimized/work/branding/aurix/aurix-01.webp",
     ]
   },
   {
@@ -411,9 +398,9 @@ export const portfolioCategories = [
       outcome: "Improved presentation quality through stronger hierarchy, spacing, typography, and image treatment across real-estate marketing assets."
     },
     previewImages: [
-      "/work/real-estate/trevoc-luxury-launch.jpg",
-      "/work/real-estate/emaar-business-centre-coming-soon.png",
-      "/work/real-estate/emaar-serenity-hills-escape.png"
+      "/optimized/work/real-estate/trevoc-luxury-launch.webp",
+      "/optimized/work/real-estate/emaar-business-centre-coming-soon.webp",
+      "/optimized/work/real-estate/emaar-serenity-hills-escape.webp"
     ]
   },
   {
@@ -435,9 +422,9 @@ export const portfolioCategories = [
       outcome: "Designed execution-ready assets for social media, digital campaigns, and promotional communication."
     },
     previewImages: [
-      "/work/social-media/nike/nike-01.png",
-      "/work/social-media/orient-electric/orient-electric-01.png",
-      "/work/social-media/kyro/kyro-01.png"
+      "/optimized/work/social-media/nike/nike-01.webp",
+      "/optimized/work/social-media/orient-electric/orient-electric-01.webp",
+      "/optimized/work/social-media/kyro/kyro-01.webp"
     ]
   },
   {
@@ -507,9 +494,9 @@ export const portfolioCategories = [
       outcome: "Created execution-ready ad creative sets with clearer visual hooks, offer readability, and consistent campaign presentation."
     },
     previewImages: [
-      "/work/meta-ads/elan-106/meta-ad-01.jpg",
-      "/work/meta-ads/emaar-commerce-park/meta-ad-02.jpg",
-      "/work/meta-ads/godrej-retreat/meta-ad-03.jpg"
+      "/optimized/work/meta-ads/elan-106/meta-ad-01.webp",
+      "/optimized/work/meta-ads/emaar-commerce-park/meta-ad-02.webp",
+      "/optimized/work/meta-ads/godrej-retreat/meta-ad-03.webp"
     ]
   },
   {
@@ -705,9 +692,9 @@ export const metaAdsProjects = [
     brief:
       "A premium campaign group for Elan 106, adapted across square, landscape, and feed-friendly formats for consistent paid-social delivery.",
     images: [
-      { title: "Square Feed Creative", src: "/work/meta-ads/elan-106/meta-ad-01.jpg", width: 1080, height: 1080 },
-      { title: "Landscape Placement", src: "/work/meta-ads/elan-106/meta-ad-02.jpg", width: 1920, height: 1080 },
-      { title: "Compact Ad Placement", src: "/work/meta-ads/elan-106/meta-ad-03.jpg", width: 610, height: 324 }
+      { title: "Square Feed Creative", src: "/optimized/work/meta-ads/elan-106/meta-ad-01.webp", width: 1080, height: 1080 },
+      { title: "Landscape Placement", src: "/optimized/work/meta-ads/elan-106/meta-ad-02.webp", width: 1920, height: 1080 },
+      { title: "Compact Ad Placement", src: "/optimized/work/meta-ads/elan-106/meta-ad-03.webp", width: 610, height: 324 }
     ]
   },
   {
@@ -717,9 +704,9 @@ export const metaAdsProjects = [
     brief:
       "A high-end residential campaign system created for premium positioning, clear offer visibility, and refined social-media presence.",
     images: [
-      { title: "Square Feed Creative", src: "/work/meta-ads/elan-presidential/meta-ad-01.jpg", width: 1080, height: 1080 },
-      { title: "Landscape Placement", src: "/work/meta-ads/elan-presidential/meta-ad-02.jpg", width: 1920, height: 1080 },
-      { title: "Compact Ad Placement", src: "/work/meta-ads/elan-presidential/meta-ad-03.jpg", width: 610, height: 324 }
+      { title: "Square Feed Creative", src: "/optimized/work/meta-ads/elan-presidential/meta-ad-01.webp", width: 1080, height: 1080 },
+      { title: "Landscape Placement", src: "/optimized/work/meta-ads/elan-presidential/meta-ad-02.webp", width: 1920, height: 1080 },
+      { title: "Compact Ad Placement", src: "/optimized/work/meta-ads/elan-presidential/meta-ad-03.webp", width: 610, height: 324 }
     ]
   },
   {
@@ -729,9 +716,9 @@ export const metaAdsProjects = [
     brief:
       "A commercial project campaign with formats designed for business audiences, project recall, and high-intent lead generation.",
     images: [
-      { title: "Square Feed Creative", src: "/work/meta-ads/emaar-commerce-park/meta-ad-01.jpg", width: 1080, height: 1080 },
-      { title: "Vertical Story Creative", src: "/work/meta-ads/emaar-commerce-park/meta-ad-02.jpg", width: 1080, height: 1920 },
-      { title: "Compact Ad Placement", src: "/work/meta-ads/emaar-commerce-park/meta-ad-03.jpg", width: 610, height: 324 }
+      { title: "Square Feed Creative", src: "/optimized/work/meta-ads/emaar-commerce-park/meta-ad-01.webp", width: 1080, height: 1080 },
+      { title: "Vertical Story Creative", src: "/optimized/work/meta-ads/emaar-commerce-park/meta-ad-02.webp", width: 1080, height: 1920 },
+      { title: "Compact Ad Placement", src: "/optimized/work/meta-ads/emaar-commerce-park/meta-ad-03.webp", width: 610, height: 324 }
     ]
   },
   {
@@ -741,10 +728,10 @@ export const metaAdsProjects = [
     brief:
       "A residential paid-social set adapted for feed, story, and landscape placements with a consistent project message.",
     images: [
-      { title: "Square Feed Creative", src: "/work/meta-ads/godrej-retreat/meta-ad-01.jpg", width: 1080, height: 1080 },
-      { title: "Portrait Feed Creative", src: "/work/meta-ads/godrej-retreat/meta-ad-02.jpg", width: 1080, height: 1350 },
-      { title: "Landscape Placement", src: "/work/meta-ads/godrej-retreat/meta-ad-03.jpg", width: 1920, height: 1080 },
-      { title: "Compact Ad Placement", src: "/work/meta-ads/godrej-retreat/meta-ad-04.jpg", width: 610, height: 324 }
+      { title: "Square Feed Creative", src: "/optimized/work/meta-ads/godrej-retreat/meta-ad-01.webp", width: 1080, height: 1080 },
+      { title: "Portrait Feed Creative", src: "/optimized/work/meta-ads/godrej-retreat/meta-ad-02.webp", width: 1080, height: 1350 },
+      { title: "Landscape Placement", src: "/optimized/work/meta-ads/godrej-retreat/meta-ad-03.webp", width: 1920, height: 1080 },
+      { title: "Compact Ad Placement", src: "/optimized/work/meta-ads/godrej-retreat/meta-ad-04.webp", width: 610, height: 324 }
     ]
   },
   {
@@ -754,9 +741,9 @@ export const metaAdsProjects = [
     brief:
       "A clean paid-social campaign group shaped for lead capture, fast readability, and consistent brand recall across placements.",
     images: [
-      { title: "Square Feed Creative", src: "/work/meta-ads/paragon/meta-ad-01.jpg", width: 1080, height: 1080 },
-      { title: "Landscape Placement", src: "/work/meta-ads/paragon/meta-ad-02.jpg", width: 1920, height: 1080 },
-      { title: "Compact Ad Placement", src: "/work/meta-ads/paragon/meta-ad-03.jpg", width: 610, height: 324 }
+      { title: "Square Feed Creative", src: "/optimized/work/meta-ads/paragon/meta-ad-01.webp", width: 1080, height: 1080 },
+      { title: "Landscape Placement", src: "/optimized/work/meta-ads/paragon/meta-ad-02.webp", width: 1920, height: 1080 },
+      { title: "Compact Ad Placement", src: "/optimized/work/meta-ads/paragon/meta-ad-03.webp", width: 610, height: 324 }
     ]
   },
   {
@@ -766,9 +753,9 @@ export const metaAdsProjects = [
     brief:
       "A commercial tower campaign set with a sharp paid-social structure for visibility, enquiry intent, and project clarity.",
     images: [
-      { title: "Square Feed Creative", src: "/work/meta-ads/reach-airia-01/meta-ad-01.jpg", width: 1080, height: 1080 },
-      { title: "Landscape Placement", src: "/work/meta-ads/reach-airia-01/meta-ad-02.jpg", width: 1920, height: 1080 },
-      { title: "Compact Ad Placement", src: "/work/meta-ads/reach-airia-01/meta-ad-03.jpg", width: 610, height: 324 }
+      { title: "Square Feed Creative", src: "/optimized/work/meta-ads/reach-airia-01/meta-ad-01.webp", width: 1080, height: 1080 },
+      { title: "Landscape Placement", src: "/optimized/work/meta-ads/reach-airia-01/meta-ad-02.webp", width: 1920, height: 1080 },
+      { title: "Compact Ad Placement", src: "/optimized/work/meta-ads/reach-airia-01/meta-ad-03.webp", width: 610, height: 324 }
     ]
   },
   {
@@ -778,9 +765,9 @@ export const metaAdsProjects = [
     brief:
       "A second paid-social variation for the same project, exploring a different visual hierarchy and lead-focused message.",
     images: [
-      { title: "Square Feed Creative", src: "/work/meta-ads/reach-airia-02/meta-ad-01.jpg", width: 1080, height: 1080 },
-      { title: "Landscape Placement", src: "/work/meta-ads/reach-airia-02/meta-ad-02.jpg", width: 1920, height: 1080 },
-      { title: "Compact Ad Placement", src: "/work/meta-ads/reach-airia-02/meta-ad-03.jpg", width: 610, height: 324 }
+      { title: "Square Feed Creative", src: "/optimized/work/meta-ads/reach-airia-02/meta-ad-01.webp", width: 1080, height: 1080 },
+      { title: "Landscape Placement", src: "/optimized/work/meta-ads/reach-airia-02/meta-ad-02.webp", width: 1920, height: 1080 },
+      { title: "Compact Ad Placement", src: "/optimized/work/meta-ads/reach-airia-02/meta-ad-03.webp", width: 610, height: 324 }
     ]
   },
   {
@@ -790,9 +777,9 @@ export const metaAdsProjects = [
     brief:
       "A third campaign direction for Reach Airia, keeping brand consistency while testing a fresh composition for Meta placements.",
     images: [
-      { title: "Square Feed Creative", src: "/work/meta-ads/reach-airia-03/meta-ad-01.jpg", width: 1080, height: 1080 },
-      { title: "Landscape Placement", src: "/work/meta-ads/reach-airia-03/meta-ad-02.jpg", width: 1920, height: 1080 },
-      { title: "Compact Ad Placement", src: "/work/meta-ads/reach-airia-03/meta-ad-03.jpg", width: 610, height: 324 }
+      { title: "Square Feed Creative", src: "/optimized/work/meta-ads/reach-airia-03/meta-ad-01.webp", width: 1080, height: 1080 },
+      { title: "Landscape Placement", src: "/optimized/work/meta-ads/reach-airia-03/meta-ad-02.webp", width: 1920, height: 1080 },
+      { title: "Compact Ad Placement", src: "/optimized/work/meta-ads/reach-airia-03/meta-ad-03.webp", width: 610, height: 324 }
     ]
   }
 ];
@@ -803,7 +790,7 @@ export const logoProjects = [
     category: "Brand Systems",
     format: "Website Experience + Brand System",
     brief:
-      "A premium KENT water purifier digital experience deck built around purity, trust, technology, product clarity, conversion, responsive UI, and campaign-led promotional storytelling.",
+      "A self-initiated digital brand experience concept built around purity, trust, technology, product clarity, responsive UI, and promotional storytelling. This personal concept was not commissioned by KENT.",
     images: [
       {
         title: "Premium Website Experience Cover",
@@ -876,67 +863,67 @@ export const logoProjects = [
     images: [
       {
         title: "Brand Identity Presentation",
-        src: "/work/branding/valtora/veltora-01.png",
+        src: "/optimized/work/branding/valtora/veltora-01.webp",
         width: 1122,
         height: 1402
       },
       {
         title: "Logo Construction",
-        src: "/work/branding/valtora/veltora-02.png",
+        src: "/optimized/work/branding/valtora/veltora-02.webp",
         width: 1536,
         height: 1024
       },
       {
         title: "Logo Variations",
-        src: "/work/branding/valtora/veltora-03.png",
+        src: "/optimized/work/branding/valtora/veltora-03.webp",
         width: 1536,
         height: 1024
       },
       {
         title: "Color System",
-        src: "/work/branding/valtora/veltora-04.png",
+        src: "/optimized/work/branding/valtora/veltora-04.webp",
         width: 1536,
         height: 1024
       },
       {
         title: "Typography System",
-        src: "/work/branding/valtora/veltora-05.png",
+        src: "/optimized/work/branding/valtora/veltora-05.webp",
         width: 1536,
         height: 1024
       },
       {
         title: "Brand Pattern and Visual System",
-        src: "/work/branding/valtora/veltora-06.png",
+        src: "/optimized/work/branding/valtora/veltora-06.webp",
         width: 1536,
         height: 1024
       },
       {
         title: "Product Identity",
-        src: "/work/branding/valtora/veltora-07.png",
+        src: "/optimized/work/branding/valtora/veltora-07.webp",
         width: 1536,
         height: 1024
       },
       {
         title: "Packaging System",
-        src: "/work/branding/valtora/veltora-08.png",
+        src: "/optimized/work/branding/valtora/veltora-08.webp",
         width: 1536,
         height: 1024
       },
       {
         title: "Advertising and Brand Applications",
-        src: "/work/branding/valtora/veltora-09.png",
+        src: "/optimized/work/branding/valtora/veltora-09.webp",
         width: 1536,
         height: 1024
       },
       {
         title: "Brand Guidelines Overview",
-        src: "/work/branding/valtora/veltora-010.png",
+        src: "/optimized/work/branding/valtora/veltora-010.webp",
         width: 1536,
         height: 1024
       },
       {
         title: "Voice and Brand Guidelines",
-        src: "/work/branding/valtora/veltora-011.png",
+        src: "/optimized/work/branding/valtora/veltora-011.webp",
         width: 1536,
         height: 1024
       }
@@ -951,79 +938,79 @@ export const logoProjects = [
     images: [
       {
         title: "Brand Guidelines Cover",
-        src: "/work/branding/cavaro/cavaro-01.png",
+        src: "/optimized/work/branding/cavaro/cavaro-01.webp",
         width: 1402,
         height: 1122
       },
       {
         title: "Brand Philosophy",
-        src: "/work/branding/cavaro/cavaro-02.png",
+        src: "/optimized/work/branding/cavaro/cavaro-02.webp",
         width: 1402,
         height: 1122
       },
       {
         title: "Logo System",
-        src: "/work/branding/cavaro/cavaro-03.png",
+        src: "/optimized/work/branding/cavaro/cavaro-03.webp",
         width: 1402,
         height: 1122
       },
       {
         title: "Color and Materials",
-        src: "/work/branding/cavaro/cavaro-04.png",
+        src: "/optimized/work/branding/cavaro/cavaro-04.webp",
         width: 1402,
         height: 1122
       },
       {
         title: "Typography and Graphic Language",
-        src: "/work/branding/cavaro/cavaro-05.png",
+        src: "/optimized/work/branding/cavaro/cavaro-05.webp",
         width: 1402,
         height: 1122
       },
       {
         title: "Object Collection",
-        src: "/work/branding/cavaro/cavaro-06.png",
+        src: "/optimized/work/branding/cavaro/cavaro-06.webp",
         width: 1536,
         height: 1024
       },
       {
         title: "Packaging System",
-        src: "/work/branding/cavaro/cavaro-07.png",
+        src: "/optimized/work/branding/cavaro/cavaro-07.webp",
         width: 1402,
         height: 1122
       },
       {
         title: "Showroom Experience",
-        src: "/work/branding/cavaro/cavaro-08.png",
+        src: "/optimized/work/branding/cavaro/cavaro-08.webp",
         width: 1402,
         height: 1122
       },
       {
         title: "Campaign Storytelling",
-        src: "/work/branding/cavaro/cavaro-09.png",
+        src: "/optimized/work/branding/cavaro/cavaro-09.webp",
         width: 1402,
         height: 1122
       },
       {
         title: "Timeless Design Campaign",
-        src: "/work/branding/cavaro/cavaro-010.png",
+        src: "/optimized/work/branding/cavaro/cavaro-010.webp",
         width: 1402,
         height: 1122
       },
       {
         title: "Care and Guidance",
-        src: "/work/branding/cavaro/cavaro-011.png",
+        src: "/optimized/work/branding/cavaro/cavaro-011.webp",
         width: 1402,
         height: 1122
       },
       {
         title: "Brand Promise",
-        src: "/work/branding/cavaro/cavaro-012.png",
+        src: "/optimized/work/branding/cavaro/cavaro-012.webp",
         width: 1402,
         height: 1122
       },
       {
         title: "Closing Brand Story",
-        src: "/work/branding/cavaro/cavaro-013.png",
+        src: "/optimized/work/branding/cavaro/cavaro-013.webp",
         width: 1402,
         height: 1122
       }
@@ -1038,109 +1025,109 @@ export const logoProjects = [
     images: [
       {
         title: "Brand Presentation Cover",
-        src: "/work/branding/aurix/aurix-01.png",
+        src: "/optimized/work/branding/aurix/aurix-01.webp",
         width: 1536,
         height: 1024
       },
       {
         title: "Brand Strategy",
-        src: "/work/branding/aurix/aurix-02.png",
+        src: "/optimized/work/branding/aurix/aurix-02.webp",
         width: 1536,
         height: 1024
       },
       {
         title: "Logo Construction",
-        src: "/work/branding/aurix/aurix-03.png",
+        src: "/optimized/work/branding/aurix/aurix-03.webp",
         width: 1536,
         height: 1024
       },
       {
         title: "Logo System",
-        src: "/work/branding/aurix/aurix-04.png",
+        src: "/optimized/work/branding/aurix/aurix-04.webp",
         width: 1536,
         height: 1024
       },
       {
         title: "Brand Color Palette",
-        src: "/work/branding/aurix/aurix-05.png",
+        src: "/optimized/work/branding/aurix/aurix-05.webp",
         width: 1672,
         height: 941
       },
       {
         title: "Typography Guidelines",
-        src: "/work/branding/aurix/aurix-06.png",
+        src: "/optimized/work/branding/aurix/aurix-06.webp",
         width: 1536,
         height: 1024
       },
       {
         title: "Business Card Mockup",
-        src: "/work/branding/aurix/aurix-07.png",
+        src: "/optimized/work/branding/aurix/aurix-07.webp",
         width: 1536,
         height: 1024
       },
       {
         title: "Stationery System",
-        src: "/work/branding/aurix/aurix-08.png",
+        src: "/optimized/work/branding/aurix/aurix-08.webp",
         width: 1402,
         height: 1122
       },
       {
         title: "Product Packaging",
-        src: "/work/branding/aurix/aurix-09.png",
+        src: "/optimized/work/branding/aurix/aurix-09.webp",
         width: 1536,
         height: 1024
       },
       {
         title: "Headphones Product Render",
-        src: "/work/branding/aurix/aurix-010.png",
+        src: "/optimized/work/branding/aurix/aurix-010.webp",
         width: 1536,
         height: 1024
       },
       {
         title: "Earbuds Product Render",
-        src: "/work/branding/aurix/aurix-011.png",
+        src: "/optimized/work/branding/aurix/aurix-011.webp",
         width: 1536,
         height: 1024
       },
       {
         title: "Mobile App Experience",
-        src: "/work/branding/aurix/aurix-012.png",
+        src: "/optimized/work/branding/aurix/aurix-012.webp",
         width: 1536,
         height: 1024
       },
       {
         title: "Product Landing Page",
-        src: "/work/branding/aurix/aurix-013.png",
+        src: "/optimized/work/branding/aurix/aurix-013.webp",
         width: 1024,
         height: 1536
       },
       {
         title: "Outdoor Billboard",
-        src: "/work/branding/aurix/aurix-014.png",
+        src: "/optimized/work/branding/aurix/aurix-014.webp",
         width: 1536,
         height: 1024
       },
       {
         title: "Campaign Tile System",
-        src: "/work/branding/aurix/aurix-015.png",
+        src: "/optimized/work/branding/aurix/aurix-015.webp",
         width: 1536,
         height: 1024
       },
       {
         title: "Retail Store Concept",
-        src: "/work/branding/aurix/aurix-016.png",
+        src: "/optimized/work/branding/aurix/aurix-016.webp",
         width: 1536,
         height: 1024
       },
       {
         title: "Lifestyle Campaign",
-        src: "/work/branding/aurix/aurix-017.png",
+        src: "/optimized/work/branding/aurix/aurix-017.webp",
         width: 1536,
         height: 1024
       },
       {
         title: "Brand Guidelines Overview",
-        src: "/work/branding/aurix/aurix-018.png",
+        src: "/optimized/work/branding/aurix/aurix-018.webp",
         width: 1536,
         height: 1024
       }
@@ -1155,37 +1142,37 @@ export const logoProjects = [
     images: [
       {
         title: "Brand Guidelines Cover",
-        src: "/work/branding/roastory/roastory-guidelines-cover.png",
+        src: "/optimized/work/branding/roastory/roastory-guidelines-cover.webp",
         width: 1254,
         height: 1254
       },
       {
         title: "Application Mockups",
-        src: "/work/branding/roastory/roastory-brand-mockups-grid.png",
+        src: "/optimized/work/branding/roastory/roastory-brand-mockups-grid.webp",
         width: 1536,
         height: 1024
       },
       {
         title: "Logo Clear Space",
-        src: "/work/branding/roastory/roastory-clear-space.png",
+        src: "/optimized/work/branding/roastory/roastory-clear-space.webp",
         width: 1254,
         height: 1254
       },
       {
         title: "Logo Construction",
-        src: "/work/branding/roastory/roastory-logo-construction.png",
+        src: "/optimized/work/branding/roastory/roastory-logo-construction.webp",
         width: 1254,
         height: 1254
       },
       {
         title: "Logo System Overview",
-        src: "/work/branding/roastory/roastory-logo-system.png",
+        src: "/optimized/work/branding/roastory/roastory-logo-system.webp",
         width: 1254,
         height: 1254
       },
       {
         title: "Identity Collage",
-        src: "/work/branding/roastory/roastory-identity-collage.png",
+        src: "/optimized/work/branding/roastory/roastory-identity-collage.webp",
         width: 1536,
         height: 1024
       }
@@ -1203,85 +1190,85 @@ export const socialProjects = [
     images: [
       {
         title: "Nobody Is Watching Story Poster",
-        src: "/work/social-media/nike/nike-01.png",
+        src: "/optimized/work/social-media/nike/nike-01.webp",
         width: 941,
         height: 1672
       },
       {
         title: "Nobody Is Watching Square Post",
-        src: "/work/social-media/nike/nike-02.png",
+        src: "/optimized/work/social-media/nike/nike-02.webp",
         width: 1254,
         height: 1254
       },
       {
         title: "Nobody Is Watching Landscape Banner",
-        src: "/work/social-media/nike/nike-03.png",
+        src: "/optimized/work/social-media/nike/nike-03.webp",
         width: 1672,
         height: 941
       },
       {
         title: "Nobody Is Watching Vertical Creative",
-        src: "/work/social-media/nike/nike-04.png",
+        src: "/optimized/work/social-media/nike/nike-04.webp",
         width: 1122,
         height: 1402
       },
       {
         title: "Difference Isn't Talent Story Poster",
-        src: "/work/social-media/nike/nike-05.png",
+        src: "/optimized/work/social-media/nike/nike-05.webp",
         width: 1023,
         height: 1537
       },
       {
         title: "Difference Isn't Talent Square Post",
-        src: "/work/social-media/nike/nike-06.png",
+        src: "/optimized/work/social-media/nike/nike-06.webp",
         width: 1254,
         height: 1254
       },
       {
         title: "Difference Isn't Talent Landscape Banner",
-        src: "/work/social-media/nike/nike-07.png",
+        src: "/optimized/work/social-media/nike/nike-07.webp",
         width: 1672,
         height: 941
       },
       {
         title: "Difference Isn't Talent Wide Creative",
-        src: "/work/social-media/nike/nike-08.png",
+        src: "/optimized/work/social-media/nike/nike-08.webp",
         width: 1537,
         height: 1023
       },
       {
         title: "Every Record Was Once An Excuse",
-        src: "/work/social-media/nike/nike-09.png",
+        src: "/optimized/work/social-media/nike/nike-09.webp",
         width: 1448,
         height: 1086
       },
       {
         title: "Every Record Track Banner",
-        src: "/work/social-media/nike/nike-010.png",
+        src: "/optimized/work/social-media/nike/nike-010.webp",
         width: 1448,
         height: 1086
       },
       {
         title: "You Said Tomorrow Gym Poster",
-        src: "/work/social-media/nike/nike-011.png",
+        src: "/optimized/work/social-media/nike/nike-011.webp",
         width: 1402,
         height: 1122
       },
       {
         title: "You Said Tomorrow Track Poster",
-        src: "/work/social-media/nike/nike-012.png",
+        src: "/optimized/work/social-media/nike/nike-012.webp",
         width: 1402,
         height: 1122
       },
       {
         title: "You Said Tomorrow Shoe-Up Post",
-        src: "/work/social-media/nike/nike-013.png",
+        src: "/optimized/work/social-media/nike/nike-013.webp",
         width: 1254,
         height: 1254
       },
       {
         title: "You Said Tomorrow Wide Gym Banner",
-        src: "/work/social-media/nike/nike-014.png",
+        src: "/optimized/work/social-media/nike/nike-014.webp",
         width: 1402,
         height: 1122
       }
@@ -1296,25 +1283,25 @@ export const socialProjects = [
     images: [
       {
         title: "Primary Product Poster",
-        src: "/work/social-media/orient-electric/orient-electric-01.png",
+        src: "/optimized/work/social-media/orient-electric/orient-electric-01.webp",
         width: 1122,
         height: 1402
       },
       {
         title: "Square Social Post",
-        src: "/work/social-media/orient-electric/orient-electric-02.png",
+        src: "/optimized/work/social-media/orient-electric/orient-electric-02.webp",
         width: 1254,
         height: 1254
       },
       {
         title: "Landscape Campaign Banner",
-        src: "/work/social-media/orient-electric/orient-electric-03.png",
+        src: "/optimized/work/social-media/orient-electric/orient-electric-03.webp",
         width: 1672,
         height: 941
       },
       {
         title: "Vertical Story Creative",
-        src: "/work/social-media/orient-electric/orient-electric-04.png",
+        src: "/optimized/work/social-media/orient-electric/orient-electric-04.webp",
         width: 1086,
         height: 1448
       }
@@ -1329,25 +1316,25 @@ export const socialProjects = [
     images: [
       {
         title: "Launch Poster",
-        src: "/work/social-media/kyro/kyro-01.png",
+        src: "/optimized/work/social-media/kyro/kyro-01.webp",
         width: 1122,
         height: 1402
       },
       {
         title: "Landscape Campaign Banner",
-        src: "/work/social-media/kyro/kyro-02.png",
+        src: "/optimized/work/social-media/kyro/kyro-02.webp",
         width: 1672,
         height: 941
       },
       {
         title: "Square Social Post",
-        src: "/work/social-media/kyro/kyro-03.png",
+        src: "/optimized/work/social-media/kyro/kyro-03.webp",
         width: 1254,
         height: 1254
       },
       {
         title: "Vertical Story Creative",
-        src: "/work/social-media/kyro/kyro-04.png",
+        src: "/optimized/work/social-media/kyro/kyro-04.webp",
         width: 1024,
         height: 1536
       }
@@ -1567,11 +1554,11 @@ export const uiUxProjects = [
 
 export const aiGeneratedProjects = [
   {
-    title: "Emaar India Business Centre AI Visuals",
+    title: "Emaar India Business Centre Visual Exploration",
     category: "AI Creative Workflows",
     format: "Commercial Architecture Concept Visuals",
     brief:
-      "AI-generated architectural visuals for Emaar India Business Centre, a commercial project by Emaar Developer. The set explores premium office-tower perspectives across day, dusk, and night moods for campaign storytelling, presentation decks, and real-estate launch communication.",
+      "AI-assisted personal concept exploring commercial architecture across day, dusk, and night moods. This project was not commissioned by Emaar and is presented only as a concept study.",
     images: [
       {
         title: "Night Facade Concept",
@@ -1660,21 +1647,21 @@ export const aiGeneratedProjects = [
       {
         title: "Cafe Lifestyle Couple Scene",
         src: "/optimized/work/ai-generated/warm-cafe-lifestyle-ai-visuals/01-cafe-lifestyle-couple-scene.webp",
-        originalSrc: "/work/ai-generated/warm-cafe-lifestyle-ai-visuals/01-cafe-lifestyle-couple-scene.png",
+        originalSrc: "/optimized/work/ai-generated/warm-cafe-lifestyle-ai-visuals/01-cafe-lifestyle-couple-scene.webp",
         width: 1448,
         height: 1086
       },
       {
         title: "Warm Modern Cafe Interior",
         src: "/optimized/work/ai-generated/warm-cafe-lifestyle-ai-visuals/02-warm-modern-cafe-interior.webp",
-        originalSrc: "/work/ai-generated/warm-cafe-lifestyle-ai-visuals/02-warm-modern-cafe-interior.png",
+        originalSrc: "/optimized/work/ai-generated/warm-cafe-lifestyle-ai-visuals/02-warm-modern-cafe-interior.webp",
         width: 1448,
         height: 1086
       },
       {
         title: "Neutral Studio Couple Portrait",
         src: "/optimized/work/ai-generated/warm-cafe-lifestyle-ai-visuals/03-neutral-studio-couple-portrait.webp",
-        originalSrc: "/work/ai-generated/warm-cafe-lifestyle-ai-visuals/03-neutral-studio-couple-portrait.png",
+        originalSrc: "/optimized/work/ai-generated/warm-cafe-lifestyle-ai-visuals/03-neutral-studio-couple-portrait.webp",
         width: 1122,
         height: 1402
       }
@@ -1717,76 +1704,55 @@ export const portfolioLibraries = [
 
 export const timeline = [
   {
-    date: "February, 2025 - Present",
+    date: "October 2025 - Present",
     title: "Senior Graphic Designer",
     org: "Property Master Pvt. Ltd.",
-    body: "Creating real-estate marketing visuals, campaign creatives, and presentation assets for sales and digital communication.",
+    body: "Own visual execution for premium real-estate campaigns across sales presentations, brochures, digital advertising, social media, print collateral, reels, and customer-facing communication.",
     bullets: [
-      "Designed property campaign creatives, sales posters, EDMs, thumbnails, and presentation-led visuals.",
-      "Prepared execution-ready layouts with clear hierarchy, readable offer details, and polished image treatment.",
-      "Worked across digital, print, and presentation formats while keeping brand and project communication consistent."
+      "Translate marketing and sales requirements into clear visual systems with consistent hierarchy, typography, spacing, and image treatment.",
+      "Coordinate stakeholder revisions and prepare execution-ready assets across digital, print, presentation, and video formats.",
+      "Maintain visual quality and brand consistency across recurring campaign deliverables."
     ],
-    tags: ["Campaign Creatives", "Real Estate Marketing", "Presentation Design", "Print-ready Design", "Brand Consistency"]
+    tags: ["Campaign Ownership", "Stakeholder Collaboration", "Quality Control", "Multi-format Delivery"]
   },
   {
-    date: "3 Years",
+    date: "May 2024 - September 2025",
+    title: "Freelance Graphic Designer",
+    org: "Property Master Pvt. Ltd.",
+    body: "Delivered campaign creatives and sales-support assets on a freelance basis before moving into the full-time senior role.",
+    bullets: ["Produced real-estate marketing visuals and presentation assets across digital and print requirements."],
+    tags: ["Freelance", "Campaign Creatives", "Presentation Design"]
+  },
+  {
+    date: "September 2022 - September 2025",
     title: "Graphic Designer",
-    org: "Group Bayport",
-    body: "Created brand and marketing assets with a focus on clean layout, production quality, and consistent visual communication.",
+    org: "Caterpillar Signs Pvt. Ltd. (Group Bayport)",
+    body: "Produced brand and marketing communication across campaign creatives, corporate presentations, social media, promotional collateral, and print-ready layouts.",
     bullets: [
-      "Designed campaign creatives, marketing collateral, and social media assets for digital communication.",
-      "Supported brochure, presentation, and print-ready layout development.",
-      "Improved visual consistency through typography, spacing, alignment, and image treatment."
+      "Maintained consistency through typography, spacing, image treatment, resizing, version control, and final visual checks.",
+      "Collaborated with internal teams to convert briefs and feedback into execution-ready assets across formats."
     ],
-    tags: ["Marketing Collateral", "Social Media Assets", "Layout Systems", "Brand Consistency", "Print-ready Design"]
+    tags: ["Brand Communication", "Production Quality", "Visual QA", "Print-ready Design"]
   },
   {
-    date: "7 Months",
+    date: "March 2022 - September 2022",
     title: "Graphic Designer & Video Editor",
-    org: "7P Digital Services",
-    body: "Worked on digital creatives and edited video-led content for social, campaign, and promotional formats.",
-    bullets: [
-      "Created social media assets, campaign layouts, and short-form video edits for digital use.",
-      "Used Photoshop, Illustrator, Premiere Pro, After Effects, and Canva for design and editing workflows.",
-      "Balanced visual layout, pacing, and brand consistency across static and motion formats."
-    ],
-    tags: ["Campaign Creatives", "Social Media Assets", "Video Editing", "Motion Content", "Brand Consistency"]
+    org: "7P Digital Services LLP",
+    body: "Created digital campaign assets, social media creatives, reels, and promotional videos for platform-specific formats.",
+    bullets: ["Combined static and motion workflows while maintaining visual hierarchy and brand consistency."],
+    tags: ["Campaign Creatives", "Social Media", "Video Editing", "Motion Content"]
   },
   {
-    date: "3 Months",
-    title: "Graphic Designer Intern",
-    org: "Citymall, Gurugram",
-    body: "Supported day-to-day graphic design production for consumer-facing digital and brand communication.",
+    date: "December 2020 - March 2022",
+    title: "Earlier Experience",
+    org: "CityMall, Krash IT Services, and YPR Eng. and Sol. Pvt. Ltd.",
+    body: "Early marketing and graphic-design experience spanning December 2020 to March 2022.",
     bullets: [
-      "Assisted with digital graphics, marketplace-style visuals, and social communication assets.",
-      "Prepared clean layouts with attention to alignment, spacing, and readable content hierarchy.",
-      "Supported production updates while maintaining brand-sensitive visual treatment."
+      "CityMall, Gurugram - Intern, Marketing | December 2021 - March 2022",
+      "Krash IT Services - Graphic Designer Intern | May 2021 - October 2021",
+      "YPR Eng. and Sol. Pvt. Ltd. - Graphic Designer Intern | December 2020 - May 2021"
     ],
-    tags: ["Social Media Assets", "Digital Graphics", "Layout Systems", "Brand Consistency"]
-  },
-  {
-    date: "6 Months",
-    title: "Graphic Designer Intern",
-    org: "YPR Eng. and Sol. Private Limited",
-    body: "Built practical design production experience through layout support, asset preparation, and tool-led execution.",
-    bullets: [
-      "Supported brochure, presentation, and print-ready layout development.",
-      "Created execution-ready design assets for business and marketing use.",
-      "Worked across digital and print formats while improving tool fluency and layout discipline."
-    ],
-    tags: ["Marketing Collateral", "Presentation Design", "Print-ready Design", "Layout Systems"]
-  },
-  {
-    date: "5 Months",
-    title: "Graphic Designer Intern",
-    org: "Krash IT Services",
-    body: "Strengthened hands-on graphic design workflows through layout cleanup, visual asset preparation, and production support.",
-    bullets: [
-      "Assisted with graphic design layouts, digital assets, and visual cleanup tasks.",
-      "Improved consistency through spacing, typography, alignment, and image treatment.",
-      "Prepared practical design files for business, sales, and marketing communication."
-    ],
-    tags: ["Layout Systems", "Digital Graphics", "Marketing Collateral", "Brand Consistency"]
+    tags: ["Marketing Support", "Graphic Design", "Production Foundations"]
   }
 ];
 
@@ -1794,17 +1760,17 @@ export const education = [
   {
     level: "Graduation",
     institution: "J.C. Bose University of Science and Technology, YMCA, Faridabad, Haryana",
-    course: "B.Sc. in Animation & Multimedia"
+    course: "B.Sc. in Animation & Multimedia | First Division | 2022"
   },
   {
-    level: "Senior Secondary",
-    institution: "CBSE Board",
-    course: "Science (Non-Medical)"
+    level: "Class 12",
+    institution: "S.N.D. Public School, Palwal, Haryana",
+    course: "CBSE | Science (Non-Medical) | 2019"
   },
   {
-    level: "Secondary",
-    institution: "HBSE Board",
-    course: "B.S.M. High School, Hazipur"
+    level: "Class 10",
+    institution: "B.S.M. High School, Hajipur, Gurugram",
+    course: "HBSE | 2017"
   }
 ];
 

@@ -11,7 +11,7 @@ import { Nav } from "@/components/nav";
 import { Reveal } from "@/components/reveal";
 import { SectionShell } from "@/components/section-shell";
 import { Spotlight } from "@/components/spotlight";
-import { aiTools, coreExpertise, education, hobbies, metrics, portfolioCategories, profile, services, softwareSkills, timeline } from "@/lib/portfolio-data";
+import { aiTools, coreExpertise, education, featuredProjectClassifications, hobbies, metrics, portfolioCategories, profile, services, softwareSkills, timeline } from "@/lib/portfolio-data";
 import { assetPath } from "@/lib/site-paths";
 
 type ContactAction = {
@@ -174,13 +174,13 @@ export default function Home() {
 
           <div className="reference-info">
             <h2 className="intro-line reference-headline">
-              Visual Designer for
+              Senior Visual Designer
               <br />
-              Brands, Campaigns & UI
+              Senior Graphic Designer
             </h2>
             <p className="intro-line reference-support">
-              I create brand communication, campaign creatives, UI concepts, social media assets,
-              real-estate marketing visuals, video edits, and AI-assisted creative workflows.
+              I turn marketing and sales briefs into consistent campaign systems, presentations,
+              digital creatives, and production-ready print assets.
             </p>
           </div>
 
@@ -301,6 +301,28 @@ export default function Home() {
               </p>
             </div>
 
+
+            <div className="relative mx-auto mt-8 grid max-w-6xl gap-4 md:grid-cols-2">
+              {featuredProjectClassifications.map((project) => (
+                <Link key={project.title} href={project.href} prefetch={false} className="group overflow-hidden rounded-[1.5rem] border border-white/10 bg-white/[0.045] transition hover:-translate-y-1 hover:border-signal/40">
+                  <div className="relative aspect-[16/7] overflow-hidden bg-black/30">
+                    <Image src={assetPath(project.image)} alt={`${project.title} preview`} fill sizes="(min-width: 768px) 46vw, 92vw" className="object-cover transition duration-700 group-hover:scale-[1.03]" />
+                    <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/15 to-transparent" />
+                    <span className="absolute left-4 top-4 rounded-full border border-white/20 bg-black/70 px-3 py-2 text-[0.62rem] font-bold uppercase tracking-[0.16em] text-signal backdrop-blur-xl">{project.classification}</span>
+                  </div>
+                  <div className="p-5">
+                    <h3 className="font-display text-2xl leading-tight text-white">{project.title}</h3>
+                    <p className="mt-3 text-sm leading-6 text-mercury">{project.disclosure}</p>
+                  </div>
+                </Link>
+              ))}
+            </div>
+            <div className="relative mx-auto mt-5 flex max-w-6xl flex-wrap gap-2" aria-label="Project classification key">
+              {["Employer Work", "Client Work", "Personal Concept", "AI-Assisted Concept"].map((label) => (
+                <span key={label} className="rounded-full border border-white/10 bg-black/35 px-3 py-2 text-[0.62rem] font-bold uppercase tracking-[0.14em] text-white/65">{label}</span>
+              ))}
+            </div>
+
             <div
               className="creative-stage relative mx-auto mt-6 min-h-[22rem] max-w-6xl sm:min-h-[24rem] md:min-h-[27rem]"
             >
@@ -395,7 +417,7 @@ export default function Home() {
         </Reveal>
       </section>
 
-      <SectionShell id="skills" eyebrow="Creative Stack" title="Software skills, AI tools, and creative expertise.">
+      <SectionShell id="skills" eyebrow="Creative Stack" title="Commercial design capabilities and essential production tools.">
         <div className="space-y-6">
           <Reveal>
             <div className="rounded-[2rem] border border-white/10 bg-white/[0.045] p-5 backdrop-blur-xl md:p-7">
@@ -453,11 +475,11 @@ export default function Home() {
             <div className="rounded-[2rem] border border-white/10 bg-white/[0.045] p-5 backdrop-blur-xl md:p-7">
               <div className="mb-6 flex flex-wrap items-end justify-between gap-4">
                 <div>
-                  <p className="text-xs uppercase tracking-[0.28em] text-signal">AI Tools</p>
-                  <h3 className="mt-3 font-display text-3xl text-white">AI-assisted creative workflow</h3>
+                  <p className="text-xs uppercase tracking-[0.28em] text-signal">Supporting Workflow</p>
+                  <h3 className="mt-3 font-display text-3xl text-white">Selective AI-assisted production</h3>
                 </div>
                 <p className="max-w-md text-sm leading-6 text-mercury">
-                  Tools used for prompt strategy, concept visuals, research, content, presentation systems, and video experimentation.
+                  A compact supporting toolkit for early exploration and production assistance - never a substitute for design judgment, brand consistency, or final quality control.
                 </p>
               </div>
               <div className="grid gap-3 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
@@ -493,7 +515,7 @@ export default function Home() {
         </div>
       </SectionShell>
 
-      <SectionShell id="experience" eyebrow="Experience" title="Professional journey, education, and creative practice.">
+      <SectionShell id="experience" eyebrow="Experience" title="Commercial experience, ownership, and production discipline.">
         <div className="grid gap-6 lg:grid-cols-[1.2fr_0.8fr]">
           <div className="relative space-y-4">
             <div className="absolute left-5 top-4 h-[calc(100%-2rem)] w-px bg-gradient-to-b from-signal via-white/20 to-transparent" />
@@ -571,10 +593,10 @@ export default function Home() {
                   Let&apos;s build clear, premium visual communication.
                 </h2>
                 <p className="mt-5 max-w-2xl text-base leading-7 text-mercury sm:text-lg sm:leading-8">
-                  Open to full-time and contract roles across visual design, brand communication, campaign creatives, UI visual design, marketing collateral, motion/video editing, and AI-assisted creative production.
+                  Faridabad-based with a 15-day notice period. Open to full-time Senior Visual Designer and Senior Graphic Designer roles in Gurugram, Noida, Faridabad, or remote and hybrid teams.
                 </p>
                 <div className="mt-7 flex flex-wrap gap-2">
-                  {["Visual Design", "Brand Design", "Campaign Creatives", "UI Visual Design", "Motion & Video", "AI-assisted Creative Workflows"].map((role) => (
+                  {["Senior Visual Design", "Senior Graphic Design", "Campaign Systems", "Presentation Design", "Commercial Execution"].map((role) => (
                     <span key={role} className="rounded-full border border-white/10 bg-black/25 px-3 py-2 text-[0.68rem] font-semibold uppercase leading-none tracking-[0.14em] text-white/72">
                       {role}
                     </span>

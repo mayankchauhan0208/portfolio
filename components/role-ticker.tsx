@@ -1,11 +1,5 @@
 export function RoleTicker() {
-  const heroRoles = [
-    "Visual Designer",
-    "Creative Brand Designer",
-    "Campaign Designer",
-    "UI Visual Designer",
-    "Motion & Video Creative",
-  ];
+  const heroRoles = ["Senior Visual Designer | Senior Graphic Designer"];
   const text = heroRoles.join(" / ");
   const items = Array.from({ length: 8 }, (_, index) => `${text}${index === 7 ? "" : " /"}`);
 

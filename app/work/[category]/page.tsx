@@ -15,6 +15,16 @@ type CategoryPageProps = {
 
 const conceptTiles = ["Visual Direction", "Campaign System", "Presentation Mockup", "Creative Board", "Launch Layout", "Brand Surface"];
 
+function projectDisclosure(title: string) {
+  if (title === "KENT Water Purifier Digital Brand Experience") {
+    return { label: "Personal Concept", text: "Not commissioned by KENT." };
+  }
+  if (title === "Emaar India Business Centre Visual Exploration") {
+    return { label: "AI-Assisted Concept", text: "AI-assisted personal concept; not commissioned by Emaar." };
+  }
+  return null;
+}
+
 function imageSizeFor(src: string) {
   if (src.includes("ooh")) {
     return { width: 4500, height: 2400 };
@@ -436,6 +446,12 @@ export default function CategoryPage({ params }: CategoryPageProps) {
                   <div>
                     <p className="mb-4 text-xs uppercase tracking-[0.32em] text-[var(--niche-accent)]">{project.format}</p>
                     <h2 className="font-display text-4xl leading-none text-white md:text-6xl">{project.title}</h2>
+                    {projectDisclosure(project.title) ? (
+                      <div className="mt-4 flex flex-wrap items-center gap-2">
+                        <span className="rounded-full border border-[var(--niche-accent)]/40 bg-black/35 px-3 py-2 text-[0.62rem] font-bold uppercase tracking-[0.16em] text-[var(--niche-accent)]">{projectDisclosure(project.title)?.label}</span>
+                        <span className="text-xs leading-5 text-white/60">{projectDisclosure(project.title)?.text}</span>
+                      </div>
+                    ) : null}
                   </div>
                   <p className="max-w-2xl text-sm leading-7 text-mercury md:text-base">{project.brief}</p>
                 </div>
@@ -482,6 +498,12 @@ export default function CategoryPage({ params }: CategoryPageProps) {
                   <div>
                     <p className="mb-4 text-xs uppercase tracking-[0.32em] text-lime-300">{project.format}</p>
                     <h2 className="font-display text-4xl leading-none text-white md:text-6xl">{project.title}</h2>
+                    {projectDisclosure(project.title) ? (
+                      <div className="mt-4 flex flex-wrap items-center gap-2">
+                        <span className="rounded-full border border-[var(--niche-accent)]/40 bg-black/35 px-3 py-2 text-[0.62rem] font-bold uppercase tracking-[0.16em] text-[var(--niche-accent)]">{projectDisclosure(project.title)?.label}</span>
+                        <span className="text-xs leading-5 text-white/60">{projectDisclosure(project.title)?.text}</span>
+                      </div>
+                    ) : null}
                   </div>
                   <p className="max-w-2xl text-sm leading-7 text-mercury md:text-base">{project.brief}</p>
                 </div>
@@ -529,6 +551,12 @@ export default function CategoryPage({ params }: CategoryPageProps) {
                   <div>
                     <p className="mb-4 text-xs uppercase tracking-[0.32em] text-sky-200">{project.format}</p>
                     <h2 className="font-display text-4xl leading-none text-white md:text-6xl">{project.title}</h2>
+                    {projectDisclosure(project.title) ? (
+                      <div className="mt-4 flex flex-wrap items-center gap-2">
+                        <span className="rounded-full border border-[var(--niche-accent)]/40 bg-black/35 px-3 py-2 text-[0.62rem] font-bold uppercase tracking-[0.16em] text-[var(--niche-accent)]">{projectDisclosure(project.title)?.label}</span>
+                        <span className="text-xs leading-5 text-white/60">{projectDisclosure(project.title)?.text}</span>
+                      </div>
+                    ) : null}
                     <p className="mt-4 text-xs uppercase tracking-[0.22em] text-white/45">{project.category}</p>
                   </div>
                   <p className="max-w-2xl text-sm leading-7 text-mercury md:text-base">{project.brief}</p>
@@ -574,6 +602,12 @@ export default function CategoryPage({ params }: CategoryPageProps) {
                   <div>
                     <p className="mb-4 text-xs uppercase tracking-[0.32em] text-emerald-200">{project.format}</p>
                     <h2 className="font-display text-4xl leading-none text-white md:text-6xl">{project.title}</h2>
+                    {projectDisclosure(project.title) ? (
+                      <div className="mt-4 flex flex-wrap items-center gap-2">
+                        <span className="rounded-full border border-[var(--niche-accent)]/40 bg-black/35 px-3 py-2 text-[0.62rem] font-bold uppercase tracking-[0.16em] text-[var(--niche-accent)]">{projectDisclosure(project.title)?.label}</span>
+                        <span className="text-xs leading-5 text-white/60">{projectDisclosure(project.title)?.text}</span>
+                      </div>
+                    ) : null}
                   </div>
                   <p className="max-w-2xl text-sm leading-7 text-mercury md:text-base">{project.brief}</p>
                 </div>
@@ -621,6 +655,12 @@ export default function CategoryPage({ params }: CategoryPageProps) {
                   <div>
                     <p className="mb-4 text-xs uppercase tracking-[0.32em] text-violet-200">{project.format}</p>
                     <h2 className="font-display text-4xl leading-none text-white md:text-6xl">{project.title}</h2>
+                    {projectDisclosure(project.title) ? (
+                      <div className="mt-4 flex flex-wrap items-center gap-2">
+                        <span className="rounded-full border border-[var(--niche-accent)]/40 bg-black/35 px-3 py-2 text-[0.62rem] font-bold uppercase tracking-[0.16em] text-[var(--niche-accent)]">{projectDisclosure(project.title)?.label}</span>
+                        <span className="text-xs leading-5 text-white/60">{projectDisclosure(project.title)?.text}</span>
+                      </div>
+                    ) : null}
                   </div>
                   <p className="max-w-2xl text-sm leading-7 text-mercury md:text-base">{project.brief}</p>
                 </div>
