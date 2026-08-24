@@ -284,7 +284,7 @@ export default function Home() {
         <div className="mx-auto grid max-w-7xl gap-4 lg:grid-cols-3">
           {services.map((service, index) => (
             <Reveal key={service.title} delay={index * 0.05}>
-              <article className="group relative min-h-[19rem] overflow-hidden rounded-[1.75rem] border border-white/10 bg-white/[0.045] p-7 backdrop-blur-2xl transition duration-500 hover:-translate-y-1 hover:border-signal/35 hover:bg-white/[0.075]">
+              <article className="group relative h-full min-h-[21.5rem] overflow-hidden rounded-[1.75rem] border border-white/10 bg-white/[0.045] p-7 backdrop-blur-2xl transition duration-500 hover:-translate-y-1 hover:border-signal/35 hover:bg-white/[0.075]">
                 <div className="absolute right-0 top-0 h-36 w-36 translate-x-10 -translate-y-10 rounded-full bg-signal/10 blur-3xl transition group-hover:bg-signal/20" />
                 <p className="text-xs uppercase tracking-[0.28em] text-champagne">{service.kicker}</p>
                 {index === 2 ? (
