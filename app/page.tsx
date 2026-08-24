@@ -505,7 +505,6 @@ export default function Home() {
                 <div className="relative ml-10 rounded-3xl border border-white/10 bg-black/25 p-5 backdrop-blur-xl sm:ml-14 sm:p-6">
                   <span className="absolute left-[-2.75rem] top-7 h-4 w-4 rounded-full border border-signal bg-obsidian shadow-[0_0_24px_rgba(142,232,255,0.7)]" />
                   <p className="text-xs uppercase tracking-[0.24em] text-signal">{item.date}</p>
-                  {"exactPeriod" in item ? <p className="mt-2 text-xs text-white/55">Detailed record: {item.exactPeriod}</p> : null}
                   {"employmentType" in item ? <span className="mt-2 inline-flex rounded-full border border-signal/25 bg-signal/10 px-3 py-1 text-[0.6rem] font-bold uppercase tracking-[0.14em] text-signal">{item.employmentType}</span> : null}
                   <h3 className="mt-3 font-display text-2xl text-white">{item.title}</h3>
                   <p className="mt-1 text-champagne">{item.org}</p>

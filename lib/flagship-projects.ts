@@ -22,7 +22,7 @@ export type FlagshipProject = {
 export const flagshipProjects: FlagshipProject[] = [
   {
     slug: "property-master-campaign-system",
-    year: "To be confirmed by Mayank",
+    year: "2025-2026",
     title: "Property Master Campaign System",
     seoTitle: "Property Master Campaign System | Mayank Chauhan",
     description: "Employer-work case study showing Mayank Chauhan's senior visual design ownership across Property Master campaign systems, presentations, digital, print, motion and sales-support formats.",
@@ -36,7 +36,7 @@ export const flagshipProjects: FlagshipProject[] = [
     approach: "Established repeatable hierarchy, typography, image treatment and layout rules so campaign directions remained consistent across channels.",
     deliverables: "Social media, performance advertising, presentations, brochures, print collateral, thumbnails, reels and sales-support formats.",
     tools: "Adobe Photoshop, Illustrator, InDesign, Premiere Pro, After Effects, Canva and PowerPoint.",
-    outcome: "Supported approximately 8-12 property projects and 40-60 creative assets per month, adapting master campaign systems into typically 5-8 variations across six format groups: social, performance advertising, presentations, print, thumbnails and video.",
+    outcome: "Supported 8-12 property projects and 40-60 creative assets per month, adapting master campaign systems into typically 5-8 variations across six format groups: social, performance advertising, presentations, print, thumbnails and video.",
     ai: "AI-assisted workflows were used selectively for concept and production support; final direction and quality control remained designer-led.",
     gallery: [
       { src: "/optimized/work/real-estate/trevoc-luxury-launch.webp", alt: "Property Master luxury real-estate campaign layout with premium sales messaging." },
@@ -46,7 +46,7 @@ export const flagshipProjects: FlagshipProject[] = [
   },
   {
     slug: "group-bayport-brand-communication",
-    year: "To be confirmed by Mayank",
+    year: "2022-2025",
     title: "Group Bayport / Caterpillar Brand Communication",
     seoTitle: "Group Bayport Brand Communication | Mayank Chauhan",
     description: "Employer-work case study covering brand systems, campaign design, corporate presentations, promotional collateral and production-ready communication for Caterpillar Signs Pvt. Ltd. (Group Bayport).",
@@ -60,7 +60,7 @@ export const flagshipProjects: FlagshipProject[] = [
     approach: "Applied repeatable layout logic and disciplined visual quality control to preserve brand presentation through each adaptation.",
     deliverables: "Corporate presentations, campaign creatives, social assets, promotional collateral, signage-support layouts and print-ready production files.",
     tools: "Adobe Photoshop, Illustrator, InDesign, Premiere Pro, After Effects, Canva and PowerPoint.",
-    outcome: "Produced approximately 25-40 brand and marketing assets per month across campaigns, presentations, social communication, collateral and print production; contributed to approximately 8-12 decks, typically spanning 10-25 slides.",
+    outcome: "Produced 25-40 brand and marketing assets per month across campaigns, presentations, social communication, collateral and print production; contributed to 8-12 decks, typically spanning 10-25 slides.",
     ai: "No AI involvement claimed.",
     gallery: [
       { src: "/optimized/seo/group-bayport-brand-communication-design.webp", alt: "Group Bayport and Caterpillar brand communication shown across presentation and marketing formats." }
@@ -68,7 +68,7 @@ export const flagshipProjects: FlagshipProject[] = [
   },
   {
     slug: "presentation-design",
-    year: "To be confirmed by Mayank",
+    year: "2026",
     title: "KENT Digital Brand Presentation",
     seoTitle: "Presentation Design Case Study | Mayank Chauhan",
     description: "Personal presentation-design concept by Mayank Chauhan exploring product storytelling, interface hierarchy, trust cues and a consistent digital brand experience for KENT.",
@@ -92,7 +92,7 @@ export const flagshipProjects: FlagshipProject[] = [
   },
   {
     slug: "ai-assisted-concept",
-    year: "To be confirmed by Mayank",
+    year: "2026",
     title: "Emaar India Business Centre Visual Exploration",
     seoTitle: "AI-Assisted Concept Case Study | Mayank Chauhan",
     description: "AI-assisted personal concept by Mayank Chauhan demonstrating designer-led architectural image development, scene refinement, visual consistency and campaign-style presentation.",

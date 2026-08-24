@@ -1751,52 +1751,52 @@ export const portfolioLibraries = [
 
 export const timeline = [
   {
-    date: "October 2025 - Present", exactPeriod: "1 October 2025 - Present", employmentType: "Full-time",
+    date: "October 2025 - Present", employmentType: "Full-time",
     title: "Senior Graphic Designer", org: "Property Master Pvt. Ltd.",
-    body: "Own visual execution supporting approximately 8-12 property projects and 40-60 creative assets per month across six format groups, including presentations, digital advertising, social media, print, thumbnails and video.",
+    body: "Own visual execution supporting 8-12 property projects and 40-60 creative assets per month across six format groups, including presentations, digital advertising, social media, print, thumbnails and video.",
     bullets: ["Translate marketing and sales requirements into clear visual systems with consistent hierarchy, typography, spacing and image treatment.", "Coordinate feedback across marketing, sales and management stakeholders, typically adapting master campaign directions into 5-8 format variations.", "Maintain visual quality and brand consistency across recurring campaign deliverables."],
     tags: ["Campaign Ownership", "Stakeholder Collaboration", "Quality Control", "Multi-format Delivery"]
   },
   {
-    date: "May 2024 - September 2025", exactPeriod: "8 May 2024 - 30 September 2025", employmentType: "Concurrent freelance",
+    date: "May 2024 - September 2025", employmentType: "Concurrent freelance",
     title: "Freelance Graphic Designer - Concurrent", org: "Property Master Pvt. Ltd.",
     body: "Delivered campaign creatives and sales-support assets on a concurrent freelance basis before moving into the full-time senior role.",
     bullets: ["Produced real-estate marketing visuals and presentation assets across digital and print requirements.", "Adapted core campaign directions across social, presentation, digital and print formats."],
     tags: ["Concurrent", "Freelance", "Campaign Creatives", "Presentation Design"]
   },
   {
-    date: "September 2022 - September 2025", exactPeriod: "12 September 2022 - September 2025",
+    date: "September 2022 - September 2025",
     title: "Graphic Designer", org: "Caterpillar Signs Pvt. Ltd. - Group Bayport",
-    body: "Produced approximately 25-40 brand and marketing assets per month across campaign creatives, corporate presentations, social media, promotional collateral and print-ready layouts.",
+    body: "Produced 25-40 brand and marketing assets per month across campaign creatives, corporate presentations, social media, promotional collateral and print-ready layouts.",
     bullets: ["Maintained consistency through typography, spacing, image treatment, resizing, version control and final visual checks.", "Collaborated with internal teams to convert briefs and feedback into execution-ready assets across formats."],
     tags: ["Brand Communication", "Production Quality", "Visual QA", "Print-ready Design"]
   },
   {
-    date: "March 2022 - September 2022", exactPeriod: "29 March 2022 - 10 September 2022",
+    date: "March 2022 - September 2022",
     title: "Graphic Designer", org: "7P Digital Services LLP",
-    body: "Created approximately 20-30 static and motion assets per month across digital campaigns, social media and platform-specific promotional formats.",
+    body: "Created 20-30 static and motion assets per month across digital campaigns, social media and platform-specific promotional formats.",
     bullets: ["Edited reels and promotional videos while maintaining visual hierarchy, pacing and brand consistency.", "Adapted static and motion deliverables for campaign and promotional use."],
     tags: ["Campaign Creatives", "Social Media", "Video Editing", "Motion Content"]
   },
   {
-    date: "December 2021 - March 2022", exactPeriod: "13 December 2021 - March 2022",
+    date: "December 2021 - March 2022",
     title: "Intern - Marketing", org: "CityMall, Gurugram",
     body: "Supported marketplace and marketing communication through promotional graphics, digital assets and brand-sensitive production.",
     bullets: ["Prepared marketing visuals and production-ready assets for digital communication."],
     tags: ["Marketing Support", "Digital Assets", "Production"]
   },
   {
-    date: "May 2021 - October 2021", exactPeriod: "17 May 2021 - 17 October 2021",
+    date: "May 2021 - October 2021",
     title: "Graphic Designer Intern", org: "Krash IT Services",
     body: "Supported layout development, typography, image preparation and practical graphic-design production.",
     bullets: ["Prepared clean, production-ready visual assets while developing consistency in layout and image treatment."],
     tags: ["Graphic Design", "Layout", "Production Foundations"]
   },
   {
-    date: "December 2020 - May 2021", exactPeriod: "1 December 2020 - 16 May 2021",
+    date: "December 2020 - May 2021",
     title: "Graphic Designer Intern", org: "YPR Eng. and Sol. Pvt. Ltd.",
     body: "Assisted with business-communication layouts, presentation and brochure support, and visual asset development.",
-    bullets: ["Candidate-supplied practical dates are retained without representing them as document-verified."],
+    bullets: ["Supported presentation, brochure and business-communication assets while building production-ready layout discipline."],
     tags: ["Graphic Design", "Presentations", "Brochure Support"]
   }
 ];
