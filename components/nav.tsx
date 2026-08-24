@@ -2,7 +2,7 @@
 
 import { motion } from "framer-motion";
 import { ExternalLink, Mail } from "lucide-react";
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { profile } from "@/lib/portfolio-data";
 
 const links = [
@@ -16,6 +16,8 @@ const links = [
 
 export function Nav() {
   const [activeSection, setActiveSection] = useState("#top");
+  const linkStripRef = useRef<HTMLDivElement>(null);
+  const linkRefs = useRef<Record<string, HTMLAnchorElement | null>>({});
 
   useEffect(() => {
     const sectionIds = ["#top", ...links.map((link) => link.href)];
@@ -45,6 +47,22 @@ export function Nav() {
     };
   }, []);
 
+  useEffect(() => {
+    const strip = linkStripRef.current;
+    if (!strip) return;
+
+    if (activeSection === "#top") {
+      strip.scrollTo({ left: 0, behavior: "smooth" });
+      return;
+    }
+
+    const activeLink = linkRefs.current[activeSection];
+    if (!activeLink) return;
+
+    const targetLeft = activeLink.offsetLeft - strip.clientWidth / 2 + activeLink.clientWidth / 2;
+    strip.scrollTo({ left: Math.max(0, targetLeft), behavior: "smooth" });
+  }, [activeSection]);
+
   return (
     <motion.header
       initial={{ y: 32, opacity: 0 }}
@@ -60,9 +78,12 @@ export function Nav() {
         >
           Home
         </a>
-        <div className="no-scrollbar flex min-w-0 flex-1 items-center gap-1 overflow-x-auto px-1">
+        <div ref={linkStripRef} className="no-scrollbar flex min-w-0 flex-1 items-center gap-1 overflow-x-auto px-1">
           {links.map((link) => (
             <a
+              ref={(element) => {
+                linkRefs.current[link.href] = element;
+              }}
               key={link.href}
               href={link.href}
               data-active={activeSection === link.href}
