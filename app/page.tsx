@@ -223,6 +223,63 @@ export default function Home() {
         </div>
       </section>
 
+      <SectionShell id="about" eyebrow="Profile" title="About Mayank">
+        <div className="grid gap-6 lg:grid-cols-[0.75fr_1.25fr]">
+          <Reveal>
+            <div className="h-full rounded-[2rem] border border-white/10 bg-white/[0.055] p-7 shadow-luxury backdrop-blur-2xl">
+              <Sparkles className="mb-12 text-signal" size={28} />
+              <p className="font-display text-3xl leading-tight text-white">{profile.aboutSnapshot}</p>
+              <p className="mt-6 leading-7 text-mercury">
+                {profile.aboutSnapshotBody}
+              </p>
+            </div>
+          </Reveal>
+          <Reveal delay={0.08}>
+            <div className="rounded-[2rem] border border-white/10 bg-black/25 p-6 backdrop-blur-2xl md:p-10">
+              <div className="space-y-4 text-sm leading-7 text-mercury sm:text-base md:text-lg md:leading-9">
+                {profile.aboutParagraphs.map((paragraph) => (
+                  <p key={paragraph}>{paragraph}</p>
+                ))}
+              </div>
+              <div className="mt-7 grid gap-3 md:grid-cols-3 md:gap-4">
+                {profile.roles.map((role) => (
+                  <div key={role} className="rounded-2xl border border-white/10 bg-white/[0.045] p-4 md:p-5">
+                    <p className="text-sm uppercase tracking-[0.12em] text-champagne">{role}</p>
+                  </div>
+                ))}
+              </div>
+              <div className="mt-6 grid gap-4 md:grid-cols-3">
+                {["Lead-generation creatives", "Brand-consistent systems", "Execution-ready assets"].map((point) => (
+                  <div key={point} className="rounded-2xl border border-white/10 bg-white/[0.04] p-4">
+                    <p className="text-sm font-medium text-white">{point}</p>
+                  </div>
+                ))}
+              </div>
+            </div>
+          </Reveal>
+        </div>
+      </SectionShell>
+
+      <section className="relative px-4 pb-8 md:px-8">
+        <Reveal>
+          <div className="mx-auto max-w-7xl rounded-[1.75rem] border border-signal/20 bg-black/30 p-5 shadow-luxury backdrop-blur-2xl md:p-7">
+            <div className="mb-5 inline-flex rounded-full border border-signal/20 bg-signal/[0.08] px-5 py-2">
+              <p className="text-xs font-semibold uppercase tracking-[0.24em] text-signal">Core Expertise</p>
+            </div>
+            <div className="flex flex-wrap gap-3">
+              {profile.aboutCoreExpertise.map((point) => (
+                <span
+                  key={point}
+                  className="rounded-full border border-white/10 bg-white/[0.055] px-4 py-2 text-sm font-medium text-white transition duration-300 hover:border-signal/30 hover:bg-signal/[0.1]"
+                >
+                  {point}
+                </span>
+              ))}
+            </div>
+          </div>
+        </Reveal>
+      </section>
+
       <section id="capabilities" className="relative scroll-mt-24 px-4 py-8 md:px-8" aria-label="Senior design capabilities">
         <div className="mx-auto grid max-w-7xl gap-4 lg:grid-cols-3">
           {services.map((service, index) => (
@@ -554,63 +611,6 @@ export default function Home() {
 
         </div>
       </SectionShell>
-
-      <SectionShell id="about" eyebrow="Profile" title="About Mayank">
-        <div className="grid gap-6 lg:grid-cols-[0.75fr_1.25fr]">
-          <Reveal>
-            <div className="h-full rounded-[2rem] border border-white/10 bg-white/[0.055] p-7 shadow-luxury backdrop-blur-2xl">
-              <Sparkles className="mb-12 text-signal" size={28} />
-              <p className="font-display text-3xl leading-tight text-white">{profile.aboutSnapshot}</p>
-              <p className="mt-6 leading-7 text-mercury">
-                {profile.aboutSnapshotBody}
-              </p>
-            </div>
-          </Reveal>
-          <Reveal delay={0.08}>
-            <div className="rounded-[2rem] border border-white/10 bg-black/25 p-6 backdrop-blur-2xl md:p-10">
-              <div className="space-y-4 text-sm leading-7 text-mercury sm:text-base md:text-lg md:leading-9">
-                {profile.aboutParagraphs.map((paragraph) => (
-                  <p key={paragraph}>{paragraph}</p>
-                ))}
-              </div>
-              <div className="mt-7 grid gap-3 md:grid-cols-3 md:gap-4">
-                {profile.roles.map((role) => (
-                  <div key={role} className="rounded-2xl border border-white/10 bg-white/[0.045] p-4 md:p-5">
-                    <p className="text-sm uppercase tracking-[0.12em] text-champagne">{role}</p>
-                  </div>
-                ))}
-              </div>
-              <div className="mt-6 grid gap-4 md:grid-cols-3">
-                {["Lead-generation creatives", "Brand-consistent systems", "Execution-ready assets"].map((point) => (
-                  <div key={point} className="rounded-2xl border border-white/10 bg-white/[0.04] p-4">
-                    <p className="text-sm font-medium text-white">{point}</p>
-                  </div>
-                ))}
-              </div>
-            </div>
-          </Reveal>
-        </div>
-      </SectionShell>
-
-      <section className="relative px-4 pb-8 md:px-8">
-        <Reveal>
-          <div className="mx-auto max-w-7xl rounded-[1.75rem] border border-signal/20 bg-black/30 p-5 shadow-luxury backdrop-blur-2xl md:p-7">
-            <div className="mb-5 inline-flex rounded-full border border-signal/20 bg-signal/[0.08] px-5 py-2">
-              <p className="text-xs font-semibold uppercase tracking-[0.24em] text-signal">Core Expertise</p>
-            </div>
-            <div className="flex flex-wrap gap-3">
-              {profile.aboutCoreExpertise.map((point) => (
-                <span
-                  key={point}
-                  className="rounded-full border border-white/10 bg-white/[0.055] px-4 py-2 text-sm font-medium text-white transition duration-300 hover:border-signal/30 hover:bg-signal/[0.1]"
-                >
-                  {point}
-                </span>
-              ))}
-            </div>
-          </div>
-        </Reveal>
-      </section>
 
       <section id="contact" className="relative scroll-mt-28 px-4 pb-36 pt-16 md:px-8 md:py-28">
         <Reveal>
