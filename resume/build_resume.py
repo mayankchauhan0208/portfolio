@@ -70,7 +70,7 @@ story += [
     p("Senior Visual Designer | Senior Graphic Designer", headline),
     p(
         '<link href="tel:+919992713289" color="#4E5968">+91 9992713289</link> | '
-        '<link href="mailto:connect.mayankchauhan@gmail.com" color="#0D6677">Email</link> | '
+        '<link href="mailto:connect.mayankchauhan@gmail.com" color="#0D6677">connect.mayankchauhan@gmail.com</link><br/>'
         '<link href="https://mayankchauhan.co.in" color="#0D6677">mayankchauhan.co.in</link> | '
         '<link href="https://www.linkedin.com/in/mayankchauhan0208/" color="#0D6677">LinkedIn</link>',
         contact,
