@@ -22,9 +22,9 @@ styles = getSampleStyleSheet()
 name = ParagraphStyle("Name", parent=styles["Normal"], fontName="Helvetica-Bold", fontSize=20, leading=22, alignment=TA_CENTER, textColor=NAVY, spaceAfter=2)
 headline = ParagraphStyle("Headline", parent=styles["Normal"], fontName="Helvetica-Bold", fontSize=11.5, leading=14, alignment=TA_CENTER, textColor=TEAL, spaceAfter=3)
 contact = ParagraphStyle("Contact", parent=styles["Normal"], fontName="Helvetica", fontSize=9.5, leading=12, alignment=TA_CENTER, textColor=MUTED, spaceAfter=8)
-section = ParagraphStyle("Section", parent=styles["Normal"], fontName="Helvetica-Bold", fontSize=10.5, leading=13, textColor=TEAL, spaceBefore=7, spaceAfter=3, borderWidth=0, borderPadding=0)
-body = ParagraphStyle("Body", parent=styles["Normal"], fontName="Helvetica", fontSize=10, leading=13.8, textColor=NAVY, spaceAfter=3.5)
-role = ParagraphStyle("Role", parent=body, fontName="Helvetica-Bold", spaceBefore=5, spaceAfter=2.5)
+section = ParagraphStyle("Section", parent=styles["Normal"], fontName="Helvetica-Bold", fontSize=10.5, leading=13, textColor=TEAL, spaceBefore=6.5, spaceAfter=3, borderWidth=0, borderPadding=0)
+body = ParagraphStyle("Body", parent=styles["Normal"], fontName="Helvetica", fontSize=10, leading=14.0, textColor=NAVY, spaceAfter=3.5)
+role = ParagraphStyle("Role", parent=body, fontName="Helvetica-Bold", spaceBefore=6, spaceAfter=3)
 bullet = ParagraphStyle("Bullet", parent=body, leftIndent=10, firstLineIndent=-7, bulletIndent=0, spaceAfter=2.5)
 label = ParagraphStyle("Label", parent=body, fontName="Helvetica-Bold", textColor=NAVY, spaceBefore=2, spaceAfter=1)
 small = ParagraphStyle("Small", parent=body, fontSize=9.5, leading=13)
@@ -72,7 +72,7 @@ story += [
         '<link href="tel:+919992713289" color="#4E5968">+91 9992713289</link> | '
         '<link href="mailto:connect.mayankchauhan@gmail.com" color="#0D6677">connect.mayankchauhan@gmail.com</link><br/>'
         '<link href="https://mayankchauhan.co.in" color="#0D6677">mayankchauhan.co.in</link> | '
-        '<link href="https://www.linkedin.com/in/mayankchauhan0208/" color="#0D6677">LinkedIn</link>',
+        '<link href="https://www.linkedin.com/in/mayankchauhan0208/" color="#0D6677">LinkedIn</link> | <link href="https://www.behance.net/mayankchauhan0208" color="#0D6677">Behance</link>',
         contact,
     ),
 ]
@@ -108,7 +108,7 @@ add_role(story, "Caterpillar Signs Pvt. Ltd. (Group Bayport) | Graphic Designer 
     "Translated stakeholder briefs and feedback into execution-ready assets across multiple formats and deadlines.",
     "Maintained repeatable visual systems while preserving brand consistency and production accuracy.",
 ])
-add_role(story, "7P Digital Services LLP | Graphic Designer | March 2022 - September 2022", [
+add_role(story, "7P Digital Services LLP | Graphic Designer and Video Editor | March 2022 - September 2022", [
     "Designed digital campaigns, social media creatives, promotional graphics, and platform-specific communication.",
     "Edited reels and promotional videos in Premiere Pro and After Effects, balancing pacing, readable titles, and visual consistency.",
     "Adapted static and motion assets across required formats while maintaining hierarchy and brand alignment.",
@@ -126,7 +126,7 @@ projects = [
     ("Emaar India Business Centre Visual Exploration", "AI-ASSISTED PERSONAL CONCEPT - NOT COMMISSIONED BY EMAAR", "Designer-led AI-assisted architecture exploration across day, dusk, night, and elevated views. Role: prompt direction, output selection, image refinement, Photoshop treatment, consistency review, and campaign-style presentation."),
 ]
 for title, classification, description in projects:
-    story.append(KeepTogether([p(title, label), p(classification, ParagraphStyle("Class", parent=small, fontName="Helvetica-Bold", fontSize=8.5, leading=10, textColor=TEAL, spaceAfter=1)), p(description, small)]))
+    story.append(KeepTogether([p(title, label), p(classification, ParagraphStyle("Class", parent=small, fontName="Helvetica-Bold", fontSize=9.5, leading=11.5, textColor=TEAL, spaceAfter=1)), p(description, small)]))
 
 add_section(story, "Tools")
 story.append(p("Adobe Photoshop | Adobe Illustrator | Adobe InDesign | Adobe Premiere Pro | Adobe After Effects | Adobe XD | Figma | Canva | Microsoft PowerPoint | Google Flow", small))
