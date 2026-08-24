@@ -1753,8 +1753,8 @@ export const timeline = [
   {
     date: "October 2025 - Present", exactPeriod: "1 October 2025 - Present", employmentType: "Full-time",
     title: "Senior Graphic Designer", org: "Property Master Pvt. Ltd.",
-    body: "Own visual execution for premium real-estate campaigns across sales presentations, brochures, digital advertising, social media, print collateral, reels and customer-facing communication.",
-    bullets: ["Translate marketing and sales requirements into clear visual systems with consistent hierarchy, typography, spacing and image treatment.", "Coordinate stakeholder revisions and prepare execution-ready assets across digital, print, presentation and video formats.", "Maintain visual quality and brand consistency across recurring campaign deliverables."],
+    body: "Own visual execution supporting approximately 8-12 property projects and 40-60 creative assets per month across six format groups, including presentations, digital advertising, social media, print, thumbnails and video.",
+    bullets: ["Translate marketing and sales requirements into clear visual systems with consistent hierarchy, typography, spacing and image treatment.", "Coordinate feedback across marketing, sales and management stakeholders, typically adapting master campaign directions into 5-8 format variations.", "Maintain visual quality and brand consistency across recurring campaign deliverables."],
     tags: ["Campaign Ownership", "Stakeholder Collaboration", "Quality Control", "Multi-format Delivery"]
   },
   {
@@ -1767,14 +1767,14 @@ export const timeline = [
   {
     date: "September 2022 - September 2025", exactPeriod: "12 September 2022 - September 2025",
     title: "Graphic Designer", org: "Caterpillar Signs Pvt. Ltd. - Group Bayport",
-    body: "Produced brand and marketing communication across campaign creatives, corporate presentations, social media, promotional collateral and print-ready layouts.",
+    body: "Produced approximately 25-40 brand and marketing assets per month across campaign creatives, corporate presentations, social media, promotional collateral and print-ready layouts.",
     bullets: ["Maintained consistency through typography, spacing, image treatment, resizing, version control and final visual checks.", "Collaborated with internal teams to convert briefs and feedback into execution-ready assets across formats."],
     tags: ["Brand Communication", "Production Quality", "Visual QA", "Print-ready Design"]
   },
   {
     date: "March 2022 - September 2022", exactPeriod: "29 March 2022 - 10 September 2022",
     title: "Graphic Designer", org: "7P Digital Services LLP",
-    body: "Created digital campaign assets and social media creatives for platform-specific formats.",
+    body: "Created approximately 20-30 static and motion assets per month across digital campaigns, social media and platform-specific promotional formats.",
     bullets: ["Edited reels and promotional videos while maintaining visual hierarchy, pacing and brand consistency.", "Adapted static and motion deliverables for campaign and promotional use."],
     tags: ["Campaign Creatives", "Social Media", "Video Editing", "Motion Content"]
   },

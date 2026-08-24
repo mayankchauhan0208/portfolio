@@ -36,7 +36,7 @@ export const flagshipProjects: FlagshipProject[] = [
     approach: "Established repeatable hierarchy, typography, image treatment and layout rules so campaign directions remained consistent across channels.",
     deliverables: "Social media, performance advertising, presentations, brochures, print collateral, thumbnails, reels and sales-support formats.",
     tools: "Adobe Photoshop, Illustrator, InDesign, Premiere Pro, After Effects, Canva and PowerPoint.",
-    outcome: "Adapted the campaign system across social, performance advertising, presentations, print collateral, video and sales-support formats.",
+    outcome: "Supported approximately 8-12 property projects and 40-60 creative assets per month, adapting master campaign systems into typically 5-8 variations across six format groups: social, performance advertising, presentations, print, thumbnails and video.",
     ai: "AI-assisted workflows were used selectively for concept and production support; final direction and quality control remained designer-led.",
     gallery: [
       { src: "/optimized/work/real-estate/trevoc-luxury-launch.webp", alt: "Property Master luxury real-estate campaign layout with premium sales messaging." },
@@ -60,7 +60,7 @@ export const flagshipProjects: FlagshipProject[] = [
     approach: "Applied repeatable layout logic and disciplined visual quality control to preserve brand presentation through each adaptation.",
     deliverables: "Corporate presentations, campaign creatives, social assets, promotional collateral, signage-support layouts and print-ready production files.",
     tools: "Adobe Photoshop, Illustrator, InDesign, Premiere Pro, After Effects, Canva and PowerPoint.",
-    outcome: "Supported consistent multi-format communication and production-ready delivery across recurring internal requirements.",
+    outcome: "Produced approximately 25-40 brand and marketing assets per month across campaigns, presentations, social communication, collateral and print production; contributed to approximately 8-12 decks, typically spanning 10-25 slides.",
     ai: "No AI involvement claimed.",
     gallery: [
       { src: "/optimized/seo/group-bayport-brand-communication-design.webp", alt: "Group Bayport and Caterpillar brand communication shown across presentation and marketing formats." }
