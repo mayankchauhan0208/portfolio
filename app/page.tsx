@@ -41,7 +41,6 @@ const contactActions: ContactAction[] = [
   {
     label: "Email Mayank Chauhan",
     shortLabel: "Email",
-    displayLabel: "connect.mayankchauhan@gmail.com",
     href: "mailto:connect.mayankchauhan@gmail.com",
     icon: Mail
   },
@@ -196,10 +195,6 @@ export default function Home() {
               Download Resume
               <Download size={14} />
             </a>
-            <Link href="#contact" onClick={() => trackPortfolioEvent("contact_click", { channel: "contact_section", source: "hero" })} className="reference-cta reference-cta-secondary">
-              Contact Me
-              <ArrowUpRight size={14} />
-            </Link>
           </div>
         </div>
       </section>
