@@ -79,17 +79,17 @@ export const aiTools = [
 
 export const services = [
   {
-    title: "Brand Presence",
+    title: "Brand and Campaign Design",
     kicker: "Identity / Campaigns",
     body: "Brand assets, marketing creatives, and presentation visuals designed with consistent hierarchy, clear messaging, and premium recall."
   },
   {
-    title: "Interface Concepts",
+    title: "Presentation Design",
     kicker: "UI / Figma / XD",
     body: "Landing pages, app screens, and product concepts with clean structure, polished spacing, and user-friendly visual flow."
   },
   {
-    title: "Motion Content",
+    title: "Digital, Print and Motion",
     kicker: "Premiere / After Effects",
     body: "Edited videos, reels, and campaign motion assets shaped with clear pacing, strong composition, and brand-focused energy."
   }
@@ -100,8 +100,8 @@ export const featuredProjectClassifications = [
     title: "Property Master Campaign System",
     classification: "Employer Work",
     disclosure: "Employer Work - created while working with Property Master. Developer names are project subjects and do not imply direct commissioning.",
-    href: "/work/real-estate",
-    image: "/optimized/work/real-estate/trevoc-luxury-launch.webp",
+    href: "/work/property-master-campaign-system",
+    image: "/optimized/seo/property-master-real-estate-campaign-design.webp",
     imageAlt: "Premium real-estate launch campaign visual from the Property Master campaign system",
     brief: "Build clear, premium property-marketing communication from sales and marketing briefs.",
     role: "Senior Graphic Designer responsible for visual execution, campaign adaptation, stakeholder revisions, production preparation, and final quality control.",
@@ -116,8 +116,8 @@ export const featuredProjectClassifications = [
     title: "Group Bayport / Caterpillar Communication",
     classification: "Employer Work",
     disclosure: "Employer Work - brand and marketing communication created while employed by Caterpillar Signs Pvt. Ltd. (Group Bayport).",
-    href: "/work/branding",
-    image: "/optimized/work/branding/roastory/roastory-brand-mockups-grid.webp",
+    href: "/work/group-bayport-brand-communication",
+    image: "/optimized/seo/group-bayport-brand-communication-design.webp",
     imageAlt: "Brand application and marketing communication layouts from Group Bayport portfolio work",
     brief: "Translate internal briefs into consistent brand and marketing communication across corporate and promotional touchpoints.",
     role: "Graphic Designer responsible for design production, multi-format adaptation, version control, internal collaboration, and final visual checks.",
@@ -132,8 +132,8 @@ export const featuredProjectClassifications = [
     title: "KENT Water Purifier Digital Brand Experience",
     classification: "Personal Concept",
     disclosure: "Personal Concept - Not commissioned by the featured brand.",
-    href: "/work/branding",
-    image: "/optimized/work/branding/kent/kent-01.webp",
+    href: "/work/presentation-design",
+    image: "/optimized/seo/kent-digital-brand-presentation-design.webp",
     imageAlt: "KENT water purifier personal concept presentation cover and digital brand system",
     brief: "Explore how a familiar product brand could be expressed through a structured digital experience and presentation narrative.",
     role: "Self-directed concept development, visual direction, UI presentation, typography, layout, image treatment, and final portfolio storytelling.",
@@ -148,8 +148,8 @@ export const featuredProjectClassifications = [
     title: "Emaar India Business Centre Visual Exploration",
     classification: "AI-Assisted Concept",
     disclosure: "Personal Concept - Not commissioned by the featured brand.",
-    href: "/work/ai-generated",
-    image: "/optimized/work/ai-generated/emaar-india-business-centre/emaar-IBC-01.webp",
+    href: "/work/ai-assisted-concept",
+    image: "/optimized/seo/emaar-ai-assisted-architecture-concept.webp",
     imageAlt: "AI-assisted commercial architecture concept showing the Emaar India Business Centre at night",
     brief: "Explore campaign-ready commercial architecture imagery across day, dusk, night, and elevated viewpoints.",
     role: "Designer-led prompt direction, output selection, scene refinement, Photoshop treatment, consistency review, and presentation design.",

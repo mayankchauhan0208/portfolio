@@ -6,27 +6,25 @@ import { profile } from "@/lib/portfolio-data";
 
 const siteUrl = "https://mayankchauhan.co.in";
 const siteDescription =
-  "Portfolio of Mayank Chauhan, a Senior Visual Designer and Senior Graphic Designer creating brand communication, campaign creatives, UI visual design, real-estate marketing visuals, motion/video assets, and AI-assisted creative workflows in India.";
+  "Senior Visual and Graphic Designer with 5+ years of experience in brand systems, campaign design, presentations, digital, print, motion and AI-enhanced creative workflows.";
 const socialPreviewImage = "/social-preview.png";
 
 export const metadata: Metadata = {
   metadataBase: new URL(siteUrl),
   title: {
-    default: "Senior Visual Designer | Senior Graphic Designer",
+    default: "Mayank Chauhan | Senior Visual & Graphic Designer",
     template: "%s | Mayank Chauhan"
   },
   description: siteDescription,
   keywords: [
-    "Mayank Chauhan",
-    "Mayank Chauhan Portfolio",
-    "Visual Designer India",
-    "Creative Brand Designer",
+    "Senior Visual Designer",
+    "Senior Graphic Designer",
+    "Brand Designer",
     "Campaign Designer",
-    "UI Visual Design",
-    "Graphic Designer India",
-    "Real Estate Marketing Designer",
-    "Motion and Video Creative",
-    "AI-assisted Creative Workflows"
+    "Presentation Designer",
+    "Marketing Communication Designer",
+    "Digital and Print Designer",
+    "AI-Enhanced Creative Workflow"
   ],
   authors: [{ name: "Mayank Chauhan" }],
   creator: "Mayank Chauhan",
@@ -41,9 +39,8 @@ export const metadata: Metadata = {
     canonical: "/"
   },
   openGraph: {
-    title: "Senior Visual Designer | Senior Graphic Designer",
-    description:
-      "Explore the portfolio of Mayank Chauhan, featuring brand communication, campaign creatives, UI visual design, real-estate marketing visuals, motion/video assets, and AI-assisted creative workflows.",
+    title: "Mayank Chauhan | Senior Visual & Graphic Designer",
+    description: siteDescription,
     url: siteUrl,
     siteName: "Mayank Chauhan Portfolio",
     images: [
@@ -59,9 +56,8 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "Senior Visual Designer | Senior Graphic Designer",
-    description:
-      "Visual design portfolio by Mayank Chauhan covering brand communication, campaign creatives, UI visuals, motion/video, and AI-assisted creative workflows.",
+    title: "Mayank Chauhan | Senior Visual & Graphic Designer",
+    description: siteDescription,
     images: [socialPreviewImage]
   },
   robots: {
@@ -78,11 +74,16 @@ const structuredData = {
       "@id": `${siteUrl}/#person`,
       name: "Mayank Chauhan",
       url: siteUrl,
-      jobTitle: "Senior Visual Designer | Senior Graphic Designer",
-      description:
-        "Senior Visual Designer and Senior Graphic Designer creating brand communication, campaign creatives, UI visual design, real-estate marketing visuals, motion/video assets, and AI-assisted creative workflows.",
+      jobTitle: "Senior Visual Designer and Senior Graphic Designer",
+      description: siteDescription,
+      knowsAbout: ["Brand systems", "Campaign design", "Presentation design", "Marketing communication", "Digital and print design", "Motion design", "AI-enhanced creative workflows"],
+      hasOccupation: {
+        "@type": "Occupation",
+        name: "Senior Visual Designer and Senior Graphic Designer",
+        experienceRequirements: "5+ years of professional design experience"
+      },
       image: `${siteUrl}${socialPreviewImage}`,
-      sameAs: [profile.linkedin, profile.behance]
+      sameAs: [siteUrl, profile.linkedin, profile.behance]
     },
     {
       "@type": "WebSite",

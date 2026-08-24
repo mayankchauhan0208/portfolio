@@ -445,7 +445,7 @@ export default function CategoryPage({ params }: CategoryPageProps) {
                 <div className="mb-8 grid gap-6 lg:grid-cols-[0.9fr_1.1fr] lg:items-end">
                   <div>
                     <p className="mb-4 text-xs uppercase tracking-[0.32em] text-[var(--niche-accent)]">{project.format}</p>
-                    <h2 className="font-display text-4xl leading-none text-white md:text-6xl">{project.title}</h2>
+                    <h3 className="font-display text-4xl leading-none text-white md:text-6xl">{project.title}</h3>
                     {projectDisclosure(project.title) ? (
                       <div className="mt-4 flex flex-wrap items-center gap-2">
                         <span className="rounded-full border border-[var(--niche-accent)]/40 bg-black/35 px-3 py-2 text-[0.62rem] font-bold uppercase tracking-[0.16em] text-[var(--niche-accent)]">{projectDisclosure(project.title)?.label}</span>
@@ -497,7 +497,7 @@ export default function CategoryPage({ params }: CategoryPageProps) {
                 <div className="mb-8 grid gap-6 lg:grid-cols-[0.95fr_1.05fr] lg:items-end">
                   <div>
                     <p className="mb-4 text-xs uppercase tracking-[0.32em] text-lime-300">{project.format}</p>
-                    <h2 className="font-display text-4xl leading-none text-white md:text-6xl">{project.title}</h2>
+                    <h3 className="font-display text-4xl leading-none text-white md:text-6xl">{project.title}</h3>
                     {projectDisclosure(project.title) ? (
                       <div className="mt-4 flex flex-wrap items-center gap-2">
                         <span className="rounded-full border border-[var(--niche-accent)]/40 bg-black/35 px-3 py-2 text-[0.62rem] font-bold uppercase tracking-[0.16em] text-[var(--niche-accent)]">{projectDisclosure(project.title)?.label}</span>
@@ -550,7 +550,7 @@ export default function CategoryPage({ params }: CategoryPageProps) {
                 <div className="mb-8 grid gap-6 lg:grid-cols-[0.9fr_1.1fr] lg:items-end">
                   <div>
                     <p className="mb-4 text-xs uppercase tracking-[0.32em] text-sky-200">{project.format}</p>
-                    <h2 className="font-display text-4xl leading-none text-white md:text-6xl">{project.title}</h2>
+                    <h3 className="font-display text-4xl leading-none text-white md:text-6xl">{project.title}</h3>
                     {projectDisclosure(project.title) ? (
                       <div className="mt-4 flex flex-wrap items-center gap-2">
                         <span className="rounded-full border border-[var(--niche-accent)]/40 bg-black/35 px-3 py-2 text-[0.62rem] font-bold uppercase tracking-[0.16em] text-[var(--niche-accent)]">{projectDisclosure(project.title)?.label}</span>
@@ -601,7 +601,7 @@ export default function CategoryPage({ params }: CategoryPageProps) {
                 <div className="mb-8 grid gap-6 lg:grid-cols-[0.95fr_1.05fr] lg:items-end">
                   <div>
                     <p className="mb-4 text-xs uppercase tracking-[0.32em] text-emerald-200">{project.format}</p>
-                    <h2 className="font-display text-4xl leading-none text-white md:text-6xl">{project.title}</h2>
+                    <h3 className="font-display text-4xl leading-none text-white md:text-6xl">{project.title}</h3>
                     {projectDisclosure(project.title) ? (
                       <div className="mt-4 flex flex-wrap items-center gap-2">
                         <span className="rounded-full border border-[var(--niche-accent)]/40 bg-black/35 px-3 py-2 text-[0.62rem] font-bold uppercase tracking-[0.16em] text-[var(--niche-accent)]">{projectDisclosure(project.title)?.label}</span>
@@ -654,7 +654,7 @@ export default function CategoryPage({ params }: CategoryPageProps) {
                 <div className="mb-8 grid gap-6 lg:grid-cols-[0.95fr_1.05fr] lg:items-end">
                   <div>
                     <p className="mb-4 text-xs uppercase tracking-[0.32em] text-violet-200">{project.format}</p>
-                    <h2 className="font-display text-4xl leading-none text-white md:text-6xl">{project.title}</h2>
+                    <h3 className="font-display text-4xl leading-none text-white md:text-6xl">{project.title}</h3>
                     {projectDisclosure(project.title) ? (
                       <div className="mt-4 flex flex-wrap items-center gap-2">
                         <span className="rounded-full border border-[var(--niche-accent)]/40 bg-black/35 px-3 py-2 text-[0.62rem] font-bold uppercase tracking-[0.16em] text-[var(--niche-accent)]">{projectDisclosure(project.title)?.label}</span>

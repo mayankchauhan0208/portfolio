@@ -152,11 +152,10 @@ export default function Home() {
         <div className="reference-glow reference-glow-right" />
         <div className="reference-container">
           <div className="reference-intro">
-            <h2 className="intro-line">Hello! I&apos;m</h2>
-            <h1 className="intro-line">
-              MAYANK
-              <br />
-              <span>CHAUHAN</span>
+            <p className="intro-line">Hello! I&apos;m</p>
+            <h1 className="intro-line" aria-label="Mayank Chauhan — Senior Visual Designer & Senior Graphic Designer">
+              <span>Mayank<br />Chauhan</span>
+              <span className="sr-only"> — Senior Visual Designer &amp; Senior Graphic Designer</span>
             </h1>
           </div>
 
@@ -173,11 +172,11 @@ export default function Home() {
           </div>
 
           <div className="reference-info">
-            <h2 className="intro-line reference-headline">
+            <div className="intro-line reference-headline">
               Senior Visual Designer
               <br />
               Senior Graphic Designer
-            </h2>
+            </div>
             <p className="intro-line reference-support">
               I build brand systems, campaign visuals, presentations and multi-format creative communication across digital, print and motion.
             </p>
@@ -218,7 +217,7 @@ export default function Home() {
         </div>
       </section>
 
-      <SectionShell id="about" eyebrow="About Me" title={profile.aboutHeading}>
+      <SectionShell id="about" eyebrow="Profile" title="About Mayank">
         <div className="grid gap-6 lg:grid-cols-[0.75fr_1.25fr]">
           <Reveal>
             <div className="h-full rounded-[2rem] border border-white/10 bg-white/[0.055] p-7 shadow-luxury backdrop-blur-2xl">
@@ -275,14 +274,18 @@ export default function Home() {
         </Reveal>
       </section>
 
-      <section className="relative px-4 py-8 md:px-8">
+      <section className="relative px-4 py-8 md:px-8" aria-label="Senior design capabilities">
         <div className="mx-auto grid max-w-7xl gap-4 lg:grid-cols-3">
           {services.map((service, index) => (
             <Reveal key={service.title} delay={index * 0.05}>
               <article className="group relative min-h-[19rem] overflow-hidden rounded-[1.75rem] border border-white/10 bg-white/[0.045] p-7 backdrop-blur-2xl transition duration-500 hover:-translate-y-1 hover:border-signal/35 hover:bg-white/[0.075]">
                 <div className="absolute right-0 top-0 h-36 w-36 translate-x-10 -translate-y-10 rounded-full bg-signal/10 blur-3xl transition group-hover:bg-signal/20" />
                 <p className="text-xs uppercase tracking-[0.28em] text-champagne">{service.kicker}</p>
-                <h3 className="mt-16 font-display text-4xl leading-none text-white">{service.title}</h3>
+                {index === 2 ? (
+                  <h3 className="mt-16 font-display text-4xl leading-none text-white">{service.title}</h3>
+                ) : (
+                  <h2 className="mt-16 font-display text-4xl leading-none text-white">{service.title}</h2>
+                )}
                 <p className="mt-6 leading-7 text-mercury">{service.body}</p>
               </article>
             </Reveal>
@@ -298,11 +301,8 @@ export default function Home() {
             <div className="absolute inset-0 portfolio-card-grid opacity-[0.08]" />
             <div className="absolute left-1/2 top-[-9rem] h-[26rem] w-[26rem] -translate-x-1/2 rounded-full bg-signal/15 blur-3xl" />
             <div className="relative mx-auto max-w-6xl text-center">
-              <p className="mb-4 text-xs uppercase tracking-[0.34em] text-signal">Creative Work</p>
-              <h2 className="font-display text-[clamp(2.05rem,9vw,4.75rem)] font-semibold leading-[0.92] text-white md:text-[clamp(2.35rem,4.85vw,4.75rem)]">
-                <span className="block md:whitespace-nowrap">Explore selected work.</span>
-                <span className="block md:whitespace-nowrap">Open the right portfolio category.</span>
-              </h2>
+              <p className="mb-4 text-xs uppercase tracking-[0.34em] text-signal">Campaign systems and case studies</p>
+              <h2 className="font-display text-[clamp(2.05rem,9vw,4.75rem)] font-semibold leading-[0.92] text-white md:text-[clamp(2.35rem,4.85vw,4.75rem)]">Selected Work</h2>
               <p className="mx-auto mt-4 max-w-3xl text-sm leading-6 text-mercury md:text-base">
                 <span className="block">Review focused work across branding,</span>
                 <span className="block">real estate marketing, performance ads, digital campaigns, motion, and UI visuals.</span>
@@ -443,7 +443,7 @@ export default function Home() {
         </Reveal>
       </section>
 
-      <SectionShell id="skills" eyebrow="Creative Stack" title="Commercial design capabilities and essential production tools.">
+      <SectionShell id="skills" eyebrow="Creative Stack" title="Digital, Print and Motion">
         <div className="space-y-6">
           <Reveal>
             <div className="rounded-[2rem] border border-white/10 bg-white/[0.045] p-5 backdrop-blur-xl md:p-7">
@@ -502,7 +502,7 @@ export default function Home() {
               <div className="mb-6 flex flex-wrap items-end justify-between gap-4">
                 <div>
                   <p className="text-xs uppercase tracking-[0.28em] text-signal">Supporting Workflow</p>
-                  <h3 className="mt-3 font-display text-3xl text-white">Selective AI-assisted production</h3>
+                  <h2 className="mt-3 font-display text-3xl text-white">AI-Enhanced Workflow</h2>
                 </div>
                 <p className="max-w-md text-sm leading-6 text-mercury">
                   Uses AI-assisted workflows for concept exploration, visual experimentation, image development and production acceleration while maintaining designer-led direction, brand consistency and final quality control.
@@ -541,7 +541,7 @@ export default function Home() {
         </div>
       </SectionShell>
 
-      <SectionShell id="experience" eyebrow="Experience" title="Commercial experience, ownership, and production discipline.">
+      <SectionShell id="experience" eyebrow="Career" title="Professional Experience">
         <div className="grid gap-6 lg:grid-cols-[1.2fr_0.8fr]">
           <div className="relative space-y-4">
             <div className="absolute left-5 top-4 h-[calc(100%-2rem)] w-px bg-gradient-to-b from-signal via-white/20 to-transparent" />
@@ -604,9 +604,8 @@ export default function Home() {
             <div className="relative grid gap-8 lg:grid-cols-[1.08fr_0.92fr] lg:items-end">
               <div>
                 <p className="mb-4 text-xs uppercase tracking-[0.28em] text-signal sm:tracking-[0.32em]">Contact</p>
-                <h2 className="max-w-3xl font-display text-3xl leading-[1.04] text-white sm:text-5xl md:text-7xl">
-                  Let&apos;s build clear, premium visual communication.
-                </h2>
+                <h2 className="max-w-3xl font-display text-3xl leading-[1.04] text-white sm:text-5xl md:text-7xl">Contact</h2>
+                <p className="mt-4 max-w-3xl font-display text-2xl leading-tight text-white sm:text-4xl">Let&apos;s build clear, premium visual communication.</p>
                 <p className="mt-5 max-w-2xl text-base leading-7 text-mercury sm:text-lg sm:leading-8">
                   Open to full-time Senior Visual Designer and Senior Graphic Designer opportunities.
                 </p>

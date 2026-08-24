@@ -1,5 +1,6 @@
 import type { MetadataRoute } from "next";
 import { portfolioCategories } from "@/lib/portfolio-data";
+import { flagshipProjects } from "@/lib/flagship-projects";
 
 const siteUrl = "https://mayankchauhan.co.in";
 
@@ -10,6 +11,13 @@ export default function sitemap(): MetadataRoute.Sitemap {
     lastModified: now,
     changeFrequency: "monthly" as const,
     priority: 0.8
+  }));
+
+  const flagshipRoutes = flagshipProjects.map((project) => ({
+    url: `${siteUrl}/work/${project.slug}`,
+    lastModified: now,
+    changeFrequency: "monthly" as const,
+    priority: 0.9
   }));
 
   return [
@@ -25,6 +33,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
       changeFrequency: "monthly",
       priority: 0.9
     },
+    ...flagshipRoutes,
     ...categoryRoutes
   ];
 }
