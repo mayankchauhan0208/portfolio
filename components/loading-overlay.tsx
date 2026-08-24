@@ -45,7 +45,7 @@ export function LoadingOverlay({ onComplete }: { onComplete?: () => void }) {
           animate={{ x: ["0%", "-50%"] }}
           transition={{ duration: 13, repeat: Infinity, ease: "linear" }}
         >
-          {Array.from({ length: 8 }).map((_, index) => (
+          {Array.from({ length: 2 }).map((_, index) => (
             <span key={index}>{heroRoles.join(" / ")}</span>
           ))}
         </motion.div>

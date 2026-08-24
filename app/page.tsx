@@ -5,13 +5,13 @@ import Link from "next/link";
 import { type CSSProperties, useEffect, useRef, useState } from "react";
 import { motion, useScroll, useTransform } from "framer-motion";
 import gsap from "gsap";
-import { ArrowUpRight, Download, GraduationCap, Instagram, Linkedin, Mail, Palette, Phone, Sparkles, type LucideIcon } from "lucide-react";
+import { ArrowUpRight, Award, Download, GraduationCap, Instagram, Layers3, Linkedin, Mail, Palette, Phone, Sparkles, Workflow, type LucideIcon } from "lucide-react";
 import { LoadingOverlay } from "@/components/loading-overlay";
 import { Nav } from "@/components/nav";
 import { Reveal } from "@/components/reveal";
 import { SectionShell } from "@/components/section-shell";
 import { Spotlight } from "@/components/spotlight";
-import { aiTools, coreExpertise, education, featuredProjectClassifications, hobbies, metrics, portfolioCategories, profile, services, softwareSkills, timeline } from "@/lib/portfolio-data";
+import { aiTools, coreExpertise, education, featuredProjectClassifications, metrics, portfolioCategories, profile, services, softwareSkills, timeline } from "@/lib/portfolio-data";
 import { assetPath } from "@/lib/site-paths";
 
 type ContactAction = {
@@ -179,8 +179,7 @@ export default function Home() {
               Senior Graphic Designer
             </h2>
             <p className="intro-line reference-support">
-              I turn marketing and sales briefs into consistent campaign systems, presentations,
-              digital creatives, and production-ready print assets.
+              I build brand systems, campaign visuals, presentations and multi-format creative communication across digital, print and motion.
             </p>
           </div>
 
@@ -198,14 +197,24 @@ export default function Home() {
         </div>
       </section>
 
-      <section className="relative px-4 py-8 md:px-8">
-        <div className="mx-auto grid max-w-7xl gap-3 sm:grid-cols-2 lg:grid-cols-4">
-          {metrics.map((metric) => (
-            <div key={metric.label} className="rounded-2xl border border-white/10 bg-black/35 p-5 backdrop-blur-2xl">
-              <div className="font-display text-3xl text-white">{metric.value}</div>
-              <div className="mt-2 text-xs uppercase leading-5 tracking-[0.14em] text-mercury">{metric.label}</div>
-            </div>
-          ))}
+      <section className="relative px-4 py-8 md:px-8" aria-label="Design capability highlights">
+        <div className="mx-auto grid max-w-7xl gap-4 md:grid-cols-12">
+          {metrics.map((metric) => {
+            const MetricIcon = metric.icon === "award" ? Award : metric.icon === "workflow" ? Workflow : metric.icon === "layers" ? Layers3 : Sparkles;
+            const span = metric.size === "compact" ? "md:col-span-6 lg:col-span-2" : metric.size === "wide" ? "md:col-span-12 lg:col-span-4" : "md:col-span-6 lg:col-span-3";
+            const isAi = metric.size === "wide";
+            return (
+              <article
+                key={metric.label}
+                className={`${span} group relative min-h-40 overflow-hidden rounded-[1.5rem] border p-5 backdrop-blur-2xl transition duration-300 hover:-translate-y-1 ${isAi ? "border-indigo-300/30 bg-gradient-to-br from-blue-500/[0.12] via-black/50 to-purple-500/[0.14] shadow-[0_20px_70px_rgba(99,102,241,0.14)] hover:border-indigo-200/55" : "border-white/10 bg-gradient-to-br from-white/[0.065] via-black/45 to-black/70 hover:border-white/25"}`}
+              >
+                <div className={`absolute inset-0 opacity-0 transition duration-500 group-hover:opacity-100 ${isAi ? "bg-[radial-gradient(circle_at_80%_10%,rgba(129,140,248,0.2),transparent_45%)]" : "bg-[radial-gradient(circle_at_80%_10%,rgba(255,255,255,0.08),transparent_45%)]"}`} />
+                <MetricIcon className={`relative mb-8 ${isAi ? "text-indigo-200" : "text-signal"}`} size={21} strokeWidth={1.6} aria-hidden="true" />
+                <div className="relative font-display text-[clamp(1.45rem,2.2vw,2.15rem)] leading-tight text-white">{metric.value}</div>
+                <div className={`relative mt-2 leading-5 text-mercury ${isAi ? "max-w-md text-sm normal-case tracking-normal" : "text-xs uppercase tracking-[0.13em]"}`}>{metric.label}</div>
+              </article>
+            );
+          })}
         </div>
       </section>
 
@@ -302,19 +311,36 @@ export default function Home() {
             </div>
 
 
-            <div className="relative mx-auto mt-8 grid max-w-6xl gap-4 md:grid-cols-2">
+            <div className="relative mx-auto mt-8 grid max-w-6xl gap-5 lg:grid-cols-2">
               {featuredProjectClassifications.map((project) => (
-                <Link key={project.title} href={project.href} prefetch={false} className="group overflow-hidden rounded-[1.5rem] border border-white/10 bg-white/[0.045] transition hover:-translate-y-1 hover:border-signal/40">
-                  <div className="relative aspect-[16/7] overflow-hidden bg-black/30">
-                    <Image src={assetPath(project.image)} alt={`${project.title} preview`} fill sizes="(min-width: 768px) 46vw, 92vw" className="object-cover transition duration-700 group-hover:scale-[1.03]" />
-                    <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/15 to-transparent" />
-                    <span className="absolute left-4 top-4 rounded-full border border-white/20 bg-black/70 px-3 py-2 text-[0.62rem] font-bold uppercase tracking-[0.16em] text-signal backdrop-blur-xl">{project.classification}</span>
-                  </div>
-                  <div className="p-5">
+                <article key={project.title} className="group overflow-hidden rounded-[1.6rem] border border-white/10 bg-white/[0.045] transition duration-300 hover:-translate-y-1 hover:border-signal/35">
+                  <Link href={project.href} prefetch={false} className="block focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-signal focus-visible:ring-inset">
+                    <div className="relative aspect-[16/8] overflow-hidden bg-black/30">
+                      <Image src={assetPath(project.image)} alt={project.imageAlt} fill sizes="(min-width: 1024px) 46vw, 92vw" className="object-cover transition duration-700 group-hover:scale-[1.025]" />
+                      <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/10 to-transparent" />
+                      <span className="absolute left-4 top-4 rounded-full border border-white/20 bg-black/75 px-3 py-2 text-[0.62rem] font-bold uppercase tracking-[0.16em] text-signal backdrop-blur-xl">{project.classification}</span>
+                    </div>
+                  </Link>
+                  <div className="p-5 md:p-6">
                     <h3 className="font-display text-2xl leading-tight text-white">{project.title}</h3>
-                    <p className="mt-3 text-sm leading-6 text-mercury">{project.disclosure}</p>
+                    <p className="mt-3 text-sm font-medium leading-6 text-champagne">{project.disclosure}</p>
+                    <dl className="mt-5 grid gap-4 text-sm leading-6">
+                      {[
+                        ["Brief", project.brief], ["My role", project.role], ["Problem / constraint", project.constraint],
+                        ["Design approach / system", project.approach], ["Deliverables / channels", project.deliverables],
+                        ["Tools", project.tools], ["Outcome / scale", project.outcome], ["AI involvement", project.ai]
+                      ].map(([label, value]) => (
+                        <div key={label} className="border-t border-white/10 pt-3">
+                          <dt className="text-[0.65rem] font-bold uppercase tracking-[0.16em] text-signal">{label}</dt>
+                          <dd className="mt-1 text-white/72">{value}</dd>
+                        </div>
+                      ))}
+                    </dl>
+                    <Link href={project.href} prefetch={false} className="mt-5 inline-flex min-h-11 items-center gap-2 rounded-full border border-white/15 px-4 py-2 text-xs font-bold uppercase tracking-[0.14em] text-white transition hover:border-signal/45 hover:text-signal focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-signal">
+                      View case study <ArrowUpRight size={14} />
+                    </Link>
                   </div>
-                </Link>
+                </article>
               ))}
             </div>
             <div className="relative mx-auto mt-5 flex max-w-6xl flex-wrap gap-2" aria-label="Project classification key">
@@ -479,7 +505,7 @@ export default function Home() {
                   <h3 className="mt-3 font-display text-3xl text-white">Selective AI-assisted production</h3>
                 </div>
                 <p className="max-w-md text-sm leading-6 text-mercury">
-                  A compact supporting toolkit for early exploration and production assistance - never a substitute for design judgment, brand consistency, or final quality control.
+                  Uses AI-assisted workflows for concept exploration, visual experimentation, image development and production acceleration while maintaining designer-led direction, brand consistency and final quality control.
                 </p>
               </div>
               <div className="grid gap-3 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
@@ -566,17 +592,6 @@ export default function Home() {
                 </div>
               </div>
 
-              <div className="rounded-[2rem] border border-white/10 bg-white/[0.055] p-7 backdrop-blur-2xl">
-                <Sparkles className="mb-10 text-signal" size={30} />
-                <h3 className="font-display text-3xl text-white">Hobbies</h3>
-                <div className="mt-7 grid gap-3">
-                  {hobbies.map((hobby) => (
-                    <p key={hobby} className="rounded-2xl border border-white/10 bg-black/20 p-4 leading-6 text-mercury">
-                      {hobby}
-                    </p>
-                  ))}
-                </div>
-              </div>
             </div>
           </Reveal>
         </div>

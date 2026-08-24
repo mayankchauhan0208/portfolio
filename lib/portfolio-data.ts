@@ -3,10 +3,10 @@ import siteContent from "@/content/site.json";
 export const profile = siteContent.profile;
 
 export const metrics = [
-  { value: "5+", label: "Years of design experience" },
-  { value: "Digital + Print", label: "Multi-format delivery" },
-  { value: "Campaign Systems", label: "Commercial creative focus" },
-  { value: "Static + Motion", label: "Visual + Video Delivery" }
+  { value: "5+ Years", label: "Senior Design Experience", icon: "award", size: "compact" },
+  { value: "Brand → Campaign", label: "Systems Across Every Touchpoint", icon: "workflow", size: "standard" },
+  { value: "Digital × Print × Motion", label: "Multi-format Creative Delivery", icon: "layers", size: "standard" },
+  { value: "AI-Enhanced Workflow", label: "Accelerated ideation and production, guided by creative judgment.", icon: "sparkles", size: "wide" }
 ];
 
 export const projects = [
@@ -97,32 +97,68 @@ export const services = [
 
 export const featuredProjectClassifications = [
   {
-    title: "Property Master Real Estate Campaigns",
+    title: "Property Master Campaign System",
     classification: "Employer Work",
-    disclosure: "Campaign and sales-support work created as part of the Property Master role.",
+    disclosure: "Employer Work - created while working with Property Master. Developer names are project subjects and do not imply direct commissioning.",
     href: "/work/real-estate",
-    image: "/optimized/work/real-estate/trevoc-luxury-launch.webp"
+    image: "/optimized/work/real-estate/trevoc-luxury-launch.webp",
+    imageAlt: "Premium real-estate launch campaign visual from the Property Master campaign system",
+    brief: "Build clear, premium property-marketing communication from sales and marketing briefs.",
+    role: "Senior Graphic Designer responsible for visual execution, campaign adaptation, stakeholder revisions, production preparation, and final quality control.",
+    constraint: "Balance property imagery, offer messaging, sales priorities, and brand presentation across fast-moving requirements.",
+    approach: "Established repeatable hierarchy, typography, image treatment, and layout rules so campaign directions remained consistent across channels.",
+    deliverables: "Social media, performance advertising, presentations, brochures, print collateral, thumbnails, reels, and sales-support formats.",
+    tools: "Adobe Photoshop, Illustrator, InDesign, Premiere Pro, After Effects, Canva, and PowerPoint.",
+    outcome: "Adapted campaign systems across digital, print, presentation, video, and customer-facing sales communication without claiming confidential performance figures.",
+    ai: "AI-assisted workflows used selectively for concept and production support; final direction and quality control remained designer-led."
   },
   {
-    title: "Caterpillar Signs Pvt. Ltd. (Group Bayport) Brand and Marketing Communication",
+    title: "Group Bayport / Caterpillar Communication",
     classification: "Employer Work",
-    disclosure: "Brand and marketing communication created as part of the Group Bayport role.",
+    disclosure: "Employer Work - brand and marketing communication created while employed by Caterpillar Signs Pvt. Ltd. (Group Bayport).",
     href: "/work/branding",
-    image: "/optimized/work/branding/roastory/roastory-brand-mockups-grid.webp"
+    image: "/optimized/work/branding/roastory/roastory-brand-mockups-grid.webp",
+    imageAlt: "Brand application and marketing communication layouts from Group Bayport portfolio work",
+    brief: "Translate internal briefs into consistent brand and marketing communication across corporate and promotional touchpoints.",
+    role: "Graphic Designer responsible for design production, multi-format adaptation, version control, internal collaboration, and final visual checks.",
+    constraint: "Maintain typography, spacing, image treatment, and production accuracy across varied formats and deadlines.",
+    approach: "Applied repeatable layout logic and disciplined visual QA to preserve brand presentation through each adaptation.",
+    deliverables: "Corporate presentations, campaign creatives, social assets, promotional collateral, signage-support layouts, and print-ready production files.",
+    tools: "Adobe Photoshop, Illustrator, InDesign, Premiere Pro, After Effects, Canva, and PowerPoint.",
+    outcome: "Supported consistent multi-format communication and production-ready delivery across recurring internal requirements.",
+    ai: "No AI involvement claimed."
   },
   {
     title: "KENT Water Purifier Digital Brand Experience",
     classification: "Personal Concept",
-    disclosure: "Personal concept; not commissioned by KENT.",
+    disclosure: "Personal Concept - Not commissioned by the featured brand.",
     href: "/work/branding",
-    image: "/optimized/work/branding/kent/kent-01.webp"
+    image: "/optimized/work/branding/kent/kent-01.webp",
+    imageAlt: "KENT water purifier personal concept presentation cover and digital brand system",
+    brief: "Explore how a familiar product brand could be expressed through a structured digital experience and presentation narrative.",
+    role: "Self-directed concept development, visual direction, UI presentation, typography, layout, image treatment, and final portfolio storytelling.",
+    constraint: "Create a coherent, brand-sensitive experience without implying a commissioned relationship with KENT.",
+    approach: "Built a presentation-led system connecting product storytelling, interface hierarchy, trust cues, offers, and consistent visual language.",
+    deliverables: "Digital brand presentation, homepage journey, product experience, trust and conversion sections, design-system views, and promotional layouts.",
+    tools: "Figma, Adobe Photoshop, Adobe Illustrator, and presentation design workflows.",
+    outcome: "Produced a cohesive multi-screen presentation demonstrating visual-system thinking and structured product storytelling.",
+    ai: "No AI involvement claimed."
   },
   {
     title: "Emaar India Business Centre Visual Exploration",
     classification: "AI-Assisted Concept",
-    disclosure: "AI-assisted personal concept; not commissioned by Emaar.",
+    disclosure: "Personal Concept - Not commissioned by the featured brand.",
     href: "/work/ai-generated",
-    image: "/optimized/work/ai-generated/emaar-india-business-centre/emaar-IBC-01.webp"
+    image: "/optimized/work/ai-generated/emaar-india-business-centre/emaar-IBC-01.webp",
+    imageAlt: "AI-assisted commercial architecture concept showing the Emaar India Business Centre at night",
+    brief: "Explore campaign-ready commercial architecture imagery across day, dusk, night, and elevated viewpoints.",
+    role: "Designer-led prompt direction, output selection, scene refinement, Photoshop treatment, consistency review, and presentation design.",
+    constraint: "Improve realism and visual continuity across generated scenes while clearly presenting the work as an uncommissioned concept.",
+    approach: "Directed composition and lighting, selected viable outputs, refined images, and organized a consistent campaign-style visual sequence.",
+    deliverables: "AI-assisted architecture images, mood variations, refined campaign visuals, and presentation boards.",
+    tools: "Google Flow and Adobe Photoshop, supported by AI-assisted image workflows.",
+    outcome: "Created a controlled visual exploration that demonstrates responsible AI-assisted execution and designer-led final quality control.",
+    ai: "AI-assisted personal concept; AI supported image development while selection, refinement, brand framing, and quality control remained designer-led."
   }
 ];
 

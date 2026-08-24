@@ -7,7 +7,7 @@ import { profile } from "@/lib/portfolio-data";
 const siteUrl = "https://mayankchauhan.co.in";
 const siteDescription =
   "Portfolio of Mayank Chauhan, a Senior Visual Designer and Senior Graphic Designer creating brand communication, campaign creatives, UI visual design, real-estate marketing visuals, motion/video assets, and AI-assisted creative workflows in India.";
-const socialPreviewImage = "/optimized/images/mayank-portrait.webp";
+const socialPreviewImage = "/social-preview.png";
 
 export const metadata: Metadata = {
   metadataBase: new URL(siteUrl),
@@ -50,8 +50,8 @@ export const metadata: Metadata = {
       {
         url: socialPreviewImage,
         width: 1200,
-        height: 1600,
-        alt: "Mayank Chauhan visual designer portfolio preview"
+        height: 630,
+        alt: "Mayank Chauhan - Senior Visual Designer and Senior Graphic Designer portfolio"
       }
     ],
     locale: "en_IN",

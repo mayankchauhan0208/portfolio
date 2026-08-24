@@ -1,7 +1,7 @@
 export function RoleTicker() {
   const heroRoles = ["Senior Visual Designer | Senior Graphic Designer"];
   const text = heroRoles.join(" / ");
-  const items = Array.from({ length: 8 }, (_, index) => `${text}${index === 7 ? "" : " /"}`);
+  const items = [`${text} /`, text];
 
   return (
     <div className="role-ticker" aria-hidden="true">
