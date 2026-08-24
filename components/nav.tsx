@@ -59,7 +59,13 @@ export function Nav() {
     const activeLink = linkRefs.current[activeSection];
     if (!activeLink) return;
 
-    const targetLeft = activeLink.offsetLeft - strip.clientWidth / 2 + activeLink.clientWidth / 2;
+    const stripRect = strip.getBoundingClientRect();
+    const activeLinkRect = activeLink.getBoundingClientRect();
+    const targetLeft =
+      strip.scrollLeft +
+      (activeLinkRect.left - stripRect.left) -
+      (strip.clientWidth - activeLinkRect.width) / 2;
+
     strip.scrollTo({ left: Math.max(0, targetLeft), behavior: "smooth" });
   }, [activeSection]);
 
