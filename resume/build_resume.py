@@ -92,31 +92,31 @@ for heading, text in skills:
     story.append(p(f"<b>{heading}:</b> {text}", small))
 
 add_section(story, "Professional Experience")
-add_role(story, "Property Master Pvt. Ltd. | Senior Graphic Designer | October 2025 - Present", [
+add_role(story, "Property Master Pvt. Ltd. | Senior Graphic Designer | 1 Oct 2025 - Present", [
     "Own visual execution supporting 8-12 property projects and 40-60 creative assets per month across six digital, presentation, print, thumbnail, and video-led format groups.",
     "Apply typography, layout design, colour theory and visual hierarchy to produce clear, brand-consistent campaign assets across digital, print and presentation formats.",
     "Coordinate marketing, sales, and management feedback, typically adapting master campaign directions into 5-8 format variations.",
     "Maintain visual quality across recurring campaigns, multi-format adaptations, and time-sensitive sales-support deliverables.",
 ])
-add_role(story, "Property Master Pvt. Ltd. | Freelance Graphic Designer (Concurrent) | May 2024 - September 2025", [
+add_role(story, "Property Master Pvt. Ltd. | Freelance Graphic Designer (Concurrent) | 8 May 2024 - 30 Sep 2025", [
     "Delivered real-estate campaign creatives, presentation assets, and sales-support communication on a concurrent freelance basis.",
     "Adapted core campaign directions across social, presentation, digital, and print requirements before moving into the full-time senior role.",
 ])
-add_role(story, "Caterpillar Signs Pvt. Ltd. (Group Bayport) | Graphic Designer | September 2022 - September 2025", [
+add_role(story, "Caterpillar Signs Pvt. Ltd. (Group Bayport) | Graphic Designer | 12 Sep 2022 - 13 Sep 2025", [
     "Produced 25-40 monthly brand and marketing assets across campaigns, presentations, social communication, collateral, signage, and print production.",
     "Maintained consistency through disciplined typography, spacing, alignment, image treatment, resizing, version control, and final visual quality checks.",
     "Translated stakeholder briefs and feedback into execution-ready assets across multiple formats and deadlines.",
     "Maintained repeatable visual systems while preserving brand consistency and production accuracy.",
 ])
-add_role(story, "7P Digital Services LLP | Graphic Designer and Video Editor | March 2022 - September 2022", [
+add_role(story, "7P Digital Services LLP | Graphic Designer and Video Editor | 29 Mar 2022 - 10 Sep 2022", [
     "Created 20-30 static and motion assets per month across digital campaigns, social media, promotional graphics, and platform-specific communication.",
     "Edited reels and promotional videos in Premiere Pro and After Effects, balancing pacing, readable titles, and visual consistency.",
     "Adapted static and motion assets across required formats while maintaining hierarchy and brand alignment.",
 ])
 
-add_role(story, "CityMall, Gurugram | Marketing Intern | December 2021 - March 2022", ["Supported marketing design production through marketplace visuals, promotional graphics, digital communication, and brand-sensitive asset preparation."])
-add_role(story, "Krash IT Services | Graphic Designer Intern | May 2021 - October 2021", ["Supported layout development, visual cleanup, typography, image preparation, and practical production-ready design workflows."])
-add_role(story, "YPR Eng. and Sol. Pvt. Ltd. | Graphic Designer Intern | December 2020 - May 2021", ["Assisted with graphic-design layouts, presentation and brochure support, creative preparation, and visual asset development for business communication."])
+add_role(story, "CityMall, Gurugram | Marketing Intern | 13 Dec 2021 - Mar 2022", ["Supported marketing design production through marketplace visuals, promotional graphics, digital communication, and brand-sensitive asset preparation."])
+add_role(story, "Krash IT Services | Graphic Designer Intern | 17 May 2021 - 17 Oct 2021", ["Supported layout development, visual cleanup, typography, image preparation, and practical production-ready design workflows."])
+add_role(story, "YPR Eng. and Sol. Pvt. Ltd. | Graphic Designer Intern | 1 Dec 2020 - 16 May 2021", ["Assisted with graphic-design layouts, presentation and brochure support, creative preparation, and visual asset development for business communication."])
 
 add_section(story, "Selected Portfolio Highlights")
 projects = [
