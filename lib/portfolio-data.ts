@@ -319,15 +319,6 @@ export const portfolioWorks = [
     tone: "Fresh daylight"
   },
   {
-    title: "Faridabad Vertical Oasis",
-    category: "Residential Campaign",
-    format: "Premium Poster",
-    brief: "A softer biophilic campaign direction with light gold accents, lifestyle imagery, and luxury apartment positioning.",
-    image: "/optimized/work/real-estate/bptp-vertical-oasis.webp",
-    span: "md:col-span-3 md:row-span-2",
-    tone: "Soft luxury"
-  },
-  {
     title: "Rare Asset Investment",
     category: "Ultra Luxury",
     format: "Premium EDM",
