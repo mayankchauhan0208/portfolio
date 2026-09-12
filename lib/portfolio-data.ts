@@ -310,15 +310,6 @@ export const portfolioWorks = [
     tone: "Blue gold"
   },
   {
-    title: "Palwal Prime Land",
-    category: "Plotted Township",
-    format: "Investment Poster",
-    brief: "A clean plotted township campaign combining green entry visuals, price clarity, and practical project details.",
-    image: "/optimized/work/real-estate/palwal-prime-land.webp",
-    span: "md:col-span-3 md:row-span-2",
-    tone: "Fresh daylight"
-  },
-  {
     title: "Rare Asset Investment",
     category: "Ultra Luxury",
     format: "Premium EDM",
