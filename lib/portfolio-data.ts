@@ -328,15 +328,6 @@ export const portfolioWorks = [
     tone: "Soft luxury"
   },
   {
-    title: "Private Haven Above The Canopy",
-    category: "Residential Campaign",
-    format: "Poster Campaign",
-    brief: "A serene residential concept using circular framing and airy space to communicate privacy and elevation.",
-    image: "/optimized/work/real-estate/bptp-private-haven.webp",
-    span: "md:col-span-3 md:row-span-2",
-    tone: "Canopy gold"
-  },
-  {
     title: "Rare Asset Investment",
     category: "Ultra Luxury",
     format: "Premium EDM",
@@ -344,15 +335,6 @@ export const portfolioWorks = [
     image: "/optimized/work/real-estate/oberoi-rare-assets.webp",
     span: "md:col-span-3 md:row-span-2",
     tone: "Strategic luxury"
-  },
-  {
-    title: "Oberoi Sky Living",
-    category: "Ultra Luxury",
-    format: "Mobile Poster",
-    brief: "A lifestyle-rich terrace campaign designed around five-star privacy, city views, and high-ticket clarity.",
-    image: "/optimized/work/real-estate/oberoi-sky-living.webp",
-    span: "md:col-span-3 md:row-span-2",
-    tone: "Skyline luxury"
   },
   {
     title: "Inheritance Reserved",
