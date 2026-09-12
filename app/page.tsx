@@ -2,11 +2,10 @@
 
 import Image from "next/image";
 import Link from "next/link";
-import { type CSSProperties, useEffect, useRef, useState } from "react";
+import { type CSSProperties, useEffect, useState } from "react";
 import { motion, useScroll, useTransform } from "framer-motion";
-import gsap from "gsap";
 import { ArrowUpRight, Award, Download, GraduationCap, Instagram, Layers3, Linkedin, Mail, Palette, Phone, Sparkles, Workflow, type LucideIcon } from "lucide-react";
-import { LoadingOverlay } from "@/components/loading-overlay";
+
 import { Nav } from "@/components/nav";
 import { Reveal } from "@/components/reveal";
 import { SectionShell } from "@/components/section-shell";
@@ -95,37 +94,13 @@ function ContactIconLinks({ includeBehance = false, labeled = false, className =
 
 export default function Home() {
   const [activeCreative, setActiveCreative] = useState(1);
-  const [loaded, setLoaded] = useState(false);
-  const heroRef = useRef<HTMLDivElement>(null);
+
 
   const { scrollYProgress } = useScroll();
   const backgroundY = useTransform(scrollYProgress, [0, 1], ["0%", "22%"]);
 
 
 
-  useEffect(() => {
-    if (!loaded) return;
-    const ctx = gsap.context(() => {
-      gsap.fromTo(
-        ".intro-line",
-        { y: 72, opacity: 0, rotateX: -12 },
-        { y: 0, opacity: 1, rotateX: 0, duration: 0.9, stagger: 0.08, ease: "power4.out" }
-      );
-      gsap.fromTo(
-        ".reference-model",
-        { y: 44, opacity: 0, scale: 0.96 },
-        { y: 0, opacity: 1, scale: 1, duration: 1.35, ease: "power4.out" }
-      );
-      gsap.to(".ambient-grid", {
-        backgroundPosition: "120px 80px",
-        duration: 18,
-        ease: "none",
-        repeat: -1
-      });
-    }, heroRef);
-
-    return () => ctx.revert();
-  }, [loaded]);
 
   useEffect(() => {
     const timer = window.setInterval(() => {
@@ -137,7 +112,7 @@ export default function Home() {
 
   return (
     <main id="top" className="relative min-h-screen overflow-hidden bg-obsidian">
-      <LoadingOverlay onComplete={() => setLoaded(true)} />
+
       <Spotlight />
       <motion.div
         aria-hidden
@@ -151,7 +126,7 @@ export default function Home() {
 
       <Nav />
 
-      <section ref={heroRef} className="reference-hero">
+      <section className="reference-hero">
         <div className="reference-glow reference-glow-left" />
         <div className="reference-glow reference-glow-right" />
         <div className="reference-container">

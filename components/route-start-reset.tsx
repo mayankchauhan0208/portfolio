@@ -1,11 +1,10 @@
 "use client";
 
 import { usePathname } from "next/navigation";
-import { useEffect, useRef } from "react";
+import { useEffect } from "react";
 
 export function RouteStartReset() {
   const pathname = usePathname();
-  const initialLoad = useRef(true);
 
   useEffect(() => {
     if ("scrollRestoration" in window.history) {
@@ -14,14 +13,13 @@ export function RouteStartReset() {
   }, []);
 
   useEffect(() => {
-    const isInitialLoad = initialLoad.current;
-    initialLoad.current = false;
-
-    if (isInitialLoad && window.location.hash) {
-      window.history.replaceState(null, "", `${window.location.pathname}${window.location.search}`);
+    if (window.location.hash) {
+      const targetId = decodeURIComponent(window.location.hash.slice(1));
+      window.requestAnimationFrame(() => {
+        document.getElementById(targetId)?.scrollIntoView({ block: "start", behavior: "instant" });
+      });
+      return;
     }
-
-    if (!isInitialLoad && window.location.hash) return;
 
     window.requestAnimationFrame(() => {
       window.scrollTo({ top: 0, left: 0, behavior: "instant" });

@@ -907,6 +907,11 @@ html.theme-light button[aria-label*="theme"],
 }
 
 @media (min-width: 1025px) and (max-width: 1280px) {
+  .reference-model {
+    bottom: 132px;
+    height: 82vh;
+  }
+
   .reference-info .reference-headline {
     font-size: clamp(2.1rem, 3.1vw, 2.5rem);
   }
@@ -1041,6 +1046,7 @@ html.theme-light button[aria-label*="theme"],
 
   .reference-container {
     display: grid;
+    grid-template-columns: minmax(0, 1fr);
     width: min(92%, 430px);
     height: auto;
     gap: 1.1rem;
@@ -1048,7 +1054,8 @@ html.theme-light button[aria-label*="theme"],
 
   .reference-intro,
   .reference-info,
-  .reference-model {
+  .reference-model,
+  .reference-hero-actions {
     position: relative;
     inset: auto;
     transform: none;
@@ -1060,18 +1067,18 @@ html.theme-light button[aria-label*="theme"],
   }
 
   .reference-model {
-    order: 2;
+    order: 3;
     justify-self: center;
   }
 
   .reference-info {
-    order: 4;
+    order: 2;
   }
 
   .reference-hero-actions {
     position: relative;
     inset: auto;
-    order: 3;
+    order: 4;
     width: 100%;
     max-width: 100%;
     flex-wrap: wrap;
@@ -1085,8 +1092,8 @@ html.theme-light button[aria-label*="theme"],
 
   .reference-model {
     width: min(76vw, 320px);
-    height: 44svh;
-    min-height: 330px;
+    height: 38svh;
+    min-height: 285px;
   }
 
   .reference-portrait {
@@ -1139,6 +1146,11 @@ html.theme-light button[aria-label*="theme"],
 
   .reference-contact-icons {
     justify-content: center;
+    width: 100%;
+  }
+
+  .reference-hero-actions > .reference-cta {
+    width: 100%;
   }
 
   .reference-hero-actions .contact-icon-link {
