@@ -42,7 +42,7 @@ export default function WorkPage() {
         <div className="ambient-grid absolute inset-0 opacity-80" />
       </div>
 
-      <header className="relative z-20 px-4 py-6 md:px-8">
+      <header className="relative z-20 px-4 pb-6 pt-16 md:px-8">
         <nav className="mx-auto flex max-w-7xl items-center justify-between rounded-full border border-white/10 bg-obsidian/68 px-4 py-3 shadow-luxury backdrop-blur-2xl">
           <Link
             href="/#work"

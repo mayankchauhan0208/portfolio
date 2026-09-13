@@ -1,10 +1,13 @@
 "use client";
 
 import { Moon, Sun } from "lucide-react";
+import { usePathname } from "next/navigation";
 import { useEffect, useState } from "react";
 
 export function ThemeToggle() {
   const [theme, setTheme] = useState<"dark" | "light">("dark");
+  const pathname = usePathname();
+  const isWorkPage = pathname.startsWith("/work");
 
   useEffect(() => {
     setTheme("dark");
@@ -21,7 +24,7 @@ export function ThemeToggle() {
     <button
       type="button"
       onClick={toggleTheme}
-      className="absolute right-3 top-12 z-[90] inline-flex h-11 w-11 items-center justify-center rounded-full border border-white/15 bg-white text-[0.66rem] font-bold uppercase tracking-[0.12em] text-black shadow-luxury transition hover:bg-signal sm:w-auto sm:gap-1.5 sm:px-3 sm:py-2 md:right-5 md:top-14"
+      className={`absolute right-3 z-[90] inline-flex h-11 w-11 items-center justify-center rounded-full border border-white/15 bg-white text-[0.66rem] font-bold uppercase tracking-[0.12em] text-black shadow-luxury transition hover:bg-signal sm:w-auto sm:gap-1.5 sm:px-3 sm:py-2 md:right-5 ${isWorkPage ? "top-16" : "top-12 md:top-14"}`}
       aria-label={`Switch to ${theme === "dark" ? "light" : "dark"} theme`}
     >
       {theme === "dark" ? <Sun size={13} /> : <Moon size={13} />}
