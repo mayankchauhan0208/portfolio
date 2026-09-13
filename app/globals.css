@@ -312,7 +312,7 @@ html.theme-light button[aria-label*="theme"],
   bottom: 170px;
   z-index: 11;
   width: clamp(260px, 24vw, 400px);
-  height: 92vh;
+  height: 82vh;
   transform: translateX(-50%);
   pointer-events: none;
 }

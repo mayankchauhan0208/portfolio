@@ -288,7 +288,7 @@ export default function CategoryPage({ params }: CategoryPageProps) {
         <div className="ambient-grid absolute inset-0 opacity-80" />
       </div>
 
-      <header className="relative z-20 px-4 py-6 md:px-8">
+      <header className="relative z-20 py-6 pl-4 pr-16 sm:px-6 md:px-8">
         <nav className="mx-auto flex max-w-7xl items-center justify-between rounded-full border border-white/10 bg-obsidian/68 px-4 py-3 shadow-luxury backdrop-blur-2xl">
           <Link
             href="/work"
@@ -308,7 +308,7 @@ export default function CategoryPage({ params }: CategoryPageProps) {
         </nav>
       </header>
 
-      <section className="relative z-10 px-4 pb-10 pt-12 md:px-8 md:pb-14 md:pt-16">
+      <section className="relative z-10 px-4 pb-8 pt-10 md:px-8 md:pb-10 md:pt-12">
         <div className="mx-auto max-w-7xl">
           <div className="max-w-none">
             <p className="mb-5 inline-flex items-center gap-3 rounded-full border border-white/10 bg-white/[0.045] px-4 py-2 text-xs uppercase tracking-[0.3em] text-[var(--niche-accent)]">
@@ -320,11 +320,11 @@ export default function CategoryPage({ params }: CategoryPageProps) {
             >
               {category.title}
             </h1>
-            <p className="mt-7 max-w-2xl text-base leading-8 text-mercury md:text-lg">{category.subtitle}</p>
+            <p className="mt-5 max-w-2xl text-base leading-7 text-mercury md:text-lg">{category.subtitle}</p>
           </div>
         </div>
 
-        <div className="no-scrollbar mx-auto mt-10 flex max-w-7xl gap-2 overflow-x-auto border-y border-white/10 py-5 md:flex-wrap md:overflow-visible">
+        <div className="no-scrollbar mx-auto mt-8 flex max-w-7xl gap-2 overflow-x-auto border-y border-white/10 py-4 md:flex-wrap md:overflow-visible">
           {portfolioCategories.map((item) => (
             <Link
               key={item.id}
@@ -343,17 +343,17 @@ export default function CategoryPage({ params }: CategoryPageProps) {
       </section>
 
       <section className="relative z-10 px-4 pb-12 md:px-8 md:pb-16">
-        <div className="mx-auto max-w-7xl overflow-hidden rounded-[2rem] border border-white/10 bg-white/[0.045] p-5 shadow-luxury backdrop-blur-xl md:p-7 lg:p-8">
-          <div className="grid gap-6 lg:grid-cols-[0.85fr_1.15fr] lg:items-start">
-            <div>
+        <div className="mx-auto max-w-7xl overflow-hidden rounded-[2rem] border border-white/10 bg-white/[0.045] p-5 shadow-luxury backdrop-blur-xl md:p-7">
+          <div className="grid gap-6 lg:grid-cols-[minmax(0,0.8fr)_minmax(0,1.2fr)] lg:items-stretch">
+            <div className="min-w-0 lg:py-1">
               <p className="mb-4 text-xs uppercase tracking-[0.3em] text-[var(--niche-accent)]">Case Study Context</p>
               <h2 className="font-display text-3xl leading-tight text-white md:text-4xl">How this work was approached</h2>
               <p className="mt-4 max-w-xl text-sm leading-7 text-mercury md:text-base">{category.caseStudy.overview}</p>
             </div>
 
-            <div className="grid gap-3 sm:grid-cols-2">
+            <div className="grid min-w-0 gap-3 sm:auto-rows-fr sm:grid-cols-2">
               {caseStudyCards.map((item) => (
-                <article key={item.label} className="rounded-[1.35rem] border border-white/10 bg-black/24 p-4">
+                <article key={item.label} className="flex h-full min-w-0 flex-col rounded-[1.35rem] border border-white/10 bg-black/24 p-4">
                   <p className="mb-2 text-[0.64rem] font-bold uppercase tracking-[0.22em] text-[var(--niche-accent)]">{item.label}</p>
                   <p className="text-sm leading-6 text-white/72">{item.value}</p>
                 </article>
