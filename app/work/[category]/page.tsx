@@ -167,6 +167,14 @@ export default function CategoryPage({ params }: CategoryPageProps) {
           object-fit: contain;
         }
 
+        .project-gallery-image--digital {
+          width: auto;
+          max-width: 100%;
+          max-height: min(72svh, 760px);
+          margin-inline: auto;
+          object-fit: contain;
+        }
+
         .project-gallery-card {
           position: relative;
           isolation: isolate;
@@ -254,6 +262,11 @@ export default function CategoryPage({ params }: CategoryPageProps) {
           }
 
           .project-gallery-grid--real-estate {
+            grid-template-columns: repeat(3, minmax(0, 1fr));
+            gap: 1.25rem;
+          }
+
+          .project-gallery-grid--digital {
             grid-template-columns: repeat(3, minmax(0, 1fr));
             gap: 1.25rem;
           }
@@ -521,7 +534,7 @@ export default function CategoryPage({ params }: CategoryPageProps) {
                   <p className="max-w-2xl text-sm leading-7 text-mercury md:text-base">{project.brief}</p>
                 </div>
 
-                <div className="project-gallery-grid project-gallery-grid--project">
+                <div className="project-gallery-grid project-gallery-grid--project project-gallery-grid--digital">
                   {project.images.map((image, index) => (
                     <article
                       key={image.src}
@@ -535,8 +548,8 @@ export default function CategoryPage({ params }: CategoryPageProps) {
                           alt={`${image.title} ${category.title} work by Mayank Chauhan`}
                           width={image.width}
                           height={image.height}
-                          sizes="(min-width: 768px) 46vw, 92vw"
-                          className="project-gallery-image"
+                          sizes="(min-width: 1280px) 30vw, (min-width: 768px) 46vw, 92vw"
+                          className="project-gallery-image project-gallery-image--digital"
                         />
                       </figure>
                       <div className="project-gallery-meta">
@@ -711,7 +724,7 @@ export default function CategoryPage({ params }: CategoryPageProps) {
 
       {category.id === "videos" && (
         <section className="relative z-10 px-4 pb-28 md:px-8">
-          <div className="mx-auto max-w-7xl">
+          <div className="mx-auto max-w-6xl">
             <div className="mb-8 flex items-end justify-between gap-6">
               <div>
                 <p className="mb-3 flex items-center gap-2 text-xs uppercase tracking-[0.28em] text-[var(--niche-accent)]">
@@ -724,7 +737,7 @@ export default function CategoryPage({ params }: CategoryPageProps) {
               </p>
             </div>
 
-            <div className="grid gap-5 md:grid-cols-2 md:gap-6 xl:gap-7">
+            <div className="grid gap-5 md:grid-cols-2 md:gap-6 xl:grid-cols-3 xl:gap-5">
               {videoProjects.map((project) => (
                 <article
                   key={project.title}
@@ -737,8 +750,8 @@ export default function CategoryPage({ params }: CategoryPageProps) {
                       title={project.title}
                       width={project.width}
                       height={project.height}
-                      sizes="(min-width: 768px) 46vw, 92vw"
-                      className="h-auto w-full object-contain transition duration-700 group-hover:scale-[1.01]"
+                      sizes="(min-width: 1280px) 30vw, (min-width: 768px) 46vw, 92vw"
+                      className="mx-auto h-auto max-h-[56svh] w-auto max-w-full object-contain transition duration-700 group-hover:scale-[1.01]"
                     />
                   </div>
                   <div className="p-3 pt-5 md:p-5">
