@@ -159,6 +159,14 @@ export default function CategoryPage({ params }: CategoryPageProps) {
           align-items: start;
         }
 
+        .project-gallery-image--real-estate {
+          width: auto;
+          max-width: 100%;
+          max-height: min(72svh, 760px);
+          margin-inline: auto;
+          object-fit: contain;
+        }
+
         .project-gallery-card {
           position: relative;
           isolation: isolate;
@@ -243,6 +251,11 @@ export default function CategoryPage({ params }: CategoryPageProps) {
           .project-gallery-grid {
             grid-template-columns: repeat(2, minmax(0, 1fr));
             gap: 1.75rem;
+          }
+
+          .project-gallery-grid--real-estate {
+            grid-template-columns: repeat(3, minmax(0, 1fr));
+            gap: 1.25rem;
           }
         }
 
@@ -389,7 +402,7 @@ export default function CategoryPage({ params }: CategoryPageProps) {
 
       {category.id === "real-estate" && (
         <section className="relative z-10 px-4 pb-28 md:px-8">
-          <div className="mx-auto max-w-7xl">
+          <div className="mx-auto max-w-6xl">
             <div className="mb-8 flex items-end justify-between gap-6">
               <div>
                 <p className="mb-3 flex items-center gap-2 text-xs uppercase tracking-[0.28em] text-[var(--niche-accent)]">
@@ -402,7 +415,7 @@ export default function CategoryPage({ params }: CategoryPageProps) {
               </p>
             </div>
 
-            <div className="project-gallery-grid">
+            <div className="project-gallery-grid project-gallery-grid--real-estate">
               {portfolioWorks.map((work) => {
                 const size = workImageSize(work);
 
@@ -420,8 +433,8 @@ export default function CategoryPage({ params }: CategoryPageProps) {
                           alt={`${work.title} ${category.title} work by Mayank Chauhan`}
                           width={size.width}
                           height={size.height}
-                          sizes="(min-width: 768px) 46vw, 92vw"
-                          className="project-gallery-image"
+                          sizes="(min-width: 1280px) 30vw, (min-width: 768px) 46vw, 92vw"
+                          className="project-gallery-image project-gallery-image--real-estate"
                         />
                       </figure>
                       <div className="project-gallery-meta">
