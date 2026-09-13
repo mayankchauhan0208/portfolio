@@ -288,7 +288,7 @@ export default function CategoryPage({ params }: CategoryPageProps) {
         <div className="ambient-grid absolute inset-0 opacity-80" />
       </div>
 
-      <header className="relative z-20 py-6 pl-4 pr-16 sm:px-6 md:px-8">
+      <header className="relative z-20 py-6 pl-4 pr-16 sm:pl-6 sm:pr-28 md:pl-8 md:pr-28 2xl:px-8">
         <nav className="mx-auto flex max-w-7xl items-center justify-between rounded-full border border-white/10 bg-obsidian/68 px-4 py-3 shadow-luxury backdrop-blur-2xl">
           <Link
             href="/work"
@@ -324,13 +324,13 @@ export default function CategoryPage({ params }: CategoryPageProps) {
           </div>
         </div>
 
-        <div className="no-scrollbar mx-auto mt-8 flex max-w-7xl gap-2 overflow-x-auto border-y border-white/10 py-4 md:flex-wrap md:overflow-visible">
+        <div className="no-scrollbar mx-auto mt-8 flex max-w-7xl gap-2 overflow-x-auto border-y border-white/10 py-4 md:grid md:grid-cols-4 md:overflow-visible xl:grid-cols-7">
           {portfolioCategories.map((item) => (
             <Link
               key={item.id}
               href={item.href}
               prefetch={false}
-              className={`min-h-11 shrink-0 rounded-full border px-3 py-2 text-center text-[0.64rem] uppercase leading-tight tracking-[0.16em] transition sm:px-4 sm:text-[0.68rem] ${
+              className={`flex min-h-11 min-w-0 shrink-0 items-center justify-center rounded-full border px-3 py-2 text-center text-[0.64rem] uppercase leading-tight tracking-[0.14em] transition sm:text-[0.66rem] md:w-full ${
                 item.id === category.id
                   ? "border-white bg-white text-black"
                   : "border-white/10 bg-white/[0.04] text-white/70 hover:border-[var(--niche-accent)] hover:text-white"

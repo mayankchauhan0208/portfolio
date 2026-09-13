@@ -309,7 +309,7 @@ html.theme-light button[aria-label*="theme"],
 .reference-model {
   position: absolute;
   left: 50%;
-  bottom: 170px;
+  bottom: 130px;
   z-index: 11;
   width: clamp(260px, 24vw, 400px);
   height: 82vh;
