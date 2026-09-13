@@ -94,6 +94,7 @@ function ContactIconLinks({ includeBehance = false, labeled = false, className =
 
 export default function Home() {
   const [activeCreative, setActiveCreative] = useState(1);
+  const [creativeLocked, setCreativeLocked] = useState(false);
 
 
   const { scrollYProgress } = useScroll();
@@ -103,12 +104,14 @@ export default function Home() {
 
 
   useEffect(() => {
+    if (creativeLocked) return;
+
     const timer = window.setInterval(() => {
       setActiveCreative((current) => (current + 1) % portfolioCategories.length);
     }, 2600);
 
     return () => window.clearInterval(timer);
-  }, []);
+  }, [creativeLocked]);
 
   return (
     <main id="top" className="relative min-h-screen overflow-hidden bg-obsidian">
@@ -399,7 +402,10 @@ export default function Home() {
                 <button
                   key={category.id}
                   type="button"
-                  onClick={() => setActiveCreative(index)}
+                  onClick={() => {
+                    setActiveCreative(index);
+                    setCreativeLocked(true);
+                  }}
                   className={`rounded-[1rem] px-3 py-3 text-left transition duration-300 ${
                     activeCreative === index ? "bg-white text-black" : "bg-white/[0.04] text-white/68 hover:bg-white/[0.08] hover:text-white"
                   }`}
