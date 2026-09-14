@@ -1,5 +1,15 @@
 import Link from "next/link";
 
+export const metadata = {
+  title: {
+    absolute: "Page Not Found | Mayank Chauhan"
+  },
+  robots: {
+    index: false,
+    follow: false
+  }
+};
+
 export default function NotFound() {
   return (
     <main className="grid min-h-screen place-items-center bg-obsidian px-5 text-center text-white">
